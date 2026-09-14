@@ -15,6 +15,16 @@ export function errorHandler(error, req, res, next) {
     return;
   }
 
+  if (error?.code === 'LIMIT_FILE_SIZE') {
+    res.status(400).json({
+      error: {
+        code: 'FILE_TOO_LARGE',
+        message: 'Arquivo muito grande. Videos e GIFs devem ter ate 8 MB; audios, ate 3 MB.'
+      }
+    });
+    return;
+  }
+
   if (error instanceof AppError) {
     res.status(error.statusCode).json({
       error: {
