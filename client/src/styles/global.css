@@ -505,6 +505,12 @@ th {
   background: #111827;
 }
 
+.exercise-media-large {
+  width: 100%;
+  max-width: 320px;
+  height: 180px;
+}
+
 iframe.exercise-media {
   border: 0;
 }

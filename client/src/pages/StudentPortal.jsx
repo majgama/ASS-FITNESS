@@ -4,6 +4,18 @@ import { api, fileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { formatDate, normalizeSnapshot, weekDays } from './pageHelpers.js';
 
+function youtubeEmbedUrl(value) {
+  try {
+    const url = new URL(value);
+    const videoId = url.hostname === 'youtu.be'
+      ? url.pathname.slice(1)
+      : url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop();
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : value;
+  } catch {
+    return value;
+  }
+}
+
 export function StudentPortal() {
   const { user } = useAuth();
   const [currentPlan, setCurrentPlan] = useState(null);
@@ -103,6 +115,15 @@ export function StudentPortal() {
               <div className="exercise-list">
                 {(selectedDay?.dailyWorkout?.exercises || []).map((item) => (
                   <article className="exercise-row" key={item.id}>
+                    {item.gifPath ? <img className="exercise-media exercise-media-large" src={fileUrl(item.gifPath)} alt={`Demonstração de ${item.exerciseName}`} /> : null}
+                    {item.videoPath ? <video className="exercise-media exercise-media-large" src={fileUrl(item.videoPath)} controls muted loop playsInline /> : null}
+                    {item.youtubeUrl ? <iframe
+                      className="exercise-media exercise-media-large"
+                      src={youtubeEmbedUrl(item.youtubeUrl)}
+                      title={`Demonstração de ${item.exerciseName}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    /> : null}
                     <div>
                       <strong>{item.exerciseName}</strong>
                       <span>{item.muscleGroup || 'Geral'}</span>
