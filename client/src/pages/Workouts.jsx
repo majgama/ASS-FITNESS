@@ -54,10 +54,11 @@ export function Workouts() {
   async function createExercise(event) {
     event.preventDefault();
     setError('');
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     try {
       await api('/exercises', { method: 'POST', body: form });
-      event.currentTarget.reset();
+      formElement.reset();
       setNotice('Exercicio criado.');
       await load();
     } catch (err) {
@@ -67,7 +68,8 @@ export function Workouts() {
 
   async function createDailyWorkout(event) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     try {
       await api('/workouts/daily', {
         method: 'POST',
@@ -77,7 +79,7 @@ export function Workouts() {
           visibility: form.get('visibility') || 'private'
         }
       });
-      event.currentTarget.reset();
+      formElement.reset();
       setNotice('Treino diario criado.');
       await load();
     } catch (err) {
@@ -87,7 +89,8 @@ export function Workouts() {
 
   async function addExerciseToWorkout(event) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     if (!selectedDailyWorkout) return;
     try {
       await api(`/workouts/daily/${selectedDailyWorkout}/exercises`, {
@@ -102,7 +105,7 @@ export function Workouts() {
           notes: form.get('notes') || null
         }
       });
-      event.currentTarget.reset();
+      formElement.reset();
       setNotice('Exercicio adicionado.');
     } catch (err) {
       setError(err.message);
@@ -111,7 +114,8 @@ export function Workouts() {
 
   async function createWeeklyPlan(event) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const days = weekDays.map((_, dayOfWeek) => {
       const isRest = form.get(`rest-${dayOfWeek}`) === 'on';
       return {
@@ -133,7 +137,7 @@ export function Workouts() {
           days
         }
       });
-      event.currentTarget.reset();
+      formElement.reset();
       setNotice('Plano semanal criado.');
       await load();
     } catch (err) {

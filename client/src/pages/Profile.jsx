@@ -27,7 +27,8 @@ export function Profile() {
     event.preventDefault();
     setNotice('');
     setError('');
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     try {
       await api('/profile/me/password', {
         method: 'POST',
@@ -36,7 +37,7 @@ export function Profile() {
           newPassword: form.get('newPassword')
         }
       });
-      event.currentTarget.reset();
+      formElement.reset();
       setNotice('Senha alterada.');
     } catch (err) {
       setError(err.message);

@@ -52,7 +52,8 @@ export function Diets() {
 
   async function createDiet(event) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     try {
       await api('/diets', {
         method: 'POST',
@@ -62,7 +63,7 @@ export function Diets() {
           generalGuidelines: form.get('generalGuidelines') || null
         }
       });
-      event.currentTarget.reset();
+      formElement.reset();
       setNotice('Dieta criada.');
       await load();
     } catch (err) {

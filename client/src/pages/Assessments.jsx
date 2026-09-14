@@ -127,11 +127,12 @@ export function Assessments() {
 
   async function createAssessment(event) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     form.set('studentId', selectedStudent);
     try {
       await api('/assessments', { method: 'POST', body: form });
-      event.currentTarget.reset();
+      formElement.reset();
       setNotice('Avaliacao registrada.');
       await loadAssessments(selectedStudent);
     } catch (err) {
