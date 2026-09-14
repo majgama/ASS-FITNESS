@@ -50,5 +50,7 @@ export async function api(path, options = {}) {
 
 export function fileUrl(path) {
   if (!path) return '';
-  return `${API_URL}/files/${path}`;
+  const token = getAuthToken();
+  const query = token ? `?access_token=${encodeURIComponent(token)}` : '';
+  return `${API_URL}/files/${path}${query}`;
 }

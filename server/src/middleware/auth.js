@@ -4,7 +4,7 @@ import { hashToken } from '../utils/tokens.js';
 
 export async function authRequired(req, res, next) {
   try {
-    const authorization = req.headers.authorization || '';
+    const authorization = req.headers.authorization || (req.query.access_token ? `Bearer ${req.query.access_token}` : '');
     const [scheme, token] = authorization.split(' ');
 
     if (scheme !== 'Bearer' || !token) {
