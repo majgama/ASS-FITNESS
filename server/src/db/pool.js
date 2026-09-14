@@ -3,8 +3,19 @@ import { env } from '../config/env.js';
 
 const { Pool } = pg;
 
+function normalizeDatabaseUrl(databaseUrl) {
+  try {
+    const url = new URL(databaseUrl);
+    url.searchParams.delete('sslmode');
+    url.searchParams.delete('sslrootcert');
+    return url.toString();
+  } catch {
+    return databaseUrl;
+  }
+}
+
 export const pool = new Pool({
-  connectionString: env.databaseUrl,
+  connectionString: normalizeDatabaseUrl(env.databaseUrl),
   ssl: env.databaseSsl ? { rejectUnauthorized: false } : false
 });
 
