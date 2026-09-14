@@ -1,9 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Dumbbell, Plus, Save } from 'lucide-react';
-import { api } from '../api/client.js';
+import { api, fileUrl } from '../api/client.js';
 import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { weekDays } from './pageHelpers.js';
+
+function youtubeEmbedUrl(value) {
+  try {
+    const url = new URL(value);
+    const videoId = url.hostname === 'youtu.be'
+      ? url.pathname.slice(1)
+      : url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop();
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : value;
+  } catch {
+    return value;
+  }
+}
 
 export function Workouts() {
   const { user } = useAuth();
@@ -16,6 +28,7 @@ export function Workouts() {
   const [selectedPlan, setSelectedPlan] = useState('');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
+  const [mediaType, setMediaType] = useState('none');
 
   const canCreatePublic = user.role === 'admin';
 
@@ -56,9 +69,16 @@ export function Workouts() {
     setError('');
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
+    form.delete('youtubeUrl');
+    form.delete('video');
+    form.delete('gif');
+    if (mediaType === 'youtube') form.set('youtubeUrl', formElement.elements.youtubeUrl.value);
+    if (mediaType === 'video') form.set('video', formElement.elements.video.files[0]);
+    if (mediaType === 'gif') form.set('gif', formElement.elements.gif.files[0]);
     try {
       await api('/exercises', { method: 'POST', body: form });
       formElement.reset();
+      setMediaType('none');
       setNotice('Exercicio criado.');
       await load();
     } catch (err) {
@@ -200,10 +220,20 @@ export function Workouts() {
                 <label>Repeticoes<input name="defaultRepetitions" /></label>
                 <label>Carga<input name="defaultLoad" /></label>
                 <label>Descanso em segundos<input name="defaultRestSeconds" type="number" min="0" /></label>
-                <label>Link YouTube<input name="youtubeUrl" /></label>
-                <label>Video ate 5s<input name="video" type="file" accept="video/mp4,video/webm,video/quicktime" /></label>
-                <label>Duracao video<input name="videoDurationSeconds" type="number" step="0.1" min="0" /></label>
-                <label>GIF<input name="gif" type="file" accept="image/gif" /></label>
+                <label className="wide">Mídia demonstrativa
+                  <select value={mediaType} onChange={(event) => setMediaType(event.target.value)}>
+                    <option value="none">Sem mídia</option>
+                    <option value="gif">GIF</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="video">Vídeo</option>
+                  </select>
+                </label>
+                {mediaType === 'youtube' ? <label>Link YouTube<input name="youtubeUrl" required /></label> : null}
+                {mediaType === 'video' ? <>
+                  <label>Vídeo até 5s<input name="video" type="file" accept="video/mp4,video/webm,video/quicktime" required /></label>
+                  <label>Duração vídeo<input name="videoDurationSeconds" type="number" step="0.1" min="0" /></label>
+                </> : null}
+                {mediaType === 'gif' ? <label>GIF<input name="gif" type="file" accept="image/gif" required /></label> : null}
                 <label>Audio ate 60s<input name="audio" type="file" accept="audio/mpeg,audio/wav,audio/webm,audio/ogg,audio/mp4,video/mp4" /></label>
                 <label>Duracao audio<input name="audioDurationSeconds" type="number" step="0.1" min="0" /></label>
                 <label>Visibilidade
@@ -228,6 +258,15 @@ export function Workouts() {
             <div className="list-stack">
               {exercises.map((exercise) => (
                 <article className="list-item" key={exercise.id}>
+                  {exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={`Demonstração de ${exercise.name}`} /> : null}
+                  {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted loop playsInline /> : null}
+                  {exercise.youtube_url ? <iframe
+                    className="exercise-media"
+                    src={youtubeEmbedUrl(exercise.youtube_url)}
+                    title={`Demonstração de ${exercise.name}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  /> : null}
                   <div>
                     <strong>{exercise.name}</strong>
                     <span>{exercise.muscle_group || 'Geral'}</span>

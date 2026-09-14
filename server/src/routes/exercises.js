@@ -37,8 +37,13 @@ function validateExerciseMedia(req) {
   const video = req.files?.video?.[0];
   const gif = req.files?.gif?.[0];
   const audio = req.files?.audio?.[0];
+  const youtubeUrl = req.body.youtubeUrl?.trim();
   const videoDuration = optionalNumber(req.body.videoDurationSeconds);
   const audioDuration = optionalNumber(req.body.audioDurationSeconds);
+
+  if ([youtubeUrl, video, gif].filter(Boolean).length > 1) {
+    throw badRequest('Escolha apenas uma midia: GIF, YouTube ou video.');
+  }
 
   if (video && video.size > 8 * 1024 * 1024) throw badRequest('Videos devem ter ate 8 MB.');
   if (gif && gif.size > 8 * 1024 * 1024) throw badRequest('GIFs devem ter ate 8 MB.');

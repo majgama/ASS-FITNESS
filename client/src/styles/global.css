@@ -494,6 +494,20 @@ th {
 
 .list-item,
 .exercise-row {
+.exercise-media {
+  width: 112px;
+  height: 76px;
+  flex: 0 0 112px;
+  display: block;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #111827;
+}
+
+iframe.exercise-media {
+  border: 0;
+}
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 12px;
