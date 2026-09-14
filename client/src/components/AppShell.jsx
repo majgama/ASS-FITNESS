@@ -56,10 +56,9 @@ export function AppShell() {
     <div className="app-shell">
       <aside className={`sidebar ${menuOpen ? 'sidebar-open' : ''}`}>
         <div className="brand">
-          <div className="brand-mark">AF</div>
+          <img className="brand-logo" src="/logo/athlon-horizontal.svg" alt="Athlon Coach" />
           <div>
-            <strong>ASS Fitness</strong>
-            <span>{user?.role === 'student' ? 'Aluno' : user?.role === 'admin' ? 'Admin' : 'Personal'}</span>
+            <span>{user?.role === 'student' ? 'Aluno' : user?.role === 'admin' ? 'Admin' : 'Personal trainer'}</span>
           </div>
           <button className="icon-button only-mobile" type="button" onClick={() => setMenuOpen(false)} aria-label="Fechar menu">
             <X size={18} />
@@ -89,8 +88,8 @@ export function AppShell() {
           <button className="icon-button only-mobile" type="button" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
             <Menu size={20} />
           </button>
-          <div>
-            <span>Bem-vindo</span>
+          <div className="topbar-user">
+            <span>Organize. Evolua. Transforme.</span>
             <strong>{user?.name}</strong>
           </div>
         </header>

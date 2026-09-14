@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Dumbbell } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 
 export function Login() {
@@ -26,19 +25,18 @@ export function Login() {
 
   return (
     <main className="auth-page">
-      <section className="auth-panel">
-        <div className="auth-brand">
-          <div className="brand-mark">
-            <Dumbbell size={24} />
-          </div>
-          <div>
-            <strong>ASS Fitness</strong>
-            <span>Gestao fitness</span>
-          </div>
+      <section className="auth-panel auth-login-panel">
+        <div className="auth-visual auth-visual-login">
+          <img src="/logo/athlon-shield-transparent.svg" alt="Athlon Coach" />
+          <p>DISCIPLINA<br />GERA RESULTADOS<br />REAIS.</p>
+          <span>Mais que treino.<br />Evolucao.</span>
         </div>
+        <div className="auth-form-panel">
+          <img className="auth-logo" src="/logo/athlon-horizontal.svg" alt="Athlon Coach" />
 
-        <form className="form-stack" onSubmit={handleSubmit}>
+          <form className="form-stack" onSubmit={handleSubmit}>
           <h1>Entrar</h1>
+          <p className="auth-subtitle">Acesse sua conta e continue evoluindo.</p>
           {error ? <div className="alert alert-error">{error}</div> : null}
           <label>
             E-mail
@@ -52,7 +50,8 @@ export function Login() {
             {loading ? 'Entrando...' : 'Entrar'}
           </button>
           <Link className="text-link" to="/register">Criar conta de personal</Link>
-        </form>
+          </form>
+        </div>
       </section>
     </main>
   );
