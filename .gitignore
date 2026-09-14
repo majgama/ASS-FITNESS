@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+server/src/uploads/**
+!server/src/uploads/
+!server/src/uploads/.gitkeep
+!server/src/uploads/profiles/
+!server/src/uploads/profiles/.gitkeep
+!server/src/uploads/assessments/
+!server/src/uploads/assessments/.gitkeep
+!server/src/uploads/exercises/
+!server/src/uploads/exercises/.gitkeep
