@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { env } from './config/env.js';
 import { adminRouter } from './routes/admin.js';
 import { assessmentsRouter } from './routes/assessments.js';
@@ -15,6 +18,11 @@ import { profileRouter } from './routes/profile.js';
 import { studentsRouter } from './routes/students.js';
 import { workoutsRouter } from './routes/workouts.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const clientDistPath = path.resolve(__dirname, '..', '..', 'client', 'dist');
+const clientIndexPath = path.join(clientDistPath, 'index.html');
 
 const app = express();
 
@@ -40,6 +48,17 @@ app.use('/api/diets', dietsRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/files', filesRouter);
 app.use('/api/payments', paymentsRouter);
+
+if (env.nodeEnv === 'production' && fs.existsSync(clientIndexPath)) {
+  app.use(express.static(clientDistPath));
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' || req.path.startsWith('/api')) {
+      next();
+      return;
+    }
+    res.sendFile(clientIndexPath);
+  });
+}
 
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -60,6 +60,33 @@ Troque esses valores antes de colocar em producao.
 
 Use `DATABASE_URL` do PostgreSQL gerenciado e defina `DATABASE_SSL=true`. Para arquivos, configure um volume persistente ou mova `UPLOAD_DIR` para um storage privado.
 
+### App Platform em um unico servico
+
+Build command:
+
+```bash
+npm install && npm run build
+```
+
+Run command:
+
+```bash
+npm start
+```
+
+Variaveis principais:
+
+```env
+NODE_ENV=production
+APP_URL=https://seu-app.ondigitalocean.app
+CORS_ORIGIN=https://seu-app.ondigitalocean.app
+VITE_API_URL=/api
+DATABASE_URL=postgresql://usuario:senha@host:porta/banco?sslmode=require
+DATABASE_SSL=true
+```
+
+Em producao o Express serve o frontend compilado em `client/dist`. As rotas da API continuam em `/api`.
+
 ## Hotmart
 
 O endpoint inicial de webhook e:
