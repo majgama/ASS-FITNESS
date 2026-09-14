@@ -53,10 +53,10 @@ export function AppShell() {
   }
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell app-shell-${user?.role || 'guest'}`}>
       <aside className={`sidebar ${menuOpen ? 'sidebar-open' : ''}`}>
         <div className="brand">
-          <img className="brand-logo" src="/logo/athlon-horizontal.svg" alt="Athlon Coach" />
+          <img className="brand-logo" src="/logo/athlon-horizontal.png" alt="Athlon Coach" />
           <div>
             <span>{user?.role === 'student' ? 'Aluno' : user?.role === 'admin' ? 'Admin' : 'Personal trainer'}</span>
           </div>
@@ -94,6 +94,19 @@ export function AppShell() {
           </div>
         </header>
         <Outlet />
+        {user?.role === 'student' ? (
+          <nav className="mobile-bottom-nav" aria-label="Navegação principal">
+            {navigation.slice(0, 4).map((item) => {
+              const Icon = item.icon;
+              return (
+                <NavLink key={item.to} to={item.to}>
+                  <Icon size={18} />
+                  <span>{item.label}</span>
+                </NavLink>
+              );
+            })}
+          </nav>
+        ) : null}
       </main>
     </div>
   );

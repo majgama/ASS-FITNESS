@@ -298,6 +298,10 @@ textarea:focus {
   min-height: 100vh;
 }
 
+.app-shell-student {
+  grid-template-columns: 200px minmax(0, 1fr);
+}
+
 .sidebar {
   position: sticky;
   top: 0;
@@ -349,7 +353,7 @@ textarea:focus {
 }
 
 .topbar {
-  height: 68px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -368,7 +372,9 @@ textarea:focus {
 }
 
 .page {
-  padding: 28px;
+  width: min(1250px, 100%);
+  margin: 0 auto;
+  padding: 20px 24px;
   display: grid;
   gap: 18px;
 }
@@ -390,7 +396,7 @@ textarea:focus {
 
 .page-heading h1 {
   margin: 4px 0 0;
-  font-size: 30px;
+  font-size: 32px;
 }
 
 .topbar-user {
@@ -677,7 +683,48 @@ iframe.exercise-media {
 
 .exercise-list {
   display: grid;
+  gap: 14px;
+}
+
+.student-workout-page {
+  gap: 14px;
+}
+
+.student-workout-panel {
+  background: #101112;
+  border-color: #35322d;
+  color: #f5f1e8;
+}
+
+.student-workout-panel .section-title h2,
+.student-workout-panel .section-title span {
+  color: #f5f1e8;
+}
+
+.student-exercise-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.student-exercise-grid .exercise-row {
+  background: #171819;
+  border-color: #454039;
+  color: #f5f1e8;
   gap: 12px;
+}
+
+.student-exercise-grid .exercise-row > div:first-of-type span {
+  color: #aaa59b;
+}
+
+.student-exercise-grid .exercise-meta span,
+.student-exercise-grid .media-links a {
+  background: #232321;
+  color: #d9b86c;
+  border: 1px solid #454039;
+}
+
+.mobile-bottom-nav {
+  display: none;
 }
 
 .exercise-row {
@@ -926,7 +973,7 @@ iframe.exercise-media {
   }
 
   .page {
-    padding: 18px;
+    padding: 18px 16px 88px;
   }
 
   .page-heading {
@@ -985,5 +1032,41 @@ iframe.exercise-media {
   .exercise-media-large {
     max-width: none;
     height: min(52vw, 220px);
+  }
+
+  .student-exercise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-exercise-grid .exercise-row {
+    width: 100%;
+  }
+
+  .mobile-bottom-nav {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 25;
+    min-height: 68px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: stretch;
+    background: #101112;
+    border-top: 1px solid #454039;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-bottom-nav a {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 4px;
+    color: #aaa59b;
+    font-size: 10px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .mobile-bottom-nav a.active {
+    color: #e0bc70;
   }
 }

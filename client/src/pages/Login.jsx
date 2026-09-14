@@ -27,12 +27,12 @@ export function Login() {
     <main className="auth-page">
       <section className="auth-panel auth-login-panel">
         <div className="auth-visual auth-visual-login">
-          <img src="/logo/athlon-shield-transparent.svg" alt="Athlon Coach" />
+          <img src="/logo/athlon-shield.png" alt="Athlon Coach" />
           <p>DISCIPLINA<br />GERA RESULTADOS<br />REAIS.</p>
           <span>Mais que treino.<br />Evolucao.</span>
         </div>
         <div className="auth-form-panel">
-          <img className="auth-logo" src="/logo/athlon-horizontal.svg" alt="Athlon Coach" />
+          <img className="auth-logo" src="/logo/athlon-horizontal.png" alt="Athlon Coach" />
 
           <form className="form-stack" onSubmit={handleSubmit}>
           <h1>Entrar</h1>

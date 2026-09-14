@@ -69,7 +69,7 @@ export function StudentPortal() {
   }
 
   return (
-    <section className="page">
+    <section className="page student-workout-page">
       <div className="page-heading">
         <div>
           <span>Meu treino</span>
@@ -103,7 +103,7 @@ export function StudentPortal() {
             ))}
           </div>
 
-          <section className="panel workout-day">
+          <section className="panel workout-day student-workout-panel">
             <div className="section-title">
               <h2>{weekDays[activeDay]}</h2>
               <span>{formatDate(currentPlan.start_date)}</span>
@@ -112,7 +112,7 @@ export function StudentPortal() {
             {selectedDay?.isRest ? (
               <div className="rest-day">Descanso</div>
             ) : (
-              <div className="exercise-list">
+              <div className="exercise-list student-exercise-grid">
                 {(selectedDay?.dailyWorkout?.exercises || []).map((item) => (
                   <article className="exercise-row" key={item.id}>
                     {item.gifPath ? <img className="exercise-media exercise-media-large" src={fileUrl(item.gifPath)} alt={`Demonstração de ${item.exerciseName}`} /> : null}

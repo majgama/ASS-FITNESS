@@ -59,11 +59,11 @@ export function Register() {
     <main className="auth-page">
       <section className="auth-panel auth-panel-wide auth-register-panel">
         <div className="auth-visual auth-visual-register">
-          <img src="/logo/athlon-shield-black.svg" alt="Athlon Coach" />
+          <img src="/logo/athlon-shield.png" alt="Athlon Coach" />
           <p>PESSOAS REAIS.<br />OBJETIVOS REAIS.<br />RESULTADOS REAIS.</p>
         </div>
         <form className="form-stack auth-form-panel" onSubmit={handleSubmit}>
-          <img className="auth-logo" src="/logo/athlon-horizontal.svg" alt="Athlon Coach" />
+          <img className="auth-logo" src="/logo/athlon-horizontal.png" alt="Athlon Coach" />
           <h1>{isStudent ? 'Cadastro de aluno' : 'Cadastro de personal'}</h1>
           <p className="auth-subtitle">Preencha seus dados e faca parte da sua nova forma de evoluir.</p>
           {loading ? <div className="alert">Carregando convite...</div> : null}
