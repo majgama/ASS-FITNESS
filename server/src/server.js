@@ -17,6 +17,7 @@ import { paymentsRouter } from './routes/payments.js';
 import { profileRouter } from './routes/profile.js';
 import { studentsRouter } from './routes/students.js';
 import { workoutsRouter } from './routes/workouts.js';
+import { initializeDatabase } from './db/initialize.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -63,6 +64,14 @@ if (env.nodeEnv === 'production' && fs.existsSync(clientIndexPath)) {
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-app.listen(env.port, () => {
-  console.log(`ASS Fitness API running on http://localhost:${env.port}/api`);
+async function startServer() {
+  await initializeDatabase();
+  app.listen(env.port, () => {
+    console.log(`ASS Fitness API running on http://localhost:${env.port}/api`);
+  });
+}
+
+startServer().catch((error) => {
+  console.error('Database initialization failed. Check DATABASE_URL and DATABASE_SSL.', error);
+  process.exitCode = 1;
 });
