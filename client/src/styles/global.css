@@ -1324,3 +1324,278 @@ iframe.exercise-media {
     color: #e0bc70;
   }
 }
+
+/* =========================================================
+   MANAGEMENT STYLES (EXERCISES, DAILY WORKOUTS, WEEKLY PLANS)
+   ========================================================= */
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.search-bar input {
+  padding-left: 38px;
+  padding-right: 36px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  padding: 4px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.clear-search-btn:hover {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+.manage-list-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.manage-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.manage-card-body {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.manage-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.manage-card-title-row strong {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.manage-muscle {
+  font-size: 12px;
+  color: #936b2d;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.manage-specs-mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.manage-specs-mini span {
+  background: var(--surface-muted);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #465266;
+}
+
+.manage-desc {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+
+.action-btn:hover {
+  color: var(--text);
+}
+
+.btn-edit:hover {
+  border-color: #c49b4e;
+  color: #936b2d;
+  background: #fdfaf3;
+}
+
+.btn-delete:hover {
+  border-color: #fca5a5;
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.sub-panel-manage {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.manage-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.manage-badge-and-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.manage-subexercises-list {
+  display: grid;
+  gap: 6px;
+}
+
+.manage-sublabel {
+  font-weight: 800;
+  color: #6e6b65;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.muted-small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.subexercises-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.exercise-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #384252;
+}
+
+.tag-remove-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.tag-remove-btn:hover {
+  color: #dc2626;
+}
+
+.plan-days-summary {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.plan-day-chip {
+  padding: 8px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  text-align: center;
+  display: grid;
+  gap: 2px;
+  min-width: 68px;
+}
+
+.plan-day-chip strong {
+  font-size: 11px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.plan-day-chip span {
+  font-size: 11px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip-rest {
+  background: var(--surface-muted);
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+.chip-workout {
+  background: #fdfaf3;
+  color: #936b2d;
+  border-color: #d9b86c;
+}
+
+.chip-empty {
+  background: #ffffff;
+  color: #9ca3af;
+  border-style: dashed;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}

@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import { Router } from 'express';
 import { z } from 'zod';
-import { query } from '../db/pool.js';
+import { query, withTransaction } from '../db/pool.js';
 import { authRequired, requireRoles } from '../middleware/auth.js';
 import { exerciseMediaUpload, relativeUploadPath } from '../middleware/upload.js';
 import { assertExerciseAccess } from '../services/accessService.js';
@@ -176,13 +176,150 @@ exercisesRouter.get('/:id', asyncHandler(async (req, res) => {
   res.json({ exercise });
 }));
 
+const updateExerciseSchema = z.object({
+  name: z.string().trim().min(2).optional(),
+  muscleGroup: z.string().trim().optional().nullable(),
+  defaultSets: z.string().trim().optional().nullable(),
+  defaultRepetitions: z.string().trim().optional().nullable(),
+  defaultLoad: z.string().trim().optional().nullable(),
+  defaultRestSeconds: z.coerce.number().int().nonnegative().optional().nullable(),
+  observations: z.string().trim().optional().nullable(),
+  youtubeUrl: z.string().trim().optional().nullable(),
+  visibility: z.enum(['public', 'private']).optional(),
+  removeMedia: z.coerce.boolean().optional(),
+  videoDurationSeconds: z.coerce.number().optional().nullable(),
+  audioDurationSeconds: z.coerce.number().optional().nullable()
+});
+
+exercisesRouter.patch('/:id', requireRoles('admin', 'personal'), exerciseMediaUpload, asyncHandler(async (req, res) => {
+  try {
+    const existing = await assertExerciseAccess({ query }, req.user, req.params.id);
+    if (existing.visibility === 'public' && req.user.role !== 'admin') {
+      throw forbidden('Apenas administrador pode editar exercicio publico.');
+    }
+    if (existing.visibility === 'private' && req.user.role !== 'admin' && existing.owner_id !== req.user.id) {
+      throw forbidden('Voce nao pode editar este exercicio.');
+    }
+
+    const payload = parseBody(updateExerciseSchema, req.body);
+    const media = validateExerciseMedia(req);
+    const youtubeUrl = payload.youtubeUrl !== undefined ? validateYoutubeUrl(payload.youtubeUrl) : undefined;
+    let visibility = undefined;
+    let ownerId = undefined;
+    if (payload.visibility) {
+      const v = visibilityFor(req.user, payload.visibility);
+      visibility = v.visibility;
+      ownerId = v.ownerId;
+    }
+
+    let videoPath = media.video ? relativeUploadPath('exercises', media.video) : undefined;
+    let videoMime = media.video ? media.video.mimetype : undefined;
+    let videoSize = media.video ? media.video.size : undefined;
+    let videoDuration = media.videoDuration !== null ? media.videoDuration : undefined;
+
+    let gifPath = media.gif ? relativeUploadPath('exercises', media.gif) : undefined;
+    let gifMime = media.gif ? media.gif.mimetype : undefined;
+    let gifSize = media.gif ? media.gif.size : undefined;
+
+    let audioPath = media.audio ? relativeUploadPath('exercises', media.audio) : undefined;
+    let audioMime = media.audio ? media.audio.mimetype : undefined;
+    let audioSize = media.audio ? media.audio.size : undefined;
+    let audioDuration = media.audioDuration !== null ? media.audioDuration : undefined;
+
+    if (payload.removeMedia) {
+      videoPath = null;
+      videoMime = null;
+      videoSize = null;
+      videoDuration = null;
+      gifPath = null;
+      gifMime = null;
+      gifSize = null;
+      if (youtubeUrl === undefined) {
+        // clear youtube as well if removing media and no new youtube specified
+      }
+    }
+
+    const result = await query(
+      `UPDATE exercises
+       SET name = COALESCE($2, name),
+           muscle_group = CASE WHEN $3::boolean THEN $4 ELSE muscle_group END,
+           default_sets = CASE WHEN $5::boolean THEN $6 ELSE default_sets END,
+           default_repetitions = CASE WHEN $7::boolean THEN $8 ELSE default_repetitions END,
+           default_load = CASE WHEN $9::boolean THEN $10 ELSE default_load END,
+           default_rest_seconds = CASE WHEN $11::boolean THEN $12 ELSE default_rest_seconds END,
+           observations = CASE WHEN $13::boolean THEN $14 ELSE observations END,
+           youtube_url = CASE WHEN $15::boolean THEN $16 ELSE youtube_url END,
+           video_path = CASE WHEN $17::boolean THEN $18 ELSE video_path END,
+           video_mime = CASE WHEN $17::boolean THEN $19 ELSE video_mime END,
+           video_size_bytes = CASE WHEN $17::boolean THEN $20 ELSE video_size_bytes END,
+           video_duration_seconds = CASE WHEN $17::boolean THEN $21 ELSE video_duration_seconds END,
+           gif_path = CASE WHEN $22::boolean THEN $23 ELSE gif_path END,
+           gif_mime = CASE WHEN $22::boolean THEN $24 ELSE gif_mime END,
+           gif_size_bytes = CASE WHEN $22::boolean THEN $25 ELSE gif_size_bytes END,
+           audio_path = CASE WHEN $26::boolean THEN $27 ELSE audio_path END,
+           audio_mime = CASE WHEN $26::boolean THEN $28 ELSE audio_mime END,
+           audio_size_bytes = CASE WHEN $26::boolean THEN $29 ELSE audio_size_bytes END,
+           audio_duration_seconds = CASE WHEN $26::boolean THEN $30 ELSE audio_duration_seconds END,
+           visibility = COALESCE($31, visibility),
+           owner_id = CASE WHEN $31 IS NOT NULL THEN $32 ELSE owner_id END
+       WHERE id = $1
+       RETURNING *`,
+      [
+        req.params.id,
+        payload.name || null,
+        payload.muscleGroup !== undefined,
+        payload.muscleGroup || null,
+        payload.defaultSets !== undefined,
+        payload.defaultSets || null,
+        payload.defaultRepetitions !== undefined,
+        payload.defaultRepetitions || null,
+        payload.defaultLoad !== undefined,
+        payload.defaultLoad || null,
+        payload.defaultRestSeconds !== undefined,
+        payload.defaultRestSeconds ?? null,
+        payload.observations !== undefined,
+        payload.observations || null,
+        youtubeUrl !== undefined || payload.removeMedia,
+        youtubeUrl || null,
+        videoPath !== undefined || payload.removeMedia,
+        videoPath || null,
+        videoMime || null,
+        videoSize || null,
+        videoDuration ?? null,
+        gifPath !== undefined || payload.removeMedia,
+        gifPath || null,
+        gifMime || null,
+        gifSize || null,
+        audioPath !== undefined,
+        audioPath || null,
+        audioMime || null,
+        audioSize || null,
+        audioDuration ?? null,
+        visibility || null,
+        ownerId || null
+      ]
+    );
+
+    res.json({ exercise: result.rows[0] });
+  } catch (error) {
+    await cleanupUploads(req.files);
+    throw error;
+  }
+}));
+
 exercisesRouter.delete('/:id', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
   const exercise = await assertExerciseAccess({ query }, req.user, req.params.id);
   if (exercise.visibility === 'public' && req.user.role !== 'admin') {
     throw forbidden('Apenas administrador pode remover exercicio publico.');
   }
+  if (exercise.visibility === 'private' && req.user.role !== 'admin' && exercise.owner_id !== req.user.id) {
+    throw forbidden('Voce nao pode remover este exercicio.');
+  }
 
-  const deleted = await query('DELETE FROM exercises WHERE id = $1 RETURNING *', [req.params.id]);
-  if (deleted.rowCount === 0) throw notFound('Exercicio nao encontrado.');
+  await withTransaction(async (client) => {
+    await client.query('DELETE FROM daily_workout_exercises WHERE exercise_id = $1', [req.params.id]);
+    const deleted = await client.query('DELETE FROM exercises WHERE id = $1 RETURNING *', [req.params.id]);
+    if (deleted.rowCount === 0) throw notFound('Exercicio nao encontrado.');
+  });
   res.status(204).send();
 }));

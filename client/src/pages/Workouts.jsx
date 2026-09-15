@@ -1,11 +1,26 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Dumbbell, Plus, Save } from 'lucide-react';
+import {
+  Calendar,
+  Check,
+  Dumbbell,
+  FileText,
+  Pencil,
+  Plus,
+  Repeat,
+  Save,
+  Search,
+  Timer,
+  Trash2,
+  X
+} from 'lucide-react';
 import { api, fileUrl } from '../api/client.js';
+import { Modal } from '../components/Modal.jsx';
 import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { weekDays } from './pageHelpers.js';
 
 function youtubeEmbedUrl(value) {
+  if (!value) return '';
   try {
     const url = new URL(value);
     const videoId = url.hostname === 'youtu.be'
@@ -29,6 +44,17 @@ export function Workouts() {
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
   const [mediaType, setMediaType] = useState('none');
+
+  // Search terms
+  const [exerciseSearch, setExerciseSearch] = useState('');
+  const [dailySearch, setDailySearch] = useState('');
+  const [weeklySearch, setWeeklySearch] = useState('');
+
+  // Modals state
+  const [editingExercise, setEditingExercise] = useState(null);
+  const [editExerciseMediaType, setEditExerciseMediaType] = useState('none');
+  const [editingDaily, setEditingDaily] = useState(null);
+  const [editingWeekly, setEditingWeekly] = useState(null);
 
   const canCreatePublic = user.role === 'admin';
 
@@ -58,12 +84,42 @@ export function Workouts() {
   }, [user.role]);
 
   const tabs = useMemo(() => [
-    ['exercises', 'Exercicios'],
-    ['daily', 'Treinos diarios'],
+    ['exercises', 'Exercícios'],
+    ['daily', 'Treinos diários'],
     ['weekly', 'Planos semanais'],
-    ['apply', 'Aplicar']
+    ['apply', 'Aplicar ao aluno']
   ], []);
 
+  // Filtered lists
+  const filteredExercises = useMemo(() => {
+    const q = exerciseSearch.toLowerCase().trim();
+    if (!q) return exercises;
+    return exercises.filter((e) =>
+      e.name?.toLowerCase().includes(q) ||
+      e.muscle_group?.toLowerCase().includes(q) ||
+      e.observations?.toLowerCase().includes(q)
+    );
+  }, [exercises, exerciseSearch]);
+
+  const filteredDailyWorkouts = useMemo(() => {
+    const q = dailySearch.toLowerCase().trim();
+    if (!q) return dailyWorkouts;
+    return dailyWorkouts.filter((d) =>
+      d.name?.toLowerCase().includes(q) ||
+      d.description?.toLowerCase().includes(q)
+    );
+  }, [dailyWorkouts, dailySearch]);
+
+  const filteredWeeklyPlans = useMemo(() => {
+    const q = weeklySearch.toLowerCase().trim();
+    if (!q) return weeklyPlans;
+    return weeklyPlans.filter((p) =>
+      p.name?.toLowerCase().includes(q) ||
+      p.description?.toLowerCase().includes(q)
+    );
+  }, [weeklyPlans, weeklySearch]);
+
+  // Exercise Handlers
   async function createExercise(event) {
     event.preventDefault();
     setError('');
@@ -73,21 +129,67 @@ export function Workouts() {
     form.delete('video');
     form.delete('gif');
     if (mediaType === 'youtube') form.set('youtubeUrl', formElement.elements.youtubeUrl.value);
-    if (mediaType === 'video') form.set('video', formElement.elements.video.files[0]);
-    if (mediaType === 'gif') form.set('gif', formElement.elements.gif.files[0]);
+    if (mediaType === 'video' && formElement.elements.video?.files?.[0]) form.set('video', formElement.elements.video.files[0]);
+    if (mediaType === 'gif' && formElement.elements.gif?.files?.[0]) form.set('gif', formElement.elements.gif.files[0]);
     try {
       await api('/exercises', { method: 'POST', body: form });
       formElement.reset();
       setMediaType('none');
-      setNotice('Exercicio criado.');
+      setNotice('Exercício criado com sucesso.');
       await load();
     } catch (err) {
       setError(err.message);
     }
   }
 
+  function openEditExercise(exercise) {
+    setEditingExercise(exercise);
+    if (exercise.gif_path) setEditExerciseMediaType('gif');
+    else if (exercise.video_path) setEditExerciseMediaType('video');
+    else if (exercise.youtube_url) setEditExerciseMediaType('youtube');
+    else setEditExerciseMediaType('none');
+  }
+
+  async function updateExercise(event) {
+    event.preventDefault();
+    if (!editingExercise) return;
+    setError('');
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    form.delete('youtubeUrl');
+    form.delete('video');
+    form.delete('gif');
+    if (editExerciseMediaType === 'youtube') form.set('youtubeUrl', formElement.elements.youtubeUrl.value);
+    if (editExerciseMediaType === 'video' && formElement.elements.video?.files?.[0]) form.set('video', formElement.elements.video.files[0]);
+    if (editExerciseMediaType === 'gif' && formElement.elements.gif?.files?.[0]) form.set('gif', formElement.elements.gif.files[0]);
+    if (editExerciseMediaType === 'none') form.set('removeMedia', 'true');
+
+    try {
+      await api(`/exercises/${editingExercise.id}`, { method: 'PATCH', body: form });
+      setEditingExercise(null);
+      setNotice('Exercício atualizado com sucesso.');
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function deleteExercise(id, name) {
+    if (!window.confirm(`Deseja realmente excluir o exercício "${name}"?`)) return;
+    setError('');
+    try {
+      await api(`/exercises/${id}`, { method: 'DELETE' });
+      setNotice(`Exercício "${name}" excluído.`);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  // Daily Workout Handlers
   async function createDailyWorkout(event) {
     event.preventDefault();
+    setError('');
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
     try {
@@ -100,7 +202,42 @@ export function Workouts() {
         }
       });
       formElement.reset();
-      setNotice('Treino diario criado.');
+      setNotice('Treino diário criado com sucesso.');
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function updateDailyWorkout(event) {
+    event.preventDefault();
+    if (!editingDaily) return;
+    setError('');
+    const form = new FormData(event.currentTarget);
+    try {
+      await api(`/workouts/daily/${editingDaily.id}`, {
+        method: 'PATCH',
+        body: {
+          name: form.get('name'),
+          description: form.get('description') || null,
+          visibility: form.get('visibility') || 'private'
+        }
+      });
+      setEditingDaily(null);
+      setNotice('Treino diário atualizado com sucesso.');
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function deleteDailyWorkout(id, name) {
+    if (!window.confirm(`Deseja realmente excluir o treino diário "${name}"?`)) return;
+    setError('');
+    try {
+      await api(`/workouts/daily/${id}`, { method: 'DELETE' });
+      if (selectedDailyWorkout === id) setSelectedDailyWorkout('');
+      setNotice(`Treino diário "${name}" excluído.`);
       await load();
     } catch (err) {
       setError(err.message);
@@ -109,9 +246,13 @@ export function Workouts() {
 
   async function addExerciseToWorkout(event) {
     event.preventDefault();
+    setError('');
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
-    if (!selectedDailyWorkout) return;
+    if (!selectedDailyWorkout) {
+      setError('Selecione um treino diário primeiro.');
+      return;
+    }
     try {
       await api(`/workouts/daily/${selectedDailyWorkout}/exercises`, {
         method: 'POST',
@@ -126,14 +267,29 @@ export function Workouts() {
         }
       });
       formElement.reset();
-      setNotice('Exercicio adicionado.');
+      setNotice('Exercício adicionado ao treino diário.');
+      await load();
     } catch (err) {
       setError(err.message);
     }
   }
 
+  async function removeExerciseFromDaily(workoutId, relId, exName) {
+    if (!window.confirm(`Remover "${exName}" deste treino?`)) return;
+    setError('');
+    try {
+      await api(`/workouts/daily/${workoutId}/exercises/${relId}`, { method: 'DELETE' });
+      setNotice(`Exercício removido do treino.`);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  // Weekly Plan Handlers
   async function createWeeklyPlan(event) {
     event.preventDefault();
+    setError('');
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
     const days = weekDays.map((_, dayOfWeek) => {
@@ -158,7 +314,58 @@ export function Workouts() {
         }
       });
       formElement.reset();
-      setNotice('Plano semanal criado.');
+      setNotice('Plano semanal criado com sucesso.');
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  function openEditWeekly(plan) {
+    setEditingWeekly(plan);
+  }
+
+  async function updateWeeklyPlan(event) {
+    event.preventDefault();
+    if (!editingWeekly) return;
+    setError('');
+    const form = new FormData(event.currentTarget);
+    const days = weekDays.map((_, dayOfWeek) => {
+      const isRest = form.get(`edit-rest-${dayOfWeek}`) === 'on';
+      return {
+        dayOfWeek,
+        isRest,
+        dailyWorkoutId: isRest ? null : form.get(`edit-daily-${dayOfWeek}`) || null,
+        instructions: form.get(`edit-instructions-${dayOfWeek}`) || null
+      };
+    });
+
+    try {
+      await api(`/workouts/weekly/${editingWeekly.id}`, {
+        method: 'PUT',
+        body: {
+          name: form.get('name'),
+          description: form.get('description') || null,
+          startDate: form.get('startDate') || null,
+          visibility: form.get('visibility') || 'private',
+          days
+        }
+      });
+      setEditingWeekly(null);
+      setNotice('Plano semanal atualizado com sucesso.');
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function deleteWeeklyPlan(id, name) {
+    if (!window.confirm(`Deseja realmente excluir o plano semanal "${name}"?`)) return;
+    setError('');
+    try {
+      await api(`/workouts/weekly/${id}`, { method: 'DELETE' });
+      if (selectedPlan === id) setSelectedPlan('');
+      setNotice(`Plano semanal "${name}" excluído.`);
       await load();
     } catch (err) {
       setError(err.message);
@@ -167,6 +374,7 @@ export function Workouts() {
 
   async function applyPlan(event) {
     event.preventDefault();
+    setError('');
     const form = new FormData(event.currentTarget);
     try {
       await api(`/workouts/weekly/${form.get('weeklyPlanId')}/apply`, {
@@ -176,22 +384,22 @@ export function Workouts() {
           startDate: form.get('startDate') || null
         }
       });
-      setNotice('Plano aplicado ao aluno.');
+      setNotice('Plano semanal aplicado com sucesso ao aluno!');
     } catch (err) {
       setError(err.message);
     }
   }
 
   if (user.role === 'student') {
-    return <section className="page"><div className="panel empty-state">Area disponivel no portal do aluno</div></section>;
+    return <section className="page"><div className="panel empty-state">Área disponível no portal do aluno</div></section>;
   }
 
   return (
     <section className="page">
       <div className="page-heading">
         <div>
-          <span>Treinos</span>
-          <h1>Biblioteca e planos</h1>
+          <span>Gestão de Treinos</span>
+          <h1>Biblioteca e Planos</h1>
         </div>
       </div>
 
@@ -206,188 +414,586 @@ export function Workouts() {
         ))}
       </div>
 
+      {/* ===================== ABA 1: EXERCÍCIOS ===================== */}
       {tab === 'exercises' ? (
         <div className="two-column wide-left">
           <section className="panel">
             <div className="section-title">
-              <h2>Novo exercicio</h2>
+              <h2>Novo Exercício</h2>
             </div>
             <form className="form-stack" onSubmit={createExercise}>
               <div className="form-grid">
-                <label>Nome<input name="name" required /></label>
-                <label>Grupo muscular<input name="muscleGroup" /></label>
-                <label>Series<input name="defaultSets" /></label>
-                <label>Repeticoes<input name="defaultRepetitions" /></label>
-                <label>Carga<input name="defaultLoad" /></label>
-                <label>Descanso em segundos<input name="defaultRestSeconds" type="number" min="0" /></label>
-                <label className="wide">Mídia demonstrativa
+                <label>Nome do Exercício<input name="name" placeholder="Ex: Supino reto" required /></label>
+                <label>Grupo Muscular<input name="muscleGroup" placeholder="Ex: Peitoral" /></label>
+                <label>Séries padrão<input name="defaultSets" placeholder="Ex: 4" /></label>
+                <label>Repetições padrão<input name="defaultRepetitions" placeholder="Ex: 10 a 12" /></label>
+                <label>Carga sugerida<input name="defaultLoad" placeholder="Ex: 20kg cada lado" /></label>
+                <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" placeholder="Ex: 60" /></label>
+
+                <label className="wide">Mídia demonstrativa (escolha uma)
                   <select value={mediaType} onChange={(event) => setMediaType(event.target.value)}>
                     <option value="none">Sem mídia</option>
                     <option value="gif">GIF</option>
-                    <option value="youtube">YouTube</option>
-                    <option value="video">Vídeo</option>
+                    <option value="youtube">YouTube (link)</option>
+                    <option value="video">Vídeo curto (até 8MB / 5s)</option>
                   </select>
                 </label>
-                {mediaType === 'youtube' ? <label>Link YouTube<input name="youtubeUrl" required /></label> : null}
-                {mediaType === 'video' ? <>
-                  <label>Vídeo até 5s<input name="video" type="file" accept="video/mp4,video/webm,video/quicktime" required /></label>
-                  <label>Duração vídeo<input name="videoDurationSeconds" type="number" step="0.1" min="0" /></label>
-                </> : null}
-                {mediaType === 'gif' ? <label>GIF<input name="gif" type="file" accept="image/gif" required /></label> : null}
-                <label>Audio ate 60s<input name="audio" type="file" accept="audio/mpeg,audio/wav,audio/webm,audio/ogg,audio/mp4,video/mp4" /></label>
-                <label>Duracao audio<input name="audioDurationSeconds" type="number" step="0.1" min="0" /></label>
-                <label>Visibilidade
+
+                {mediaType === 'youtube' ? (
+                  <label className="wide">Link do YouTube
+                    <input name="youtubeUrl" placeholder="https://www.youtube.com/watch?v=..." required />
+                  </label>
+                ) : null}
+
+                {mediaType === 'video' ? (
+                  <>
+                    <label>Arquivo de Vídeo
+                      <input name="video" type="file" accept="video/mp4,video/webm,video/quicktime" required />
+                    </label>
+                    <label>Duração do vídeo (s)
+                      <input name="videoDurationSeconds" type="number" step="0.1" min="0" placeholder="Ex: 4" />
+                    </label>
+                  </>
+                ) : null}
+
+                {mediaType === 'gif' ? (
+                  <label className="wide">Arquivo GIF
+                    <input name="gif" type="file" accept="image/gif" required />
+                  </label>
+                ) : null}
+
+                <label>Áudio explicativo (opcional)
+                  <input name="audio" type="file" accept="audio/mpeg,audio/wav,audio/webm,audio/ogg,audio/mp4,video/mp4" />
+                </label>
+                <label>Duração do áudio (s)
+                  <input name="audioDurationSeconds" type="number" step="0.1" min="0" placeholder="Ex: 30" />
+                </label>
+
+                <label className="wide">Visibilidade
                   <select name="visibility" defaultValue="private" disabled={!canCreatePublic}>
-                    <option value="private">Particular</option>
-                    <option value="public">Publico</option>
+                    <option value="private">Particular (somente meus alunos)</option>
+                    <option value="public">Público (disponível para todos os personais)</option>
                   </select>
                 </label>
-                <label className="wide">Observacoes<textarea name="observations" rows="3" /></label>
+
+                <label className="wide">Instruções / Observações
+                  <textarea name="observations" rows="3" placeholder="Postura, cadência, pico de contração..." />
+                </label>
               </div>
+
               <button className="primary-button fit-button" type="submit">
                 <Plus size={18} />
-                Criar
+                Cadastrar Exercício
               </button>
             </form>
           </section>
 
           <section className="panel">
             <div className="section-title">
-              <h2>Exercicios</h2>
+              <h2>Exercícios Cadastrados ({filteredExercises.length})</h2>
             </div>
-            <div className="list-stack">
-              {exercises.map((exercise) => (
-                <article className="list-item" key={exercise.id}>
-                  {exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={`Demonstração de ${exercise.name}`} /> : null}
-                  {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted loop playsInline /> : null}
-                  {exercise.youtube_url ? <iframe
-                    className="exercise-media"
-                    src={youtubeEmbedUrl(exercise.youtube_url)}
-                    title={`Demonstração de ${exercise.name}`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  /> : null}
-                  <div>
-                    <strong>{exercise.name}</strong>
-                    <span>{exercise.muscle_group || 'Geral'}</span>
-                  </div>
-                  <StatusBadge value={exercise.visibility} />
-                </article>
-              ))}
+
+            <div className="search-bar">
+              <Search size={18} className="search-icon" />
+              <input
+                value={exerciseSearch}
+                onChange={(e) => setExerciseSearch(e.target.value)}
+                placeholder="Buscar exercício por nome ou grupo muscular..."
+              />
+              {exerciseSearch ? (
+                <button type="button" className="clear-search-btn" onClick={() => setExerciseSearch('')}>
+                  <X size={16} />
+                </button>
+              ) : null}
             </div>
+
+            {filteredExercises.length === 0 ? (
+              <div className="empty-state">Nenhum exercício encontrado.</div>
+            ) : (
+              <div className="list-stack manage-list-stack">
+                {filteredExercises.map((exercise) => (
+                  <article className="list-item manage-card" key={exercise.id}>
+                    {exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
+                    {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
+                    {exercise.youtube_url ? (
+                      <iframe
+                        className="exercise-media"
+                        src={youtubeEmbedUrl(exercise.youtube_url)}
+                        title={exercise.name}
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      />
+                    ) : null}
+
+                    <div className="manage-card-body">
+                      <div className="manage-card-title-row">
+                        <strong>{exercise.name}</strong>
+                        <StatusBadge value={exercise.visibility} />
+                      </div>
+                      <span className="manage-muscle">{exercise.muscle_group || 'Geral'}</span>
+                      <div className="manage-specs-mini">
+                        {exercise.default_sets ? <span>{exercise.default_sets} séries</span> : null}
+                        {exercise.default_repetitions ? <span>{exercise.default_repetitions} reps</span> : null}
+                        {exercise.default_load ? <span>{exercise.default_load}</span> : null}
+                        {exercise.default_rest_seconds ? <span>{exercise.default_rest_seconds}s descanso</span> : null}
+                      </div>
+                      {exercise.observations ? <p className="manage-desc">{exercise.observations}</p> : null}
+                    </div>
+
+                    <div className="card-actions">
+                      <button
+                        type="button"
+                        className="action-btn btn-edit"
+                        title="Editar exercício"
+                        onClick={() => openEditExercise(exercise)}
+                      >
+                        <Pencil size={16} />
+                      </button>
+                      <button
+                        type="button"
+                        className="action-btn btn-delete"
+                        title="Excluir exercício"
+                        onClick={() => deleteExercise(exercise.id, exercise.name)}
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
           </section>
         </div>
       ) : null}
 
+      {/* ===================== ABA 2: TREINOS DIÁRIOS ===================== */}
       {tab === 'daily' ? (
         <div className="two-column">
-          <section className="panel">
-            <div className="section-title">
-              <h2>Novo treino diario</h2>
-            </div>
-            <form className="form-stack" onSubmit={createDailyWorkout}>
-              <label>Nome<input name="name" required /></label>
-              <label>Descricao<textarea name="description" rows="3" /></label>
-              <label>Visibilidade
-                <select name="visibility" defaultValue="private" disabled={!canCreatePublic}>
-                  <option value="private">Particular</option>
-                  <option value="public">Publico</option>
-                </select>
-              </label>
-              <button className="primary-button fit-button" type="submit"><Save size={18} />Salvar</button>
-            </form>
-          </section>
+          <div className="form-stack">
+            <section className="panel">
+              <div className="section-title">
+                <h2>Novo Treino Diário</h2>
+              </div>
+              <form className="form-stack" onSubmit={createDailyWorkout}>
+                <label>Nome do Treino<input name="name" placeholder="Ex: Treino A - Peito e Tríceps" required /></label>
+                <label>Descrição<textarea name="description" rows="2" placeholder="Foco em hipertrofia, aquecimento prévio..." /></label>
+                <label>Visibilidade
+                  <select name="visibility" defaultValue="private" disabled={!canCreatePublic}>
+                    <option value="private">Particular (somente meus alunos)</option>
+                    <option value="public">Público</option>
+                  </select>
+                </label>
+                <button className="primary-button fit-button" type="submit"><Save size={18} />Criar Treino Diário</button>
+              </form>
+            </section>
+
+            <section className="panel">
+              <div className="section-title">
+                <h2>Adicionar Exercício ao Treino</h2>
+              </div>
+              <form className="form-stack" onSubmit={addExerciseToWorkout}>
+                <label>Treino Diário de Destino
+                  <select value={selectedDailyWorkout} onChange={(event) => setSelectedDailyWorkout(event.target.value)} required>
+                    <option value="">Selecione o treino</option>
+                    {dailyWorkouts.map((workout) => <option key={workout.id} value={workout.id}>{workout.name}</option>)}
+                  </select>
+                </label>
+
+                <div className="form-grid">
+                  <label className="wide">Exercício
+                    <select name="exerciseId" required>
+                      <option value="">Selecione o exercício</option>
+                      {exercises.map((exercise) => (
+                        <option key={exercise.id} value={exercise.id}>
+                          {exercise.name} ({exercise.muscle_group || 'Geral'})
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>Posição / Ordem<input name="position" type="number" min="0" defaultValue="0" /></label>
+                  <label>Séries<input name="sets" placeholder="Ex: 4" /></label>
+                  <label>Repetições<input name="repetitions" placeholder="Ex: 10-12" /></label>
+                  <label>Carga<input name="load" placeholder="Ex: 25kg" /></label>
+                  <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue="60" /></label>
+                  <label className="wide">Observações para este treino
+                    <textarea name="notes" rows="2" placeholder="Executar até a falha na última série..." />
+                  </label>
+                </div>
+                <button className="primary-button fit-button" type="submit"><Plus size={18} />Adicionar Exercício</button>
+              </form>
+            </section>
+          </div>
 
           <section className="panel">
             <div className="section-title">
-              <h2>Adicionar exercicio</h2>
+              <h2>Treinos Diários Cadastrados ({filteredDailyWorkouts.length})</h2>
             </div>
-            <form className="form-stack" onSubmit={addExerciseToWorkout}>
-              <label>Treino diario
-                <select value={selectedDailyWorkout} onChange={(event) => setSelectedDailyWorkout(event.target.value)}>
-                  {dailyWorkouts.map((workout) => <option key={workout.id} value={workout.id}>{workout.name}</option>)}
-                </select>
-              </label>
-              <div className="form-grid">
-                <label>Exercicio
-                  <select name="exerciseId" required>
-                    <option value="">Selecione</option>
-                    {exercises.map((exercise) => <option key={exercise.id} value={exercise.id}>{exercise.name}</option>)}
-                  </select>
-                </label>
-                <label>Posicao<input name="position" type="number" min="0" defaultValue="0" /></label>
-                <label>Series<input name="sets" /></label>
-                <label>Repeticoes<input name="repetitions" /></label>
-                <label>Carga<input name="load" /></label>
-                <label>Descanso<input name="restSeconds" type="number" min="0" /></label>
-                <label className="wide">Observacoes<textarea name="notes" rows="3" /></label>
+
+            <div className="search-bar">
+              <Search size={18} className="search-icon" />
+              <input
+                value={dailySearch}
+                onChange={(e) => setDailySearch(e.target.value)}
+                placeholder="Buscar treino diário por nome..."
+              />
+              {dailySearch ? (
+                <button type="button" className="clear-search-btn" onClick={() => setDailySearch('')}>
+                  <X size={16} />
+                </button>
+              ) : null}
+            </div>
+
+            {filteredDailyWorkouts.length === 0 ? (
+              <div className="empty-state">Nenhum treino diário encontrado.</div>
+            ) : (
+              <div className="list-stack">
+                {filteredDailyWorkouts.map((workout) => (
+                  <article className="panel sub-panel-manage" key={workout.id}>
+                    <div className="manage-header-row">
+                      <div>
+                        <strong>{workout.name}</strong>
+                        {workout.description ? <p className="manage-desc">{workout.description}</p> : null}
+                      </div>
+                      <div className="manage-badge-and-actions">
+                        <StatusBadge value={workout.visibility} />
+                        <div className="card-actions">
+                          <button
+                            type="button"
+                            className="action-btn btn-edit"
+                            title="Editar treino diário"
+                            onClick={() => setEditingDaily(workout)}
+                          >
+                            <Pencil size={16} />
+                          </button>
+                          <button
+                            type="button"
+                            className="action-btn btn-delete"
+                            title="Excluir treino diário"
+                            onClick={() => deleteDailyWorkout(workout.id, workout.name)}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="manage-subexercises-list">
+                      <small className="manage-sublabel">
+                        Exercícios ({workout.exercises?.length || 0}):
+                      </small>
+                      {(!workout.exercises || workout.exercises.length === 0) ? (
+                        <span className="muted-small">Nenhum exercício vinculado ainda. Use o formulário ao lado para adicionar.</span>
+                      ) : (
+                        <div className="subexercises-tags">
+                          {workout.exercises.map((item) => (
+                            <div className="exercise-tag-pill" key={item.id}>
+                              <span>{item.exerciseName} ({item.sets || '4'}x{item.repetitions || '12'})</span>
+                              <button
+                                type="button"
+                                className="tag-remove-btn"
+                                title="Remover exercício do treino"
+                                onClick={() => removeExerciseFromDaily(workout.id, item.id, item.exerciseName)}
+                              >
+                                <X size={13} />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ))}
               </div>
-              <button className="primary-button fit-button" type="submit"><Dumbbell size={18} />Adicionar</button>
-            </form>
+            )}
           </section>
         </div>
       ) : null}
 
+      {/* ===================== ABA 3: PLANOS SEMANAIS ===================== */}
       {tab === 'weekly' ? (
-        <section className="panel">
-          <div className="section-title">
-            <h2>Novo plano semanal</h2>
-          </div>
-          <form className="form-stack" onSubmit={createWeeklyPlan}>
-            <div className="form-grid">
-              <label>Nome<input name="name" required /></label>
-              <label>Data de inicio<input name="startDate" type="date" /></label>
-              <label>Visibilidade
-                <select name="visibility" defaultValue="private" disabled={!canCreatePublic}>
-                  <option value="private">Particular</option>
-                  <option value="public">Publico</option>
-                </select>
-              </label>
-              <label className="wide">Descricao<textarea name="description" rows="2" /></label>
+        <div className="form-stack">
+          <section className="panel">
+            <div className="section-title">
+              <h2>Novo Plano Semanal</h2>
             </div>
-            <div className="week-grid">
-              {weekDays.map((day, index) => (
-                <fieldset key={day} className="day-config">
-                  <legend>{day}</legend>
-                  <label className="check-line">
-                    <input type="checkbox" name={`rest-${index}`} />
-                    Descanso
-                  </label>
-                  <select name={`daily-${index}`} defaultValue="">
-                    <option value="">Treino</option>
-                    {dailyWorkouts.map((workout) => <option key={workout.id} value={workout.id}>{workout.name}</option>)}
+            <form className="form-stack" onSubmit={createWeeklyPlan}>
+              <div className="form-grid">
+                <label>Nome do Plano<input name="name" placeholder="Ex: Plano Hipertrofia Intermediário" required /></label>
+                <label>Data de Início sugerida<input name="startDate" type="date" /></label>
+                <label className="wide">Visibilidade
+                  <select name="visibility" defaultValue="private" disabled={!canCreatePublic}>
+                    <option value="private">Particular (meus alunos)</option>
+                    <option value="public">Público</option>
                   </select>
-                  <textarea name={`instructions-${index}`} rows="2" placeholder="Instrucoes" />
-                </fieldset>
-              ))}
+                </label>
+                <label className="wide">Descrição do Plano
+                  <textarea name="description" rows="2" placeholder="Frequência semanal, orientações de progressão de carga..." />
+                </label>
+              </div>
+
+              <div className="section-title soft-title">
+                <h2>Grade Semanal (Domingo a Sábado)</h2>
+              </div>
+
+              <div className="week-grid">
+                {weekDays.map((day, index) => (
+                  <fieldset key={day} className="day-config">
+                    <legend>{day}</legend>
+                    <label className="check-line">
+                      <input type="checkbox" name={`rest-${index}`} />
+                      Descanso
+                    </label>
+                    <select name={`daily-${index}`} defaultValue="">
+                      <option value="">Treino...</option>
+                      {dailyWorkouts.map((workout) => (
+                        <option key={workout.id} value={workout.id}>{workout.name}</option>
+                      ))}
+                    </select>
+                    <textarea name={`instructions-${index}`} rows="2" placeholder="Instruções do dia..." />
+                  </fieldset>
+                ))}
+              </div>
+
+              <button className="primary-button fit-button" type="submit">
+                <Save size={18} />
+                Salvar Plano Semanal
+              </button>
+            </form>
+          </section>
+
+          <section className="panel">
+            <div className="section-title">
+              <h2>Planos Semanais Cadastrados ({filteredWeeklyPlans.length})</h2>
             </div>
-            <button className="primary-button fit-button" type="submit"><Save size={18} />Salvar plano</button>
-          </form>
-        </section>
+
+            <div className="search-bar">
+              <Search size={18} className="search-icon" />
+              <input
+                value={weeklySearch}
+                onChange={(e) => setWeeklySearch(e.target.value)}
+                placeholder="Buscar plano semanal por nome..."
+              />
+              {weeklySearch ? (
+                <button type="button" className="clear-search-btn" onClick={() => setWeeklySearch('')}>
+                  <X size={16} />
+                </button>
+              ) : null}
+            </div>
+
+            {filteredWeeklyPlans.length === 0 ? (
+              <div className="empty-state">Nenhum plano semanal cadastrado.</div>
+            ) : (
+              <div className="list-stack">
+                {filteredWeeklyPlans.map((plan) => (
+                  <article className="panel sub-panel-manage" key={plan.id}>
+                    <div className="manage-header-row">
+                      <div>
+                        <strong>{plan.name}</strong>
+                        {plan.description ? <p className="manage-desc">{plan.description}</p> : null}
+                      </div>
+                      <div className="manage-badge-and-actions">
+                        <StatusBadge value={plan.visibility} />
+                        <div className="card-actions">
+                          <button
+                            type="button"
+                            className="action-btn btn-edit"
+                            title="Editar plano semanal"
+                            onClick={() => openEditWeekly(plan)}
+                          >
+                            <Pencil size={16} />
+                          </button>
+                          <button
+                            type="button"
+                            className="action-btn btn-delete"
+                            title="Excluir plano semanal"
+                            onClick={() => deleteWeeklyPlan(plan.id, plan.name)}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="plan-days-summary">
+                      {weekDays.map((dayName, idx) => {
+                        const dayObj = plan.days?.find((d) => Number(d.dayOfWeek) === idx);
+                        const isRest = dayObj?.isRest;
+                        const workoutName = dayObj?.dailyWorkoutName;
+                        return (
+                          <div className={`plan-day-chip ${isRest ? 'chip-rest' : workoutName ? 'chip-workout' : 'chip-empty'}`} key={dayName}>
+                            <strong>{dayName.slice(0, 3)}</strong>
+                            <span>{isRest ? 'Descanso' : workoutName || '-'}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
       ) : null}
 
+      {/* ===================== ABA 4: APLICAR PLANO ===================== */}
       {tab === 'apply' ? (
         <section className="panel">
           <div className="section-title">
-            <h2>Aplicar plano</h2>
+            <h2>Aplicar Plano ao Aluno</h2>
           </div>
           <form className="form-grid" onSubmit={applyPlan}>
-            <label>Plano semanal
+            <label>Plano Semanal
               <select name="weeklyPlanId" value={selectedPlan} onChange={(event) => setSelectedPlan(event.target.value)} required>
+                <option value="">Selecione o plano</option>
                 {weeklyPlans.map((plan) => <option key={plan.id} value={plan.id}>{plan.name}</option>)}
               </select>
             </label>
             <label>Aluno
               <select name="studentId" required>
-                <option value="">Selecione</option>
+                <option value="">Selecione o aluno</option>
                 {students.map((student) => <option key={student.id} value={student.id}>{student.name}</option>)}
               </select>
             </label>
-            <label>Inicio<input name="startDate" type="date" /></label>
-            <button className="primary-button fit-button" type="submit"><Save size={18} />Aplicar</button>
+            <label>Data de Início<input name="startDate" type="date" defaultValue={new Date().toISOString().split('T')[0]} /></label>
+            <button className="primary-button fit-button" type="submit"><Save size={18} />Aplicar Plano ao Aluno</button>
           </form>
         </section>
       ) : null}
+
+      {/* ===================== MODAL EDITAR EXERCÍCIO ===================== */}
+      <Modal title={`Editar Exercício: ${editingExercise?.name || ''}`} open={Boolean(editingExercise)} onClose={() => setEditingExercise(null)}>
+        {editingExercise ? (
+          <form className="form-stack" onSubmit={updateExercise}>
+            <div className="form-grid">
+              <label>Nome do Exercício<input name="name" defaultValue={editingExercise.name} required /></label>
+              <label>Grupo Muscular<input name="muscleGroup" defaultValue={editingExercise.muscle_group || ''} /></label>
+              <label>Séries<input name="defaultSets" defaultValue={editingExercise.default_sets || ''} /></label>
+              <label>Repetições<input name="defaultRepetitions" defaultValue={editingExercise.default_repetitions || ''} /></label>
+              <label>Carga<input name="defaultLoad" defaultValue={editingExercise.default_load || ''} /></label>
+              <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" defaultValue={editingExercise.default_rest_seconds ?? ''} /></label>
+
+              <label className="wide">Mídia demonstrativa
+                <select value={editExerciseMediaType} onChange={(event) => setEditExerciseMediaType(event.target.value)}>
+                  <option value="none">Sem mídia / Remover mídia</option>
+                  <option value="gif">GIF</option>
+                  <option value="youtube">YouTube (link)</option>
+                  <option value="video">Vídeo curto</option>
+                </select>
+              </label>
+
+              {editExerciseMediaType === 'youtube' ? (
+                <label className="wide">Link do YouTube
+                  <input name="youtubeUrl" defaultValue={editingExercise.youtube_url || ''} placeholder="https://www.youtube.com/watch?v=..." required />
+                </label>
+              ) : null}
+
+              {editExerciseMediaType === 'video' ? (
+                <>
+                  <label>Arquivo de Vídeo (deixe vazio para manter atual)
+                    <input name="video" type="file" accept="video/mp4,video/webm,video/quicktime" />
+                  </label>
+                  <label>Duração do vídeo (s)
+                    <input name="videoDurationSeconds" type="number" step="0.1" min="0" defaultValue={editingExercise.video_duration_seconds ?? ''} />
+                  </label>
+                </>
+              ) : null}
+
+              {editExerciseMediaType === 'gif' ? (
+                <label className="wide">Arquivo GIF (deixe vazio para manter atual)
+                  <input name="gif" type="file" accept="image/gif" />
+                </label>
+              ) : null}
+
+              <label className="wide">Visibilidade
+                <select name="visibility" defaultValue={editingExercise.visibility} disabled={!canCreatePublic}>
+                  <option value="private">Particular</option>
+                  <option value="public">Público</option>
+                </select>
+              </label>
+
+              <label className="wide">Instruções / Observações
+                <textarea name="observations" rows="3" defaultValue={editingExercise.observations || ''} />
+              </label>
+            </div>
+
+            <div className="actions modal-actions">
+              <button type="button" className="secondary-button" onClick={() => setEditingExercise(null)}>Cancelar</button>
+              <button type="submit" className="primary-button"><Save size={16} />Salvar Alterações</button>
+            </div>
+          </form>
+        ) : null}
+      </Modal>
+
+      {/* ===================== MODAL EDITAR TREINO DIÁRIO ===================== */}
+      <Modal title={`Editar Treino: ${editingDaily?.name || ''}`} open={Boolean(editingDaily)} onClose={() => setEditingDaily(null)}>
+        {editingDaily ? (
+          <form className="form-stack" onSubmit={updateDailyWorkout}>
+            <label>Nome do Treino<input name="name" defaultValue={editingDaily.name} required /></label>
+            <label>Descrição<textarea name="description" rows="3" defaultValue={editingDaily.description || ''} /></label>
+            <label>Visibilidade
+              <select name="visibility" defaultValue={editingDaily.visibility} disabled={!canCreatePublic}>
+                <option value="private">Particular</option>
+                <option value="public">Público</option>
+              </select>
+            </label>
+            <div className="actions modal-actions">
+              <button type="button" className="secondary-button" onClick={() => setEditingDaily(null)}>Cancelar</button>
+              <button type="submit" className="primary-button"><Save size={16} />Salvar Alterações</button>
+            </div>
+          </form>
+        ) : null}
+      </Modal>
+
+      {/* ===================== MODAL EDITAR PLANO SEMANAL ===================== */}
+      <Modal title={`Editar Plano: ${editingWeekly?.name || ''}`} open={Boolean(editingWeekly)} onClose={() => setEditingWeekly(null)}>
+        {editingWeekly ? (
+          <form className="form-stack" onSubmit={updateWeeklyPlan}>
+            <div className="form-grid">
+              <label>Nome do Plano<input name="name" defaultValue={editingWeekly.name} required /></label>
+              <label>Data de Início sugerida<input name="startDate" type="date" defaultValue={editingWeekly.start_date || ''} /></label>
+              <label className="wide">Visibilidade
+                <select name="visibility" defaultValue={editingWeekly.visibility} disabled={!canCreatePublic}>
+                  <option value="private">Particular</option>
+                  <option value="public">Público</option>
+                </select>
+              </label>
+              <label className="wide">Descrição
+                <textarea name="description" rows="2" defaultValue={editingWeekly.description || ''} />
+              </label>
+            </div>
+
+            <div className="section-title soft-title">
+              <h2>Grade Semanal</h2>
+            </div>
+
+            <div className="week-grid">
+              {weekDays.map((day, index) => {
+                const existingDay = editingWeekly.days?.find((d) => Number(d.dayOfWeek) === index);
+                return (
+                  <fieldset key={day} className="day-config">
+                    <legend>{day}</legend>
+                    <label className="check-line">
+                      <input type="checkbox" name={`edit-rest-${index}`} defaultChecked={Boolean(existingDay?.isRest)} />
+                      Descanso
+                    </label>
+                    <select name={`edit-daily-${index}`} defaultValue={existingDay?.dailyWorkoutId || ''}>
+                      <option value="">Treino...</option>
+                      {dailyWorkouts.map((workout) => (
+                        <option key={workout.id} value={workout.id}>{workout.name}</option>
+                      ))}
+                    </select>
+                    <textarea name={`edit-instructions-${index}`} rows="2" defaultValue={existingDay?.instructions || ''} placeholder="Instruções..." />
+                  </fieldset>
+                );
+              })}
+            </div>
+
+            <div className="actions modal-actions">
+              <button type="button" className="secondary-button" onClick={() => setEditingWeekly(null)}>Cancelar</button>
+              <button type="submit" className="primary-button"><Save size={16} />Salvar Alterações</button>
+            </div>
+          </form>
+        ) : null}
+      </Modal>
     </section>
   );
 }

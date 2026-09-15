@@ -108,7 +108,12 @@ workoutsRouter.get('/daily', requireRoles('admin', 'personal'), asyncHandler(asy
     where = 'true';
   } else {
     params.push(req.user.id);
-    where = `(visibility = 'public' OR owner_id = $1)`;
+    where = `(visibility = 'public' OR owner_id = $${params.length})`;
+  }
+
+  if (req.query.search) {
+    params.push(`%${req.query.search}%`);
+    where += ` AND (name ILIKE $${params.length} OR description ILIKE $${params.length})`;
   }
 
   const result = await query(
@@ -134,6 +139,55 @@ workoutsRouter.post('/daily', requireRoles('admin', 'personal'), asyncHandler(as
     [payload.name, payload.description || null, visibility, ownerId, req.user.id]
   );
   res.status(201).json({ dailyWorkout: result.rows[0] });
+}));
+
+workoutsRouter.patch('/daily/:id', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const payload = parseBody(dailyWorkoutSchema.partial(), req.body);
+  const workout = await fetchDailyWorkout({ query }, req.params.id);
+  if (!editableModel(req.user, workout)) throw forbidden('Voce nao pode editar este treino.');
+
+  let visibility = undefined;
+  let ownerId = undefined;
+  if (payload.visibility) {
+    const v = modelVisibility(req.user, payload.visibility);
+    visibility = v.visibility;
+    ownerId = v.ownerId;
+  }
+
+  const result = await query(
+    `UPDATE daily_workouts
+     SET name = COALESCE($2, name),
+         description = CASE WHEN $3::boolean THEN $4 ELSE description END,
+         visibility = COALESCE($5, visibility),
+         owner_id = CASE WHEN $5 IS NOT NULL THEN $6 ELSE owner_id END
+     WHERE id = $1
+     RETURNING *`,
+    [
+      req.params.id,
+      payload.name || null,
+      payload.description !== undefined,
+      payload.description || null,
+      visibility || null,
+      ownerId || null
+    ]
+  );
+  res.json({ dailyWorkout: result.rows[0] });
+}));
+
+workoutsRouter.delete('/daily/:id', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const workout = await fetchDailyWorkout({ query }, req.params.id);
+  if (!editableModel(req.user, workout)) throw forbidden('Voce nao pode remover este treino.');
+
+  await query('DELETE FROM daily_workouts WHERE id = $1', [req.params.id]);
+  res.status(204).send();
+}));
+
+workoutsRouter.delete('/daily/:id/exercises/:exerciseRelId', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const workout = await fetchDailyWorkout({ query }, req.params.id);
+  if (!editableModel(req.user, workout)) throw forbidden('Voce nao pode editar este treino.');
+
+  await query('DELETE FROM daily_workout_exercises WHERE id = $1 AND daily_workout_id = $2', [req.params.exerciseRelId, req.params.id]);
+  res.status(204).send();
 }));
 
 const workoutExerciseSchema = z.object({
@@ -183,7 +237,12 @@ workoutsRouter.get('/weekly', requireRoles('admin', 'personal'), asyncHandler(as
     where = 'true';
   } else {
     params.push(req.user.id);
-    where = `(wp.visibility = 'public' OR wp.owner_id = $1)`;
+    where = `(wp.visibility = 'public' OR wp.owner_id = $${params.length})`;
+  }
+
+  if (req.query.search) {
+    params.push(`%${req.query.search}%`);
+    where += ` AND (wp.name ILIKE $${params.length} OR wp.description ILIKE $${params.length})`;
   }
 
   const result = await query(
@@ -269,12 +328,31 @@ workoutsRouter.get('/weekly/:id', requireRoles('admin', 'personal'), asyncHandle
   res.json({ weeklyPlan: plan });
 }));
 
-workoutsRouter.put('/weekly/:id/days', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
-  const payload = parseBody(weeklyPlanSchema.pick({ days: true }), req.body);
+workoutsRouter.put('/weekly/:id', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const payload = parseBody(weeklyPlanSchema, req.body);
 
-  await withTransaction(async (client) => {
-    const plan = await fetchWeeklyPlan(client, req.params.id);
-    if (!editableModel(req.user, plan)) throw forbidden('Voce nao pode editar este plano.');
+  const plan = await withTransaction(async (client) => {
+    const existing = await fetchWeeklyPlan(client, req.params.id);
+    if (!editableModel(req.user, existing)) throw forbidden('Voce nao pode editar este plano.');
+
+    let visibility = existing.visibility;
+    let ownerId = existing.owner_id;
+    if (payload.visibility) {
+      const v = modelVisibility(req.user, payload.visibility);
+      visibility = v.visibility;
+      ownerId = v.ownerId;
+    }
+
+    await client.query(
+      `UPDATE weekly_plans
+       SET name = $2,
+           description = $3,
+           start_date = $4,
+           visibility = $5,
+           owner_id = $6
+       WHERE id = $1`,
+      [req.params.id, payload.name, payload.description || null, payload.startDate || null, visibility, ownerId]
+    );
 
     await client.query('DELETE FROM weekly_plan_days WHERE weekly_plan_id = $1', [req.params.id]);
     const daysByIndex = new Map(payload.days.map((day) => [Number(day.dayOfWeek), day]));
@@ -290,8 +368,18 @@ workoutsRouter.put('/weekly/:id/days', requireRoles('admin', 'personal'), asyncH
         [req.params.id, dayOfWeek, Boolean(day.isRest), day.isRest ? null : day.dailyWorkoutId || null, day.instructions || null]
       );
     }
+
+    return fetchWeeklyPlan(client, req.params.id);
   });
 
+  res.json({ weeklyPlan: plan });
+}));
+
+workoutsRouter.delete('/weekly/:id', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const plan = await fetchWeeklyPlan({ query }, req.params.id);
+  if (!editableModel(req.user, plan)) throw forbidden('Voce nao pode remover este plano.');
+
+  await query('DELETE FROM weekly_plans WHERE id = $1', [req.params.id]);
   res.status(204).send();
 }));
 
