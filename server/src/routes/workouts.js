@@ -352,22 +352,49 @@ workoutsRouter.get('/student/current', requireRoles('student'), asyncHandler(asy
   res.json({ currentPlan: result.rows[0] || null });
 }));
 
-workoutsRouter.post('/student/current/complete', requireRoles('student'), asyncHandler(async (req, res) => {
-  const result = await query(
-    `UPDATE student_weekly_plans
-     SET status = 'completed', completed_at = now()
+workoutsRouter.post('/students/:studentId/complete', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  await withTransaction(async (client) => {
+    await assertStudentAccess(client, req.user, req.params.studentId);
+    const result = await client.query(
+      `UPDATE student_weekly_plans
+       SET status = 'completed', completed_at = now()
+       WHERE student_id = $1 AND status = 'active'
+       RETURNING id`,
+      [req.params.studentId]
+    );
+
+    if (result.rowCount === 0) throw notFound('Plano ativo nao encontrado para este aluno.');
+
+    await client.query(
+      `INSERT INTO workout_feedback (student_weekly_plan_id, student_id, is_plan_completed, message)
+       VALUES ($1, $2, true, 'Plano concluido pelo personal')`,
+      [result.rows[0].id, req.params.studentId]
+    );
+  });
+
+  res.status(204).send();
+}));
+
+const dailyCompleteSchema = z.object({
+  dayOfWeek: z.coerce.number().int().min(0).max(6)
+});
+
+workoutsRouter.post('/student/current/daily-complete', requireRoles('student'), asyncHandler(async (req, res) => {
+  const payload = parseBody(dailyCompleteSchema, req.body);
+  const current = await query(
+    `SELECT id FROM student_weekly_plans
      WHERE student_id = $1 AND status = 'active'
-     RETURNING id`,
+     ORDER BY created_at DESC
+     LIMIT 1`,
     [req.user.id]
   );
+  if (current.rowCount === 0) throw notFound('Plano ativo nao encontrado.');
 
-  if (result.rowCount > 0) {
-    await query(
-      `INSERT INTO workout_feedback (student_weekly_plan_id, student_id, is_plan_completed)
-       VALUES ($1, $2, true)`,
-      [result.rows[0].id, req.user.id]
-    );
-  }
+  await query(
+    `INSERT INTO workout_feedback (student_weekly_plan_id, student_id, day_of_week, message, is_plan_completed)
+     VALUES ($1, $2, $3, 'Treino do dia concluido', false)`,
+    [current.rows[0].id, req.user.id, payload.dayOfWeek]
+  );
 
   res.status(204).send();
 }));
