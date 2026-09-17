@@ -164,10 +164,28 @@ CREATE TABLE IF NOT EXISTS exercises (
 CREATE INDEX IF NOT EXISTS exercises_visibility_idx ON exercises(visibility);
 CREATE INDEX IF NOT EXISTS exercises_owner_idx ON exercises(owner_id);
 
+ALTER TABLE exercises ADD COLUMN IF NOT EXISTS gif_library_path TEXT;
+
 DROP TRIGGER IF EXISTS exercises_set_updated_at ON exercises;
 CREATE TRIGGER exercises_set_updated_at
 BEFORE UPDATE ON exercises
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+CREATE TABLE IF NOT EXISTS gif_library_favorites (
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  gif_id TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (user_id, gif_id)
+);
+
+CREATE TABLE IF NOT EXISTS gif_library_overrides (
+  gif_id TEXT PRIMARY KEY,
+  name_pt TEXT,
+  muscle_group_pt TEXT,
+  hidden BOOLEAN NOT NULL DEFAULT false,
+  updated_by UUID REFERENCES users(id) ON DELETE SET NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 
 CREATE TABLE IF NOT EXISTS daily_workouts (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

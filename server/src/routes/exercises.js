@@ -38,11 +38,12 @@ function validateExerciseMedia(req) {
   const gif = req.files?.gif?.[0];
   const audio = req.files?.audio?.[0];
   const youtubeUrl = req.body.youtubeUrl?.trim();
+  const gifLibraryPath = req.body.gifLibraryPath?.trim();
   const videoDuration = optionalNumber(req.body.videoDurationSeconds);
   const audioDuration = optionalNumber(req.body.audioDurationSeconds);
 
-  if ([youtubeUrl, video, gif].filter(Boolean).length > 1) {
-    throw badRequest('Escolha apenas uma midia: GIF, YouTube ou video.');
+  if ([youtubeUrl, video, gif, gifLibraryPath].filter(Boolean).length > 1) {
+    throw badRequest('Escolha apenas uma midia: GIF, YouTube, video ou animacao da biblioteca.');
   }
 
   if (video && video.size > 8 * 1024 * 1024) throw badRequest('Videos devem ter ate 8 MB.');
@@ -51,7 +52,7 @@ function validateExerciseMedia(req) {
   if (video && videoDuration !== null && videoDuration > 5) throw badRequest('Videos devem ter ate 5 segundos.');
   if (audio && audioDuration !== null && audioDuration > 60) throw badRequest('Audios devem ter ate 60 segundos.');
 
-  return { video, gif, audio, videoDuration, audioDuration };
+  return { video, gif, audio, videoDuration, audioDuration, gifLibraryPath: gifLibraryPath === undefined ? undefined : (gifLibraryPath || null) };
 }
 
 function visibilityFor(user, requestedVisibility) {
@@ -127,7 +128,7 @@ exercisesRouter.post('/', requireRoles('admin', 'personal'), exerciseMediaUpload
         video_path, video_mime, video_size_bytes, video_duration_seconds,
         gif_path, gif_mime, gif_size_bytes,
         audio_path, audio_mime, audio_size_bytes, audio_duration_seconds,
-        visibility, owner_id, created_by
+        visibility, owner_id, created_by, gif_library_path
       )
       VALUES (
         $1, $2, $3, $4, $5,
@@ -135,7 +136,7 @@ exercisesRouter.post('/', requireRoles('admin', 'personal'), exerciseMediaUpload
         $9, $10, $11, $12,
         $13, $14, $15,
         $16, $17, $18, $19,
-        $20, $21, $22
+        $20, $21, $22, $23
       )
       RETURNING *`,
       [
@@ -160,7 +161,8 @@ exercisesRouter.post('/', requireRoles('admin', 'personal'), exerciseMediaUpload
         media.audioDuration,
         visibility,
         ownerId,
-        req.user.id
+        req.user.id,
+        media.gifLibraryPath ?? null
       ]
     );
 
@@ -234,10 +236,9 @@ exercisesRouter.patch('/:id', requireRoles('admin', 'personal'), exerciseMediaUp
       gifPath = null;
       gifMime = null;
       gifSize = null;
-      if (youtubeUrl === undefined) {
-        // clear youtube as well if removing media and no new youtube specified
-      }
     }
+
+    const gifLibraryPath = payload.removeMedia ? null : media.gifLibraryPath;
 
     const result = await query(
       `UPDATE exercises
@@ -261,7 +262,8 @@ exercisesRouter.patch('/:id', requireRoles('admin', 'personal'), exerciseMediaUp
            audio_size_bytes = CASE WHEN $26::boolean THEN $29 ELSE audio_size_bytes END,
            audio_duration_seconds = CASE WHEN $26::boolean THEN $30 ELSE audio_duration_seconds END,
            visibility = COALESCE($31, visibility),
-           owner_id = CASE WHEN $31 IS NOT NULL THEN $32 ELSE owner_id END
+           owner_id = CASE WHEN $31 IS NOT NULL THEN $32 ELSE owner_id END,
+           gif_library_path = CASE WHEN $33::boolean THEN $34 ELSE gif_library_path END
        WHERE id = $1
        RETURNING *`,
       [
@@ -296,7 +298,9 @@ exercisesRouter.patch('/:id', requireRoles('admin', 'personal'), exerciseMediaUp
         audioSize || null,
         audioDuration ?? null,
         visibility || null,
-        ownerId || null
+        ownerId || null,
+        gifLibraryPath !== undefined,
+        gifLibraryPath || null
       ]
     );
 

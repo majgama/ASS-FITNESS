@@ -29,6 +29,9 @@ export const env = {
   uploadDir: process.env.UPLOAD_DIR
     ? path.resolve(process.env.UPLOAD_DIR)
     : path.resolve(process.cwd(), 'src', 'uploads'),
+  gifLibraryDir: process.env.GIF_LIBRARY_DIR
+    ? path.resolve(process.env.GIF_LIBRARY_DIR)
+    : path.resolve(process.cwd(), '..', 'gif'),
   seedAdminName: process.env.SEED_ADMIN_NAME || 'Administrador',
   seedAdminEmail: process.env.SEED_ADMIN_EMAIL || 'admin@assfitness.local',
   seedAdminPassword: process.env.SEED_ADMIN_PASSWORD || 'Admin@12345'

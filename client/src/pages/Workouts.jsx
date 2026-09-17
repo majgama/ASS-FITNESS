@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Calendar,
   Check,
@@ -13,7 +13,8 @@ import {
   Trash2,
   X
 } from 'lucide-react';
-import { api, fileUrl } from '../api/client.js';
+import { api, fileUrl, gifLibraryFileUrl } from '../api/client.js';
+import { GifLibraryPicker } from '../components/GifLibraryPicker.jsx';
 import { Modal } from '../components/Modal.jsx';
 import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -44,6 +45,9 @@ export function Workouts() {
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
   const [mediaType, setMediaType] = useState('none');
+  const [libraryPickerOpen, setLibraryPickerOpen] = useState(false);
+  const [selectedLibraryGif, setSelectedLibraryGif] = useState(null);
+  const createFormRef = useRef(null);
 
   // Search terms
   const [exerciseSearch, setExerciseSearch] = useState('');
@@ -53,6 +57,9 @@ export function Workouts() {
   // Modals state
   const [editingExercise, setEditingExercise] = useState(null);
   const [editExerciseMediaType, setEditExerciseMediaType] = useState('none');
+  const [editLibraryPickerOpen, setEditLibraryPickerOpen] = useState(false);
+  const [editSelectedLibraryGif, setEditSelectedLibraryGif] = useState(null);
+  const editFormRef = useRef(null);
   const [editingDaily, setEditingDaily] = useState(null);
   const [editingWeekly, setEditingWeekly] = useState(null);
 
@@ -131,10 +138,19 @@ export function Workouts() {
     if (mediaType === 'youtube') form.set('youtubeUrl', formElement.elements.youtubeUrl.value);
     if (mediaType === 'video' && formElement.elements.video?.files?.[0]) form.set('video', formElement.elements.video.files[0]);
     if (mediaType === 'gif' && formElement.elements.gif?.files?.[0]) form.set('gif', formElement.elements.gif.files[0]);
+    if (mediaType === 'library') {
+      if (!selectedLibraryGif) {
+        setError('Escolha uma animação da biblioteca ou selecione outro tipo de mídia.');
+        return;
+      }
+      form.set('gifLibraryPath', selectedLibraryGif.id);
+    }
     try {
       await api('/exercises', { method: 'POST', body: form });
       formElement.reset();
       setMediaType('none');
+      setSelectedLibraryGif(null);
+      setLibraryPickerOpen(false);
       setNotice('Exercício criado com sucesso.');
       await load();
     } catch (err) {
@@ -142,9 +158,30 @@ export function Workouts() {
     }
   }
 
+  function handleLibrarySelect(item) {
+    setSelectedLibraryGif(item);
+    setLibraryPickerOpen(false);
+    if (createFormRef.current) {
+      createFormRef.current.elements.name.value = item.name;
+      if (item.muscleGroup) createFormRef.current.elements.muscleGroup.value = item.muscleGroup;
+    }
+  }
+
+  function handleEditLibrarySelect(item) {
+    setEditSelectedLibraryGif(item);
+    setEditLibraryPickerOpen(false);
+    if (editFormRef.current) {
+      editFormRef.current.elements.name.value = item.name;
+      if (item.muscleGroup) editFormRef.current.elements.muscleGroup.value = item.muscleGroup;
+    }
+  }
+
   function openEditExercise(exercise) {
     setEditingExercise(exercise);
-    if (exercise.gif_path) setEditExerciseMediaType('gif');
+    setEditSelectedLibraryGif(null);
+    setEditLibraryPickerOpen(false);
+    if (exercise.gif_library_path) setEditExerciseMediaType('library');
+    else if (exercise.gif_path) setEditExerciseMediaType('gif');
     else if (exercise.video_path) setEditExerciseMediaType('video');
     else if (exercise.youtube_url) setEditExerciseMediaType('youtube');
     else setEditExerciseMediaType('none');
@@ -162,6 +199,7 @@ export function Workouts() {
     if (editExerciseMediaType === 'youtube') form.set('youtubeUrl', formElement.elements.youtubeUrl.value);
     if (editExerciseMediaType === 'video' && formElement.elements.video?.files?.[0]) form.set('video', formElement.elements.video.files[0]);
     if (editExerciseMediaType === 'gif' && formElement.elements.gif?.files?.[0]) form.set('gif', formElement.elements.gif.files[0]);
+    if (editExerciseMediaType === 'library' && editSelectedLibraryGif) form.set('gifLibraryPath', editSelectedLibraryGif.id);
     if (editExerciseMediaType === 'none') form.set('removeMedia', 'true');
 
     try {
@@ -421,7 +459,7 @@ export function Workouts() {
             <div className="section-title">
               <h2>Novo Exercício</h2>
             </div>
-            <form className="form-stack" onSubmit={createExercise}>
+            <form className="form-stack" onSubmit={createExercise} ref={createFormRef}>
               <div className="form-grid">
                 <label>Nome do Exercício<input name="name" placeholder="Ex: Supino reto" required /></label>
                 <label>Grupo Muscular<input name="muscleGroup" placeholder="Ex: Peitoral" /></label>
@@ -431,13 +469,36 @@ export function Workouts() {
                 <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" placeholder="Ex: 60" /></label>
 
                 <label className="wide">Mídia demonstrativa (escolha uma)
-                  <select value={mediaType} onChange={(event) => setMediaType(event.target.value)}>
+                  <select
+                    value={mediaType}
+                    onChange={(event) => {
+                      setMediaType(event.target.value);
+                      if (event.target.value !== 'library') {
+                        setSelectedLibraryGif(null);
+                        setLibraryPickerOpen(false);
+                      } else {
+                        setLibraryPickerOpen(true);
+                      }
+                    }}
+                  >
+                    <option value="library">Escolher animação</option>
                     <option value="none">Sem mídia</option>
-                    <option value="gif">GIF</option>
+                    <option value="gif">GIF (upload)</option>
                     <option value="youtube">YouTube (link)</option>
                     <option value="video">Vídeo curto (até 8MB / 5s)</option>
                   </select>
                 </label>
+
+                {mediaType === 'library' && selectedLibraryGif ? (
+                  <div className="wide gif-selected-preview">
+                    <img src={gifLibraryFileUrl(selectedLibraryGif.id)} alt={selectedLibraryGif.name} />
+                    <div>
+                      <strong>{selectedLibraryGif.name}</strong>
+                      <span>{selectedLibraryGif.muscleGroup || 'Geral'}</span>
+                    </div>
+                    <button type="button" className="secondary-button" onClick={() => setLibraryPickerOpen(true)}>Trocar</button>
+                  </div>
+                ) : null}
 
                 {mediaType === 'youtube' ? (
                   <label className="wide">Link do YouTube
@@ -486,6 +547,12 @@ export function Workouts() {
                 Cadastrar Exercício
               </button>
             </form>
+
+            {libraryPickerOpen ? (
+              <div className="gif-picker-overlay">
+                <GifLibraryPicker onSelect={handleLibrarySelect} onClose={() => setLibraryPickerOpen(false)} />
+              </div>
+            ) : null}
           </section>
 
           <section className="panel">
@@ -513,7 +580,8 @@ export function Workouts() {
               <div className="list-stack manage-list-stack">
                 {filteredExercises.map((exercise) => (
                   <article className="list-item manage-card" key={exercise.id}>
-                    {exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
+                    {exercise.gif_library_path ? <img className="exercise-media" src={gifLibraryFileUrl(exercise.gif_library_path)} alt={exercise.name} /> : null}
+                    {!exercise.gif_library_path && exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
                     {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
                     {exercise.youtube_url ? (
                       <iframe
@@ -862,7 +930,7 @@ export function Workouts() {
       {/* ===================== MODAL EDITAR EXERCÍCIO ===================== */}
       <Modal title={`Editar Exercício: ${editingExercise?.name || ''}`} open={Boolean(editingExercise)} onClose={() => setEditingExercise(null)}>
         {editingExercise ? (
-          <form className="form-stack" onSubmit={updateExercise}>
+          <form className="form-stack" onSubmit={updateExercise} ref={editFormRef}>
             <div className="form-grid">
               <label>Nome do Exercício<input name="name" defaultValue={editingExercise.name} required /></label>
               <label>Grupo Muscular<input name="muscleGroup" defaultValue={editingExercise.muscle_group || ''} /></label>
@@ -872,13 +940,38 @@ export function Workouts() {
               <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" defaultValue={editingExercise.default_rest_seconds ?? ''} /></label>
 
               <label className="wide">Mídia demonstrativa
-                <select value={editExerciseMediaType} onChange={(event) => setEditExerciseMediaType(event.target.value)}>
+                <select
+                  value={editExerciseMediaType}
+                  onChange={(event) => {
+                    setEditExerciseMediaType(event.target.value);
+                    if (event.target.value === 'library') setEditLibraryPickerOpen(true);
+                    else setEditLibraryPickerOpen(false);
+                  }}
+                >
+                  <option value="library">Escolher animação</option>
                   <option value="none">Sem mídia / Remover mídia</option>
-                  <option value="gif">GIF</option>
+                  <option value="gif">GIF (upload)</option>
                   <option value="youtube">YouTube (link)</option>
                   <option value="video">Vídeo curto</option>
                 </select>
               </label>
+
+              {editExerciseMediaType === 'library' ? (
+                <div className="wide gif-selected-preview">
+                  {editSelectedLibraryGif || editingExercise.gif_library_path ? (
+                    <img
+                      src={gifLibraryFileUrl(editSelectedLibraryGif?.id || editingExercise.gif_library_path)}
+                      alt={editSelectedLibraryGif?.name || editingExercise.name}
+                    />
+                  ) : null}
+                  <div>
+                    <strong>{editSelectedLibraryGif?.name || (editingExercise.gif_library_path ? 'Animação atual' : 'Nenhuma selecionada')}</strong>
+                  </div>
+                  <button type="button" className="secondary-button" onClick={() => setEditLibraryPickerOpen(true)}>
+                    {editingExercise.gif_library_path || editSelectedLibraryGif ? 'Trocar' : 'Selecionar'}
+                  </button>
+                </div>
+              ) : null}
 
               {editExerciseMediaType === 'youtube' ? (
                 <label className="wide">Link do YouTube
@@ -914,6 +1007,12 @@ export function Workouts() {
                 <textarea name="observations" rows="3" defaultValue={editingExercise.observations || ''} />
               </label>
             </div>
+
+            {editLibraryPickerOpen ? (
+              <div className="gif-picker-overlay">
+                <GifLibraryPicker onSelect={handleEditLibrarySelect} onClose={() => setEditLibraryPickerOpen(false)} />
+              </div>
+            ) : null}
 
             <div className="actions modal-actions">
               <button type="button" className="secondary-button" onClick={() => setEditingExercise(null)}>Cancelar</button>

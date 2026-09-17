@@ -45,6 +45,7 @@ async function fetchDailyWorkout(client, id) {
                   'youtubeUrl', e.youtube_url,
                   'videoPath', e.video_path,
                   'gifPath', e.gif_path,
+                  'gifLibraryPath', e.gif_library_path,
                   'audioPath', e.audio_path
                 )
                 ORDER BY dwe.position

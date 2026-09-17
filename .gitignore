@@ -12,3 +12,9 @@ server/src/uploads/**
 !server/src/uploads/assessments/.gitkeep
 !server/src/uploads/exercises/
 !server/src/uploads/exercises/.gitkeep
+
+# Exercise gif media library (~18GB). Not committed to git.
+# Sync this folder separately to production storage (e.g. DigitalOcean Spaces or a mounted volume)
+# and point GIF_LIBRARY_DIR to it. The generated catalog metadata (server/src/data/gif-catalog.json)
+# is committed and only stores relative paths + translated names.
+/gif/

@@ -54,3 +54,10 @@ export function fileUrl(path) {
   const query = token ? `?access_token=${encodeURIComponent(token)}` : '';
   return `${API_URL}/files/${path}${query}`;
 }
+
+export function gifLibraryFileUrl(gifId) {
+  if (!gifId) return '';
+  const token = getAuthToken();
+  const query = token ? `?access_token=${encodeURIComponent(token)}` : '';
+  return `${API_URL}/gif-library/file/${gifId}${query}`;
+}

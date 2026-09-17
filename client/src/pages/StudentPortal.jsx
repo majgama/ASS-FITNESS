@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Check, ClipboardList, Dumbbell, FileText, Repeat, Send, Timer, Volume2 } from 'lucide-react';
-import { api, fileUrl } from '../api/client.js';
+import { api, fileUrl, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { formatDate, normalizeSnapshot, weekDays } from './pageHelpers.js';
 
@@ -161,7 +161,8 @@ export function StudentPortal() {
                     </div>
 
                     <div className="student-card-media">
-                      {item.gifPath ? <img className="exercise-media exercise-media-large" src={fileUrl(item.gifPath)} alt={`Demonstração de ${item.exerciseName}`} /> : null}
+                      {item.gifLibraryPath ? <img className="exercise-media exercise-media-large" src={gifLibraryFileUrl(item.gifLibraryPath)} alt={`Demonstração de ${item.exerciseName}`} /> : null}
+                      {!item.gifLibraryPath && item.gifPath ? <img className="exercise-media exercise-media-large" src={fileUrl(item.gifPath)} alt={`Demonstração de ${item.exerciseName}`} /> : null}
                       {item.videoPath ? <video className="exercise-media exercise-media-large" src={fileUrl(item.videoPath)} controls muted loop playsInline /> : null}
                       {item.youtubeUrl ? <iframe
                         className="exercise-media exercise-media-large"
