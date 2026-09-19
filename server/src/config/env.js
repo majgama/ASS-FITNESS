@@ -32,6 +32,7 @@ export const env = {
   gifLibraryDir: process.env.GIF_LIBRARY_DIR
     ? path.resolve(process.env.GIF_LIBRARY_DIR)
     : path.resolve(process.cwd(), '..', 'gif'),
+  gifLibraryPublicUrl: process.env.GIF_LIBRARY_PUBLIC_URL || '',
   seedAdminName: process.env.SEED_ADMIN_NAME || 'Administrador',
   seedAdminEmail: process.env.SEED_ADMIN_EMAIL || 'admin@assfitness.local',
   seedAdminPassword: process.env.SEED_ADMIN_PASSWORD || 'Admin@12345'

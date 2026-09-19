@@ -128,6 +128,12 @@ gifLibraryRouter.get('/file/:id', asyncHandler(async (req, res) => {
   const item = catalogById.get(req.params.id);
   if (!item) throw notFound('Animacao nao encontrada.');
 
+  if (env.gifLibraryPublicUrl) {
+    const baseUrl = env.gifLibraryPublicUrl.replace(/\/+$/, '');
+    res.redirect(`${baseUrl}/${item.relativePath.split('/').map(encodeURIComponent).join('/')}`);
+    return;
+  }
+
   const resolved = path.resolve(env.gifLibraryDir, item.relativePath);
   const base = path.resolve(env.gifLibraryDir);
   if (!resolved.startsWith(base)) throw forbidden('Caminho invalido.');
