@@ -270,6 +270,3 @@ export function StudentPortal() {
     </section>
   );
 }
-    </section>
-  );
-}
