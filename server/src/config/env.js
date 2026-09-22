@@ -29,6 +29,7 @@ export const env = {
   uploadDir: process.env.UPLOAD_DIR
     ? path.resolve(process.env.UPLOAD_DIR)
     : path.resolve(process.cwd(), 'src', 'uploads'),
+  uploadPublicUrl: process.env.UPLOAD_PUBLIC_URL || '',
   gifLibraryDir: process.env.GIF_LIBRARY_DIR
     ? path.resolve(process.env.GIF_LIBRARY_DIR)
     : path.resolve(process.cwd(), '..', 'gif'),

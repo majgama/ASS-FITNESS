@@ -130,7 +130,17 @@ gifLibraryRouter.get('/file/:id', asyncHandler(async (req, res) => {
 
   if (env.gifLibraryPublicUrl) {
     const baseUrl = env.gifLibraryPublicUrl.replace(/\/+$/, '');
-    res.redirect(`${baseUrl}/${item.relativePath.split('/').map(encodeURIComponent).join('/')}`);
+    const remoteUrl = `${baseUrl}/${item.relativePath.split('/').map(encodeURIComponent).join('/')}`;
+    const remote = await fetch(remoteUrl);
+    if (!remote.ok || !remote.body) throw notFound('Arquivo nao encontrado.');
+    res.status(remote.status);
+    const contentType = remote.headers.get('content-type') || 'image/gif';
+    res.setHeader('Content-Type', contentType);
+    const contentLength = remote.headers.get('content-length');
+    if (contentLength) res.setHeader('Content-Length', contentLength);
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    for await (const chunk of remote.body) res.write(chunk);
+    res.end();
     return;
   }
 

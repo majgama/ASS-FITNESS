@@ -78,5 +78,21 @@ filesRouter.get('/:category/:filename', asyncHandler(async (req, res) => {
   if (category === 'assessments') await canAccessAssessment(req.user, relativePath);
   if (category === 'exercises') await canAccessExercise(req.user, relativePath);
 
+  if (env.uploadPublicUrl) {
+    const baseUrl = env.uploadPublicUrl.replace(/\/+$/, '');
+    const remoteUrl = `${baseUrl}/${relativePath.split('/').map(encodeURIComponent).join('/')}`;
+    const remote = await fetch(remoteUrl);
+    if (!remote.ok || !remote.body) throw notFound('Arquivo nao encontrado.');
+    res.status(remote.status);
+    const contentType = remote.headers.get('content-type');
+    if (contentType) res.setHeader('Content-Type', contentType);
+    const contentLength = remote.headers.get('content-length');
+    if (contentLength) res.setHeader('Content-Length', contentLength);
+    res.setHeader('Cache-Control', 'private, max-age=300');
+    for await (const chunk of remote.body) res.write(chunk);
+    res.end();
+    return;
+  }
+
   res.sendFile(filePath(category, filename));
 }));

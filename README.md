@@ -83,9 +83,15 @@ CORS_ORIGIN=https://seu-app.ondigitalocean.app
 VITE_API_URL=/api
 DATABASE_URL=postgresql://usuario:senha@host:porta/banco?sslmode=require
 DATABASE_SSL=true
+GIF_LIBRARY_DIR=/opt/ASS-FITNESS/gif
+GIF_LIBRARY_PUBLIC_URL=http://174.138.44.33/gif
+UPLOAD_DIR=/opt/ASS-FITNESS/server/src/uploads
+UPLOAD_PUBLIC_URL=http://174.138.44.33/uploads
 ```
 
 Em producao o Express serve o frontend compilado em `client/dist`. As rotas da API continuam em `/api`.
+
+`GIF_LIBRARY_PUBLIC_URL` e `UPLOAD_PUBLIC_URL` apontam para os arquivos persistidos fora do App Platform. O backend retransmite esses arquivos pelo proprio dominio HTTPS da aplicacao, evitando bloqueios de mixed content no navegador.
 
 ## Hotmart
 
