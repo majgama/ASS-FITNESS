@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { Router } from 'express';
 import { env } from '../config/env.js';
@@ -81,18 +82,25 @@ filesRouter.get('/:category/:filename', asyncHandler(async (req, res) => {
   if (env.uploadPublicUrl) {
     const baseUrl = env.uploadPublicUrl.replace(/\/+$/, '');
     const remoteUrl = `${baseUrl}/${relativePath.split('/').map(encodeURIComponent).join('/')}`;
-    const remote = await fetch(remoteUrl);
-    if (!remote.ok || !remote.body) throw notFound('Arquivo nao encontrado.');
-    res.status(remote.status);
-    const contentType = remote.headers.get('content-type');
-    if (contentType) res.setHeader('Content-Type', contentType);
-    const contentLength = remote.headers.get('content-length');
-    if (contentLength) res.setHeader('Content-Length', contentLength);
-    res.setHeader('Cache-Control', 'private, max-age=300');
-    for await (const chunk of remote.body) res.write(chunk);
-    res.end();
-    return;
+    try {
+      const remote = await fetch(remoteUrl);
+      if (remote.ok && remote.body) {
+        res.status(remote.status);
+        const contentType = remote.headers.get('content-type');
+        if (contentType) res.setHeader('Content-Type', contentType);
+        const contentLength = remote.headers.get('content-length');
+        if (contentLength) res.setHeader('Content-Length', contentLength);
+        res.setHeader('Cache-Control', 'private, max-age=300');
+        for await (const chunk of remote.body) res.write(chunk);
+        res.end();
+        return;
+      }
+    } catch {
+      // Fall back to local storage when the external media host is unavailable.
+    }
   }
 
-  res.sendFile(filePath(category, filename));
+  const localPath = filePath(category, filename);
+  if (!fs.existsSync(localPath)) throw notFound('Arquivo nao encontrado.');
+  res.sendFile(localPath);
 }));
