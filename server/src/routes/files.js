@@ -22,18 +22,21 @@ function filePath(category, filename) {
 }
 
 async function canAccessProfile(user, relativePath) {
-  const owner = await query('SELECT id, role FROM users WHERE profile_photo_path = $1', [relativePath]);
+  const owner = await query(
+    'SELECT id, role, profile_photo_data, profile_photo_mime FROM users WHERE profile_photo_path = $1',
+    [relativePath]
+  );
   if (owner.rowCount === 0) throw notFound('Arquivo nao encontrado.');
 
   const target = owner.rows[0];
-  if (user.role === 'admin' || user.id === target.id) return true;
+  if (user.role === 'admin' || user.id === target.id) return target;
 
   if (user.role === 'personal' && target.role === 'student') {
     const linked = await query(
       'SELECT 1 FROM trainer_students WHERE trainer_id = $1 AND student_id = $2',
       [user.id, target.id]
     );
-    if (linked.rowCount > 0) return true;
+    if (linked.rowCount > 0) return target;
   }
 
   if (user.role === 'student' && target.role === 'personal') {
@@ -41,7 +44,7 @@ async function canAccessProfile(user, relativePath) {
       'SELECT 1 FROM trainer_students WHERE trainer_id = $1 AND student_id = $2',
       [target.id, user.id]
     );
-    if (linked.rowCount > 0) return true;
+    if (linked.rowCount > 0) return target;
   }
 
   throw forbidden('Voce nao tem acesso a este arquivo.');
@@ -75,9 +78,16 @@ filesRouter.get('/:category/:filename', asyncHandler(async (req, res) => {
   if (!allowed.includes(category)) throw notFound('Arquivo nao encontrado.');
 
   const relativePath = `${category}/${filename}`;
-  if (category === 'profiles') await canAccessProfile(req.user, relativePath);
+  const profile = category === 'profiles' ? await canAccessProfile(req.user, relativePath) : null;
   if (category === 'assessments') await canAccessAssessment(req.user, relativePath);
   if (category === 'exercises') await canAccessExercise(req.user, relativePath);
+
+  if (profile?.profile_photo_data) {
+    res.setHeader('Content-Type', profile.profile_photo_mime || 'application/octet-stream');
+    res.setHeader('Cache-Control', 'private, max-age=300');
+    res.send(profile.profile_photo_data);
+    return;
+  }
 
   if (env.uploadPublicUrl) {
     const baseUrl = env.uploadPublicUrl.replace(/\/+$/, '');

@@ -46,7 +46,17 @@ function uploadFor(category, allowedTypes, maxSizeMb) {
   });
 }
 
-export const profilePhotoUpload = uploadFor('profiles', imageTypes, 5).single('photo');
+export const profilePhotoUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * MB },
+  fileFilter: (req, file, cb) => {
+    if (!imageTypes.includes(file.mimetype)) {
+      cb(badRequest('Formato de arquivo nao permitido.'));
+      return;
+    }
+    cb(null, true);
+  }
+}).single('photo');
 
 export const assessmentPhotosUpload = uploadFor('assessments', imageTypes, 5).fields([
   { name: 'front', maxCount: 1 },

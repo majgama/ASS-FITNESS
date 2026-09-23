@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 import { query, withTransaction } from '../db/pool.js';
 import { authRequired, toUser } from '../middleware/auth.js';
-import { profilePhotoUpload, relativeUploadPath } from '../middleware/upload.js';
+import { profilePhotoUpload } from '../middleware/upload.js';
 import { changePassword } from '../services/authService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { parseBody, passwordSchema } from '../utils/validators.js';
@@ -20,10 +20,11 @@ const profileSchema = z.object({
   restrictions: z.string().trim().optional().nullable(),
   nextAssessmentDate: z.string().optional().nullable()
 });
+import { randomUUID } from 'node:crypto';
 
 profileRouter.patch('/me', profilePhotoUpload, asyncHandler(async (req, res) => {
   const payload = parseBody(profileSchema, req.body);
-  const photoPath = relativeUploadPath('profiles', req.file);
+  const photoPath = req.file ? `profiles/${randomUUID()}` : null;
 
   await withTransaction(async (client) => {
     await client.query(
@@ -31,9 +32,19 @@ profileRouter.patch('/me', profilePhotoUpload, asyncHandler(async (req, res) => 
        SET name = COALESCE($2, name),
            date_of_birth = COALESCE($3, date_of_birth),
            cref = COALESCE($4, cref),
-           profile_photo_path = COALESCE($5, profile_photo_path)
+           profile_photo_path = COALESCE($5, profile_photo_path),
+           profile_photo_data = COALESCE($6, profile_photo_data),
+           profile_photo_mime = COALESCE($7, profile_photo_mime)
        WHERE id = $1`,
-      [req.user.id, payload.name, payload.dateOfBirth || null, payload.cref || null, photoPath]
+      [
+        req.user.id,
+        payload.name,
+        payload.dateOfBirth || null,
+        payload.cref || null,
+        photoPath,
+        req.file?.buffer || null,
+        req.file?.mimetype || null
+      ]
     );
 
     if (req.user.role === 'personal') {

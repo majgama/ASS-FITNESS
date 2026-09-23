@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+  ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_photo_data BYTEA;
+  ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_photo_mime TEXT;
 
 CREATE UNIQUE INDEX IF NOT EXISTS users_email_unique_idx ON users (lower(email));
 CREATE INDEX IF NOT EXISTS users_role_idx ON users (role);
