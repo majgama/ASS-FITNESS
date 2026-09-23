@@ -356,7 +356,7 @@ textarea:focus {
   height: 58px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 16px;
   padding: 0 28px;
   background: rgba(236, 233, 225, 0.9);
@@ -400,7 +400,39 @@ textarea:focus {
 }
 
 .topbar-user {
-  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.topbar-avatar,
+.student-roster-avatar,
+.student-management-avatar {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #1d2430;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.topbar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+.topbar-avatar img,
+.student-roster-avatar img,
+.student-management-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.topbar-menu {
+  margin-left: auto;
 }
 
 .section-title h2 {
@@ -527,6 +559,256 @@ textarea:focus {
 
 .table-wrap {
   overflow-x: auto;
+}
+
+.student-roster {
+  display: grid;
+  gap: 8px;
+}
+
+.student-roster-item {
+  width: 100%;
+  min-height: 84px;
+  display: grid;
+  grid-template-columns: 50px minmax(110px, 1fr) minmax(190px, 0.9fr) 24px;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+}
+
+.student-roster-item:hover {
+  border-color: #b89045;
+  background: #fcfaf5;
+}
+
+.student-roster-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.student-roster-name,
+.student-roster-progress {
+  display: grid;
+  gap: 5px;
+}
+
+.student-roster-name strong {
+  font-size: 16px;
+}
+
+.student-roster-progress span,
+.student-roster-progress small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.student-roster-progress strong {
+  justify-self: end;
+  margin-top: -21px;
+  font-size: 14px;
+}
+
+.student-roster-progress i,
+.progress-track {
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7e1d4;
+}
+
+.student-roster-progress i b,
+.progress-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #c49b4e;
+}
+
+.student-roster-chevron {
+  color: var(--muted);
+}
+
+.back-link {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: #745522;
+  font-weight: 800;
+  padding: 0;
+}
+
+.student-management-header,
+.student-management-profile,
+.student-management-actions,
+.student-management-meta,
+.management-panel-title {
+  display: flex;
+  align-items: center;
+}
+
+.student-management-header {
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.student-management-profile {
+  gap: 14px;
+}
+
+.student-management-avatar {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.student-management-profile > div:last-child > span,
+.management-card > span {
+  display: block;
+  color: #936b2d;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.student-management-profile h1 {
+  margin: 3px 0 6px;
+  font-size: 28px;
+}
+
+.student-management-meta,
+.student-management-actions {
+  gap: 8px;
+}
+
+.student-management-actions a,
+.management-panel > a {
+  text-decoration: none;
+}
+
+.student-management-overview,
+.student-management-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.student-management-overview {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.management-card,
+.management-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.management-card {
+  min-height: 142px;
+  padding: 16px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.management-card > strong {
+  font-size: 19px;
+}
+
+.management-card small,
+.management-record span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.progress-card > strong {
+  font-size: 30px;
+}
+
+.student-management-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.management-panel {
+  min-height: 170px;
+  padding: 16px;
+  display: grid;
+  align-content: start;
+  gap: 11px;
+}
+
+.management-panel-title {
+  gap: 8px;
+}
+
+.management-panel-title svg {
+  color: #936b2d;
+}
+
+.management-panel-title h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.management-record {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
+
+.management-panel > a {
+  color: #745522;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.management-panel-wide {
+  grid-column: 1 / -1;
+  min-height: 116px;
+}
+
+.billing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 14px;
+}
+
+.billing-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+.billing-form .wide {
+  grid-column: 1 / -1;
+}
+
+.billing-form button {
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+
+.payment-history {
+  display: grid;
+  gap: 8px;
 }
 
 table {
@@ -1294,6 +1576,46 @@ iframe.exercise-media {
 
   .student-specs-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .student-roster-item {
+    grid-template-columns: 46px minmax(0, 1fr) 22px;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .student-roster-avatar {
+    width: 46px;
+    height: 46px;
+  }
+
+  .student-roster-progress {
+    grid-column: 2 / -1;
+    margin-top: -4px;
+  }
+
+  .student-management-header,
+  .student-management-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .student-management-actions a {
+    justify-content: center;
+  }
+
+  .student-management-overview,
+  .student-management-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .management-panel-wide {
+    grid-column: auto;
+  }
+
+  .billing-grid,
+  .billing-form {
+    grid-template-columns: 1fr;
   }
 
   .mobile-bottom-nav {

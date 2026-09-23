@@ -298,6 +298,28 @@ CREATE TABLE IF NOT EXISTS assessments (
 
 CREATE INDEX IF NOT EXISTS assessments_student_idx ON assessments(student_id, assessment_date DESC);
 
+CREATE TABLE IF NOT EXISTS student_billing (
+  student_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  due_date DATE,
+  monthly_amount NUMERIC,
+  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'paid', 'overdue')),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS student_payment_history (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  student_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  amount NUMERIC,
+  due_date DATE,
+  paid_at DATE,
+  status TEXT NOT NULL DEFAULT 'paid' CHECK (status IN ('pending', 'paid', 'overdue')),
+  note TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS student_payment_history_student_idx
+ON student_payment_history(student_id, created_at DESC);
+
 CREATE TABLE IF NOT EXISTS assessment_photos (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   assessment_id UUID NOT NULL REFERENCES assessments(id) ON DELETE CASCADE,

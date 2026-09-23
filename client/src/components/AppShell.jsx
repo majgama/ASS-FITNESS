@@ -14,6 +14,7 @@ import {
   X
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
+import { fileUrl } from '../api/client.js';
 
 const navByRole = {
   admin: [
@@ -85,13 +86,15 @@ export function AppShell() {
 
       <main className="shell-main">
         <header className="topbar">
-          <button className="icon-button only-mobile" type="button" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
-            <Menu size={20} />
-          </button>
           <div className="topbar-user">
-            <span>Organize. Evolua. Transforme.</span>
+            <div className="topbar-avatar">
+              {user?.profilePhotoPath ? <img src={fileUrl(user.profilePhotoPath)} alt="" /> : user?.name?.slice(0, 2)}
+            </div>
             <strong>{user?.name}</strong>
           </div>
+          <button className="icon-button only-mobile topbar-menu" type="button" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
+            <Menu size={20} />
+          </button>
         </header>
         <Outlet />
         {user?.role === 'student' ? (

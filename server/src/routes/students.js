@@ -23,6 +23,43 @@ function temporaryPassword() {
   return `Fit@${crypto.randomBytes(5).toString('hex')}`;
 }
 
+async function addWorkoutProgress(students) {
+  return Promise.all(students.map(async (student) => {
+    const result = await query(
+      `SELECT swp.id,
+              COALESCE((
+                SELECT COUNT(*)
+                FROM jsonb_array_elements(swp.plan_snapshot->'days') AS day
+                WHERE COALESCE((day->>'isRest')::boolean, false) = false
+              ), 0)::int AS planned_days,
+              COALESCE((
+                SELECT COUNT(DISTINCT wf.day_of_week)
+                FROM workout_feedback wf
+                WHERE wf.student_weekly_plan_id = swp.id
+                  AND wf.day_of_week IS NOT NULL
+              ), 0)::int AS completed_days
+       FROM student_weekly_plans swp
+       WHERE swp.student_id = $1 AND swp.status = 'active'
+       ORDER BY swp.created_at DESC
+       LIMIT 1`,
+      [student.id]
+    );
+
+    const activePlan = result.rows[0];
+    const plannedDays = activePlan?.planned_days || 0;
+    const completedDays = Math.min(activePlan?.completed_days || 0, plannedDays);
+    return {
+      ...student,
+      workoutProgress: {
+        hasActivePlan: Boolean(activePlan),
+        completedDays,
+        plannedDays,
+        percentage: plannedDays ? Math.round((completedDays / plannedDays) * 100) : 0
+      }
+    };
+  }));
+}
+
 async function fetchStudentsForUser(user, status) {
   const params = [];
   let where = "u.role = 'student'";
@@ -70,7 +107,7 @@ async function fetchStudentsForUser(user, status) {
     params
   );
 
-  return result.rows;
+  return addWorkoutProgress(result.rows);
 }
 
 studentsRouter.get('/', asyncHandler(async (req, res) => {
@@ -220,6 +257,66 @@ studentsRouter.patch('/:id', requireRoles('admin', 'personal', 'student'), async
   });
 
   res.status(204).send();
+}));
+
+const billingSchema = z.object({
+  dueDate: z.string().optional().nullable(),
+  monthlyAmount: z.coerce.number().nonnegative().optional().nullable(),
+  status: z.enum(['pending', 'paid', 'overdue']).optional()
+});
+
+studentsRouter.get('/:id/billing', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  await withTransaction(async (client) => assertStudentAccess(client, req.user, req.params.id));
+  const [billing, payments] = await Promise.all([
+    query('SELECT student_id, due_date, monthly_amount, status, updated_at FROM student_billing WHERE student_id = $1', [req.params.id]),
+    query(
+      `SELECT id, amount, due_date, paid_at, status, note, created_at
+       FROM student_payment_history
+       WHERE student_id = $1
+       ORDER BY created_at DESC`,
+      [req.params.id]
+    )
+  ]);
+  res.json({ billing: billing.rows[0] || null, payments: payments.rows });
+}));
+
+studentsRouter.patch('/:id/billing', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const payload = parseBody(billingSchema, req.body);
+  await withTransaction(async (client) => {
+    await assertStudentAccess(client, req.user, req.params.id);
+    await client.query(
+      `INSERT INTO student_billing (student_id, due_date, monthly_amount, status)
+       VALUES ($1, $2, $3, COALESCE($4, 'pending'))
+       ON CONFLICT (student_id) DO UPDATE SET
+         due_date = COALESCE($2, student_billing.due_date),
+         monthly_amount = COALESCE($3, student_billing.monthly_amount),
+         status = COALESCE($4, student_billing.status),
+         updated_at = now()`,
+      [req.params.id, payload.dueDate || null, payload.monthlyAmount ?? null, payload.status || null]
+    );
+  });
+  res.status(204).send();
+}));
+
+const paymentSchema = z.object({
+  amount: z.coerce.number().nonnegative().optional().nullable(),
+  dueDate: z.string().optional().nullable(),
+  paidAt: z.string().optional().nullable(),
+  status: z.enum(['pending', 'paid', 'overdue']).default('paid'),
+  note: z.string().trim().optional().nullable()
+});
+
+studentsRouter.post('/:id/payments', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const payload = parseBody(paymentSchema, req.body);
+  await withTransaction(async (client) => {
+    await assertStudentAccess(client, req.user, req.params.id);
+    await client.query(
+      `INSERT INTO student_payment_history (student_id, amount, due_date, paid_at, status, note)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [req.params.id, payload.amount ?? null, payload.dueDate || null, payload.paidAt || null, payload.status, payload.note || null]
+    );
+  });
+  res.status(201).send();
 }));
 
 const linkSchema = z.object({

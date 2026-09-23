@@ -10,6 +10,7 @@ import { Login } from './pages/Login.jsx';
 import { Profile } from './pages/Profile.jsx';
 import { Register } from './pages/Register.jsx';
 import { StudentPortal } from './pages/StudentPortal.jsx';
+import { StudentManagement } from './pages/StudentManagement.jsx';
 import { Students } from './pages/Students.jsx';
 import { Workouts } from './pages/Workouts.jsx';
 
@@ -22,6 +23,7 @@ function ProtectedRoute() {
 function HomeByRole() {
   const { user } = useAuth();
   if (user?.role === 'student') return <StudentPortal />;
+  if (user?.role === 'personal') return <Navigate to="/alunos" replace />;
   return <Dashboard />;
 }
 
@@ -33,6 +35,7 @@ export function App() {
       <Route element={<ProtectedRoute />}>
         <Route index element={<HomeByRole />} />
         <Route path="/alunos" element={<Students />} />
+        <Route path="/alunos/:studentId" element={<StudentManagement />} />
         <Route path="/treinos" element={<Workouts />} />
         <Route path="/dietas" element={<Diets />} />
         <Route path="/avaliacoes" element={<Assessments />} />

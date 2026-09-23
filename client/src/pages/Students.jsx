@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Copy, Plus, UserPlus } from 'lucide-react';
-import { api } from '../api/client.js';
+import { ChevronRight, Copy, Plus, UserPlus } from 'lucide-react';
+import { api, fileUrl } from '../api/client.js';
 import { Modal } from '../components/Modal.jsx';
 import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { formatDate } from './pageHelpers.js';
+import { useNavigate } from 'react-router-dom';
 
 export function Students() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [students, setStudents] = useState([]);
   const [capacity, setCapacity] = useState(null);
   const [personals, setPersonals] = useState([]);
@@ -143,6 +145,32 @@ export function Students() {
         ))}
       </div>
 
+      {user.role === 'personal' ? (
+        <section className="student-roster" aria-label="Lista de alunos">
+          {students.map((student) => {
+            const progress = student.workoutProgress || {};
+            return (
+              <button className="student-roster-item" type="button" key={student.id} onClick={() => navigate(`/alunos/${student.id}`)}>
+                <div className="student-roster-avatar">
+                  {student.profile_photo_path ? <img src={fileUrl(student.profile_photo_path)} alt="" /> : student.name.slice(0, 2)}
+                </div>
+                <div className="student-roster-name">
+                  <strong>{student.name.split(' ')[0]}</strong>
+                  <StatusBadge value={student.status} />
+                </div>
+                <div className="student-roster-progress">
+                  <span>Evolução</span>
+                  <strong>{progress.percentage || 0}%</strong>
+                  <i><b style={{ width: `${progress.percentage || 0}%` }} /></i>
+                  <small>{progress.hasActivePlan ? `${progress.completedDays}/${progress.plannedDays} atividades` : 'Sem treino ativo'}</small>
+                </div>
+                <ChevronRight className="student-roster-chevron" size={20} />
+              </button>
+            );
+          })}
+          {students.length === 0 ? <div className="empty-state">Nenhum aluno encontrado</div> : null}
+        </section>
+      ) : (
       <section className="panel">
         <div className="table-wrap">
           <table>
@@ -186,6 +214,7 @@ export function Students() {
           </table>
         </div>
       </section>
+      )}
 
       <Modal title="Cadastrar aluno" open={modal === 'student'} onClose={() => setModal('')}>
         <form className="form-stack" onSubmit={createStudent}>
