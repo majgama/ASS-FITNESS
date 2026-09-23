@@ -1734,6 +1734,8 @@ iframe.exercise-media {
   overflow: hidden;
   background: #ffffff;
   display: grid;
+  grid-template-rows: 100px minmax(48px, auto) 38px;
+  min-height: 186px;
   position: relative;
 }
 
