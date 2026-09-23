@@ -52,7 +52,7 @@ async function canAccessProfile(user, relativePath) {
 
 async function canAccessAssessment(user, relativePath) {
   const result = await query(
-    `SELECT a.student_id
+    `SELECT a.student_id, ap.file_data, ap.mime_type
      FROM assessment_photos ap
      JOIN assessments a ON a.id = ap.assessment_id
      WHERE ap.file_path = $1`,
@@ -60,6 +60,7 @@ async function canAccessAssessment(user, relativePath) {
   );
   if (result.rowCount === 0) throw notFound('Arquivo nao encontrado.');
   await withTransaction(async (client) => assertStudentAccess(client, user, result.rows[0].student_id));
+  return result.rows[0];
 }
 
 async function canAccessExercise(user, relativePath) {
@@ -79,13 +80,20 @@ filesRouter.get('/:category/:filename', asyncHandler(async (req, res) => {
 
   const relativePath = `${category}/${filename}`;
   const profile = category === 'profiles' ? await canAccessProfile(req.user, relativePath) : null;
-  if (category === 'assessments') await canAccessAssessment(req.user, relativePath);
+  const assessment = category === 'assessments' ? await canAccessAssessment(req.user, relativePath) : null;
   if (category === 'exercises') await canAccessExercise(req.user, relativePath);
 
   if (profile?.profile_photo_data) {
     res.setHeader('Content-Type', profile.profile_photo_mime || 'application/octet-stream');
     res.setHeader('Cache-Control', 'private, max-age=300');
     res.send(profile.profile_photo_data);
+    return;
+  }
+
+  if (assessment?.file_data) {
+    res.setHeader('Content-Type', assessment.mime_type || 'application/octet-stream');
+    res.setHeader('Cache-Control', 'private, max-age=300');
+    res.send(assessment.file_data);
     return;
   }
 

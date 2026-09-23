@@ -58,7 +58,17 @@ export const profilePhotoUpload = multer({
   }
 }).single('photo');
 
-export const assessmentPhotosUpload = uploadFor('assessments', imageTypes, 5).fields([
+export const assessmentPhotosUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * MB },
+  fileFilter: (req, file, cb) => {
+    if (!imageTypes.includes(file.mimetype)) {
+      cb(badRequest('Formato de arquivo nao permitido.'));
+      return;
+    }
+    cb(null, true);
+  }
+}).fields([
   { name: 'front', maxCount: 1 },
   { name: 'side', maxCount: 1 },
   { name: 'back', maxCount: 1 }

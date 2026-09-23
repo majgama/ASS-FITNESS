@@ -1,8 +1,9 @@
 import { Router } from 'express';
+import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { query, withTransaction } from '../db/pool.js';
 import { authRequired, requireRoles } from '../middleware/auth.js';
-import { assessmentPhotosUpload, relativeUploadPath } from '../middleware/upload.js';
+import { assessmentPhotosUpload } from '../middleware/upload.js';
 import { assertStudentAccess } from '../services/accessService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { optionalNumber, parseBody } from '../utils/validators.js';
@@ -81,9 +82,16 @@ assessmentsRouter.post('/', requireRoles('admin', 'personal'), assessmentPhotosU
     for (const [angle, file] of files) {
       if (!file) continue;
       await client.query(
-        `INSERT INTO assessment_photos (assessment_id, angle, file_path, mime_type, size_bytes)
-         VALUES ($1, $2, $3, $4, $5)`,
-        [result.rows[0].id, angle, relativeUploadPath('assessments', file), file.mimetype, file.size]
+        `INSERT INTO assessment_photos (assessment_id, angle, file_path, mime_type, size_bytes, file_data)
+         VALUES ($1, $2, $3, $4, $5, $6)`,
+        [
+          result.rows[0].id,
+          angle,
+          `assessments/${randomUUID()}`,
+          file.mimetype,
+          file.size,
+          file.buffer
+        ]
       );
     }
 

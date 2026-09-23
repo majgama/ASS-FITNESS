@@ -305,9 +305,12 @@ CREATE TABLE IF NOT EXISTS assessment_photos (
   file_path TEXT NOT NULL,
   mime_type TEXT,
   size_bytes INTEGER,
+  file_data BYTEA,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(assessment_id, angle)
 );
+
+ALTER TABLE assessment_photos ADD COLUMN IF NOT EXISTS file_data BYTEA;
 
 CREATE TABLE IF NOT EXISTS diet_plans (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
