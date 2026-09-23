@@ -3,7 +3,7 @@ import { Heart, Pencil, Plus, Search, Star, Trash2, X } from 'lucide-react';
 import { api, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
-export function GifLibraryPicker({ onSelect, onClose }) {
+export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementMode = false }) {
   const { user } = useAuth();
   const isAdmin = user.role === 'admin';
 
@@ -42,7 +42,7 @@ export function GifLibraryPicker({ onSelect, onClose }) {
     if (search) params.set('search', search);
     if (favoritesOnly) params.set('favoritesOnly', 'true');
     params.set('page', String(nextPage));
-    params.set('pageSize', '24');
+    params.set('pageSize', String(pageSize));
     try {
       const data = await api(`/gif-library?${params.toString()}`);
       setItems(data.items);
@@ -116,16 +116,18 @@ export function GifLibraryPicker({ onSelect, onClose }) {
     }
   }
 
-  const totalPages = Math.max(1, Math.ceil(total / 24));
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   return (
-    <div className="gif-picker">
-      <div className="gif-picker-header">
-        <strong>Biblioteca de animações</strong>
-        <button type="button" className="icon-button" onClick={onClose} aria-label="Fechar biblioteca">
-          <X size={16} />
-        </button>
-      </div>
+    <div className={`gif-picker ${managementMode ? 'gif-picker-management' : ''}`}>
+      {!managementMode ? (
+        <div className="gif-picker-header">
+          <strong>Biblioteca de animações</strong>
+          <button type="button" className="icon-button" onClick={onClose} aria-label="Fechar biblioteca">
+            <X size={16} />
+          </button>
+        </div>
+      ) : null}
 
       {error ? <div className="alert alert-error">{error}</div> : null}
 
@@ -191,9 +193,11 @@ export function GifLibraryPicker({ onSelect, onClose }) {
               {item.muscleGroup ? <span>{item.muscleGroup}</span> : null}
             </div>
             <div className="gif-picker-card-actions">
-              <button type="button" className="action-btn" title="Adicionar" onClick={() => onSelect(item)}>
-                <Plus size={15} />
-              </button>
+              {onSelect ? (
+                <button type="button" className="action-btn" title="Adicionar" onClick={() => onSelect(item)}>
+                  <Plus size={15} />
+                </button>
+              ) : null}
               <button
                 type="button"
                 className={`action-btn ${item.isFavorite ? 'btn-favorite-active' : ''}`}
@@ -217,7 +221,7 @@ export function GifLibraryPicker({ onSelect, onClose }) {
         ))}
       </div>
 
-      {total > 24 ? (
+      {total > pageSize ? (
         <div className="gif-picker-pagination">
           <button type="button" className="secondary-button" disabled={page <= 1} onClick={() => loadItems(page - 1)}>Anterior</button>
           <span>{page} / {totalPages}</span>

@@ -5,6 +5,7 @@ import {
   Apple,
   BarChart3,
   Dumbbell,
+  Images,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -24,6 +25,7 @@ const navByRole = {
     { to: '/dietas', label: 'Dietas', icon: Apple },
     { to: '/avaliacoes', label: 'Avaliacoes', icon: BarChart3 },
     { to: '/administracao', label: 'Administracao', icon: Shield },
+    { to: '/administracao/animacoes', label: 'Nomes dos exercicios', icon: Images },
     { to: '/perfil', label: 'Perfil', icon: User }
   ],
   personal: [

@@ -6,6 +6,7 @@ import { Admin } from './pages/Admin.jsx';
 import { Assessments } from './pages/Assessments.jsx';
 import { Dashboard } from './pages/Dashboard.jsx';
 import { Diets } from './pages/Diets.jsx';
+import { GifLibraryAdmin } from './pages/GifLibraryAdmin.jsx';
 import { Login } from './pages/Login.jsx';
 import { Profile } from './pages/Profile.jsx';
 import { Register } from './pages/Register.jsx';
@@ -40,6 +41,7 @@ export function App() {
         <Route path="/dietas" element={<Diets />} />
         <Route path="/avaliacoes" element={<Assessments />} />
         <Route path="/administracao" element={<Admin />} />
+        <Route path="/administracao/animacoes" element={<GifLibraryAdmin />} />
         <Route path="/perfil" element={<Profile />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />

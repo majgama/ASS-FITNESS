@@ -2050,6 +2050,21 @@ iframe.exercise-media {
   padding: 4px;
 }
 
+.gif-picker-management .gif-picker-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  max-height: none;
+  overflow: visible;
+}
+
+.gif-picker-management .gif-picker-card {
+  grid-template-rows: 120px minmax(48px, auto) 38px;
+  min-height: 206px;
+}
+
+.gif-picker-management .gif-picker-card img {
+  height: 120px;
+}
+
 .gif-picker-card {
   border: 1px solid var(--line);
   border-radius: 9px;
