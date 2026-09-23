@@ -189,6 +189,15 @@ CREATE TABLE IF NOT EXISTS gif_library_overrides (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS gif_library_translation_updates (
+  gif_id TEXT PRIMARY KEY,
+  translated_at DATE NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS gif_library_translation_updates_date_idx
+ON gif_library_translation_updates(translated_at DESC);
+
 CREATE TABLE IF NOT EXISTS daily_workouts (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,

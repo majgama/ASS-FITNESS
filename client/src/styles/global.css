@@ -2099,6 +2099,18 @@ iframe.exercise-media {
   color: var(--muted);
 }
 
+.gif-translation-status {
+  font-weight: 800;
+}
+
+.gif-translation-status.updated {
+  color: #166534;
+}
+
+.gif-translation-status.pending {
+  color: #936b2d;
+}
+
 .gif-picker-card-actions {
   display: flex;
   gap: 4px;

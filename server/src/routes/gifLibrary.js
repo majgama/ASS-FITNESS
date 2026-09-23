@@ -40,6 +40,15 @@ async function getFavoriteIds(userId) {
   return new Set(result.rows.map((row) => row.gif_id));
 }
 
+async function getTranslationUpdatesById(ids) {
+  if (ids.length === 0) return new Map();
+  const result = await query(
+    'SELECT gif_id, translated_at FROM gif_library_translation_updates WHERE gif_id = ANY($1)',
+    [ids]
+  );
+  return new Map(result.rows.map((row) => [row.gif_id, row.translated_at]));
+}
+
 function applyOverride(item, override) {
   return {
     id: item.id,
@@ -81,6 +90,7 @@ const listQuerySchema = z.object({
   categoryPath: z.string().optional(),
   search: z.string().optional(),
   favoritesOnly: z.preprocess((v) => v === 'true' || v === true || v === '1', z.boolean()).optional(),
+  translationStatus: z.enum(['updated', 'pending']).optional(),
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce.number().int().min(1).max(100).default(30)
 });
@@ -105,14 +115,20 @@ gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
   }
 
   const ids = scoped.map((item) => item.id);
-  const [overrides, favoriteIds] = await Promise.all([
+  const [overrides, favoriteIds, translationUpdates] = await Promise.all([
     getOverridesById(ids),
-    getFavoriteIds(req.user.id)
+    getFavoriteIds(req.user.id),
+    getTranslationUpdatesById(ids)
   ]);
 
-  let mapped = scoped.map((item) => applyOverride(item, overrides.get(item.id)));
+  let mapped = scoped.map((item) => ({
+    ...applyOverride(item, overrides.get(item.id)),
+    translatedAt: translationUpdates.get(item.id) || null
+  }));
   if (req.user.role !== 'admin') mapped = mapped.filter((item) => !item.hidden);
   if (filters.favoritesOnly) mapped = mapped.filter((item) => favoriteIds.has(item.id));
+  if (filters.translationStatus === 'updated') mapped = mapped.filter((item) => item.translatedAt);
+  if (filters.translationStatus === 'pending') mapped = mapped.filter((item) => !item.translatedAt);
 
   mapped = mapped.map((item) => ({ ...item, isFavorite: favoriteIds.has(item.id) }));
   mapped.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));

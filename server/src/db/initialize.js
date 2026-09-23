@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { env } from '../config/env.js';
 import { pool } from './pool.js';
 import { seedBeginnerPlan } from './seedBeginnerPlan.js';
+import { seedGifTranslationUpdates } from './seedGifTranslationUpdates.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +15,7 @@ export async function initializeDatabase() {
   const schema = await fs.readFile(schemaPath, 'utf8');
   await pool.query(schema);
   await seedBeginnerPlan(pool);
+  await seedGifTranslationUpdates(pool);
   console.log('Database schema applied.');
 
   const passwordHash = await bcrypt.hash(env.seedAdminPassword, env.bcryptRounds);

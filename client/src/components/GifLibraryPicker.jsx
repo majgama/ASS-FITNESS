@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Heart, Pencil, Plus, Search, Star, Trash2, X } from 'lucide-react';
+import { Heart, ListFilter, Pencil, Plus, Search, Star, Trash2, X } from 'lucide-react';
 import { api, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -13,6 +13,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
   const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categoryOptions: [] });
   const [search, setSearch] = useState('');
   const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [translationStatus, setTranslationStatus] = useState('');
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -41,6 +42,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
     if (categoryPath) params.set('categoryPath', categoryPath);
     if (search) params.set('search', search);
     if (favoritesOnly) params.set('favoritesOnly', 'true');
+    if (translationStatus) params.set('translationStatus', translationStatus);
     params.set('page', String(nextPage));
     params.set('pageSize', String(pageSize));
     try {
@@ -54,7 +56,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
   }
 
   useEffect(() => { loadFilters(); }, [gender, environment, categoryPath]);
-  useEffect(() => { loadItems(1); }, [gender, environment, categoryPath, search, favoritesOnly]);
+  useEffect(() => { loadItems(1); }, [gender, environment, categoryPath, search, favoritesOnly, translationStatus]);
 
   function selectGender(value) {
     setGender(value);
@@ -181,6 +183,16 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
           <Star size={16} />
           Favoritos
         </button>
+        {managementMode ? (
+          <button
+            type="button"
+            className={`favorites-toggle ${translationStatus === 'pending' ? 'active' : ''}`}
+            onClick={() => setTranslationStatus((current) => current === 'pending' ? '' : 'pending')}
+          >
+            <ListFilter size={16} />
+            Pendentes
+          </button>
+        ) : null}
       </div>
 
       <div className="gif-picker-grid">
@@ -191,6 +203,11 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
             <div className="gif-picker-card-body">
               <strong>{item.name}</strong>
               {item.muscleGroup ? <span>{item.muscleGroup}</span> : null}
+              {managementMode ? (
+                <span className={`gif-translation-status ${item.translatedAt ? 'updated' : 'pending'}`}>
+                  {item.translatedAt ? `Atualizado em ${item.translatedAt.slice(0, 10).split('-').reverse().join('/')}` : 'Pendente'}
+                </span>
+              ) : null}
             </div>
             <div className="gif-picker-card-actions">
               {onSelect ? (
