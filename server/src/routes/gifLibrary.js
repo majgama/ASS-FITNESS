@@ -92,7 +92,7 @@ const listQuerySchema = z.object({
   favoritesOnly: z.preprocess((v) => v === 'true' || v === true || v === '1', z.boolean()).optional(),
   translationStatus: z.enum(['updated', 'pending']).optional(),
   page: z.coerce.number().int().min(1).default(1),
-  pageSize: z.coerce.number().int().min(1).max(100).default(30)
+  pageSize: z.coerce.number().int().min(1).max(200).default(30)
 });
 
 gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
