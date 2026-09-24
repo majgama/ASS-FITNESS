@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Heart, ListFilter, Pencil, Plus, Search, Star, Trash2, X } from 'lucide-react';
+import { FileDown, Heart, ListFilter, Pencil, Plus, Search, Star, Trash2, X } from 'lucide-react';
 import { api, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -19,6 +19,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
   const [page, setPage] = useState(1);
   const [error, setError] = useState('');
   const [editingItem, setEditingItem] = useState(null);
+  const [exporting, setExporting] = useState(false);
 
   const categoryPath = useMemo(() => categorySegments.join('/'), [categorySegments]);
 
@@ -35,7 +36,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
     }
   }
 
-  async function loadItems(nextPage = 1) {
+  function buildItemsParams(nextPage = 1, requestedPageSize = pageSize) {
     const params = new URLSearchParams();
     if (gender) params.set('gender', gender);
     if (environment) params.set('environment', environment);
@@ -44,7 +45,12 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
     if (favoritesOnly) params.set('favoritesOnly', 'true');
     if (translationStatus) params.set('translationStatus', translationStatus);
     params.set('page', String(nextPage));
-    params.set('pageSize', String(pageSize));
+    params.set('pageSize', String(requestedPageSize));
+    return params;
+  }
+
+  async function loadItems(nextPage = 1) {
+    const params = buildItemsParams(nextPage);
     try {
       const data = await api(`/gif-library?${params.toString()}`);
       setItems(data.items);
@@ -118,6 +124,108 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
     }
   }
 
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function formatTranslationStatus(item) {
+    return item.translatedAt
+      ? `Atualizado em ${item.translatedAt.slice(0, 10).split('-').reverse().join('/')}`
+      : 'Pendente';
+  }
+
+  async function exportFilteredResults() {
+    const exportWindow = window.open('', '_blank');
+    if (!exportWindow) {
+      setError('Não foi possível abrir a janela de impressão. Libere pop-ups e tente novamente.');
+      return;
+    }
+
+    exportWindow.opener = null;
+    exportWindow.document.write('<!doctype html><title>Gerando PDF...</title><p>Preparando resultados...</p>');
+    exportWindow.document.close();
+    setExporting(true);
+    setError('');
+
+    try {
+      const exportedItems = [];
+      const exportPageSize = 200;
+      let exportPage = 1;
+      let exportTotal = 0;
+
+      do {
+        const params = buildItemsParams(exportPage, exportPageSize);
+        const data = await api(`/gif-library?${params.toString()}`);
+        exportedItems.push(...data.items);
+        exportTotal = data.total;
+        exportPage += 1;
+      } while (exportedItems.length < exportTotal);
+
+      const activeFilters = [
+        gender && `Gênero: ${gender}`,
+        environment && `Ambiente: ${environment}`,
+        categoryPath && `Categoria: ${categorySegments.join(' / ')}`,
+        search && `Busca: ${search}`,
+        favoritesOnly && 'Favoritos',
+        translationStatus === 'pending' && 'Pendentes'
+      ].filter(Boolean).join(' | ') || 'Todos os exercícios';
+
+      const rows = exportedItems.map((item) => `
+        <tr>
+          <td>${escapeHtml(item.name)}</td>
+          <td>${escapeHtml(item.muscleGroup || '-')}</td>
+          <td>${escapeHtml(item.gender)}</td>
+          <td>${escapeHtml(item.environment)}</td>
+          <td>${escapeHtml(item.categoryPath.join(' / '))}</td>
+          <td>${escapeHtml(formatTranslationStatus(item))}</td>
+          <td class="id">${escapeHtml(item.id)}</td>
+        </tr>
+      `).join('');
+
+      exportWindow.document.open();
+      exportWindow.document.write(`<!doctype html>
+        <html lang="pt-BR">
+          <head>
+            <meta charset="utf-8">
+            <title>Nomes dos exercícios</title>
+            <style>
+              @page { size: A4 landscape; margin: 12mm; }
+              * { box-sizing: border-box; }
+              body { color: #17191c; font-family: Arial, sans-serif; font-size: 9pt; margin: 0; }
+              h1 { font-size: 18pt; margin: 0 0 4px; }
+              .summary { color: #5d5a54; margin: 0 0 16px; }
+              table { border-collapse: collapse; width: 100%; }
+              th { background: #eee0bd; text-align: left; }
+              th, td { border: 1px solid #cfc8bb; padding: 6px; vertical-align: top; }
+              tr { break-inside: avoid; }
+              .id { color: #5d5a54; font-family: monospace; font-size: 7pt; }
+            </style>
+          </head>
+          <body>
+            <h1>Nomes dos exercícios</h1>
+            <p class="summary">${escapeHtml(activeFilters)} | ${exportedItems.length} resultado(s) | Gerado em ${new Date().toLocaleDateString('pt-BR')}</p>
+            <table>
+              <thead><tr><th>Nome</th><th>Grupo muscular</th><th>Gênero</th><th>Ambiente</th><th>Categoria</th><th>Status</th><th>ID</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </body>
+        </html>`);
+      exportWindow.document.close();
+      exportWindow.focus();
+      exportWindow.print();
+    } catch (err) {
+      exportWindow.close();
+      setError(err.message);
+    } finally {
+      setExporting(false);
+    }
+  }
+
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   return (
@@ -184,14 +292,20 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
           Favoritos
         </button>
         {managementMode ? (
-          <button
-            type="button"
-            className={`favorites-toggle ${translationStatus === 'pending' ? 'active' : ''}`}
-            onClick={() => setTranslationStatus((current) => current === 'pending' ? '' : 'pending')}
-          >
-            <ListFilter size={16} />
-            Pendentes
-          </button>
+          <>
+            <button
+              type="button"
+              className={`favorites-toggle ${translationStatus === 'pending' ? 'active' : ''}`}
+              onClick={() => setTranslationStatus((current) => current === 'pending' ? '' : 'pending')}
+            >
+              <ListFilter size={16} />
+              Pendentes
+            </button>
+            <button type="button" className="favorites-toggle" onClick={exportFilteredResults} disabled={exporting}>
+              <FileDown size={16} />
+              {exporting ? 'Gerando PDF...' : 'Gerar PDF'}
+            </button>
+          </>
         ) : null}
       </div>
 
@@ -205,7 +319,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
               {item.muscleGroup ? <span>{item.muscleGroup}</span> : null}
               {managementMode ? (
                 <span className={`gif-translation-status ${item.translatedAt ? 'updated' : 'pending'}`}>
-                  {item.translatedAt ? `Atualizado em ${item.translatedAt.slice(0, 10).split('-').reverse().join('/')}` : 'Pendente'}
+                  {formatTranslationStatus(item)}
                 </span>
               ) : null}
             </div>
