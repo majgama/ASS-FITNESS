@@ -204,8 +204,8 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
               th { background: #eee0bd; text-align: left; }
               th, td { border: 1px solid #cfc8bb; padding: 6px; vertical-align: top; }
               tr { break-inside: avoid; }
-              .preview { padding: 3px; width: 1.8cm; }
-              .preview img { display: block; height: 1.5cm; max-width: 1.5cm; object-fit: contain; }
+              .preview { padding: 3px; width: 2.3cm; }
+              .preview img { display: block; height: 2cm; max-width: 2cm; object-fit: contain; }
               .id { color: #5d5a54; font-family: monospace; font-size: 7pt; }
             </style>
           </head>
