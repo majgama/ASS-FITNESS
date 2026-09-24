@@ -177,6 +177,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
 
       const rows = exportedItems.map((item) => `
         <tr>
+          <td class="preview"><img src="${escapeHtml(gifLibraryFileUrl(item.id))}" alt="${escapeHtml(item.name)}"></td>
           <td>${escapeHtml(item.name)}</td>
           <td>${escapeHtml(item.muscleGroup || '-')}</td>
           <td>${escapeHtml(item.gender)}</td>
@@ -203,6 +204,8 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
               th { background: #eee0bd; text-align: left; }
               th, td { border: 1px solid #cfc8bb; padding: 6px; vertical-align: top; }
               tr { break-inside: avoid; }
+              .preview { padding: 3px; width: 1.8cm; }
+              .preview img { display: block; height: 1.5cm; max-width: 1.5cm; object-fit: contain; }
               .id { color: #5d5a54; font-family: monospace; font-size: 7pt; }
             </style>
           </head>
@@ -210,12 +213,20 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
             <h1>Nomes dos exercícios</h1>
             <p class="summary">${escapeHtml(activeFilters)} | ${exportedItems.length} resultado(s) | Gerado em ${new Date().toLocaleDateString('pt-BR')}</p>
             <table>
-              <thead><tr><th>Nome</th><th>Grupo muscular</th><th>Gênero</th><th>Ambiente</th><th>Categoria</th><th>Status</th><th>ID</th></tr></thead>
+              <thead><tr><th>Imagem</th><th>Nome</th><th>Grupo muscular</th><th>Gênero</th><th>Ambiente</th><th>Categoria</th><th>Status</th><th>ID</th></tr></thead>
               <tbody>${rows}</tbody>
             </table>
           </body>
         </html>`);
       exportWindow.document.close();
+      await Promise.all([...exportWindow.document.images].map((image) => new Promise((resolve) => {
+        if (image.complete) {
+          resolve();
+          return;
+        }
+        image.addEventListener('load', resolve, { once: true });
+        image.addEventListener('error', resolve, { once: true });
+      })));
       exportWindow.focus();
       exportWindow.print();
     } catch (err) {
