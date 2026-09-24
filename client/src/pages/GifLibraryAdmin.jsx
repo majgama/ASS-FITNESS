@@ -14,7 +14,7 @@ export function GifLibraryAdmin() {
           <h1>Nomes dos exercícios</h1>
         </div>
       </div>
-      <GifLibraryPicker managementMode pageSize={50} />
+      <GifLibraryPicker managementMode pageSize={200} />
     </section>
   );
 }
