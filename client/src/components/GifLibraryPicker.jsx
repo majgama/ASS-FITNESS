@@ -23,14 +23,16 @@ export function GifLibraryPicker({
   pageSize = 24,
   managementMode = false,
   initialFavoritesOnly = false,
+  initialGender = '',
+  initialEnvironment = '',
   fullPage = false,
   showMuscleGroups = false
 }) {
   const { user } = useAuth();
   const isAdmin = user.role === 'admin';
 
-  const [gender, setGender] = useState('');
-  const [environment, setEnvironment] = useState('');
+  const [gender, setGender] = useState(initialGender);
+  const [environment, setEnvironment] = useState(initialEnvironment);
   const [categorySegments, setCategorySegments] = useState([]);
   const [muscleGroup, setMuscleGroup] = useState('');
   const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categoryOptions: [], muscleGroups: [] });
@@ -92,7 +94,6 @@ export function GifLibraryPicker({
 
   function selectGender(value) {
     setGender(value);
-    setEnvironment('');
     setCategorySegments([]);
     setMuscleGroup('');
   }
