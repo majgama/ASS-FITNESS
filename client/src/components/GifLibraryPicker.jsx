@@ -3,6 +3,20 @@ import { FileDown, Heart, ListFilter, Pencil, Plus, Search, Star, Trash2, X } fr
 import { api, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
+const PRIMARY_MUSCLE_GROUPS = [
+  { label: 'Abdominais', value: 'Abdominais' },
+  { label: 'Antebraço', value: 'Antebraço' },
+  { label: 'Bíceps', value: 'Biceps' },
+  { label: 'Costas', value: 'Costas' },
+  { label: 'Ombro', value: 'Ombro' },
+  { label: 'Panturrilhas', value: 'Panturrilhas' },
+  { label: 'Peito', value: 'Peito' },
+  { label: 'Perna', value: 'Perna' },
+  { label: 'Trapézio', value: 'Trapézio' },
+  { label: 'Tríceps', value: 'Triceps' },
+  { label: 'Cárdio', value: 'Cardio' }
+];
+
 export function GifLibraryPicker({
   onSelect,
   onClose,
@@ -252,6 +266,7 @@ export function GifLibraryPicker({
   }
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const visibleMuscleGroups = PRIMARY_MUSCLE_GROUPS.filter(({ value }) => filterOptions.muscleGroups.includes(value));
 
   return (
     <div className={`gif-picker ${managementMode ? 'gif-picker-management' : ''} ${fullPage ? 'gif-picker-full-page' : ''}`}>
@@ -298,7 +313,7 @@ export function GifLibraryPicker({
         ) : null}
       </div>
 
-      {showMuscleGroups && filterOptions.muscleGroups.length > 0 ? (
+      {showMuscleGroups && visibleMuscleGroups.length > 0 ? (
         <div className="gif-muscle-groups" aria-label="Filtrar por grupo muscular">
           <button
             type="button"
@@ -307,14 +322,14 @@ export function GifLibraryPicker({
           >
             Todos
           </button>
-          {filterOptions.muscleGroups.map((group) => (
+          {visibleMuscleGroups.map(({ label, value }) => (
             <button
-              key={group}
+              key={value}
               type="button"
-              className={muscleGroup === group ? 'active' : ''}
-              onClick={() => setMuscleGroup(group)}
+              className={muscleGroup === value ? 'active' : ''}
+              onClick={() => setMuscleGroup(value)}
             >
-              {group}
+              {label}
             </button>
           ))}
         </div>

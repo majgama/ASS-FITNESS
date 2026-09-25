@@ -2351,28 +2351,40 @@ textarea::placeholder {
 
 .gif-picker-card-actions {
   display: flex;
-  .gif-muscle-groups {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-  }
-  .gif-muscle-groups button {
-    border: 1px solid #555b55;
-    border-radius: 5px;
-    background: #1a1e1d;
-    color: #dadbd2;
-    padding: 7px 10px;
-    font-size: 12px;
-    font-weight: 800;
-  }
-  .gif-muscle-groups button:hover,
-  .gif-muscle-groups button.active {
-    background: rgba(231, 185, 79, 0.17);
-    border-color: #e7b94f;
-    color: #ffe09a;
-  }
   gap: 4px;
   padding: 0 8px 8px;
+}
+
+.gif-muscle-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.gif-muscle-groups button {
+  border: 1px solid #555b55;
+  border-radius: 6px;
+  background: #1a1e1d;
+  color: #e7e8df;
+  padding: 9px 13px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.gif-muscle-groups button:hover {
+  background: #282d29;
+  border-color: #9a9f91;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.gif-muscle-groups button.active {
+  background: #e7b94f;
+  border-color: #f5d682;
+  color: #1a1c18;
 }
 
 .gif-picker-card-actions .action-btn {
