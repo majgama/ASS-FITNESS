@@ -2239,10 +2239,6 @@ textarea::placeholder {
 
 .media-choice-field {
   display: grid;
-  gap: 8px;
-  color: #e7e8df;
-  font-size: 14px;
-  font-weight: 700;
 }
 
 .media-choice-grid {
@@ -2253,25 +2249,20 @@ textarea::placeholder {
 
 .media-choice {
   min-height: 84px;
-  padding: 9px 6px;
+  padding: 0;
   display: grid;
-  justify-items: center;
-  align-content: center;
-  gap: 6px;
+  place-items: center;
   border: 1px solid #3c433e;
   border-radius: 7px;
   background: #121615;
-  color: #e3e3d8;
-  font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
+  color: #e7b94f;
+  overflow: hidden;
 }
 
 .media-choice img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .media-choice:hover,
@@ -2287,6 +2278,14 @@ textarea::placeholder {
 .gif-picker-overlay {
   background: #151918;
   border-color: #3b423d;
+}
+
+.panel label {
+  color: #ffffff;
+}
+
+.workout-gif-picker-overlay {
+  margin-top: 0;
 }
 
 .manage-card:hover {
@@ -2308,10 +2307,31 @@ textarea::placeholder {
   color: #ffe09a;
 }
 
-.gif-picker-card,
+.gif-picker-card {
+  background: #ffffff;
+  border-color: #c49b4e;
+}
+
 .gif-picker-card img {
-  background: #171b1a;
-  border-color: #3f4540;
+  background: #ffffff;
+}
+
+.gif-picker-card-body strong {
+  color: #172018;
+}
+
+.gif-picker-card-body span {
+  color: #535b54;
+}
+
+.gif-picker-card-actions {
+  background: #ffffff;
+}
+
+.gif-picker-card-actions .action-btn {
+  background: #1a1e1d;
+  border-color: #c49b4e;
+  color: #f1c55d;
 }
 
 @media (max-width: 760px) {

@@ -42,9 +42,10 @@ function MediaChoiceGrid({ value, favoritesOnly, onChoose }) {
             type="button"
             className={`media-choice ${active ? 'active' : ''}`}
             onClick={() => onChoose(choice.value)}
+            aria-label={choice.label}
+            title={choice.label}
           >
             {choice.icon ? <img src={choice.icon} alt="" /> : <X size={28} aria-hidden="true" />}
-            <span>{choice.label}</span>
           </button>
         );
       })}
@@ -514,17 +515,26 @@ export function Workouts() {
             </div>
             <form className="form-stack" onSubmit={createExercise} ref={createFormRef}>
               <div className="form-grid">
+                <div className="wide media-choice-field">
+                  <MediaChoiceGrid value={mediaType} favoritesOnly={libraryFavoritesOnly} onChoose={chooseCreateMedia} />
+                </div>
+
+                {libraryPickerOpen ? (
+                  <div className="wide gif-picker-overlay workout-gif-picker-overlay">
+                    <GifLibraryPicker
+                      onSelect={handleLibrarySelect}
+                      onClose={() => setLibraryPickerOpen(false)}
+                      initialFavoritesOnly={libraryFavoritesOnly}
+                    />
+                  </div>
+                ) : null}
+
                 <label>Nome do Exercício<input name="name" placeholder="Ex: Supino reto" required /></label>
                 <label>Grupo Muscular<input name="muscleGroup" placeholder="Ex: Peitoral" /></label>
                 <label>Séries padrão<input name="defaultSets" placeholder="Ex: 4" /></label>
                 <label>Repetições padrão<input name="defaultRepetitions" placeholder="Ex: 10 a 12" /></label>
                 <label>Carga sugerida<input name="defaultLoad" placeholder="Ex: 20kg cada lado" /></label>
                 <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" placeholder="Ex: 60" /></label>
-
-                <div className="wide media-choice-field">
-                  <span>Mídia demonstrativa</span>
-                  <MediaChoiceGrid value={mediaType} favoritesOnly={libraryFavoritesOnly} onChoose={chooseCreateMedia} />
-                </div>
 
                 {mediaType === 'library' && selectedLibraryGif ? (
                   <div className="wide gif-selected-preview">
@@ -584,16 +594,6 @@ export function Workouts() {
                 Cadastrar Exercício
               </button>
             </form>
-
-            {libraryPickerOpen ? (
-              <div className="gif-picker-overlay">
-                <GifLibraryPicker
-                  onSelect={handleLibrarySelect}
-                  onClose={() => setLibraryPickerOpen(false)}
-                  initialFavoritesOnly={libraryFavoritesOnly}
-                />
-              </div>
-            ) : null}
           </section>
 
           <section className="panel">
