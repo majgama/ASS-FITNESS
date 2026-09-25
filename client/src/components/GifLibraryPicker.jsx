@@ -3,7 +3,7 @@ import { FileDown, Heart, ListFilter, Pencil, Plus, Search, Star, Trash2, X } fr
 import { api, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
-export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementMode = false }) {
+export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementMode = false, initialFavoritesOnly = false }) {
   const { user } = useAuth();
   const isAdmin = user.role === 'admin';
 
@@ -12,7 +12,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
   const [categorySegments, setCategorySegments] = useState([]);
   const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categoryOptions: [] });
   const [search, setSearch] = useState('');
-  const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [favoritesOnly, setFavoritesOnly] = useState(initialFavoritesOnly);
   const [translationStatus, setTranslationStatus] = useState('');
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -62,6 +62,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
   }
 
   useEffect(() => { loadFilters(); }, [gender, environment, categoryPath]);
+  useEffect(() => { setFavoritesOnly(initialFavoritesOnly); }, [initialFavoritesOnly]);
   useEffect(() => { loadItems(1); }, [gender, environment, categoryPath, search, favoritesOnly, translationStatus]);
 
   function selectGender(value) {

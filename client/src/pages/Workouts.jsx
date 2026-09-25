@@ -20,6 +20,38 @@ import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { weekDays } from './pageHelpers.js';
 
+const mediaChoices = [
+  { value: 'library', label: 'Banco de GIFs', icon: '/icones/banco_gif.jpeg' },
+  { value: 'gif', label: 'Enviar GIF', icon: '/icones/enviar_gif.jpeg' },
+  { value: 'video', label: 'Enviar vídeo', icon: '/icones/envia_videos.jpeg' },
+  { value: 'youtube', label: 'Link do YouTube', icon: '/icones/link_youtube.jpeg' },
+  { value: 'favorites', label: 'Favoritos', icon: '/icones/favoritos.jpeg' },
+  { value: 'none', label: 'Sem mídia', icon: null }
+];
+
+function MediaChoiceGrid({ value, favoritesOnly, onChoose }) {
+  return (
+    <div className="media-choice-grid" aria-label="Escolha a mídia demonstrativa">
+      {mediaChoices.map((choice) => {
+        const active = choice.value === 'favorites'
+          ? value === 'library' && favoritesOnly
+          : value === choice.value && !favoritesOnly;
+        return (
+          <button
+            key={choice.value}
+            type="button"
+            className={`media-choice ${active ? 'active' : ''}`}
+            onClick={() => onChoose(choice.value)}
+          >
+            {choice.icon ? <img src={choice.icon} alt="" /> : <X size={28} aria-hidden="true" />}
+            <span>{choice.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function youtubeEmbedUrl(value) {
   if (!value) return '';
   try {
@@ -46,6 +78,7 @@ export function Workouts() {
   const [error, setError] = useState('');
   const [mediaType, setMediaType] = useState('none');
   const [libraryPickerOpen, setLibraryPickerOpen] = useState(false);
+  const [libraryFavoritesOnly, setLibraryFavoritesOnly] = useState(false);
   const [selectedLibraryGif, setSelectedLibraryGif] = useState(null);
   const createFormRef = useRef(null);
 
@@ -58,6 +91,7 @@ export function Workouts() {
   const [editingExercise, setEditingExercise] = useState(null);
   const [editExerciseMediaType, setEditExerciseMediaType] = useState('none');
   const [editLibraryPickerOpen, setEditLibraryPickerOpen] = useState(false);
+  const [editLibraryFavoritesOnly, setEditLibraryFavoritesOnly] = useState(false);
   const [editSelectedLibraryGif, setEditSelectedLibraryGif] = useState(null);
   const editFormRef = useRef(null);
   const [editingDaily, setEditingDaily] = useState(null);
@@ -149,6 +183,7 @@ export function Workouts() {
       await api('/exercises', { method: 'POST', body: form });
       formElement.reset();
       setMediaType('none');
+      setLibraryFavoritesOnly(false);
       setSelectedLibraryGif(null);
       setLibraryPickerOpen(false);
       setNotice('Exercício criado com sucesso.');
@@ -167,6 +202,15 @@ export function Workouts() {
     }
   }
 
+  function chooseCreateMedia(choice) {
+    const favorites = choice === 'favorites';
+    const nextType = favorites ? 'library' : choice;
+    setMediaType(nextType);
+    setLibraryFavoritesOnly(favorites);
+    if (nextType !== 'library') setSelectedLibraryGif(null);
+    setLibraryPickerOpen(nextType === 'library');
+  }
+
   function handleEditLibrarySelect(item) {
     setEditSelectedLibraryGif(item);
     setEditLibraryPickerOpen(false);
@@ -176,10 +220,19 @@ export function Workouts() {
     }
   }
 
+  function chooseEditMedia(choice) {
+    const favorites = choice === 'favorites';
+    const nextType = favorites ? 'library' : choice;
+    setEditExerciseMediaType(nextType);
+    setEditLibraryFavoritesOnly(favorites);
+    setEditLibraryPickerOpen(nextType === 'library');
+  }
+
   function openEditExercise(exercise) {
     setEditingExercise(exercise);
     setEditSelectedLibraryGif(null);
     setEditLibraryPickerOpen(false);
+    setEditLibraryFavoritesOnly(false);
     if (exercise.gif_library_path) setEditExerciseMediaType('library');
     else if (exercise.gif_path) setEditExerciseMediaType('gif');
     else if (exercise.video_path) setEditExerciseMediaType('video');
@@ -468,26 +521,10 @@ export function Workouts() {
                 <label>Carga sugerida<input name="defaultLoad" placeholder="Ex: 20kg cada lado" /></label>
                 <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" placeholder="Ex: 60" /></label>
 
-                <label className="wide">Mídia demonstrativa (escolha uma)
-                  <select
-                    value={mediaType}
-                    onChange={(event) => {
-                      setMediaType(event.target.value);
-                      if (event.target.value !== 'library') {
-                        setSelectedLibraryGif(null);
-                        setLibraryPickerOpen(false);
-                      } else {
-                        setLibraryPickerOpen(true);
-                      }
-                    }}
-                  >
-                    <option value="library">Escolher animação</option>
-                    <option value="none">Sem mídia</option>
-                    <option value="gif">GIF (upload)</option>
-                    <option value="youtube">YouTube (link)</option>
-                    <option value="video">Vídeo curto (até 8MB / 5s)</option>
-                  </select>
-                </label>
+                <div className="wide media-choice-field">
+                  <span>Mídia demonstrativa</span>
+                  <MediaChoiceGrid value={mediaType} favoritesOnly={libraryFavoritesOnly} onChoose={chooseCreateMedia} />
+                </div>
 
                 {mediaType === 'library' && selectedLibraryGif ? (
                   <div className="wide gif-selected-preview">
@@ -550,7 +587,11 @@ export function Workouts() {
 
             {libraryPickerOpen ? (
               <div className="gif-picker-overlay">
-                <GifLibraryPicker onSelect={handleLibrarySelect} onClose={() => setLibraryPickerOpen(false)} />
+                <GifLibraryPicker
+                  onSelect={handleLibrarySelect}
+                  onClose={() => setLibraryPickerOpen(false)}
+                  initialFavoritesOnly={libraryFavoritesOnly}
+                />
               </div>
             ) : null}
           </section>
@@ -939,22 +980,10 @@ export function Workouts() {
               <label>Carga<input name="defaultLoad" defaultValue={editingExercise.default_load || ''} /></label>
               <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" defaultValue={editingExercise.default_rest_seconds ?? ''} /></label>
 
-              <label className="wide">Mídia demonstrativa
-                <select
-                  value={editExerciseMediaType}
-                  onChange={(event) => {
-                    setEditExerciseMediaType(event.target.value);
-                    if (event.target.value === 'library') setEditLibraryPickerOpen(true);
-                    else setEditLibraryPickerOpen(false);
-                  }}
-                >
-                  <option value="library">Escolher animação</option>
-                  <option value="none">Sem mídia / Remover mídia</option>
-                  <option value="gif">GIF (upload)</option>
-                  <option value="youtube">YouTube (link)</option>
-                  <option value="video">Vídeo curto</option>
-                </select>
-              </label>
+              <div className="wide media-choice-field">
+                <span>Mídia demonstrativa</span>
+                <MediaChoiceGrid value={editExerciseMediaType} favoritesOnly={editLibraryFavoritesOnly} onChoose={chooseEditMedia} />
+              </div>
 
               {editExerciseMediaType === 'library' ? (
                 <div className="wide gif-selected-preview">
@@ -1010,7 +1039,11 @@ export function Workouts() {
 
             {editLibraryPickerOpen ? (
               <div className="gif-picker-overlay">
-                <GifLibraryPicker onSelect={handleEditLibrarySelect} onClose={() => setEditLibraryPickerOpen(false)} />
+                <GifLibraryPicker
+                  onSelect={handleEditLibrarySelect}
+                  onClose={() => setEditLibraryPickerOpen(false)}
+                  initialFavoritesOnly={editLibraryFavoritesOnly}
+                />
               </div>
             ) : null}
 
