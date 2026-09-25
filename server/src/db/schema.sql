@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS exercises (
   default_sets TEXT,
   default_repetitions TEXT,
   default_load TEXT,
-  default_rest_seconds INTEGER,
+  default_rest_seconds TEXT,
   observations TEXT,
   youtube_url TEXT,
   video_path TEXT,
@@ -167,6 +167,7 @@ CREATE INDEX IF NOT EXISTS exercises_visibility_idx ON exercises(visibility);
 CREATE INDEX IF NOT EXISTS exercises_owner_idx ON exercises(owner_id);
 
 ALTER TABLE exercises ADD COLUMN IF NOT EXISTS gif_library_path TEXT;
+ALTER TABLE exercises ALTER COLUMN default_rest_seconds TYPE TEXT USING default_rest_seconds::TEXT;
 
 DROP TRIGGER IF EXISTS exercises_set_updated_at ON exercises;
 CREATE TRIGGER exercises_set_updated_at

@@ -63,7 +63,7 @@ function applyOverride(item, override) {
 }
 
 gifLibraryRouter.get('/filters', asyncHandler(async (req, res) => {
-  const { gender, environment, categoryPath } = req.query;
+  const { gender, environment, categoryPath, muscleGroup } = req.query;
   const parentSegments = categoryPath ? String(categoryPath).split('/').filter(Boolean) : [];
 
   let scoped = catalog;
@@ -72,6 +72,10 @@ gifLibraryRouter.get('/filters', asyncHandler(async (req, res) => {
   if (parentSegments.length > 0) {
     scoped = scoped.filter((item) => parentSegments.every((seg, idx) => item.categoryPath[idx] === seg));
   }
+  const muscleGroups = [...new Set(scoped.map((item) => item.muscleGroupPt))]
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  if (muscleGroup) scoped = scoped.filter((item) => item.muscleGroupPt === muscleGroup);
 
   const genders = [...new Set(catalog.map((item) => item.gender))].filter(Boolean).sort();
   const environments = [...new Set(
@@ -80,14 +84,14 @@ gifLibraryRouter.get('/filters', asyncHandler(async (req, res) => {
   const nextLevel = [...new Set(scoped.map((item) => item.categoryPath[parentSegments.length]))]
     .filter(Boolean)
     .sort();
-
-  res.json({ genders, environments, categoryOptions: nextLevel });
+  res.json({ genders, environments, categoryOptions: nextLevel, muscleGroups });
 }));
 
 const listQuerySchema = z.object({
   gender: z.string().optional(),
   environment: z.string().optional(),
   categoryPath: z.string().optional(),
+  muscleGroup: z.string().optional(),
   search: z.string().optional(),
   favoritesOnly: z.preprocess((v) => v === 'true' || v === true || v === '1', z.boolean()).optional(),
   translationStatus: z.enum(['updated', 'pending']).optional(),
@@ -105,6 +109,7 @@ gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
   if (parentSegments.length > 0) {
     scoped = scoped.filter((item) => parentSegments.every((seg, idx) => item.categoryPath[idx] === seg));
   }
+  if (filters.muscleGroup) scoped = scoped.filter((item) => item.muscleGroupPt === filters.muscleGroup);
   if (filters.search) {
     const q = filters.search.toLowerCase();
     scoped = scoped.filter((item) =>

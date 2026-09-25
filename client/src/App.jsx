@@ -7,6 +7,7 @@ import { Assessments } from './pages/Assessments.jsx';
 import { Dashboard } from './pages/Dashboard.jsx';
 import { Diets } from './pages/Diets.jsx';
 import { GifLibraryAdmin } from './pages/GifLibraryAdmin.jsx';
+import { GifLibrarySelection } from './pages/GifLibrarySelection.jsx';
 import { Login } from './pages/Login.jsx';
 import { Profile } from './pages/Profile.jsx';
 import { Register } from './pages/Register.jsx';
@@ -38,6 +39,7 @@ export function App() {
         <Route path="/alunos" element={<Students />} />
         <Route path="/alunos/:studentId" element={<StudentManagement />} />
         <Route path="/treinos" element={<Workouts />} />
+        <Route path="/treinos/biblioteca-gifs" element={<GifLibrarySelection />} />
         <Route path="/dietas" element={<Diets />} />
         <Route path="/avaliacoes" element={<Assessments />} />
         <Route path="/administracao" element={<Admin />} />

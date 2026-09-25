@@ -2055,6 +2055,11 @@ iframe.exercise-media {
   max-height: none;
   overflow: visible;
 }
+.gif-picker-full-page .gif-picker-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  max-height: none;
+  overflow: visible;
+}
 
 .gif-picker-management .gif-picker-card {
   grid-template-rows: 120px minmax(48px, auto) 38px;
@@ -2346,6 +2351,26 @@ textarea::placeholder {
 
 .gif-picker-card-actions {
   display: flex;
+  .gif-muscle-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .gif-muscle-groups button {
+    border: 1px solid #555b55;
+    border-radius: 5px;
+    background: #1a1e1d;
+    color: #dadbd2;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .gif-muscle-groups button:hover,
+  .gif-muscle-groups button.active {
+    background: rgba(231, 185, 79, 0.17);
+    border-color: #e7b94f;
+    color: #ffe09a;
+  }
   gap: 4px;
   padding: 0 8px 8px;
 }

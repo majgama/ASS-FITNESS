@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Calendar,
   Check,
@@ -68,6 +69,8 @@ function youtubeEmbedUrl(value) {
 
 export function Workouts() {
   const { user } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [tab, setTab] = useState('exercises');
   const [exercises, setExercises] = useState([]);
   const [dailyWorkouts, setDailyWorkouts] = useState([]);
@@ -78,7 +81,6 @@ export function Workouts() {
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
   const [mediaType, setMediaType] = useState('none');
-  const [libraryPickerOpen, setLibraryPickerOpen] = useState(false);
   const [libraryFavoritesOnly, setLibraryFavoritesOnly] = useState(false);
   const [selectedLibraryGif, setSelectedLibraryGif] = useState(null);
   const createFormRef = useRef(null);
@@ -124,6 +126,28 @@ export function Workouts() {
     if (user.role === 'student') return;
     load();
   }, [user.role]);
+
+  useEffect(() => {
+    const selectedGif = location.state?.selectedLibraryGif;
+    if (!selectedGif) return;
+
+    setMediaType('library');
+    setLibraryFavoritesOnly(false);
+    setSelectedLibraryGif(selectedGif);
+    requestAnimationFrame(() => {
+      const form = createFormRef.current;
+      if (!form) return;
+      form.elements.name.value = selectedGif.name;
+      if (selectedGif.muscleGroup) form.elements.muscleGroup.value = selectedGif.muscleGroup;
+      if (user.role === 'admin') {
+        form.elements.defaultSets.value = '3';
+        form.elements.defaultRepetitions.value = '10 a 12';
+        form.elements.defaultRestSeconds.value = '90';
+        form.elements.visibility.value = 'public';
+      }
+    });
+    navigate('/treinos', { replace: true, state: null });
+  }, [location.state, navigate, user.role]);
 
   const tabs = useMemo(() => [
     ['exercises', 'Exercícios'],
@@ -186,7 +210,6 @@ export function Workouts() {
       setMediaType('none');
       setLibraryFavoritesOnly(false);
       setSelectedLibraryGif(null);
-      setLibraryPickerOpen(false);
       setNotice('Exercício criado com sucesso.');
       await load();
     } catch (err) {
@@ -194,22 +217,16 @@ export function Workouts() {
     }
   }
 
-  function handleLibrarySelect(item) {
-    setSelectedLibraryGif(item);
-    setLibraryPickerOpen(false);
-    if (createFormRef.current) {
-      createFormRef.current.elements.name.value = item.name;
-      if (item.muscleGroup) createFormRef.current.elements.muscleGroup.value = item.muscleGroup;
-    }
-  }
-
   function chooseCreateMedia(choice) {
     const favorites = choice === 'favorites';
     const nextType = favorites ? 'library' : choice;
+    if (nextType === 'library') {
+      navigate('/treinos/biblioteca-gifs', { state: { favoritesOnly: favorites } });
+      return;
+    }
     setMediaType(nextType);
     setLibraryFavoritesOnly(favorites);
-    if (nextType !== 'library') setSelectedLibraryGif(null);
-    setLibraryPickerOpen(nextType === 'library');
+    setSelectedLibraryGif(null);
   }
 
   function handleEditLibrarySelect(item) {
@@ -519,22 +536,12 @@ export function Workouts() {
                   <MediaChoiceGrid value={mediaType} favoritesOnly={libraryFavoritesOnly} onChoose={chooseCreateMedia} />
                 </div>
 
-                {libraryPickerOpen ? (
-                  <div className="wide gif-picker-overlay workout-gif-picker-overlay">
-                    <GifLibraryPicker
-                      onSelect={handleLibrarySelect}
-                      onClose={() => setLibraryPickerOpen(false)}
-                      initialFavoritesOnly={libraryFavoritesOnly}
-                    />
-                  </div>
-                ) : null}
-
                 <label>Nome do Exercício<input name="name" placeholder="Ex: Supino reto" required /></label>
                 <label>Grupo Muscular<input name="muscleGroup" placeholder="Ex: Peitoral" /></label>
                 <label>Séries padrão<input name="defaultSets" placeholder="Ex: 4" /></label>
                 <label>Repetições padrão<input name="defaultRepetitions" placeholder="Ex: 10 a 12" /></label>
                 <label>Carga sugerida<input name="defaultLoad" placeholder="Ex: 20kg cada lado" /></label>
-                <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" placeholder="Ex: 60" /></label>
+                <label>Descanso<input name="defaultRestSeconds" placeholder="Ex: 90 ou caminhada ativa por 2 min" /></label>
 
                 {mediaType === 'library' && selectedLibraryGif ? (
                   <div className="wide gif-selected-preview">
@@ -578,7 +585,7 @@ export function Workouts() {
                 </label>
 
                 <label className="wide">Visibilidade
-                  <select name="visibility" defaultValue="private" disabled={!canCreatePublic}>
+                  <select name="visibility" defaultValue={canCreatePublic ? 'public' : 'private'} disabled={!canCreatePublic}>
                     <option value="private">Particular (somente meus alunos)</option>
                     <option value="public">Público (disponível para todos os personais)</option>
                   </select>
@@ -643,7 +650,7 @@ export function Workouts() {
                         {exercise.default_sets ? <span>{exercise.default_sets} séries</span> : null}
                         {exercise.default_repetitions ? <span>{exercise.default_repetitions} reps</span> : null}
                         {exercise.default_load ? <span>{exercise.default_load}</span> : null}
-                        {exercise.default_rest_seconds ? <span>{exercise.default_rest_seconds}s descanso</span> : null}
+                        {exercise.default_rest_seconds ? <span>{exercise.default_rest_seconds} descanso</span> : null}
                       </div>
                       {exercise.observations ? <p className="manage-desc">{exercise.observations}</p> : null}
                     </div>
@@ -978,7 +985,7 @@ export function Workouts() {
               <label>Séries<input name="defaultSets" defaultValue={editingExercise.default_sets || ''} /></label>
               <label>Repetições<input name="defaultRepetitions" defaultValue={editingExercise.default_repetitions || ''} /></label>
               <label>Carga<input name="defaultLoad" defaultValue={editingExercise.default_load || ''} /></label>
-              <label>Descanso (segundos)<input name="defaultRestSeconds" type="number" min="0" defaultValue={editingExercise.default_rest_seconds ?? ''} /></label>
+              <label>Descanso<input name="defaultRestSeconds" defaultValue={editingExercise.default_rest_seconds ?? ''} /></label>
 
               <div className="wide media-choice-field">
                 <span>Mídia demonstrativa</span>

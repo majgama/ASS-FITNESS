@@ -3,14 +3,23 @@ import { FileDown, Heart, ListFilter, Pencil, Plus, Search, Star, Trash2, X } fr
 import { api, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
-export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementMode = false, initialFavoritesOnly = false }) {
+export function GifLibraryPicker({
+  onSelect,
+  onClose,
+  pageSize = 24,
+  managementMode = false,
+  initialFavoritesOnly = false,
+  fullPage = false,
+  showMuscleGroups = false
+}) {
   const { user } = useAuth();
   const isAdmin = user.role === 'admin';
 
   const [gender, setGender] = useState('');
   const [environment, setEnvironment] = useState('');
   const [categorySegments, setCategorySegments] = useState([]);
-  const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categoryOptions: [] });
+  const [muscleGroup, setMuscleGroup] = useState('');
+  const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categoryOptions: [], muscleGroups: [] });
   const [search, setSearch] = useState('');
   const [favoritesOnly, setFavoritesOnly] = useState(initialFavoritesOnly);
   const [translationStatus, setTranslationStatus] = useState('');
@@ -28,6 +37,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
     if (gender) params.set('gender', gender);
     if (environment) params.set('environment', environment);
     if (categoryPath) params.set('categoryPath', categoryPath);
+    if (muscleGroup) params.set('muscleGroup', muscleGroup);
     try {
       const data = await api(`/gif-library/filters?${params.toString()}`);
       setFilterOptions(data);
@@ -41,6 +51,7 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
     if (gender) params.set('gender', gender);
     if (environment) params.set('environment', environment);
     if (categoryPath) params.set('categoryPath', categoryPath);
+    if (muscleGroup) params.set('muscleGroup', muscleGroup);
     if (search) params.set('search', search);
     if (favoritesOnly) params.set('favoritesOnly', 'true');
     if (translationStatus) params.set('translationStatus', translationStatus);
@@ -61,19 +72,21 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
     }
   }
 
-  useEffect(() => { loadFilters(); }, [gender, environment, categoryPath]);
+  useEffect(() => { loadFilters(); }, [gender, environment, categoryPath, muscleGroup]);
   useEffect(() => { setFavoritesOnly(initialFavoritesOnly); }, [initialFavoritesOnly]);
-  useEffect(() => { loadItems(1); }, [gender, environment, categoryPath, search, favoritesOnly, translationStatus]);
+  useEffect(() => { loadItems(1); }, [gender, environment, categoryPath, muscleGroup, search, favoritesOnly, translationStatus]);
 
   function selectGender(value) {
     setGender(value);
     setEnvironment('');
     setCategorySegments([]);
+    setMuscleGroup('');
   }
 
   function selectEnvironment(value) {
     setEnvironment(value);
     setCategorySegments([]);
+    setMuscleGroup('');
   }
 
   function selectCategoryLevel(index, value) {
@@ -241,8 +254,8 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   return (
-    <div className={`gif-picker ${managementMode ? 'gif-picker-management' : ''}`}>
-      {!managementMode ? (
+    <div className={`gif-picker ${managementMode ? 'gif-picker-management' : ''} ${fullPage ? 'gif-picker-full-page' : ''}`}>
+      {!managementMode && !fullPage ? (
         <div className="gif-picker-header">
           <strong>Biblioteca de animações</strong>
           <button type="button" className="icon-button" onClick={onClose} aria-label="Fechar biblioteca">
@@ -284,6 +297,28 @@ export function GifLibraryPicker({ onSelect, onClose, pageSize = 24, managementM
           </select>
         ) : null}
       </div>
+
+      {showMuscleGroups && filterOptions.muscleGroups.length > 0 ? (
+        <div className="gif-muscle-groups" aria-label="Filtrar por grupo muscular">
+          <button
+            type="button"
+            className={!muscleGroup ? 'active' : ''}
+            onClick={() => setMuscleGroup('')}
+          >
+            Todos
+          </button>
+          {filterOptions.muscleGroups.map((group) => (
+            <button
+              key={group}
+              type="button"
+              className={muscleGroup === group ? 'active' : ''}
+              onClick={() => setMuscleGroup(group)}
+            >
+              {group}
+            </button>
+          ))}
+        </div>
+      ) : null}
 
       <div className="gif-picker-toolbar">
         <div className="search-bar">
