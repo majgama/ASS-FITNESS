@@ -28,7 +28,7 @@ export function GifLibrarySelection() {
         onSelect={selectGif}
         onClose={() => navigate('/treinos')}
         initialFavoritesOnly={Boolean(location.state?.favoritesOnly)}
-        pageSize={50}
+        pageSize={20}
         fullPage
         showMuscleGroups
       />
