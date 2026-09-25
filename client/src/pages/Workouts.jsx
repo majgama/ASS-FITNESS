@@ -626,55 +626,48 @@ export function Workouts() {
               <div className="empty-state">Nenhum exercício encontrado.</div>
             ) : (
               <div className="list-stack manage-list-stack">
-                {filteredExercises.map((exercise) => (
+                {filteredExercises.map((exercise) => {
+                  const hasMedia = Boolean(exercise.gif_library_path || exercise.gif_path || exercise.video_path || exercise.youtube_url);
+                  return (
                   <article className="list-item manage-card manage-exercise-card" key={exercise.id}>
-                    {exercise.gif_library_path ? <img className="exercise-media" src={gifLibraryFileUrl(exercise.gif_library_path)} alt={exercise.name} /> : null}
-                    {!exercise.gif_library_path && exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
-                    {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
-                    {exercise.youtube_url ? (
-                      <iframe
-                        className="exercise-media"
-                        src={youtubeEmbedUrl(exercise.youtube_url)}
-                        title={exercise.name}
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                      />
-                    ) : null}
-
                     <div className="manage-card-body">
-                      <div className="manage-card-title-row">
+                      <div className="manage-card-top">
                         <strong>{exercise.name}</strong>
-                        <StatusBadge value={exercise.visibility} />
+                        <span className="manage-muscle">{exercise.muscle_group || 'Geral'}</span>
+                        {!hasMedia ? <StatusBadge value={exercise.visibility} /> : null}
+                        {!hasMedia ? (
+                          <div className="card-actions">
+                            <button type="button" className="action-btn btn-edit" title="Editar exercício" onClick={() => openEditExercise(exercise)}><Pencil size={16} /></button>
+                            <button type="button" className="action-btn btn-delete" title="Excluir exercício" onClick={() => deleteExercise(exercise.id, exercise.name)}><Trash2 size={16} /></button>
+                          </div>
+                        ) : null}
                       </div>
-                      <span className="manage-muscle">{exercise.muscle_group || 'Geral'}</span>
-                      <div className="manage-specs-mini">
-                        {exercise.default_sets ? <span><Dumbbell size={14} /><small>Séries</small><b>{exercise.default_sets} séries</b></span> : null}
-                        {exercise.default_repetitions ? <span><Repeat size={14} /><small>Repetições</small><b>{exercise.default_repetitions} reps</b></span> : null}
-                        {exercise.default_load ? <span><Dumbbell size={14} /><small>Carga</small><b>{exercise.default_load}</b></span> : null}
-                        {exercise.default_rest_seconds ? <span><Timer size={14} /><small>Intervalo</small><b>{exercise.default_rest_seconds}</b></span> : null}
-                      </div>
-                      {exercise.observations ? <p className="manage-desc">{exercise.observations}</p> : null}
-                    </div>
 
-                    <div className="card-actions">
-                      <button
-                        type="button"
-                        className="action-btn btn-edit"
-                        title="Editar exercício"
-                        onClick={() => openEditExercise(exercise)}
-                      >
-                        <Pencil size={16} />
-                      </button>
-                      <button
-                        type="button"
-                        className="action-btn btn-delete"
-                        title="Excluir exercício"
-                        onClick={() => deleteExercise(exercise.id, exercise.name)}
-                      >
-                        <Trash2 size={16} />
-                      </button>
+                      {hasMedia ? (
+                        <div className="manage-card-media">
+                          {exercise.gif_library_path ? <img className="exercise-media" src={gifLibraryFileUrl(exercise.gif_library_path)} alt={exercise.name} /> : null}
+                          {!exercise.gif_library_path && exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
+                          {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
+                          {exercise.youtube_url ? <iframe className="exercise-media" src={youtubeEmbedUrl(exercise.youtube_url)} title={exercise.name} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" /> : null}
+                          <div className="manage-media-actions">
+                            <button type="button" className="action-btn btn-edit" title="Editar exercício" onClick={() => openEditExercise(exercise)}><Pencil size={16} /></button>
+                            <button type="button" className="action-btn btn-delete" title="Excluir exercício" onClick={() => deleteExercise(exercise.id, exercise.name)}><Trash2 size={16} /></button>
+                          </div>
+                          <div className="manage-media-visibility"><StatusBadge value={exercise.visibility} /></div>
+                        </div>
+                      ) : null}
+
+                      <div className="manage-specs-mini">
+                        {exercise.default_sets ? <div className="spec-item"><Dumbbell size={16} className="spec-icon" /><div><small>Séries</small><strong>{exercise.default_sets} séries</strong></div></div> : null}
+                        {exercise.default_repetitions ? <div className="spec-item"><Repeat size={16} className="spec-icon" /><div><small>Repetições</small><strong>{exercise.default_repetitions} reps</strong></div></div> : null}
+                        {exercise.default_load ? <div className="spec-item"><Dumbbell size={16} className="spec-icon" /><div><small>Carga</small><strong>{exercise.default_load}</strong></div></div> : null}
+                        {exercise.default_rest_seconds ? <div className="spec-item"><Timer size={16} className="spec-icon" /><div><small>Intervalo</small><strong>{exercise.default_rest_seconds}</strong></div></div> : null}
+                      </div>
+                      {exercise.observations ? <div className="manage-notes-box"><FileText size={16} className="spec-icon" /><div><small>Orientação</small><p>{exercise.observations}</p></div></div> : null}
                     </div>
                   </article>
-                ))}
+                  );
+                })}
               </div>
             )}
           </section>
