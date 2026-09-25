@@ -628,6 +628,7 @@ export function Workouts() {
               <div className="list-stack manage-list-stack">
                 {filteredExercises.map((exercise) => {
                   const hasMedia = Boolean(exercise.gif_library_path || exercise.gif_path || exercise.video_path || exercise.youtube_url);
+                  const canManageExercise = user.role === 'admin' || (exercise.visibility === 'private' && exercise.owner_id === user.id);
                   return (
                   <article className="list-item manage-card manage-exercise-card" key={exercise.id}>
                     <div className="manage-card-body">
@@ -635,7 +636,7 @@ export function Workouts() {
                         <strong>{exercise.name}</strong>
                         <span className="manage-muscle">{exercise.muscle_group || 'Geral'}</span>
                         {!hasMedia ? <StatusBadge value={exercise.visibility} /> : null}
-                        {!hasMedia ? (
+                        {!hasMedia && canManageExercise ? (
                           <div className="card-actions">
                             <button type="button" className="action-btn btn-edit" title="Editar exercício" onClick={() => openEditExercise(exercise)}><Pencil size={16} /></button>
                             <button type="button" className="action-btn btn-delete" title="Excluir exercício" onClick={() => deleteExercise(exercise.id, exercise.name)}><Trash2 size={16} /></button>
@@ -649,10 +650,10 @@ export function Workouts() {
                           {!exercise.gif_library_path && exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
                           {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
                           {exercise.youtube_url ? <iframe className="exercise-media" src={youtubeEmbedUrl(exercise.youtube_url)} title={exercise.name} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" /> : null}
-                          <div className="manage-media-actions">
+                          {canManageExercise ? <div className="manage-media-actions">
                             <button type="button" className="action-btn btn-edit" title="Editar exercício" onClick={() => openEditExercise(exercise)}><Pencil size={16} /></button>
                             <button type="button" className="action-btn btn-delete" title="Excluir exercício" onClick={() => deleteExercise(exercise.id, exercise.name)}><Trash2 size={16} /></button>
-                          </div>
+                          </div> : null}
                           <div className="manage-media-visibility"><StatusBadge value={exercise.visibility} /></div>
                         </div>
                       ) : null}
