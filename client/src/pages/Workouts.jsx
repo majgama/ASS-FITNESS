@@ -627,7 +627,7 @@ export function Workouts() {
             ) : (
               <div className="list-stack manage-list-stack">
                 {filteredExercises.map((exercise) => (
-                  <article className="list-item manage-card" key={exercise.id}>
+                  <article className="list-item manage-card manage-exercise-card" key={exercise.id}>
                     {exercise.gif_library_path ? <img className="exercise-media" src={gifLibraryFileUrl(exercise.gif_library_path)} alt={exercise.name} /> : null}
                     {!exercise.gif_library_path && exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
                     {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
@@ -647,10 +647,10 @@ export function Workouts() {
                       </div>
                       <span className="manage-muscle">{exercise.muscle_group || 'Geral'}</span>
                       <div className="manage-specs-mini">
-                        {exercise.default_sets ? <span>{exercise.default_sets} séries</span> : null}
-                        {exercise.default_repetitions ? <span>{exercise.default_repetitions} reps</span> : null}
-                        {exercise.default_load ? <span>{exercise.default_load}</span> : null}
-                        {exercise.default_rest_seconds ? <span>{exercise.default_rest_seconds} descanso</span> : null}
+                        {exercise.default_sets ? <span><Dumbbell size={14} /><small>Séries</small><b>{exercise.default_sets} séries</b></span> : null}
+                        {exercise.default_repetitions ? <span><Repeat size={14} /><small>Repetições</small><b>{exercise.default_repetitions} reps</b></span> : null}
+                        {exercise.default_load ? <span><Dumbbell size={14} /><small>Carga</small><b>{exercise.default_load}</b></span> : null}
+                        {exercise.default_rest_seconds ? <span><Timer size={14} /><small>Intervalo</small><b>{exercise.default_rest_seconds}</b></span> : null}
                       </div>
                       {exercise.observations ? <p className="manage-desc">{exercise.observations}</p> : null}
                     </div>
@@ -763,7 +763,7 @@ export function Workouts() {
             ) : (
               <div className="list-stack">
                 {filteredDailyWorkouts.map((workout) => (
-                  <article className="panel sub-panel-manage" key={workout.id}>
+                  <article className="panel sub-panel-manage manage-card manage-daily-card" key={workout.id}>
                     <div className="manage-header-row">
                       <div>
                         <strong>{workout.name}</strong>
@@ -900,7 +900,7 @@ export function Workouts() {
             ) : (
               <div className="list-stack">
                 {filteredWeeklyPlans.map((plan) => (
-                  <article className="panel sub-panel-manage" key={plan.id}>
+                  <article className="panel sub-panel-manage manage-card manage-weekly-card" key={plan.id}>
                     <div className="manage-header-row">
                       <div>
                         <strong>{plan.name}</strong>
