@@ -2340,6 +2340,66 @@ textarea::placeholder {
   color: #16140e;
 }
 
+.management-view-selector {
+  margin-bottom: 18px;
+}
+
+.daily-exercise-picker {
+  display: grid;
+  gap: 10px;
+}
+
+.daily-exercise-picker > span {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.daily-exercise-picker .management-view-selector {
+  margin: 0;
+}
+
+.daily-exercise-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+.daily-exercise-choice {
+  min-height: 76px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  padding: 11px;
+  text-align: left;
+  border: 1px solid #3d433e;
+  border-radius: 7px;
+  background: #121615;
+  color: #f4f2ea;
+}
+
+.daily-exercise-choice strong {
+  font-size: 13px;
+}
+
+.daily-exercise-choice span {
+  color: #a9aea5;
+  font-size: 11px;
+}
+
+.daily-exercise-choice:hover,
+.daily-exercise-choice.active {
+  border-color: #e7b94f;
+  background: rgba(231, 185, 79, 0.14);
+}
+
+.daily-exercise-choice.active span {
+  color: #ffe09a;
+}
+
 .two-column.wide-left {
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.95fr);
   align-items: start;

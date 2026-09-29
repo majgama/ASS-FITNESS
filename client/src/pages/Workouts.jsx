@@ -67,11 +67,26 @@ function youtubeEmbedUrl(value) {
   }
 }
 
+function ManagementViewSelector({ value, onChange, publicLabel, mineLabel, createLabel }) {
+  return (
+    <div className="segmented management-view-selector">
+      <button type="button" className={value === 'public' ? 'active' : ''} onClick={() => onChange('public')}>{publicLabel}</button>
+      <button type="button" className={value === 'mine' ? 'active' : ''} onClick={() => onChange('mine')}>{mineLabel}</button>
+      <button type="button" className={value === 'create' ? 'active' : ''} onClick={() => onChange('create')}>{createLabel}</button>
+    </div>
+  );
+}
+
 export function Workouts() {
   const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [tab, setTab] = useState('exercises');
+  const [exerciseView, setExerciseView] = useState('public');
+  const [dailyView, setDailyView] = useState('public');
+  const [weeklyView, setWeeklyView] = useState('public');
+  const [dailyExerciseView, setDailyExerciseView] = useState('public');
+  const [selectedExerciseForDaily, setSelectedExerciseForDaily] = useState('');
   const [exercises, setExercises] = useState([]);
   const [dailyWorkouts, setDailyWorkouts] = useState([]);
   const [weeklyPlans, setWeeklyPlans] = useState([]);
@@ -184,6 +199,22 @@ export function Workouts() {
       p.description?.toLowerCase().includes(q)
     );
   }, [weeklyPlans, weeklySearch]);
+
+  const visibleExercises = useMemo(() => filteredExercises.filter((exercise) => (
+    exerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
+  )), [exerciseView, filteredExercises, user.id]);
+
+  const visibleDailyWorkouts = useMemo(() => filteredDailyWorkouts.filter((workout) => (
+    dailyView === 'public' ? workout.visibility === 'public' : workout.owner_id === user.id
+  )), [dailyView, filteredDailyWorkouts, user.id]);
+
+  const visibleWeeklyPlans = useMemo(() => filteredWeeklyPlans.filter((plan) => (
+    weeklyView === 'public' ? plan.visibility === 'public' : plan.owner_id === user.id
+  )), [filteredWeeklyPlans, user.id, weeklyView]);
+
+  const availableDailyExercises = useMemo(() => exercises.filter((exercise) => (
+    dailyExerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
+  )), [dailyExerciseView, exercises, user.id]);
 
   // Exercise Handlers
   async function createExercise(event) {
@@ -362,6 +393,10 @@ export function Workouts() {
       setError('Selecione um treino diário primeiro.');
       return;
     }
+    if (!form.get('exerciseId')) {
+      setError('Selecione um exercício para adicionar ao treino.');
+      return;
+    }
     try {
       await api(`/workouts/daily/${selectedDailyWorkout}/exercises`, {
         method: 'POST',
@@ -376,6 +411,7 @@ export function Workouts() {
         }
       });
       formElement.reset();
+      setSelectedExerciseForDaily('');
       setNotice('Exercício adicionado ao treino diário.');
       await load();
     } catch (err) {
@@ -525,8 +561,10 @@ export function Workouts() {
 
       {/* ===================== ABA 1: EXERCÍCIOS ===================== */}
       {tab === 'exercises' ? (
-        <div className="two-column wide-left">
-          <section className="panel">
+        <>
+          <ManagementViewSelector value={exerciseView} onChange={setExerciseView} publicLabel="Exercícios públicos" mineLabel="Meus exercícios" createLabel="Novo exercício" />
+          <div className="two-column wide-left workout-view-content">
+          <section className="panel" hidden={exerciseView !== 'create'}>
             <div className="section-title">
               <h2>Novo Exercício</h2>
             </div>
@@ -603,9 +641,9 @@ export function Workouts() {
             </form>
           </section>
 
-          <section className="panel">
+          <section className="panel" hidden={exerciseView === 'create'}>
             <div className="section-title">
-              <h2>Exercícios Cadastrados ({filteredExercises.length})</h2>
+              <h2>{exerciseView === 'public' ? 'Exercícios Públicos' : 'Meus Exercícios'} ({visibleExercises.length})</h2>
             </div>
 
             <div className="search-bar">
@@ -622,11 +660,11 @@ export function Workouts() {
               ) : null}
             </div>
 
-            {filteredExercises.length === 0 ? (
+            {visibleExercises.length === 0 ? (
               <div className="empty-state">Nenhum exercício encontrado.</div>
             ) : (
               <div className="list-stack manage-list-stack">
-                {filteredExercises.map((exercise) => {
+                {visibleExercises.map((exercise) => {
                   const hasMedia = Boolean(exercise.gif_library_path || exercise.gif_path || exercise.video_path || exercise.youtube_url);
                   const canManageExercise = user.role === 'admin' || (exercise.visibility === 'private' && exercise.owner_id === user.id);
                   return (
@@ -672,13 +710,16 @@ export function Workouts() {
               </div>
             )}
           </section>
-        </div>
+          </div>
+        </>
       ) : null}
 
       {/* ===================== ABA 2: TREINOS DIÁRIOS ===================== */}
       {tab === 'daily' ? (
-        <div className="two-column">
-          <div className="form-stack">
+        <>
+          <ManagementViewSelector value={dailyView} onChange={setDailyView} publicLabel="Treinos públicos" mineLabel="Meus treinos" createLabel="Novo treino" />
+          <div className="two-column workout-view-content">
+          <div className="form-stack" hidden={dailyView !== 'create'}>
             <section className="panel">
               <div className="section-title">
                 <h2>Novo Treino Diário</h2>
@@ -709,16 +750,39 @@ export function Workouts() {
                 </label>
 
                 <div className="form-grid">
-                  <label className="wide">Exercício
-                    <select name="exerciseId" required>
-                      <option value="">Selecione o exercício</option>
-                      {exercises.map((exercise) => (
-                        <option key={exercise.id} value={exercise.id}>
-                          {exercise.name} ({exercise.muscle_group || 'Geral'})
-                        </option>
+                  <div className="wide daily-exercise-picker">
+                    <span>Exercício</span>
+                    <ManagementViewSelector
+                      value={dailyExerciseView}
+                      onChange={(view) => {
+                        if (view === 'create') {
+                          setTab('exercises');
+                          setExerciseView('create');
+                          return;
+                        }
+                        setDailyExerciseView(view);
+                        setSelectedExerciseForDaily('');
+                      }}
+                      publicLabel="Exercícios públicos"
+                      mineLabel="Meus exercícios"
+                      createLabel="Novo exercício"
+                    />
+                    <input name="exerciseId" type="hidden" value={selectedExerciseForDaily} readOnly />
+                    <div className="daily-exercise-choice-grid">
+                      {availableDailyExercises.map((exercise) => (
+                        <button
+                          key={exercise.id}
+                          type="button"
+                          className={`daily-exercise-choice ${selectedExerciseForDaily === exercise.id ? 'active' : ''}`}
+                          onClick={() => setSelectedExerciseForDaily(exercise.id)}
+                        >
+                          <strong>{exercise.name}</strong>
+                          <span>{exercise.muscle_group || 'Geral'}</span>
+                        </button>
                       ))}
-                    </select>
-                  </label>
+                    </div>
+                    {availableDailyExercises.length === 0 ? <small className="muted-small">Nenhum exercício disponível nesta lista.</small> : null}
+                  </div>
                   <label>Posição / Ordem<input name="position" type="number" min="0" defaultValue="0" /></label>
                   <label>Séries<input name="sets" placeholder="Ex: 4" /></label>
                   <label>Repetições<input name="repetitions" placeholder="Ex: 10-12" /></label>
@@ -733,9 +797,9 @@ export function Workouts() {
             </section>
           </div>
 
-          <section className="panel">
+          <section className="panel" hidden={dailyView === 'create'}>
             <div className="section-title">
-              <h2>Treinos Diários Cadastrados ({filteredDailyWorkouts.length})</h2>
+              <h2>{dailyView === 'public' ? 'Treinos Públicos' : 'Meus Treinos'} ({visibleDailyWorkouts.length})</h2>
             </div>
 
             <div className="search-bar">
@@ -752,11 +816,11 @@ export function Workouts() {
               ) : null}
             </div>
 
-            {filteredDailyWorkouts.length === 0 ? (
+            {visibleDailyWorkouts.length === 0 ? (
               <div className="empty-state">Nenhum treino diário encontrado.</div>
             ) : (
               <div className="list-stack">
-                {filteredDailyWorkouts.map((workout) => (
+                {visibleDailyWorkouts.map((workout) => (
                   <article className="panel sub-panel-manage manage-card manage-daily-card" key={workout.id}>
                     <div className="manage-header-row">
                       <div>
@@ -815,13 +879,16 @@ export function Workouts() {
               </div>
             )}
           </section>
-        </div>
+          </div>
+        </>
       ) : null}
 
       {/* ===================== ABA 3: PLANOS SEMANAIS ===================== */}
       {tab === 'weekly' ? (
-        <div className="form-stack">
-          <section className="panel">
+        <>
+          <ManagementViewSelector value={weeklyView} onChange={setWeeklyView} publicLabel="Planos públicos" mineLabel="Meus planos" createLabel="Criar plano" />
+          <div className="form-stack workout-view-content">
+          <section className="panel" hidden={weeklyView !== 'create'}>
             <div className="section-title">
               <h2>Novo Plano Semanal</h2>
             </div>
@@ -870,9 +937,9 @@ export function Workouts() {
             </form>
           </section>
 
-          <section className="panel">
+          <section className="panel" hidden={weeklyView === 'create'}>
             <div className="section-title">
-              <h2>Planos Semanais Cadastrados ({filteredWeeklyPlans.length})</h2>
+              <h2>{weeklyView === 'public' ? 'Planos Públicos' : 'Meus Planos'} ({visibleWeeklyPlans.length})</h2>
             </div>
 
             <div className="search-bar">
@@ -889,11 +956,11 @@ export function Workouts() {
               ) : null}
             </div>
 
-            {filteredWeeklyPlans.length === 0 ? (
+            {visibleWeeklyPlans.length === 0 ? (
               <div className="empty-state">Nenhum plano semanal cadastrado.</div>
             ) : (
               <div className="list-stack">
-                {filteredWeeklyPlans.map((plan) => (
+                {visibleWeeklyPlans.map((plan) => (
                   <article className="panel sub-panel-manage manage-card manage-weekly-card" key={plan.id}>
                     <div className="manage-header-row">
                       <div>
@@ -941,7 +1008,8 @@ export function Workouts() {
               </div>
             )}
           </section>
-        </div>
+          </div>
+        </>
       ) : null}
 
       {/* ===================== ABA 4: APLICAR PLANO ===================== */}
