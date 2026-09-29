@@ -146,6 +146,8 @@ export function Workouts() {
     const selectedGif = location.state?.selectedLibraryGif;
     if (!selectedGif) return;
 
+    setTab('exercises');
+    setExerciseView('create');
     setMediaType('library');
     setLibraryFavoritesOnly(false);
     setSelectedLibraryGif(selectedGif);
