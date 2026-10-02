@@ -942,7 +942,6 @@ export function Workouts({ initialTab = 'exercises' }) {
             <form className="form-stack" onSubmit={createWeeklyPlan}>
               <div className="form-grid">
                 <label>Nome do Plano<input name="name" placeholder="Ex: Plano Hipertrofia Intermediário" required /></label>
-                <label>Data de Início sugerida<input name="startDate" type="date" /></label>
                 <label className="wide">Visibilidade
                   <select name="visibility" defaultValue="private" disabled={!canCreatePublic}>
                     <option value="private">Particular (meus alunos)</option>
