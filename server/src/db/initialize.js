@@ -4,7 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { env } from '../config/env.js';
 import { pool } from './pool.js';
-import { seedBeginnerPlan } from './seedBeginnerPlan.js';
 import { seedGifTranslationUpdates } from './seedGifTranslationUpdates.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,7 +13,6 @@ export async function initializeDatabase() {
   const schemaPath = path.join(__dirname, 'schema.sql');
   const schema = await fs.readFile(schemaPath, 'utf8');
   await pool.query(schema);
-  await seedBeginnerPlan(pool);
   await seedGifTranslationUpdates(pool);
   console.log('Database schema applied.');
 

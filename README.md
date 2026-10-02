@@ -55,6 +55,27 @@ npm run dev
 Frontend: http://localhost:5173  
 Backend: http://localhost:3333/api
 
+### Modelos iniciais e limpeza dos testes
+
+O servidor e `db:migrate` nao recriam modelos de treino. Somente `npm run db:seed` cria ou completa o plano iniciante e seus treinos/exercicios publicos. Nao execute esse seed apos limpar o banco se desejar manter os modelos vazios.
+
+Para limpar os testes em producao:
+
+1. Publique esta versao, pare temporariamente as instancias da aplicacao e faca um backup/snapshot do banco.
+2. No ambiente do servidor, com `DATABASE_URL` e `DATABASE_SSL` configurados, confira o banco e as contagens sem excluir nada:
+
+```bash
+npm run db:clear-test-data
+```
+
+3. Depois de conferir o banco, execute a exclusao explicitamente:
+
+```bash
+npm run db:clear-test-data -- --confirm-delete-all-test-data
+```
+
+A limpeza exclui **todos** os alunos (contas de papel `student`), seus dados vinculados (planos aplicados, feedback, avaliacoes, pagamentos e sessoes) e **todos** os modelos publicos/privados de planos semanais, treinos diarios e exercicios. Administradores, personais, a biblioteca de GIFs e os arquivos fisicos de midia permanecem. Planos de dieta de administradores/personais nao sao excluidos. A operacao usa uma transacao e verifica que os dados foram removidos e as contas de administradores/personais ficaram intactas; qualquer falha desfaz a limpeza. Reinicie a aplicacao apos concluir.
+
 ## Admin inicial
 
 O seed cria o usuario definido em `server/.env`:
