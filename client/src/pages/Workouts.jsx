@@ -753,7 +753,13 @@ export function Workouts({ initialTab = 'exercises' }) {
       {tab === 'daily' ? (
         <>
           <ManagementViewSelector value={dailyView} onChange={setDailyView} publicLabel="Treinos públicos" mineLabel="Meus treinos" createLabel="Novo treino" />
-          <div className="two-column workout-view-content">
+          {dailyView !== 'create' ? (
+            <button type="button" className="secondary-button plan-back-button plan-back-button-top" onClick={() => navigate('/treinos')}>
+              <ArrowLeft size={16} />
+              Voltar
+            </button>
+          ) : null}
+          <div className={`two-column workout-view-content ${dailyView !== 'create' ? 'workout-list-only' : ''}`}>
           <div className="form-stack" hidden={dailyView !== 'create'}>
             <section className="panel">
               <div className="section-title">

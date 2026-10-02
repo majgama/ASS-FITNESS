@@ -218,6 +218,14 @@ a {
   gap: 16px;
 }
 
+.workout-view-content [hidden] {
+  display: none !important;
+}
+
+.workout-list-only {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .form-stack h1 {
   margin: 0;
   font-size: 32px;
