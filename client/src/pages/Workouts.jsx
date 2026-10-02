@@ -5,6 +5,7 @@ import {
   Check,
   Dumbbell,
   FileText,
+  ArrowLeft,
   Pencil,
   Plus,
   Repeat,
@@ -22,11 +23,11 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { weekDays } from './pageHelpers.js';
 
 const mediaChoices = [
-  { value: 'library', label: 'Banco de GIFs', icon: '/icones/banco_gif.jpeg' },
-  { value: 'gif', label: 'Enviar GIF', icon: '/icones/enviar_gif.jpeg' },
-  { value: 'video', label: 'Enviar vídeo', icon: '/icones/envia_videos.jpeg' },
-  { value: 'youtube', label: 'Link do YouTube', icon: '/icones/link_youtube.jpeg' },
-  { value: 'favorites', label: 'Favoritos', icon: '/icones/favoritos.jpeg' },
+  { value: 'library', label: 'Banco de GIFs', icon: '/icones/banco_gif2.PNG' },
+  { value: 'gif', label: 'Enviar GIF', icon: '/icones/enviar_gif2.PNG' },
+  { value: 'video', label: 'Enviar vídeo', icon: '/icones/envia_videos2.PNG' },
+  { value: 'youtube', label: 'Link do YouTube', icon: '/icones/link_youtube.PNG' },
+  { value: 'favorites', label: 'Favoritos', icon: '/icones/favotitos2.PNG' },
   { value: 'none', label: 'Sem mídia', icon: null }
 ];
 
@@ -77,11 +78,43 @@ function ManagementViewSelector({ value, onChange, publicLabel, mineLabel, creat
   );
 }
 
-export function Workouts() {
+export function WorkoutsHome() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const modalities = [
+    { path: '/treinos/planos', image: '/icones/icone_planos.PNG', title: 'Planos semanais' },
+    { path: '/treinos/diarios', image: '/icones/icone_treino.PNG', title: 'Treinos diários' },
+    { path: '/treinos/exercicios', image: '/icones/icone_exercicios.PNG', title: 'Exercícios' }
+  ];
+
+  if (user.role === 'student') {
+    return <section className="page"><div className="panel empty-state">Área disponível no portal do aluno</div></section>;
+  }
+
+  return (
+    <section className="page workouts-home-page">
+      <div className="page-heading">
+        <div>
+          <span>Gestão de Treinos</span>
+          <h1>Treinos</h1>
+        </div>
+      </div>
+      <div className="workout-modality-grid">
+        {modalities.map((modality) => (
+          <button key={modality.path} type="button" className="workout-modality-card" onClick={() => navigate(modality.path)} aria-label={modality.title} title={modality.title}>
+            <img src={modality.image} alt="" />
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function Workouts({ initialTab = 'exercises' }) {
   const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const [tab, setTab] = useState('exercises');
+  const [tab, setTab] = useState(initialTab);
   const [exerciseView, setExerciseView] = useState('public');
   const [dailyView, setDailyView] = useState('public');
   const [weeklyView, setWeeklyView] = useState('public');
@@ -163,7 +196,7 @@ export function Workouts() {
         form.elements.visibility.value = 'public';
       }
     });
-    navigate('/treinos', { replace: true, state: null });
+    navigate('/treinos/exercicios', { replace: true, state: null });
   }, [location.state, navigate, user.role]);
 
   const tabs = useMemo(() => [
@@ -553,13 +586,13 @@ export function Workouts() {
       {notice ? <div className="alert alert-success">{notice}</div> : null}
       {error ? <div className="alert alert-error">{error}</div> : null}
 
-      <div className="segmented">
+      {!initialTab ? <div className="segmented">
         {tabs.map(([value, label]) => (
           <button key={value} type="button" className={tab === value ? 'active' : ''} onClick={() => setTab(value)}>
             {label}
           </button>
         ))}
-      </div>
+      </div> : null}
 
       {/* ===================== ABA 1: EXERCÍCIOS ===================== */}
       {tab === 'exercises' ? (
@@ -958,6 +991,11 @@ export function Workouts() {
               ) : null}
             </div>
 
+            <button type="button" className="secondary-button plan-back-button" onClick={() => navigate('/treinos')}>
+              <ArrowLeft size={16} />
+              Voltar
+            </button>
+
             {visibleWeeklyPlans.length === 0 ? (
               <div className="empty-state">Nenhum plano semanal cadastrado.</div>
             ) : (
@@ -999,7 +1037,7 @@ export function Workouts() {
                         const workoutName = dayObj?.dailyWorkoutName;
                         return (
                           <div className={`plan-day-chip ${isRest ? 'chip-rest' : workoutName ? 'chip-workout' : 'chip-empty'}`} key={dayName}>
-                            <strong>{dayName.slice(0, 3)}</strong>
+                            <strong>{dayName}</strong>
                             <span>{isRest ? 'Descanso' : workoutName || '-'}</span>
                           </div>
                         );
@@ -1009,6 +1047,10 @@ export function Workouts() {
                 ))}
               </div>
             )}
+            <button type="button" className="secondary-button plan-back-button" onClick={() => navigate('/treinos')}>
+              <ArrowLeft size={16} />
+              Voltar
+            </button>
           </section>
           </div>
         </>

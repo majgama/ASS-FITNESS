@@ -913,10 +913,8 @@ iframe.exercise-media {
 
 .week-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 4px;
 }
 
 .day-config {
@@ -926,7 +924,7 @@ iframe.exercise-media {
   padding: 12px;
   display: grid;
   gap: 10px;
-  min-width: 150px;
+  min-width: 0;
 }
 
 .day-config legend {
@@ -1961,9 +1959,8 @@ iframe.exercise-media {
 
 .plan-days-summary {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  overflow-x: auto;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
   padding: 12px;
   background: #101211;
   border: 1px solid #2c312e;
@@ -1971,17 +1968,17 @@ iframe.exercise-media {
 }
 
 .plan-day-chip {
-  padding: 8px 6px;
+  padding: 10px 8px;
   border-radius: 6px;
   border: 1px solid var(--line);
   text-align: center;
   display: grid;
   gap: 2px;
-  min-width: 68px;
+  min-width: 0;
 }
 
 .plan-day-chip strong {
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   display: block;
 }
@@ -1989,9 +1986,7 @@ iframe.exercise-media {
 .plan-day-chip span {
   font-size: 11px;
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 .chip-rest {
@@ -2344,6 +2339,42 @@ textarea::placeholder {
   margin-bottom: 18px;
 }
 
+.workout-modality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 960px;
+}
+
+.workout-modality-card {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #3c433e;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #121615;
+}
+
+.workout-modality-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.workout-modality-card:hover {
+  border-color: #e7b94f;
+  box-shadow: 0 0 0 1px rgba(255, 212, 113, 0.16);
+}
+
+.plan-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+}
+
 .daily-exercise-picker {
   display: grid;
   gap: 10px;
@@ -2398,6 +2429,29 @@ textarea::placeholder {
 
 .daily-exercise-choice.active span {
   color: #ffe09a;
+}
+
+@media (max-width: 760px) {
+  .workout-modality-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  .plan-days-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .plan-day-chip {
+    min-height: 76px;
+  }
+
+  .week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .day-config {
+    min-height: 0;
+  }
 }
 
 .two-column.wide-left {

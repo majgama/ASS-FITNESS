@@ -14,7 +14,7 @@ import { Register } from './pages/Register.jsx';
 import { StudentPortal } from './pages/StudentPortal.jsx';
 import { StudentManagement } from './pages/StudentManagement.jsx';
 import { Students } from './pages/Students.jsx';
-import { Workouts } from './pages/Workouts.jsx';
+import { Workouts, WorkoutsHome } from './pages/Workouts.jsx';
 
 function ProtectedRoute() {
   const { isAuthenticated, booting } = useAuth();
@@ -38,7 +38,11 @@ export function App() {
         <Route index element={<HomeByRole />} />
         <Route path="/alunos" element={<Students />} />
         <Route path="/alunos/:studentId" element={<StudentManagement />} />
-        <Route path="/treinos" element={<Workouts />} />
+        <Route path="/treinos" element={<WorkoutsHome />} />
+        <Route path="/treinos/exercicios" element={<Workouts initialTab="exercises" />} />
+        <Route path="/treinos/diarios" element={<Workouts initialTab="daily" />} />
+        <Route path="/treinos/planos" element={<Workouts initialTab="weekly" />} />
+        <Route path="/treinos/aplicar" element={<Workouts initialTab="apply" />} />
         <Route path="/treinos/biblioteca-gifs" element={<GifLibrarySelection />} />
         <Route path="/dietas" element={<Diets />} />
         <Route path="/avaliacoes" element={<Assessments />} />

@@ -10,7 +10,7 @@ export function GifLibrarySelection() {
   if (user?.role === 'student') return <Navigate to="/" replace />;
 
   function selectGif(item) {
-    navigate('/treinos', {
+    navigate('/treinos/exercicios', {
       replace: true,
       state: { selectedLibraryGif: item }
     });
@@ -26,7 +26,7 @@ export function GifLibrarySelection() {
       </div>
       <GifLibraryPicker
         onSelect={selectGif}
-        onClose={() => navigate('/treinos')}
+        onClose={() => navigate('/treinos/exercicios')}
         initialFavoritesOnly={Boolean(location.state?.favoritesOnly)}
         initialGender="MASCULINO"
         initialEnvironment="ACADEMIA"
