@@ -2391,6 +2391,59 @@ textarea::placeholder {
   margin-bottom: 18px;
 }
 
+.plan-target-list {
+  display: grid;
+  gap: 12px;
+}
+
+.plan-target-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: #17181a;
+  border: 1px solid #2e2c28;
+  border-radius: 8px;
+}
+
+.plan-target-card > strong {
+  color: #f5f1e8;
+  font-size: 15px;
+}
+
+.plan-target-days {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.plan-target-days button {
+  display: grid;
+  gap: 3px;
+  min-height: 58px;
+  padding: 9px;
+  text-align: left;
+  background: #111213;
+  border: 1px solid #3d433e;
+  border-radius: 6px;
+  color: #f4f2ea;
+}
+
+.plan-target-days button:hover {
+  background: rgba(231, 185, 79, 0.14);
+  border-color: #e7b94f;
+}
+
+.plan-target-days small {
+  color: #d9b86c;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.plan-target-days strong {
+  font-size: 12px;
+}
+
 .daily-exercise-picker {
   display: grid;
   gap: 10px;
