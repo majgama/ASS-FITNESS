@@ -2407,6 +2407,13 @@ textarea::placeholder {
   margin-bottom: 18px;
 }
 
+.plan-apply-button {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .plan-target-list {
   display: grid;
   gap: 12px;

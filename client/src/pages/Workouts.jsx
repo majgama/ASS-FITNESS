@@ -191,6 +191,14 @@ export function Workouts({ initialTab = 'exercises' }) {
   }, [user.role]);
 
   useEffect(() => {
+    const planId = location.state?.selectedPlanId;
+    if (!planId) return;
+
+    setSelectedPlan(planId);
+    navigate('/treinos/aplicar', { replace: true, state: null });
+  }, [location.state, navigate]);
+
+  useEffect(() => {
     const selectedGif = location.state?.selectedLibraryGif;
     if (!selectedGif) return;
 
@@ -1101,6 +1109,14 @@ export function Workouts({ initialTab = 'exercises' }) {
                         );
                       })}
                     </div>
+                    <button
+                      type="button"
+                      className="primary-button plan-apply-button"
+                      onClick={() => navigate('/treinos/aplicar', { state: { selectedPlanId: plan.id } })}
+                    >
+                      <Calendar size={17} />
+                      Aplicar plano ao aluno
+                    </button>
                   </article>
                 ))}
               </div>
