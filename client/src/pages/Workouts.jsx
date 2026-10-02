@@ -31,6 +31,12 @@ const mediaChoices = [
   { value: 'none', label: 'Sem mídia', icon: null }
 ];
 
+const workoutModalities = [
+  { tab: 'weekly', path: '/treinos/planos', image: '/icones/icone_planos.PNG', title: 'Planos semanais' },
+  { tab: 'daily', path: '/treinos/diarios', image: '/icones/icone_treino.PNG', title: 'Treinos diários' },
+  { tab: 'exercises', path: '/treinos/exercicios', image: '/icones/icone_exercicios.PNG', title: 'Exercícios' }
+];
+
 function MediaChoiceGrid({ value, favoritesOnly, onChoose }) {
   return (
     <div className="media-choice-grid" aria-label="Escolha a mídia demonstrativa">
@@ -78,14 +84,28 @@ function ManagementViewSelector({ value, onChange, publicLabel, mineLabel, creat
   );
 }
 
+function WorkoutModalityNav({ activeTab }) {
+  const navigate = useNavigate();
+  return (
+    <div className="workout-modality-grid">
+      {workoutModalities.map((modality) => (
+        <button
+          key={modality.path}
+          type="button"
+          className={`workout-modality-card ${activeTab === modality.tab ? 'active' : ''}`}
+          onClick={() => navigate(modality.path)}
+          aria-label={modality.title}
+          title={modality.title}
+        >
+          <img src={modality.image} alt="" />
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function WorkoutsHome() {
   const { user } = useAuth();
-  const navigate = useNavigate();
-  const modalities = [
-    { path: '/treinos/planos', image: '/icones/icone_planos.PNG', title: 'Planos semanais' },
-    { path: '/treinos/diarios', image: '/icones/icone_treino.PNG', title: 'Treinos diários' },
-    { path: '/treinos/exercicios', image: '/icones/icone_exercicios.PNG', title: 'Exercícios' }
-  ];
 
   if (user.role === 'student') {
     return <section className="page"><div className="panel empty-state">Área disponível no portal do aluno</div></section>;
@@ -99,13 +119,7 @@ export function WorkoutsHome() {
           <h1>Treinos</h1>
         </div>
       </div>
-      <div className="workout-modality-grid">
-        {modalities.map((modality) => (
-          <button key={modality.path} type="button" className="workout-modality-card" onClick={() => navigate(modality.path)} aria-label={modality.title} title={modality.title}>
-            <img src={modality.image} alt="" />
-          </button>
-        ))}
-      </div>
+      <WorkoutModalityNav />
     </section>
   );
 }
@@ -612,6 +626,8 @@ export function Workouts({ initialTab = 'exercises' }) {
           <h1>Biblioteca e Planos</h1>
         </div>
       </div>
+
+      <WorkoutModalityNav activeTab={tab} />
 
       {notice ? <div className="alert alert-success">{notice}</div> : null}
       {error ? <div className="alert alert-error">{error}</div> : null}

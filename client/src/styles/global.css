@@ -2347,7 +2347,18 @@ textarea::placeholder {
 }
 
 .management-view-selector {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-bottom: 18px;
+}
+
+.management-view-selector button {
+  min-width: 0;
+  min-height: 52px;
+  padding: 7px 8px;
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal;
 }
 
 .workout-modality-grid {
@@ -2377,6 +2388,11 @@ textarea::placeholder {
 .workout-modality-card:hover {
   border-color: #e7b94f;
   box-shadow: 0 0 0 1px rgba(255, 212, 113, 0.16);
+}
+
+.workout-modality-card.active {
+  border-color: #ffd979;
+  box-shadow: 0 0 0 2px rgba(231, 185, 79, 0.4);
 }
 
 .plan-back-button {
