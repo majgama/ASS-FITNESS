@@ -13,7 +13,8 @@ export async function seedGifTranslationUpdates(client) {
   await client.query(
     `INSERT INTO gif_library_translation_updates (gif_id, translated_at)
      SELECT * FROM unnest($1::text[], $2::date[])
-     ON CONFLICT (gif_id) DO NOTHING`,
+     ON CONFLICT (gif_id) DO UPDATE
+     SET translated_at = GREATEST(gif_library_translation_updates.translated_at, EXCLUDED.translated_at)`,
     [
       updates.map((update) => update.id),
       updates.map((update) => update.translatedAt)

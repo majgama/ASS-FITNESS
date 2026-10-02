@@ -15,6 +15,7 @@ Aplicativo web para gestao de assessoria fitness com tres perfis: administrador,
 - Tema escuro com titulos claros e destaques dourados.
 - Botoes de abrir e recolher o menu mobile com fundo preto, borda e icones dourados.
 - Evolucao do treino exibida apenas em percentual na lista e na gestao do aluno, sem barra ou contagem de atividades.
+- Catalogo de GIFs: 377 nomes de abdominais masculinos substituidos pela lista fornecida em 02/10/2026, incluindo os 17 marcados para revisao. IDs, imagens e demais campos foram preservados. Nomes personalizados pelo administrador continuam tendo prioridade; exercicios e planos ja salvos nao sao renomeados retroativamente.
 
 Os players do YouTube usam `strict-origin-when-cross-origin` nos frames e no header `Referrer-Policy` do servidor. Essa politica envia apenas a origem ao YouTube, permitindo identificar a aplicacao e evitando o erro 153 sem expor o caminho ou os parametros da pagina. Proxies de producao devem preservar essa politica.
 
