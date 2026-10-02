@@ -168,6 +168,7 @@ export function StudentPortal() {
                         className="exercise-media exercise-media-large"
                         src={youtubeEmbedUrl(item.youtubeUrl)}
                         title={`Demonstração de ${item.exerciseName}`}
+                        referrerPolicy="strict-origin-when-cross-origin"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       /> : null}

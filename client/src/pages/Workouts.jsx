@@ -783,7 +783,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                           {exercise.gif_library_path ? <img className="exercise-media" src={gifLibraryFileUrl(exercise.gif_library_path)} alt={exercise.name} /> : null}
                           {!exercise.gif_library_path && exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
                           {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
-                          {exercise.youtube_url ? <iframe className="exercise-media" src={youtubeEmbedUrl(exercise.youtube_url)} title={exercise.name} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" /> : null}
+                          {exercise.youtube_url ? <iframe className="exercise-media" src={youtubeEmbedUrl(exercise.youtube_url)} title={exercise.name} referrerPolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" /> : null}
                           <div className="manage-media-actions">
                             <button type="button" className="action-btn" title="Adicionar a um treino" onClick={() => setExerciseForPlan(exercise)}><Plus size={16} /></button>
                             {canManageExercise ? <>

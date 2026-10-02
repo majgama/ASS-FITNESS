@@ -601,44 +601,30 @@ textarea:focus {
   font-size: 14px;
 }
 
-.student-roster-name,
-.student-roster-progress {
+.student-roster-name {
   display: grid;
   gap: 5px;
+}
+
+.student-roster-progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
 }
 
 .student-roster-name strong {
   font-size: 16px;
 }
 
-.student-roster-progress span,
-.student-roster-progress small {
+.student-roster-progress span {
   color: var(--muted);
   font-size: 11px;
   font-weight: 700;
 }
 
 .student-roster-progress strong {
-  justify-self: end;
-  margin-top: -21px;
   font-size: 14px;
-}
-
-.student-roster-progress i,
-.progress-track {
-  display: block;
-  height: 6px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: #e7e1d4;
-}
-
-.student-roster-progress i b,
-.progress-track i {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: #c49b4e;
 }
 
 .student-roster-chevron {
@@ -2229,6 +2215,8 @@ iframe.exercise-media {
 /* Athlon Coach dark management theme */
 :root {
   color-scheme: dark;
+  background: #0b0d0d;
+  color: var(--text);
   --bg: #0b0d0d;
   --surface: #151817;
   --surface-muted: #222624;
@@ -2285,8 +2273,42 @@ body {
   color: var(--text);
 }
 
-.page-heading span {
-  color: #e7b94f;
+.menu-toggle {
+  background: #000000;
+  border-color: var(--blue);
+  color: var(--blue);
+  flex-shrink: 0;
+}
+
+.menu-toggle:hover {
+  border-color: var(--blue-strong);
+  color: var(--blue-strong);
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--blue-strong);
+  outline-offset: 3px;
+}
+
+label {
+  color: var(--text);
+}
+
+.page-heading span,
+.student-management-profile > div:last-child > span,
+.management-card > span,
+.management-panel-title svg,
+.back-link,
+.management-panel > a {
+  color: var(--blue);
+}
+
+.manage-sublabel {
+  color: var(--muted);
+}
+
+.student-roster-item:hover {
+  background: var(--surface-muted);
 }
 
 .panel,

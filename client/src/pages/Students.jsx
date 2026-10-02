@@ -161,8 +161,6 @@ export function Students() {
                 <div className="student-roster-progress">
                   <span>Evolução</span>
                   <strong>{progress.percentage || 0}%</strong>
-                  <i><b style={{ width: `${progress.percentage || 0}%` }} /></i>
-                  <small>{progress.hasActivePlan ? `${progress.completedDays}/${progress.plannedDays} atividades` : 'Sem treino ativo'}</small>
                 </div>
                 <ChevronRight className="student-roster-chevron" size={20} />
               </button>

@@ -113,8 +113,6 @@ export function StudentManagement() {
         <section className="management-card progress-card">
           <span>Evolução do treino</span>
           <strong>{progress.percentage || 0}%</strong>
-          <div className="progress-track"><i style={{ width: `${progress.percentage || 0}%` }} /></div>
-          <small>{progress.hasActivePlan ? `${progress.completedDays}/${progress.plannedDays} atividades realizadas` : 'Nenhum treino ativo'}</small>
         </section>
         <section className="management-card">
           <span>Objetivo</span>

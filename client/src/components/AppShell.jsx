@@ -63,7 +63,7 @@ export function AppShell() {
           <div>
             <span>{user?.role === 'student' ? 'Aluno' : user?.role === 'admin' ? 'Admin' : 'Personal trainer'}</span>
           </div>
-          <button className="icon-button only-mobile" type="button" onClick={() => setMenuOpen(false)} aria-label="Fechar menu">
+          <button className="icon-button menu-toggle only-mobile" type="button" onClick={() => setMenuOpen(false)} aria-label="Fechar menu">
             <X size={18} />
           </button>
         </div>
@@ -94,7 +94,7 @@ export function AppShell() {
             </div>
             <strong>{user?.name}</strong>
           </div>
-          <button className="icon-button only-mobile topbar-menu" type="button" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
+          <button className="icon-button menu-toggle only-mobile topbar-menu" type="button" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
             <Menu size={20} />
           </button>
         </header>
