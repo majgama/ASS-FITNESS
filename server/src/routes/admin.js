@@ -1,7 +1,9 @@
 import { Router } from 'express';
-import { query } from '../db/pool.js';
+import { query, withTransaction } from '../db/pool.js';
 import { authRequired, requireRoles } from '../middleware/auth.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
+import { idSchema, parseBody } from '../utils/validators.js';
+import { deleteManagedUser } from '../services/userDeletionService.js';
 
 export const adminRouter = Router();
 
@@ -34,6 +36,12 @@ adminRouter.get('/personals', asyncHandler(async (req, res) => {
      ORDER BY u.name`
   );
   res.json({ personals: result.rows });
+}));
+
+adminRouter.delete('/personals/:id', asyncHandler(async (req, res) => {
+  const id = parseBody(idSchema, req.params.id);
+  await withTransaction((client) => deleteManagedUser(client, req.user, id, 'personal'));
+  res.status(204).send();
 }));
 
 adminRouter.get('/students', asyncHandler(async (req, res) => {

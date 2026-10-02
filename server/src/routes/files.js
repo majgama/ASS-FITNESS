@@ -4,7 +4,7 @@ import { Router } from 'express';
 import { env } from '../config/env.js';
 import { query, withTransaction } from '../db/pool.js';
 import { authRequired } from '../middleware/auth.js';
-import { assertExerciseAccess, assertStudentAccess } from '../services/accessService.js';
+import { assertExerciseFileAccess, assertStudentAccess } from '../services/accessService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { forbidden, notFound } from '../utils/errors.js';
 
@@ -63,16 +63,6 @@ async function canAccessAssessment(user, relativePath) {
   return result.rows[0];
 }
 
-async function canAccessExercise(user, relativePath) {
-  const result = await query(
-    `SELECT id FROM exercises
-     WHERE video_path = $1 OR gif_path = $1 OR audio_path = $1`,
-    [relativePath]
-  );
-  if (result.rowCount === 0) throw notFound('Arquivo nao encontrado.');
-  await assertExerciseAccess({ query }, user, result.rows[0].id);
-}
-
 filesRouter.get('/:category/:filename', asyncHandler(async (req, res) => {
   const { category, filename } = req.params;
   const allowed = ['profiles', 'assessments', 'exercises'];
@@ -81,7 +71,7 @@ filesRouter.get('/:category/:filename', asyncHandler(async (req, res) => {
   const relativePath = `${category}/${filename}`;
   const profile = category === 'profiles' ? await canAccessProfile(req.user, relativePath) : null;
   const assessment = category === 'assessments' ? await canAccessAssessment(req.user, relativePath) : null;
-  if (category === 'exercises') await canAccessExercise(req.user, relativePath);
+  if (category === 'exercises') await assertExerciseFileAccess({ query }, req.user, relativePath);
 
   if (profile?.profile_photo_data) {
     res.setHeader('Content-Type', profile.profile_photo_mime || 'application/octet-stream');

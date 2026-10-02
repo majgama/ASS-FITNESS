@@ -18,6 +18,14 @@ Aplicativo web para gestao de assessoria fitness com tres perfis: administrador,
 
 Os players do YouTube usam `strict-origin-when-cross-origin` nos frames e no header `Referrer-Policy` do servidor. Essa politica envia apenas a origem ao YouTube, permitindo identificar a aplicacao e evitando o erro 153 sem expor o caminho ou os parametros da pagina. Proxies de producao devem preservar essa politica.
 
+### Exclusoes pelo administrador
+
+- Em **Alunos** ou **Administracao**, o administrador pode excluir permanentemente um aluno e seus dados vinculados.
+- Em **Administracao**, pode excluir um personal. Os alunos e os planos ja aplicados permanecem, mas o vinculo com esse personal e seus modelos privados de exercicios, treinos, planos e dietas sao removidos. Exercicios privados tambem sao retirados dos modelos que os utilizam. Os modelos publicos permanecem.
+- Em **Treinos**, o administrador pode excluir exercicios, treinos diarios e planos semanais publicos ou privados de qualquer personal. As abas de modelos privados mostram todos os proprietarios ao administrador.
+- As exclusoes exigem confirmacao na interface e permissao no servidor. Personais nao podem excluir contas de alunos ou de outros personais.
+- Planos aplicados sao snapshots e mantem seus dados e acesso a midias quando um modelo ou personal e excluido. Arquivos fisicos nao sao removidos por essas exclusoes.
+
 ## Rodando localmente
 
 1. Instale dependencias:

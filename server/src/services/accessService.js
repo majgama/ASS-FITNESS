@@ -94,6 +94,42 @@ export async function assertExerciseAccess(client, user, exerciseId) {
   throw forbidden('Voce nao tem acesso a este exercicio.');
 }
 
+export async function assertExerciseFileAccess(client, user, relativePath) {
+  const result = await client.query(
+    `SELECT id FROM exercises
+     WHERE video_path = $1 OR gif_path = $1 OR audio_path = $1`,
+    [relativePath]
+  );
+  if (result.rowCount > 0) {
+    await assertExerciseAccess(client, user, result.rows[0].id);
+    return;
+  }
+
+  const snapshots = await client.query(
+    `SELECT 1 FROM student_weekly_plans swp
+     WHERE (swp.plan_snapshot @> $1::jsonb
+         OR swp.plan_snapshot @> $2::jsonb
+         OR swp.plan_snapshot @> $3::jsonb)
+       AND (
+         $4 = 'admin'
+         OR ($4 = 'student' AND swp.student_id = $5)
+         OR ($4 = 'personal' AND EXISTS (
+           SELECT 1 FROM trainer_students ts
+           WHERE ts.trainer_id = $5 AND ts.student_id = swp.student_id
+         ))
+       )
+     LIMIT 1`,
+    [
+      ...['videoPath', 'gifPath', 'audioPath'].map((key) => JSON.stringify({
+        days: [{ dailyWorkout: { exercises: [{ [key]: relativePath }] } }]
+      })),
+      user.role,
+      user.id
+    ]
+  );
+  if (snapshots.rowCount === 0) throw notFound('Arquivo nao encontrado.');
+}
+
 export async function assertOwnedModelAccess(client, user, table, modelId) {
   const allowedTables = new Set(['daily_workouts', 'weekly_plans', 'diet_plans']);
   if (!allowedTables.has(table)) throw new Error('Invalid table');

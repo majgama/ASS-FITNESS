@@ -34,3 +34,12 @@ export function normalizeSnapshot(snapshot) {
   if (!snapshot) return null;
   return typeof snapshot === 'string' ? JSON.parse(snapshot) : snapshot;
 }
+
+export function canManageWorkoutModel(user, model) {
+  return user.role === 'admin' || (user.role === 'personal' && model.visibility === 'private' && model.owner_id === user.id);
+}
+
+export function isWorkoutModelInView(user, model, view) {
+  if (view === 'public') return model.visibility === 'public';
+  return model.visibility === 'private' && (user.role === 'admin' || model.owner_id === user.id);
+}

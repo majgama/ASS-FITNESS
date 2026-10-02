@@ -20,6 +20,7 @@ export function Students() {
   const [temporaryPassword, setTemporaryPassword] = useState('');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
+  const [deletingId, setDeletingId] = useState('');
 
   const canManage = user.role === 'admin' || user.role === 'personal';
 
@@ -97,6 +98,22 @@ export function Students() {
       setNotice('Convite gerado.');
     } catch (err) {
       setError(err.message);
+    }
+  }
+
+  async function deleteStudent(student) {
+    if (!window.confirm(`Excluir permanentemente o aluno "${student.name}"? A conta, os treinos aplicados, as avaliações, os pagamentos e o histórico serão apagados. Esta ação não pode ser desfeita.`)) return;
+    setError('');
+    setNotice('');
+    setDeletingId(student.id);
+    try {
+      await api(`/students/${student.id}`, { method: 'DELETE' });
+      setNotice(`Aluno "${student.name}" excluído.`);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setDeletingId('');
     }
   }
 
@@ -199,6 +216,11 @@ export function Students() {
                       ) : (
                         <button type="button" onClick={() => updateStatus(student, 'active')}>Ativar</button>
                       )}
+                      {user.role === 'admin' ? (
+                        <button type="button" disabled={Boolean(deletingId)} onClick={() => deleteStudent(student)}>
+                          {deletingId === student.id ? 'Excluindo...' : 'Excluir aluno'}
+                        </button>
+                      ) : null}
                     </td>
                   ) : null}
                 </tr>

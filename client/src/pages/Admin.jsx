@@ -11,21 +11,44 @@ export function Admin() {
   const [personals, setPersonals] = useState([]);
   const [students, setStudents] = useState([]);
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
+  const [deletingId, setDeletingId] = useState('');
 
-  useEffect(() => {
-    if (user.role !== 'admin') return;
-    Promise.all([
+  async function load() {
+    const [metricData, personalData, studentData] = await Promise.all([
       api('/admin/metrics'),
       api('/admin/personals'),
       api('/admin/students')
-    ])
-      .then(([metricData, personalData, studentData]) => {
-        setMetrics(metricData.metrics);
-        setPersonals(personalData.personals);
-        setStudents(studentData.students);
-      })
-      .catch((err) => setError(err.message));
+    ]);
+    setMetrics(metricData.metrics);
+    setPersonals(personalData.personals);
+    setStudents(studentData.students);
+  }
+
+  useEffect(() => {
+    if (user.role !== 'admin') return;
+    load().catch((err) => setError(err.message));
   }, [user.role]);
+
+  async function deleteUser(target, role) {
+    const personal = role === 'personal';
+    const warning = personal
+      ? 'Os modelos privados de exercícios, treinos, planos e dietas deste personal serão apagados. Os alunos e seus treinos aplicados serão mantidos, sem o vínculo com este personal. Exercícios privados também serão removidos dos modelos que os utilizam.'
+      : 'A conta, os treinos aplicados, as avaliações, os pagamentos e o histórico deste aluno serão apagados.';
+    if (!window.confirm(`Excluir permanentemente ${personal ? 'o personal' : 'o aluno'} "${target.name}"? ${warning} Esta ação não pode ser desfeita.`)) return;
+    setError('');
+    setNotice('');
+    setDeletingId(target.id);
+    try {
+      await api(personal ? `/admin/personals/${target.id}` : `/students/${target.id}`, { method: 'DELETE' });
+      setNotice(`${personal ? 'Personal' : 'Aluno'} "${target.name}" excluído.`);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setDeletingId('');
+    }
+  }
 
   if (user.role !== 'admin') {
     return <section className="page"><div className="panel empty-state">Acesso administrativo restrito</div></section>;
@@ -41,6 +64,7 @@ export function Admin() {
       </div>
 
       {error ? <div className="alert alert-error">{error}</div> : null}
+      {notice ? <div className="alert alert-success">{notice}</div> : null}
 
       <div className="stats-grid">
         <StatCard label="Personais" value={metrics.personals} icon={Shield} />
@@ -61,6 +85,7 @@ export function Admin() {
                   <th>CREF</th>
                   <th>Alunos</th>
                   <th>Cobranca</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,6 +96,11 @@ export function Admin() {
                     <td>{personal.cref || '-'}</td>
                     <td>{personal.students_count}</td>
                     <td><StatusBadge value={personal.billing_status} /></td>
+                    <td className="table-actions">
+                      <button type="button" disabled={Boolean(deletingId)} onClick={() => deleteUser(personal, 'personal')}>
+                        {deletingId === personal.id ? 'Excluindo...' : 'Excluir personal'}
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -81,13 +111,18 @@ export function Admin() {
         <section className="panel">
           <div className="section-title"><h2>Alunos</h2></div>
           <div className="list-stack">
-            {students.slice(0, 12).map((student) => (
+            {students.map((student) => (
               <article className="list-item" key={student.id}>
                 <div>
                   <strong>{student.name}</strong>
                   <span>{(student.trainers || []).map((trainer) => trainer.name).join(', ') || 'Sem personal'}</span>
                 </div>
-                <StatusBadge value={student.status} />
+                <div className="actions table-actions">
+                  <StatusBadge value={student.status} />
+                  <button type="button" disabled={Boolean(deletingId)} onClick={() => deleteUser(student, 'student')}>
+                    {deletingId === student.id ? 'Excluindo...' : 'Excluir aluno'}
+                  </button>
+                </div>
               </article>
             ))}
           </div>

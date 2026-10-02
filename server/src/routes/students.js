@@ -13,7 +13,8 @@ import {
 } from '../services/accessService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { badRequest, forbidden, notFound } from '../utils/errors.js';
-import { emailSchema, parseBody, relationshipTypes, studentStatuses } from '../utils/validators.js';
+import { emailSchema, idSchema, parseBody, relationshipTypes, studentStatuses } from '../utils/validators.js';
+import { deleteManagedUser } from '../services/userDeletionService.js';
 
 export const studentsRouter = Router();
 
@@ -187,6 +188,12 @@ const updateStatusSchema = z.object({
   status: z.enum(studentStatuses),
   inactiveReason: z.string().trim().optional().nullable()
 });
+
+studentsRouter.delete('/:id', requireRoles('admin'), asyncHandler(async (req, res) => {
+  const id = parseBody(idSchema, req.params.id);
+  await withTransaction((client) => deleteManagedUser(client, req.user, id, 'student'));
+  res.status(204).send();
+}));
 
 studentsRouter.patch('/:id/status', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
   const payload = parseBody(updateStatusSchema, req.body);
