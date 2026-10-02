@@ -2436,8 +2436,9 @@ textarea::placeholder {
 
 @media (max-width: 760px) {
   .workout-modality-grid {
-    grid-template-columns: 1fr;
-    max-width: 360px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    max-width: none;
   }
 
   .plan-days-summary {
