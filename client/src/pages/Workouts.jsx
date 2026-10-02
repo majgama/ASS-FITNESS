@@ -165,6 +165,10 @@ export function Workouts({ initialTab = 'exercises' }) {
 
   const canCreatePublic = user.role === 'admin';
 
+  useEffect(() => {
+    setTab(initialTab);
+  }, [initialTab]);
+
   async function load() {
     setError('');
     try {
