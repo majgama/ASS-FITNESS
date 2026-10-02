@@ -928,8 +928,11 @@ iframe.exercise-media {
 }
 
 .day-config legend {
+  color: #e7b94f;
+  font-size: 12px;
   font-weight: 900;
   padding: 0 4px;
+  text-transform: uppercase;
 }
 
 .check-line {

@@ -949,7 +949,7 @@ export function Workouts({ initialTab = 'exercises' }) {
               <div className="week-grid">
                 {weekDays.map((day, index) => (
                   <fieldset key={day} className="day-config">
-                    <legend>{day}</legend>
+                    <legend>Dia: {day}</legend>
                     <label className="check-line">
                       <input type="checkbox" name={`rest-${index}`} />
                       Descanso
