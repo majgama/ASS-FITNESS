@@ -922,6 +922,12 @@ export function Workouts({ initialTab = 'exercises' }) {
       {tab === 'weekly' ? (
         <>
           <ManagementViewSelector value={weeklyView} onChange={setWeeklyView} publicLabel="Planos públicos" mineLabel="Meus planos" createLabel="Criar plano" />
+          {weeklyView !== 'create' ? (
+            <button type="button" className="secondary-button plan-back-button plan-back-button-top" onClick={() => navigate('/treinos')}>
+              <ArrowLeft size={16} />
+              Voltar
+            </button>
+          ) : null}
           <div className="form-stack workout-view-content">
           <section className="panel" hidden={weeklyView !== 'create'}>
             <div className="section-title">
@@ -990,11 +996,6 @@ export function Workouts({ initialTab = 'exercises' }) {
                 </button>
               ) : null}
             </div>
-
-            <button type="button" className="secondary-button plan-back-button" onClick={() => navigate('/treinos')}>
-              <ArrowLeft size={16} />
-              Voltar
-            </button>
 
             {visibleWeeklyPlans.length === 0 ? (
               <div className="empty-state">Nenhum plano semanal cadastrado.</div>

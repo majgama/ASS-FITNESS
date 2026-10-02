@@ -2378,6 +2378,11 @@ textarea::placeholder {
   margin-top: 14px;
 }
 
+.plan-back-button-top {
+  margin-top: -8px;
+  margin-bottom: 18px;
+}
+
 .daily-exercise-picker {
   display: grid;
   gap: 10px;
