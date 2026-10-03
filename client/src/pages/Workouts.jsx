@@ -943,10 +943,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                 {visibleDailyWorkouts.map((workout) => (
                   <article className="panel sub-panel-manage manage-card manage-daily-card" key={workout.id}>
                     <div className="manage-header-row">
-                      <div>
-                        <strong>{workout.name}</strong>
-                        {workout.description ? <p className="manage-desc">{workout.description}</p> : null}
-                      </div>
+                      <strong>{workout.name}</strong>
                       <div className="manage-badge-and-actions">
                         <StatusBadge value={workout.visibility} />
                         <div className="card-actions">
@@ -969,6 +966,8 @@ export function Workouts({ initialTab = 'exercises' }) {
                         </div>
                       </div>
                     </div>
+
+                    {workout.description ? <p className="manage-desc">{workout.description}</p> : null}
 
                     <div className="manage-subexercises-list">
                       <small className="manage-sublabel">
