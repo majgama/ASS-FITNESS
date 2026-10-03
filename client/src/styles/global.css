@@ -330,6 +330,9 @@ textarea:focus {
 .nav-list {
   display: grid;
   gap: 6px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .nav-list a {
@@ -350,6 +353,7 @@ textarea:focus {
 
 .logout-button {
   margin-top: auto;
+  flex-shrink: 0;
   gap: 10px;
   justify-content: flex-start;
   background: var(--red-soft);
