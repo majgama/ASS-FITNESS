@@ -1908,6 +1908,15 @@ iframe.exercise-media {
   color: #f5f3ec;
 }
 
+.manage-daily-card .manage-header-row {
+  display: grid;
+  justify-content: stretch;
+}
+
+.manage-daily-card .manage-badge-and-actions {
+  justify-content: flex-end;
+}
+
 .manage-badge-and-actions {
   display: flex;
   align-items: center;
