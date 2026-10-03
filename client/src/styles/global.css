@@ -2258,6 +2258,12 @@ body {
     repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(255, 255, 255, 0.018) 80px);
 }
 
+.app-shell h1,
+.app-shell h2,
+.app-shell h3 {
+  color: #ffffff;
+}
+
 .sidebar {
   background: rgba(8, 10, 10, 0.96);
   border-right-color: #37362f;
@@ -2283,6 +2289,20 @@ body {
   background: rgba(12, 15, 14, 0.88);
   border-bottom-color: #3b403b;
   color: var(--text);
+}
+
+.topbar-menu,
+.brand .only-mobile {
+  background: #080909;
+  border-color: #e7b94f;
+  color: #e7b94f;
+}
+
+.topbar-menu:hover,
+.brand .only-mobile:hover {
+  background: #1b1810;
+  border-color: #ffd979;
+  color: #ffd979;
 }
 
 .page-heading span {
