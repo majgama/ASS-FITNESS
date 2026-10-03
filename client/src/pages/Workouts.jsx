@@ -20,7 +20,7 @@ import { GifLibraryPicker } from '../components/GifLibraryPicker.jsx';
 import { Modal } from '../components/Modal.jsx';
 import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
-import { canManageWorkoutModel, isWorkoutModelInView, weekDays } from './pageHelpers.js';
+import { weekDays } from './pageHelpers.js';
 
 const mediaChoices = [
   { value: 'library', label: 'Banco de GIFs', icon: '/icones/banco_gif2.PNG' },
@@ -263,20 +263,20 @@ export function Workouts({ initialTab = 'exercises' }) {
   }, [weeklyPlans, weeklySearch]);
 
   const visibleExercises = useMemo(() => filteredExercises.filter((exercise) => (
-    isWorkoutModelInView(user, exercise, exerciseView)
-  )), [exerciseView, filteredExercises, user.id, user.role]);
+    exerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
+  )), [exerciseView, filteredExercises, user.id]);
 
   const visibleDailyWorkouts = useMemo(() => filteredDailyWorkouts.filter((workout) => (
-    isWorkoutModelInView(user, workout, dailyView)
-  )), [dailyView, filteredDailyWorkouts, user.id, user.role]);
+    dailyView === 'public' ? workout.visibility === 'public' : workout.owner_id === user.id
+  )), [dailyView, filteredDailyWorkouts, user.id]);
 
   const visibleWeeklyPlans = useMemo(() => filteredWeeklyPlans.filter((plan) => (
-    isWorkoutModelInView(user, plan, weeklyView)
-  )), [filteredWeeklyPlans, user.id, user.role, weeklyView]);
+    weeklyView === 'public' ? plan.visibility === 'public' : plan.owner_id === user.id
+  )), [filteredWeeklyPlans, user.id, weeklyView]);
 
   const availableDailyExercises = useMemo(() => exercises.filter((exercise) => (
-    isWorkoutModelInView(user, exercise, dailyExerciseView)
-  )), [dailyExerciseView, exercises, user.id, user.role]);
+    dailyExerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
+  )), [dailyExerciseView, exercises, user.id]);
 
   const editableWeeklyPlans = useMemo(() => weeklyPlans.filter((plan) => (
     user.role === 'admin' || plan.owner_id === user.id
@@ -655,7 +655,7 @@ export function Workouts({ initialTab = 'exercises' }) {
       {/* ===================== ABA 1: EXERCÍCIOS ===================== */}
       {tab === 'exercises' ? (
         <>
-          <ManagementViewSelector value={exerciseView} onChange={setExerciseView} publicLabel="Exercícios públicos" mineLabel={user.role === 'admin' ? 'Exercícios privados' : 'Meus exercícios'} createLabel="Novo exercício" />
+          <ManagementViewSelector value={exerciseView} onChange={setExerciseView} publicLabel="Exercícios públicos" mineLabel="Meus exercícios" createLabel="Novo exercício" />
           <div className="two-column wide-left workout-view-content">
           <section className="panel" hidden={exerciseView !== 'create'}>
             <div className="section-title">
@@ -736,7 +736,7 @@ export function Workouts({ initialTab = 'exercises' }) {
 
           <section className="panel" hidden={exerciseView === 'create'}>
             <div className="section-title">
-              <h2>{exerciseView === 'public' ? 'Exercícios Públicos' : user.role === 'admin' ? 'Exercícios Privados' : 'Meus Exercícios'} ({visibleExercises.length})</h2>
+              <h2>{exerciseView === 'public' ? 'Exercícios Públicos' : 'Meus Exercícios'} ({visibleExercises.length})</h2>
             </div>
 
             <div className="search-bar">
@@ -759,7 +759,7 @@ export function Workouts({ initialTab = 'exercises' }) {
               <div className="list-stack manage-list-stack">
                 {visibleExercises.map((exercise) => {
                   const hasMedia = Boolean(exercise.gif_library_path || exercise.gif_path || exercise.video_path || exercise.youtube_url);
-                  const canManageExercise = canManageWorkoutModel(user, exercise);
+                  const canManageExercise = user.role === 'admin' || (exercise.visibility === 'private' && exercise.owner_id === user.id);
                   return (
                   <article className="list-item manage-card manage-exercise-card" key={exercise.id}>
                     <div className="manage-card-body">
@@ -783,7 +783,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                           {exercise.gif_library_path ? <img className="exercise-media" src={gifLibraryFileUrl(exercise.gif_library_path)} alt={exercise.name} /> : null}
                           {!exercise.gif_library_path && exercise.gif_path ? <img className="exercise-media" src={fileUrl(exercise.gif_path)} alt={exercise.name} /> : null}
                           {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
-                          {exercise.youtube_url ? <iframe className="exercise-media" src={youtubeEmbedUrl(exercise.youtube_url)} title={exercise.name} referrerPolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" /> : null}
+                          {exercise.youtube_url ? <iframe className="exercise-media" src={youtubeEmbedUrl(exercise.youtube_url)} title={exercise.name} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" /> : null}
                           <div className="manage-media-actions">
                             <button type="button" className="action-btn" title="Adicionar a um treino" onClick={() => setExerciseForPlan(exercise)}><Plus size={16} /></button>
                             {canManageExercise ? <>
@@ -816,7 +816,7 @@ export function Workouts({ initialTab = 'exercises' }) {
       {/* ===================== ABA 2: TREINOS DIÁRIOS ===================== */}
       {tab === 'daily' ? (
         <>
-          <ManagementViewSelector value={dailyView} onChange={setDailyView} publicLabel="Treinos públicos" mineLabel={user.role === 'admin' ? 'Treinos privados' : 'Meus treinos'} createLabel="Novo treino" />
+          <ManagementViewSelector value={dailyView} onChange={setDailyView} publicLabel="Treinos públicos" mineLabel="Meus treinos" createLabel="Novo treino" />
           {dailyView !== 'create' ? (
             <button type="button" className="secondary-button plan-back-button plan-back-button-top" onClick={() => navigate('/treinos')}>
               <ArrowLeft size={16} />
@@ -869,22 +869,33 @@ export function Workouts({ initialTab = 'exercises' }) {
                         setSelectedExerciseForDaily('');
                       }}
                       publicLabel="Exercícios públicos"
-                      mineLabel={user.role === 'admin' ? 'Exercícios privados' : 'Meus exercícios'}
+                      mineLabel="Meus exercícios"
                       createLabel="Novo exercício"
                     />
                     <input name="exerciseId" type="hidden" value={selectedExerciseForDaily} readOnly />
                     <div className="daily-exercise-choice-grid">
-                      {availableDailyExercises.map((exercise) => (
-                        <button
-                          key={exercise.id}
-                          type="button"
-                          className={`daily-exercise-choice ${selectedExerciseForDaily === exercise.id ? 'active' : ''}`}
-                          onClick={() => setSelectedExerciseForDaily(exercise.id)}
-                        >
-                          <strong>{exercise.name}</strong>
-                          <span>{exercise.muscle_group || 'Geral'}</span>
-                        </button>
-                      ))}
+                      {availableDailyExercises.map((exercise) => {
+                        const imageUrl = exercise.gif_library_path
+                          ? gifLibraryFileUrl(exercise.gif_library_path)
+                          : exercise.gif_path
+                            ? fileUrl(exercise.gif_path)
+                            : null;
+                        return (
+                          <button
+                            key={exercise.id}
+                            type="button"
+                            className={`daily-exercise-choice ${selectedExerciseForDaily === exercise.id ? 'active' : ''}`}
+                            onClick={() => setSelectedExerciseForDaily(exercise.id)}
+                          >
+                            {imageUrl ? <img src={imageUrl} alt="" /> : <div className="daily-exercise-choice-placeholder"><Dumbbell size={21} /></div>}
+                            <div className="daily-exercise-choice-copy">
+                              <small>Exercício</small>
+                              <strong>{exercise.name}</strong>
+                              <span>{exercise.muscle_group || 'Geral'}</span>
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
                     {availableDailyExercises.length === 0 ? <small className="muted-small">Nenhum exercício disponível nesta lista.</small> : null}
                   </div>
@@ -904,7 +915,7 @@ export function Workouts({ initialTab = 'exercises' }) {
 
           <section className="panel" hidden={dailyView === 'create'}>
             <div className="section-title">
-              <h2>{dailyView === 'public' ? 'Treinos Públicos' : user.role === 'admin' ? 'Treinos Privados' : 'Meus Treinos'} ({visibleDailyWorkouts.length})</h2>
+              <h2>{dailyView === 'public' ? 'Treinos Públicos' : 'Meus Treinos'} ({visibleDailyWorkouts.length})</h2>
             </div>
 
             <div className="search-bar">
@@ -934,7 +945,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                       </div>
                       <div className="manage-badge-and-actions">
                         <StatusBadge value={workout.visibility} />
-                        {canManageWorkoutModel(user, workout) ? <div className="card-actions">
+                        <div className="card-actions">
                           <button
                             type="button"
                             className="action-btn btn-edit"
@@ -951,7 +962,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                           >
                             <Trash2 size={16} />
                           </button>
-                        </div> : null}
+                        </div>
                       </div>
                     </div>
 
@@ -991,7 +1002,7 @@ export function Workouts({ initialTab = 'exercises' }) {
       {/* ===================== ABA 3: PLANOS SEMANAIS ===================== */}
       {tab === 'weekly' ? (
         <>
-          <ManagementViewSelector value={weeklyView} onChange={setWeeklyView} publicLabel="Planos públicos" mineLabel={user.role === 'admin' ? 'Planos privados' : 'Meus planos'} createLabel="Criar plano" />
+          <ManagementViewSelector value={weeklyView} onChange={setWeeklyView} publicLabel="Planos públicos" mineLabel="Meus planos" createLabel="Criar plano" />
           {weeklyView !== 'create' ? (
             <button type="button" className="secondary-button plan-back-button plan-back-button-top" onClick={() => navigate('/treinos')}>
               <ArrowLeft size={16} />
@@ -1049,7 +1060,7 @@ export function Workouts({ initialTab = 'exercises' }) {
 
           <section className="panel" hidden={weeklyView === 'create'}>
             <div className="section-title">
-              <h2>{weeklyView === 'public' ? 'Planos Públicos' : user.role === 'admin' ? 'Planos Privados' : 'Meus Planos'} ({visibleWeeklyPlans.length})</h2>
+              <h2>{weeklyView === 'public' ? 'Planos Públicos' : 'Meus Planos'} ({visibleWeeklyPlans.length})</h2>
             </div>
 
             <div className="search-bar">
@@ -1079,7 +1090,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                       </div>
                       <div className="manage-badge-and-actions">
                         <StatusBadge value={plan.visibility} />
-                        {canManageWorkoutModel(user, plan) ? <div className="card-actions">
+                        <div className="card-actions">
                           <button
                             type="button"
                             className="action-btn btn-edit"
@@ -1096,7 +1107,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                           >
                             <Trash2 size={16} />
                           </button>
-                        </div> : null}
+                        </div>
                       </div>
                     </div>
 

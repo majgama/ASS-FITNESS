@@ -601,30 +601,44 @@ textarea:focus {
   font-size: 14px;
 }
 
-.student-roster-name {
-  display: grid;
-  gap: 5px;
-}
-
+.student-roster-name,
 .student-roster-progress {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 8px;
+  gap: 5px;
 }
 
 .student-roster-name strong {
   font-size: 16px;
 }
 
-.student-roster-progress span {
+.student-roster-progress span,
+.student-roster-progress small {
   color: var(--muted);
   font-size: 11px;
   font-weight: 700;
 }
 
 .student-roster-progress strong {
+  justify-self: end;
+  margin-top: -21px;
   font-size: 14px;
+}
+
+.student-roster-progress i,
+.progress-track {
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7e1d4;
+}
+
+.student-roster-progress i b,
+.progress-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #c49b4e;
 }
 
 .student-roster-chevron {
@@ -2215,8 +2229,6 @@ iframe.exercise-media {
 /* Athlon Coach dark management theme */
 :root {
   color-scheme: dark;
-  background: #0b0d0d;
-  color: var(--text);
   --bg: #0b0d0d;
   --surface: #151817;
   --surface-muted: #222624;
@@ -2273,42 +2285,8 @@ body {
   color: var(--text);
 }
 
-.menu-toggle {
-  background: #000000;
-  border-color: var(--blue);
-  color: var(--blue);
-  flex-shrink: 0;
-}
-
-.menu-toggle:hover {
-  border-color: var(--blue-strong);
-  color: var(--blue-strong);
-}
-
-.menu-toggle:focus-visible {
-  outline: 2px solid var(--blue-strong);
-  outline-offset: 3px;
-}
-
-label {
-  color: var(--text);
-}
-
-.page-heading span,
-.student-management-profile > div:last-child > span,
-.management-card > span,
-.management-panel-title svg,
-.back-link,
-.management-panel > a {
-  color: var(--blue);
-}
-
-.manage-sublabel {
-  color: var(--muted);
-}
-
-.student-roster-item:hover {
-  background: var(--surface-muted);
+.page-heading span {
+  color: #e7b94f;
 }
 
 .panel,
@@ -2514,11 +2492,12 @@ textarea::placeholder {
 }
 
 .daily-exercise-choice {
-  min-height: 76px;
+  min-height: 82px;
   display: grid;
-  align-content: center;
-  gap: 5px;
-  padding: 11px;
+  grid-template-columns: 66px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
   text-align: left;
   border: 1px solid #3d433e;
   border-radius: 7px;
@@ -2526,11 +2505,41 @@ textarea::placeholder {
   color: #f4f2ea;
 }
 
-.daily-exercise-choice strong {
-  font-size: 13px;
+.daily-exercise-choice img,
+.daily-exercise-choice-placeholder {
+  width: 66px;
+  height: 66px;
+  border-radius: 5px;
+  object-fit: cover;
+  background: #ffffff;
 }
 
-.daily-exercise-choice span {
+.daily-exercise-choice-placeholder {
+  display: grid;
+  place-items: center;
+  color: #d9b86c;
+  background: #202421;
+}
+
+.daily-exercise-choice-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.daily-exercise-choice-copy small {
+  color: #d9b86c;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.daily-exercise-choice-copy strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.daily-exercise-choice-copy span {
   color: #a9aea5;
   font-size: 11px;
 }
@@ -2541,7 +2550,7 @@ textarea::placeholder {
   background: rgba(231, 185, 79, 0.14);
 }
 
-.daily-exercise-choice.active span {
+.daily-exercise-choice.active .daily-exercise-choice-copy span {
   color: #ffe09a;
 }
 
