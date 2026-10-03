@@ -529,7 +529,7 @@ textarea:focus {
 }
 
 .alert-success {
-  background: var(--green-soft);
+  background: #ffffff;
   border-color: #bbf7d0;
   color: #166534;
 }

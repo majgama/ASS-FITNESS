@@ -169,6 +169,10 @@ export function Workouts({ initialTab = 'exercises' }) {
     setTab(initialTab);
   }, [initialTab]);
 
+  useEffect(() => {
+    setNotice('');
+  }, [tab, exerciseView, dailyView, weeklyView, dailyExerciseView]);
+
   async function load() {
     setError('');
     try {
