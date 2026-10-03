@@ -161,7 +161,7 @@ export function Workouts({ initialTab = 'exercises' }) {
   const editFormRef = useRef(null);
   const [editingDaily, setEditingDaily] = useState(null);
   const [editingWeekly, setEditingWeekly] = useState(null);
-  const [exerciseForPlan, setExerciseForPlan] = useState(null);
+  const [exerciseForWorkout, setExerciseForWorkout] = useState(null);
 
   const canCreatePublic = user.role === 'admin';
 
@@ -282,9 +282,9 @@ export function Workouts({ initialTab = 'exercises' }) {
     dailyExerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
   )), [dailyExerciseView, exercises, user.id]);
 
-  const editableWeeklyPlans = useMemo(() => weeklyPlans.filter((plan) => (
-    user.role === 'admin' || plan.owner_id === user.id
-  )), [user.id, user.role, weeklyPlans]);
+  const ownedDailyWorkouts = useMemo(() => dailyWorkouts.filter((workout) => (
+    workout.owner_id === user.id
+  )), [dailyWorkouts, user.id]);
 
   // Exercise Handlers
   async function createExercise(event) {
@@ -396,25 +396,25 @@ export function Workouts({ initialTab = 'exercises' }) {
     }
   }
 
-  async function addExerciseToPlanWorkout(plan, day) {
-    if (!exerciseForPlan || !day.dailyWorkoutId) return;
+  async function addExerciseToOwnedWorkout(workout) {
+    if (!exerciseForWorkout) return;
     setError('');
-    const restSeconds = Number(exerciseForPlan.default_rest_seconds);
+    const restSeconds = Number(exerciseForWorkout.default_rest_seconds);
     try {
-      await api(`/workouts/daily/${day.dailyWorkoutId}/exercises`, {
+      await api(`/workouts/daily/${workout.id}/exercises`, {
         method: 'POST',
         body: {
-          exerciseId: exerciseForPlan.id,
+          exerciseId: exerciseForWorkout.id,
           position: 0,
-          sets: exerciseForPlan.default_sets || null,
-          repetitions: exerciseForPlan.default_repetitions || null,
-          load: exerciseForPlan.default_load || null,
+          sets: exerciseForWorkout.default_sets || null,
+          repetitions: exerciseForWorkout.default_repetitions || null,
+          load: exerciseForWorkout.default_load || null,
           restSeconds: Number.isFinite(restSeconds) ? restSeconds : null,
-          notes: exerciseForPlan.observations || null
+          notes: exerciseForWorkout.observations || null
         }
       });
-      setExerciseForPlan(null);
-      setNotice(`${exerciseForPlan.name} foi adicionado ao treino ${day.dailyWorkoutName}.`);
+      setExerciseForWorkout(null);
+      setNotice(`${exerciseForWorkout.name} foi adicionado ao treino ${workout.name}.`);
       await load();
     } catch (err) {
       setError(err.message);
@@ -773,7 +773,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                         {!hasMedia ? <StatusBadge value={exercise.visibility} /> : null}
                         {!hasMedia ? (
                           <div className="card-actions">
-                            <button type="button" className="action-btn" title="Adicionar a um treino" onClick={() => setExerciseForPlan(exercise)}><Plus size={16} /></button>
+                            <button type="button" className="action-btn" title="Adicionar a um treino" onClick={() => setExerciseForWorkout(exercise)}><Plus size={16} /></button>
                             {canManageExercise ? <>
                             <button type="button" className="action-btn btn-edit" title="Editar exercício" onClick={() => openEditExercise(exercise)}><Pencil size={16} /></button>
                             <button type="button" className="action-btn btn-delete" title="Excluir exercício" onClick={() => deleteExercise(exercise.id, exercise.name)}><Trash2 size={16} /></button>
@@ -789,7 +789,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                           {exercise.video_path ? <video className="exercise-media" src={fileUrl(exercise.video_path)} controls muted playsInline /> : null}
                           {exercise.youtube_url ? <iframe className="exercise-media" src={youtubeEmbedUrl(exercise.youtube_url)} title={exercise.name} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" /> : null}
                           <div className="manage-media-actions">
-                            <button type="button" className="action-btn" title="Adicionar a um treino" onClick={() => setExerciseForPlan(exercise)}><Plus size={16} /></button>
+                            <button type="button" className="action-btn" title="Adicionar a um treino" onClick={() => setExerciseForWorkout(exercise)}><Plus size={16} /></button>
                             {canManageExercise ? <>
                             <button type="button" className="action-btn btn-edit" title="Editar exercício" onClick={() => openEditExercise(exercise)}><Pencil size={16} /></button>
                             <button type="button" className="action-btn btn-delete" title="Excluir exercício" onClick={() => deleteExercise(exercise.id, exercise.name)}><Trash2 size={16} /></button>
@@ -1174,29 +1174,21 @@ export function Workouts({ initialTab = 'exercises' }) {
         </section>
       ) : null}
 
-      <Modal title={`Adicionar ${exerciseForPlan?.name || 'exercício'} a um plano`} open={Boolean(exerciseForPlan)} onClose={() => setExerciseForPlan(null)}>
-        {editableWeeklyPlans.length === 0 ? (
-          <div className="empty-state">Nenhum plano próprio disponível. Crie um plano e vincule um treino diário para adicionar exercícios.</div>
+      <Modal title={`Adicionar ${exerciseForWorkout?.name || 'exercício'} a um treino`} open={Boolean(exerciseForWorkout)} onClose={() => setExerciseForWorkout(null)}>
+        {ownedDailyWorkouts.length === 0 ? (
+          <div className="empty-state">Nenhum treino próprio disponível. Crie um treino diário para adicionar exercícios.</div>
         ) : (
           <div className="plan-target-list">
-            {editableWeeklyPlans.map((plan) => {
-              const planDays = (plan.days || []).filter((day) => day.dailyWorkoutId);
-              return (
-                <article className="plan-target-card" key={plan.id}>
-                  <strong>{plan.name}</strong>
-                  {planDays.length === 0 ? <span className="muted-small">Este plano não possui treinos vinculados.</span> : (
-                    <div className="plan-target-days">
-                      {planDays.map((day) => (
-                        <button key={`${plan.id}-${day.dayOfWeek}`} type="button" onClick={() => addExerciseToPlanWorkout(plan, day)}>
-                          <small>{weekDays[Number(day.dayOfWeek)]}</small>
-                          <strong>{day.dailyWorkoutName}</strong>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </article>
-              );
-            })}
+            {ownedDailyWorkouts.map((workout) => (
+              <article className="plan-target-card" key={workout.id}>
+                <div className="plan-target-days">
+                  <button type="button" onClick={() => addExerciseToOwnedWorkout(workout)}>
+                    <strong>{workout.name}</strong>
+                    {workout.description ? <small>{workout.description}</small> : null}
+                  </button>
+                </div>
+              </article>
+            ))}
           </div>
         )}
       </Modal>
