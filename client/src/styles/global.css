@@ -861,10 +861,14 @@ th {
   color: #465266;
 }
 
-.badge-active,
-.badge-public {
+.badge-active {
   background: var(--green-soft);
   color: #166534;
+}
+
+.badge-public {
+  background: var(--green-soft);
+  color: #ffd979;
 }
 
 .badge-inactive,
@@ -1912,13 +1916,11 @@ iframe.exercise-media {
   color: #f5f3ec;
 }
 
-.manage-daily-card .manage-header-row {
-  display: grid;
-  justify-content: stretch;
-}
-
-.manage-daily-card .manage-badge-and-actions {
+.manage-card-footer {
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 10px;
 }
 
 .manage-badge-and-actions {

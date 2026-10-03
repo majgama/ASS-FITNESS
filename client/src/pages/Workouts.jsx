@@ -943,27 +943,6 @@ export function Workouts({ initialTab = 'exercises' }) {
                 {visibleDailyWorkouts.map((workout) => (
                   <article className="panel sub-panel-manage manage-card manage-daily-card" key={workout.id}>
                     <div className="manage-header-row">
-                      <div className="manage-badge-and-actions">
-                        <StatusBadge value={workout.visibility} />
-                        <div className="card-actions">
-                          <button
-                            type="button"
-                            className="action-btn btn-edit"
-                            title="Editar treino diário"
-                            onClick={() => setEditingDaily(workout)}
-                          >
-                            <Pencil size={16} />
-                          </button>
-                          <button
-                            type="button"
-                            className="action-btn btn-delete"
-                            title="Excluir treino diário"
-                            onClick={() => deleteDailyWorkout(workout.id, workout.name)}
-                          >
-                            <Trash2 size={16} />
-                          </button>
-                        </div>
-                      </div>
                       <strong>{workout.name}</strong>
                     </div>
 
@@ -992,6 +971,28 @@ export function Workouts({ initialTab = 'exercises' }) {
                           ))}
                         </div>
                       )}
+
+                      <div className="manage-card-footer">
+                        <StatusBadge value={workout.visibility} />
+                        <div className="card-actions">
+                          <button
+                            type="button"
+                            className="action-btn btn-edit"
+                            title="Editar treino diário"
+                            onClick={() => setEditingDaily(workout)}
+                          >
+                            <Pencil size={16} />
+                          </button>
+                          <button
+                            type="button"
+                            className="action-btn btn-delete"
+                            title="Excluir treino diário"
+                            onClick={() => deleteDailyWorkout(workout.id, workout.name)}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </article>
                 ))}
@@ -1087,32 +1088,10 @@ export function Workouts({ initialTab = 'exercises' }) {
                 {visibleWeeklyPlans.map((plan) => (
                   <article className="panel sub-panel-manage manage-card manage-weekly-card" key={plan.id}>
                     <div className="manage-header-row">
-                      <div>
-                        <strong>{plan.name}</strong>
-                        {plan.description ? <p className="manage-desc">{plan.description}</p> : null}
-                      </div>
-                      <div className="manage-badge-and-actions">
-                        <StatusBadge value={plan.visibility} />
-                        <div className="card-actions">
-                          <button
-                            type="button"
-                            className="action-btn btn-edit"
-                            title="Editar plano semanal"
-                            onClick={() => openEditWeekly(plan)}
-                          >
-                            <Pencil size={16} />
-                          </button>
-                          <button
-                            type="button"
-                            className="action-btn btn-delete"
-                            title="Excluir plano semanal"
-                            onClick={() => deleteWeeklyPlan(plan.id, plan.name)}
-                          >
-                            <Trash2 size={16} />
-                          </button>
-                        </div>
-                      </div>
+                      <strong>{plan.name}</strong>
                     </div>
+
+                    {plan.description ? <p className="manage-desc">{plan.description}</p> : null}
 
                     <div className="plan-days-summary">
                       {weekDays.map((dayName, idx) => {
@@ -1126,6 +1105,27 @@ export function Workouts({ initialTab = 'exercises' }) {
                           </div>
                         );
                       })}
+                    </div>
+                    <div className="manage-card-footer">
+                      <StatusBadge value={plan.visibility} />
+                      <div className="card-actions">
+                        <button
+                          type="button"
+                          className="action-btn btn-edit"
+                          title="Editar plano semanal"
+                          onClick={() => openEditWeekly(plan)}
+                        >
+                          <Pencil size={16} />
+                        </button>
+                        <button
+                          type="button"
+                          className="action-btn btn-delete"
+                          title="Excluir plano semanal"
+                          onClick={() => deleteWeeklyPlan(plan.id, plan.name)}
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
                     </div>
                     <button
                       type="button"
