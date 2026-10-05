@@ -29,7 +29,19 @@ async function query(sql, params = []) {
       name: 'Treino de teste',
       visibility,
       owner_id: ownerId,
-      exercises: [{ id: relationId, exerciseId, exerciseName: 'Agachamento', position: 1, sets: '4', repetitions: '10', load: null, restSeconds: 60, notes: null }]
+      exercises: [{
+        id: relationId,
+        exerciseId,
+        exerciseName: 'Agachamento',
+        position: 1,
+        sets: '4',
+        repetitions: '10',
+        load: null,
+        restSeconds: 60,
+        notes: null,
+        gifPath: 'agachamento.gif',
+        gifLibraryPath: 'library-gif-id'
+      }]
     }] : [];
     return { rowCount: rows.length, rows };
   }
@@ -95,12 +107,16 @@ test('daily workouts endpoint returns linked exercises and prescription fields f
     repetitions: '10',
     load: null,
     restSeconds: 60,
-    notes: null
+    notes: null,
+    gifPath: 'agachamento.gif',
+    gifLibraryPath: 'library-gif-id'
   }]);
   const listQuery = queries.find(({ sql }) => sql.includes('FROM daily_workouts dw'));
   assert.match(listQuery.sql, /json_agg/);
   assert.match(listQuery.sql, /LEFT JOIN daily_workout_exercises/);
   assert.match(listQuery.sql, /dw\.visibility = 'public' OR dw\.owner_id = \$1/);
+  assert.match(listQuery.sql, /'gifPath', e\.gif_path/);
+  assert.match(listQuery.sql, /'gifLibraryPath', e\.gif_library_path/);
 });
 
 test('admin can read private workouts while other roles cannot', async () => {

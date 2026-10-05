@@ -1971,6 +1971,47 @@ iframe.exercise-media {
   background: #171b19;
 }
 
+.daily-workout-exercise-main {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+
+.daily-workout-exercise-thumbnail {
+  position: relative;
+  width: 96px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #3a403b;
+  border-radius: 6px;
+  background: #202421;
+}
+
+.daily-workout-exercise-thumbnail img,
+.daily-workout-exercise-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.daily-workout-exercise-thumbnail img {
+  object-fit: cover;
+}
+
+.daily-workout-exercise-placeholder {
+  display: grid;
+  place-items: center;
+  color: #d9b86c;
+}
+
+.daily-workout-exercise-content {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
 .daily-workout-exercise-heading {
   display: flex;
   justify-content: space-between;
@@ -2046,6 +2087,15 @@ iframe.exercise-media {
 
   .daily-workout-exercise-heading {
     align-items: flex-start;
+  }
+
+  .daily-workout-exercise-main {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .daily-workout-exercise-thumbnail {
+    width: 72px;
   }
 
   .daily-workout-exercise-heading .card-actions {

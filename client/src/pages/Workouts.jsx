@@ -1020,59 +1020,83 @@ export function Workouts({ initialTab = 'exercises' }) {
                         <span className="muted-small">Nenhum exercício vinculado ainda.{canEditWorkout ? ' Use “Adicionar exercício” para montar este treino.' : ''}</span>
                       ) : (
                         <div className="daily-workout-exercises">
-                          {workout.exercises.map((item) => (
-                            <section className="daily-workout-exercise" key={item.id}>
-                              <div className="daily-workout-exercise-heading">
-                                <div>
-                                  <strong>{item.position}. {item.exerciseName}</strong>
-                                  <span>{item.muscleGroup || 'Grupo muscular não informado'}</span>
+                          {workout.exercises.map((item) => {
+                            const imageUrl = item.gifLibraryPath
+                              ? gifLibraryFileUrl(item.gifLibraryPath)
+                              : item.gifPath
+                                ? fileUrl(item.gifPath)
+                                : null;
+                            return (
+                              <section className="daily-workout-exercise" key={item.id}>
+                                <div className="daily-workout-exercise-main">
+                                  <div className="daily-workout-exercise-thumbnail">
+                                    <div className="daily-workout-exercise-placeholder" aria-hidden="true">
+                                      <Dumbbell size={24} />
+                                    </div>
+                                    {imageUrl ? (
+                                      <img
+                                        src={imageUrl}
+                                        alt={`Demonstração de ${item.exerciseName}`}
+                                        loading="lazy"
+                                        onError={(event) => { event.currentTarget.hidden = true; }}
+                                      />
+                                    ) : null}
+                                  </div>
+                                  <div className="daily-workout-exercise-content">
+                                    <div className="daily-workout-exercise-heading">
+                                      <div>
+                                        <strong>{item.position}. {item.exerciseName}</strong>
+                                        <span>{item.muscleGroup || 'Grupo muscular não informado'}</span>
+                                      </div>
+                                      {canEditWorkout ? (
+                                        <div className="card-actions">
+                                          <button
+                                            type="button"
+                                            className="action-btn btn-edit"
+                                            title={`Editar ${item.exerciseName} no treino`}
+                                            aria-label={`Editar ${item.exerciseName} no treino`}
+                                            onClick={() => setEditingDailyExerciseId((current) => current === item.id ? '' : item.id)}
+                                          >
+                                            <Pencil size={16} />
+                                          </button>
+                                          <button
+                                            type="button"
+                                            className="action-btn btn-delete"
+                                            title={`Remover ${item.exerciseName} do treino`}
+                                            aria-label={`Remover ${item.exerciseName} do treino`}
+                                            onClick={() => removeExerciseFromDaily(workout.id, item.id, item.exerciseName)}
+                                          >
+                                            <Trash2 size={16} />
+                                          </button>
+                                        </div>
+                                      ) : null}
+                                    </div>
+                                    <div className="daily-workout-exercise-meta">
+                                      <span>{item.sets || '—'} séries</span>
+                                      <span>{item.repetitions || '—'} repetições</span>
+                                      {item.load ? <span>Carga: {item.load}</span> : null}
+                                      {item.restSeconds !== null && item.restSeconds !== undefined ? <span>Descanso: {item.restSeconds}s</span> : null}
+                                    </div>
+                                    {item.notes ? <p>{item.notes}</p> : null}
+                                  </div>
                                 </div>
-                                {canEditWorkout ? (
-                                  <div className="card-actions">
-                                    <button
-                                      type="button"
-                                      className="action-btn btn-edit"
-                                      title={`Editar ${item.exerciseName} no treino`}
-                                      aria-label={`Editar ${item.exerciseName} no treino`}
-                                      onClick={() => setEditingDailyExerciseId((current) => current === item.id ? '' : item.id)}
-                                    >
-                                      <Pencil size={16} />
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="action-btn btn-delete"
-                                      title={`Remover ${item.exerciseName} do treino`}
-                                      aria-label={`Remover ${item.exerciseName} do treino`}
-                                      onClick={() => removeExerciseFromDaily(workout.id, item.id, item.exerciseName)}
-                                    >
-                                      <Trash2 size={16} />
-                                    </button>
-                                  </div>
+                                {editingDailyExerciseId === item.id ? (
+                                  <form className="daily-workout-exercise-form" onSubmit={(event) => updateExerciseInDailyCard(event, workout, item)}>
+                                    <label>Ordem<input name="position" type="number" min="0" defaultValue={item.position} required /></label>
+                                    <label>Séries<input name="sets" defaultValue={item.sets || ''} /></label>
+                                    <label>Repetições<input name="repetitions" defaultValue={item.repetitions || ''} /></label>
+                                    <label>Carga<input name="load" defaultValue={item.load || ''} /></label>
+                                    <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue={item.restSeconds ?? ''} /></label>
+                                    <label className="wide">Observações<textarea name="notes" rows="2" defaultValue={item.notes || ''} /></label>
+                                    <div className="daily-workout-exercise-form-actions">
+                                      <button type="submit" className="primary-button fit-button"><Save size={15} />Salvar exercício</button>
+                                      <button type="button" className="secondary-button fit-button" onClick={() => setEditingDailyExerciseId('')}>Cancelar</button>
+                                    </div>
+                                  </form>
                                 ) : null}
-                              </div>
-                              <div className="daily-workout-exercise-meta">
-                                <span>{item.sets || '—'} séries</span>
-                                <span>{item.repetitions || '—'} repetições</span>
-                                {item.load ? <span>Carga: {item.load}</span> : null}
-                                {item.restSeconds !== null && item.restSeconds !== undefined ? <span>Descanso: {item.restSeconds}s</span> : null}
-                              </div>
-                              {item.notes ? <p>{item.notes}</p> : null}
-                              {editingDailyExerciseId === item.id ? (
-                                <form className="daily-workout-exercise-form" onSubmit={(event) => updateExerciseInDailyCard(event, workout, item)}>
-                                  <label>Ordem<input name="position" type="number" min="0" defaultValue={item.position} required /></label>
-                                  <label>Séries<input name="sets" defaultValue={item.sets || ''} /></label>
-                                  <label>Repetições<input name="repetitions" defaultValue={item.repetitions || ''} /></label>
-                                  <label>Carga<input name="load" defaultValue={item.load || ''} /></label>
-                                  <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue={item.restSeconds ?? ''} /></label>
-                                  <label className="wide">Observações<textarea name="notes" rows="2" defaultValue={item.notes || ''} /></label>
-                                  <div className="daily-workout-exercise-form-actions">
-                                    <button type="submit" className="primary-button fit-button"><Save size={15} />Salvar exercício</button>
-                                    <button type="button" className="secondary-button fit-button" onClick={() => setEditingDailyExerciseId('')}>Cancelar</button>
-                                  </div>
-                                </form>
-                              ) : null}
-                            </section>
-                          ))}
+                              </section>
+                            );
+                          })}
                         </div>
                       )}
 
