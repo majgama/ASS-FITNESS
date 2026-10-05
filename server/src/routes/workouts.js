@@ -104,21 +104,50 @@ function assertWorkoutVisible(user, workout) {
 
 workoutsRouter.get('/daily', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
   const params = [];
-  let where = "visibility = 'public'";
+  let where = "dw.visibility = 'public'";
   if (req.user.role === 'admin') {
     where = 'true';
   } else {
     params.push(req.user.id);
-    where = `(visibility = 'public' OR owner_id = $${params.length})`;
+    where = `(dw.visibility = 'public' OR dw.owner_id = $${params.length})`;
   }
 
   if (req.query.search) {
     params.push(`%${req.query.search}%`);
-    where += ` AND (name ILIKE $${params.length} OR description ILIKE $${params.length})`;
+    where += ` AND (dw.name ILIKE $${params.length} OR dw.description ILIKE $${params.length})`;
   }
 
   const result = await query(
-    `SELECT * FROM daily_workouts WHERE ${where} ORDER BY created_at DESC`,
+    `SELECT dw.*,
+            COALESCE(
+              json_agg(
+                json_build_object(
+                  'id', dwe.id,
+                  'exerciseId', e.id,
+                  'exerciseName', e.name,
+                  'muscleGroup', e.muscle_group,
+                  'position', dwe.position,
+                  'sets', dwe.sets,
+                  'repetitions', dwe.repetitions,
+                  'load', dwe.load,
+                  'restSeconds', dwe.rest_seconds,
+                  'notes', dwe.notes,
+                  'youtubeUrl', e.youtube_url,
+                  'videoPath', e.video_path,
+                  'gifPath', e.gif_path,
+                  'gifLibraryPath', e.gif_library_path,
+                  'audioPath', e.audio_path
+                )
+                ORDER BY dwe.position, dwe.created_at, dwe.id
+              ) FILTER (WHERE dwe.id IS NOT NULL),
+              '[]'
+            ) AS exercises
+     FROM daily_workouts dw
+     LEFT JOIN daily_workout_exercises dwe ON dwe.daily_workout_id = dw.id
+     LEFT JOIN exercises e ON e.id = dwe.exercise_id
+     WHERE ${where}
+     GROUP BY dw.id
+     ORDER BY dw.created_at DESC`,
     params
   );
   res.json({ dailyWorkouts: result.rows });
@@ -189,6 +218,52 @@ workoutsRouter.delete('/daily/:id/exercises/:exerciseRelId', requireRoles('admin
 
   await query('DELETE FROM daily_workout_exercises WHERE id = $1 AND daily_workout_id = $2', [req.params.exerciseRelId, req.params.id]);
   res.status(204).send();
+}));
+
+const workoutExerciseUpdateSchema = z.object({
+  position: z.coerce.number().int().optional(),
+  sets: z.string().trim().optional().nullable(),
+  repetitions: z.string().trim().optional().nullable(),
+  load: z.string().trim().optional().nullable(),
+  restSeconds: z.coerce.number().int().nonnegative().optional().nullable(),
+  notes: z.string().trim().optional().nullable()
+}).partial();
+
+workoutsRouter.patch('/daily/:id/exercises/:exerciseRelId', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const payload = parseBody(workoutExerciseUpdateSchema, req.body);
+  const result = await withTransaction(async (client) => {
+    const workout = await fetchDailyWorkout(client, req.params.id);
+    if (!editableModel(req.user, workout)) throw forbidden('Voce nao pode editar este treino.');
+    const updated = await client.query(
+      `UPDATE daily_workout_exercises
+       SET position = COALESCE($3, position),
+           sets = CASE WHEN $4::boolean THEN $5 ELSE sets END,
+           repetitions = CASE WHEN $6::boolean THEN $7 ELSE repetitions END,
+           load = CASE WHEN $8::boolean THEN $9 ELSE load END,
+           rest_seconds = CASE WHEN $10::boolean THEN $11 ELSE rest_seconds END,
+           notes = CASE WHEN $12::boolean THEN $13 ELSE notes END
+       WHERE daily_workout_id = $1 AND id = $2
+       RETURNING *`,
+      [
+        req.params.id,
+        req.params.exerciseRelId,
+        payload.position ?? null,
+        payload.sets !== undefined,
+        payload.sets || null,
+        payload.repetitions !== undefined,
+        payload.repetitions || null,
+        payload.load !== undefined,
+        payload.load || null,
+        payload.restSeconds !== undefined,
+        payload.restSeconds ?? null,
+        payload.notes !== undefined,
+        payload.notes || null
+      ]
+    );
+    if (updated.rowCount === 0) throw notFound('Exercicio nao encontrado neste treino.');
+    return updated.rows[0];
+  });
+  res.json({ workoutExercise: result });
 }));
 
 const workoutExerciseSchema = z.object({

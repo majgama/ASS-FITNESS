@@ -24,6 +24,7 @@ Os players do YouTube usam `strict-origin-when-cross-origin` nos frames e no hea
 - Em **Alunos** ou **Administracao**, o administrador pode excluir permanentemente um aluno e seus dados vinculados.
 - Em **Administracao**, pode excluir um personal. Os alunos e os planos ja aplicados permanecem, mas o vinculo com esse personal e seus modelos privados de exercicios, treinos, planos e dietas sao removidos. Exercicios privados tambem sao retirados dos modelos que os utilizam. Os modelos publicos permanecem.
 - Em **Treinos**, o administrador pode excluir exercicios, treinos diarios e planos semanais publicos ou privados de qualquer personal. As abas de modelos privados mostram todos os proprietarios ao administrador.
+- Nos cards de treinos diarios, os exercicios vinculados e suas series, repeticoes, carga, descanso e observacoes aparecem diretamente. Administradores e proprietarios dos treinos podem adicionar exercicios pelo card, editar sua prescricao ou remove-los.
 - As exclusoes exigem confirmacao na interface e permissao no servidor. Personais nao podem excluir contas de alunos ou de outros personais.
 - Planos aplicados sao snapshots e mantem seus dados e acesso a midias quando um modelo ou personal e excluido. Arquivos fisicos nao sao removidos por essas exclusoes.
 

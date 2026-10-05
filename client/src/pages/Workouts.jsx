@@ -139,6 +139,8 @@ export function Workouts({ initialTab = 'exercises' }) {
   const [weeklyPlans, setWeeklyPlans] = useState([]);
   const [students, setStudents] = useState([]);
   const [selectedDailyWorkout, setSelectedDailyWorkout] = useState('');
+  const [addingExerciseToDailyId, setAddingExerciseToDailyId] = useState('');
+  const [editingDailyExerciseId, setEditingDailyExerciseId] = useState('');
   const [selectedPlan, setSelectedPlan] = useState('');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
@@ -508,6 +510,55 @@ export function Workouts({ initialTab = 'exercises' }) {
       formElement.reset();
       setSelectedExerciseForDaily('');
       setNotice('Exercício adicionado ao treino diário.');
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function addExerciseToDailyCard(event, workout) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    setError('');
+    try {
+      await api(`/workouts/daily/${workout.id}/exercises`, {
+        method: 'POST',
+        body: {
+          exerciseId: form.get('exerciseId'),
+          position: Number(form.get('position') || 0),
+          sets: form.get('sets') || null,
+          repetitions: form.get('repetitions') || null,
+          load: form.get('load') || null,
+          restSeconds: form.get('restSeconds') === '' ? null : Number(form.get('restSeconds')),
+          notes: form.get('notes') || null
+        }
+      });
+      setAddingExerciseToDailyId('');
+      setNotice('Exercício adicionado ao treino.');
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function updateExerciseInDailyCard(event, workout, item) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    setError('');
+    try {
+      await api(`/workouts/daily/${workout.id}/exercises/${item.id}`, {
+        method: 'PATCH',
+        body: {
+          position: Number(form.get('position') || 0),
+          sets: form.get('sets') || null,
+          repetitions: form.get('repetitions') || null,
+          load: form.get('load') || null,
+          restSeconds: form.get('restSeconds') === '' ? null : Number(form.get('restSeconds')),
+          notes: form.get('notes') || null
+        }
+      });
+      setEditingDailyExerciseId('');
+      setNotice(`${item.exerciseName} atualizado no treino.`);
       await load();
     } catch (err) {
       setError(err.message);
@@ -940,10 +991,23 @@ export function Workouts({ initialTab = 'exercises' }) {
               <div className="empty-state">Nenhum treino diário encontrado.</div>
             ) : (
               <div className="list-stack">
-                {visibleDailyWorkouts.map((workout) => (
+                {visibleDailyWorkouts.map((workout) => {
+                  const canEditWorkout = user.role === 'admin'
+                    || (workout.visibility === 'private' && workout.owner_id === user.id);
+                  return (
                   <article className="panel sub-panel-manage manage-card manage-daily-card" key={workout.id}>
                     <div className="manage-header-row">
                       <strong>{workout.name}</strong>
+                      {canEditWorkout ? (
+                        <button
+                          type="button"
+                          className="secondary-button fit-button"
+                          onClick={() => setAddingExerciseToDailyId((current) => current === workout.id ? '' : workout.id)}
+                        >
+                          <Plus size={16} />
+                          Adicionar exercício
+                        </button>
+                      ) : null}
                     </div>
 
                     {workout.description ? <p className="manage-desc">{workout.description}</p> : null}
@@ -953,28 +1017,89 @@ export function Workouts({ initialTab = 'exercises' }) {
                         Exercícios ({workout.exercises?.length || 0}):
                       </small>
                       {(!workout.exercises || workout.exercises.length === 0) ? (
-                        <span className="muted-small">Nenhum exercício vinculado ainda. Use o formulário ao lado para adicionar.</span>
+                        <span className="muted-small">Nenhum exercício vinculado ainda.{canEditWorkout ? ' Use “Adicionar exercício” para montar este treino.' : ''}</span>
                       ) : (
-                        <div className="subexercises-tags">
+                        <div className="daily-workout-exercises">
                           {workout.exercises.map((item) => (
-                            <div className="exercise-tag-pill" key={item.id}>
-                              <span>{item.exerciseName} ({item.sets || '4'}x{item.repetitions || '12'})</span>
-                              <button
-                                type="button"
-                                className="tag-remove-btn"
-                                title="Remover exercício do treino"
-                                onClick={() => removeExerciseFromDaily(workout.id, item.id, item.exerciseName)}
-                              >
-                                <X size={13} />
-                              </button>
-                            </div>
+                            <section className="daily-workout-exercise" key={item.id}>
+                              <div className="daily-workout-exercise-heading">
+                                <div>
+                                  <strong>{item.position}. {item.exerciseName}</strong>
+                                  <span>{item.muscleGroup || 'Grupo muscular não informado'}</span>
+                                </div>
+                                {canEditWorkout ? (
+                                  <div className="card-actions">
+                                    <button
+                                      type="button"
+                                      className="action-btn btn-edit"
+                                      title={`Editar ${item.exerciseName} no treino`}
+                                      aria-label={`Editar ${item.exerciseName} no treino`}
+                                      onClick={() => setEditingDailyExerciseId((current) => current === item.id ? '' : item.id)}
+                                    >
+                                      <Pencil size={16} />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="action-btn btn-delete"
+                                      title={`Remover ${item.exerciseName} do treino`}
+                                      aria-label={`Remover ${item.exerciseName} do treino`}
+                                      onClick={() => removeExerciseFromDaily(workout.id, item.id, item.exerciseName)}
+                                    >
+                                      <Trash2 size={16} />
+                                    </button>
+                                  </div>
+                                ) : null}
+                              </div>
+                              <div className="daily-workout-exercise-meta">
+                                <span>{item.sets || '—'} séries</span>
+                                <span>{item.repetitions || '—'} repetições</span>
+                                {item.load ? <span>Carga: {item.load}</span> : null}
+                                {item.restSeconds !== null && item.restSeconds !== undefined ? <span>Descanso: {item.restSeconds}s</span> : null}
+                              </div>
+                              {item.notes ? <p>{item.notes}</p> : null}
+                              {editingDailyExerciseId === item.id ? (
+                                <form className="daily-workout-exercise-form" onSubmit={(event) => updateExerciseInDailyCard(event, workout, item)}>
+                                  <label>Ordem<input name="position" type="number" min="0" defaultValue={item.position} required /></label>
+                                  <label>Séries<input name="sets" defaultValue={item.sets || ''} /></label>
+                                  <label>Repetições<input name="repetitions" defaultValue={item.repetitions || ''} /></label>
+                                  <label>Carga<input name="load" defaultValue={item.load || ''} /></label>
+                                  <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue={item.restSeconds ?? ''} /></label>
+                                  <label className="wide">Observações<textarea name="notes" rows="2" defaultValue={item.notes || ''} /></label>
+                                  <div className="daily-workout-exercise-form-actions">
+                                    <button type="submit" className="primary-button fit-button"><Save size={15} />Salvar exercício</button>
+                                    <button type="button" className="secondary-button fit-button" onClick={() => setEditingDailyExerciseId('')}>Cancelar</button>
+                                  </div>
+                                </form>
+                              ) : null}
+                            </section>
                           ))}
                         </div>
                       )}
 
+                      {addingExerciseToDailyId === workout.id ? (
+                        <form className="daily-workout-exercise-form" onSubmit={(event) => addExerciseToDailyCard(event, workout)}>
+                          <label className="wide">Exercício
+                            <select name="exerciseId" required defaultValue="">
+                              <option value="" disabled>Selecione um exercício</option>
+                              {exercises.map((exercise) => <option key={exercise.id} value={exercise.id}>{exercise.name}</option>)}
+                            </select>
+                          </label>
+                          <label>Ordem<input name="position" type="number" min="0" defaultValue={(workout.exercises?.length || 0) + 1} /></label>
+                          <label>Séries<input name="sets" placeholder="Ex.: 4" /></label>
+                          <label>Repetições<input name="repetitions" placeholder="Ex.: 10-12" /></label>
+                          <label>Carga<input name="load" placeholder="Ex.: 25 kg" /></label>
+                          <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue="60" /></label>
+                          <label className="wide">Observações<textarea name="notes" rows="2" /></label>
+                          <div className="daily-workout-exercise-form-actions">
+                            <button type="submit" className="primary-button fit-button"><Plus size={15} />Adicionar ao treino</button>
+                            <button type="button" className="secondary-button fit-button" onClick={() => setAddingExerciseToDailyId('')}>Cancelar</button>
+                          </div>
+                        </form>
+                      ) : null}
+
                       <div className="manage-card-footer">
                         <StatusBadge value={workout.visibility} />
-                        <div className="card-actions">
+                        {canEditWorkout ? <div className="card-actions">
                           <button
                             type="button"
                             className="action-btn btn-edit"
@@ -991,11 +1116,12 @@ export function Workouts({ initialTab = 'exercises' }) {
                           >
                             <Trash2 size={16} />
                           </button>
-                        </div>
+                        </div> : null}
                       </div>
                     </div>
                   </article>
-                ))}
+                  );
+                })}
               </div>
             )}
           </section>

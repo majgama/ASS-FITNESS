@@ -1956,6 +1956,112 @@ iframe.exercise-media {
   gap: 6px;
 }
 
+.daily-workout-exercises {
+  display: grid;
+  gap: 8px;
+}
+
+.daily-workout-exercise {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #353a36;
+  border-radius: 7px;
+  background: #171b19;
+}
+
+.daily-workout-exercise-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.daily-workout-exercise-heading > div:first-child {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.daily-workout-exercise-heading strong {
+  color: #f4f2ea;
+  overflow-wrap: anywhere;
+}
+
+.daily-workout-exercise-heading span,
+.daily-workout-exercise p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.daily-workout-exercise p {
+  margin: 0;
+}
+
+.daily-workout-exercise-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.daily-workout-exercise-meta span {
+  padding: 4px 7px;
+  border: 1px solid #3a403b;
+  border-radius: 5px;
+  color: #dedfd7;
+  font-size: 11px;
+}
+
+.daily-workout-exercise-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #353a36;
+}
+
+.daily-workout-exercise-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  grid-column: 1 / -1;
+}
+
+.manage-daily-card > .manage-header-row {
+  align-items: center;
+}
+
+.manage-daily-card > .manage-header-row .secondary-button {
+  flex-shrink: 0;
+  padding: 0 10px;
+}
+
+@media (max-width: 520px) {
+  .manage-daily-card > .manage-header-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .daily-workout-exercise-heading {
+    align-items: flex-start;
+  }
+
+  .daily-workout-exercise-heading .card-actions {
+    gap: 4px;
+  }
+
+  .daily-workout-exercise-form {
+    grid-template-columns: 1fr;
+  }
+
+  .daily-workout-exercise-form > .wide,
+  .daily-workout-exercise-form-actions {
+    grid-column: auto;
+  }
+}
+
 .exercise-tag-pill {
   display: inline-flex;
   align-items: center;
