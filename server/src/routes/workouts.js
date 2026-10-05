@@ -143,7 +143,6 @@ async function cloneDailyWorkout(client, workoutId, user, exerciseIds, workoutId
     [workoutId]
   );
   for (const relation of relations.rows) {
-    await assertExerciseAccess(client, user, relation.source_exercise_id);
     const clonedExerciseId = await cloneExercise(client, relation.source_exercise_id, user.id, exerciseIds);
     await client.query(
       `INSERT INTO daily_workout_exercises

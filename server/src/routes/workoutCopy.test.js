@@ -329,13 +329,19 @@ test('only personal accounts can copy public models and private models cannot be
   assert.equal((await request(`/workouts/weekly/${sourcePlanId}/copy`)).status, 403);
 });
 
-test('copying a plan rolls back if the personal cannot access a dependency exercise', async () => {
+test('copying a public plan includes private exercises exposed through public workouts', async () => {
   exercises.get(sourceExerciseId).visibility = 'private';
   exercises.get(sourceExerciseId).owner_id = '99999999-9999-4999-8999-999999999999';
 
   const response = await request(`/workouts/weekly/${sourcePlanId}/copy`);
-  assert.equal(response.status, 403);
-  assert.equal([...plans.values()].filter((plan) => plan.owner_id === personalId).length, 0);
-  assert.equal([...workouts.values()].filter((workout) => workout.owner_id === personalId).length, 0);
-  assert.equal([...exercises.values()].filter((exercise) => exercise.owner_id === personalId).length, 0);
+  assert.equal(response.status, 201);
+  const { weeklyPlan } = await response.json();
+  const copiedExerciseId = weeklyPlan.days[0].dailyWorkout.exercises[0].exerciseId;
+  const copiedExercise = exercises.get(copiedExerciseId);
+  assert.notEqual(copiedExerciseId, sourceExerciseId);
+  assert.equal(copiedExercise.visibility, 'private');
+  assert.equal(copiedExercise.owner_id, personalId);
+  assert.equal(exercises.get(sourceExerciseId).owner_id, '99999999-9999-4999-8999-999999999999');
+  assert.equal([...workouts.values()].filter((workout) => workout.owner_id === personalId).length, 2);
+  assert.equal([...exercises.values()].filter((exercise) => exercise.owner_id === personalId).length, 1);
 });
