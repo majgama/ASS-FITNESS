@@ -92,6 +92,79 @@ async function fetchWeeklyPlan(client, id) {
   return { ...planResult.rows[0], days };
 }
 
+async function cloneExercise(client, exerciseId, userId, exerciseIds) {
+  if (exerciseIds.has(exerciseId)) return exerciseIds.get(exerciseId);
+
+  const inserted = await client.query(
+    `INSERT INTO exercises (
+       name, muscle_group, default_sets, default_repetitions, default_load,
+       default_rest_seconds, observations, youtube_url,
+       video_path, video_mime, video_size_bytes, video_duration_seconds,
+       gif_path, gif_mime, gif_size_bytes,
+       audio_path, audio_mime, audio_size_bytes, audio_duration_seconds,
+       visibility, owner_id, created_by, gif_library_path
+     )
+     SELECT name, muscle_group, default_sets, default_repetitions, default_load,
+            default_rest_seconds, observations, youtube_url,
+            video_path, video_mime, video_size_bytes, video_duration_seconds,
+            gif_path, gif_mime, gif_size_bytes,
+            audio_path, audio_mime, audio_size_bytes, audio_duration_seconds,
+            'private', $2, $2, gif_library_path
+     FROM exercises
+     WHERE id = $1
+     RETURNING id`,
+    [exerciseId, userId]
+  );
+  if (inserted.rowCount === 0) throw notFound('Exercicio dependente nao encontrado.');
+  exerciseIds.set(exerciseId, inserted.rows[0].id);
+  return inserted.rows[0].id;
+}
+
+async function cloneDailyWorkout(client, workoutId, user, exerciseIds, workoutIds) {
+  if (workoutIds.has(workoutId)) return workoutIds.get(workoutId);
+
+  const workout = await fetchDailyWorkout(client, workoutId);
+  assertWorkoutVisible(user, workout);
+  const created = await client.query(
+    `INSERT INTO daily_workouts (name, description, visibility, owner_id, created_by)
+     VALUES ($1, $2, 'private', $3, $3)
+     RETURNING id`,
+    [`${workout.name} (Copia)`, workout.description, user.id]
+  );
+  const clonedWorkoutId = created.rows[0].id;
+  workoutIds.set(workoutId, clonedWorkoutId);
+
+  const relations = await client.query(
+    `SELECT dwe.*, e.id AS source_exercise_id
+     FROM daily_workout_exercises dwe
+     JOIN exercises e ON e.id = dwe.exercise_id
+     WHERE dwe.daily_workout_id = $1
+     ORDER BY dwe.position, dwe.created_at, dwe.id`,
+    [workoutId]
+  );
+  for (const relation of relations.rows) {
+    await assertExerciseAccess(client, user, relation.source_exercise_id);
+    const clonedExerciseId = await cloneExercise(client, relation.source_exercise_id, user.id, exerciseIds);
+    await client.query(
+      `INSERT INTO daily_workout_exercises
+         (daily_workout_id, exercise_id, position, sets, repetitions, load, rest_seconds, notes)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      [
+        clonedWorkoutId,
+        clonedExerciseId,
+        relation.position,
+        relation.sets,
+        relation.repetitions,
+        relation.load,
+        relation.rest_seconds,
+        relation.notes
+      ]
+    );
+  }
+
+  return clonedWorkoutId;
+}
+
 function assertPlanVisible(user, plan) {
   if (plan.visibility === 'public' || user.role === 'admin' || plan.owner_id === user.id) return;
   throw forbidden('Voce nao tem acesso a este plano.');
@@ -169,6 +242,16 @@ workoutsRouter.post('/daily', requireRoles('admin', 'personal'), asyncHandler(as
     [payload.name, payload.description || null, visibility, ownerId, req.user.id]
   );
   res.status(201).json({ dailyWorkout: result.rows[0] });
+}));
+
+workoutsRouter.post('/daily/:id/copy', requireRoles('personal'), asyncHandler(async (req, res) => {
+  const copied = await withTransaction(async (client) => {
+    const source = await fetchDailyWorkout(client, req.params.id);
+    if (source.visibility !== 'public') throw forbidden('Somente treinos publicos podem ser salvos como copia.');
+    const workoutId = await cloneDailyWorkout(client, source.id, req.user, new Map(), new Map());
+    return fetchDailyWorkout(client, workoutId);
+  });
+  res.status(201).json({ dailyWorkout: copied });
 }));
 
 workoutsRouter.patch('/daily/:id', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
@@ -457,6 +540,44 @@ workoutsRouter.delete('/weekly/:id', requireRoles('admin', 'personal'), asyncHan
 
   await query('DELETE FROM weekly_plans WHERE id = $1', [req.params.id]);
   res.status(204).send();
+}));
+
+workoutsRouter.post('/weekly/:id/copy', requireRoles('personal'), asyncHandler(async (req, res) => {
+  const copied = await withTransaction(async (client) => {
+    const sourceResult = await client.query('SELECT * FROM weekly_plans WHERE id = $1', [req.params.id]);
+    if (sourceResult.rowCount === 0) throw notFound('Plano semanal nao encontrado.');
+    const source = sourceResult.rows[0];
+    assertPlanVisible(req.user, source);
+    if (source.visibility !== 'public') throw forbidden('Somente planos publicos podem ser salvos como copia.');
+
+    const sourceDays = await client.query(
+      'SELECT * FROM weekly_plan_days WHERE weekly_plan_id = $1 ORDER BY day_of_week',
+      [source.id]
+    );
+    const workoutIds = new Map();
+    const exerciseIds = new Map();
+    const created = await client.query(
+      `INSERT INTO weekly_plans (name, description, start_date, visibility, owner_id, created_by)
+       VALUES ($1, $2, $3, 'private', $4, $4)
+       RETURNING id`,
+      [`${source.name} (Copia)`, source.description, source.start_date, req.user.id]
+    );
+    const copiedPlanId = created.rows[0].id;
+
+    for (const day of sourceDays.rows) {
+      const dailyWorkoutId = day.daily_workout_id
+        ? await cloneDailyWorkout(client, day.daily_workout_id, req.user, exerciseIds, workoutIds)
+        : null;
+      await client.query(
+        `INSERT INTO weekly_plan_days (weekly_plan_id, day_of_week, is_rest, daily_workout_id, instructions)
+         VALUES ($1, $2, $3, $4, $5)`,
+        [copiedPlanId, day.day_of_week, day.is_rest, dailyWorkoutId, day.instructions]
+      );
+    }
+
+    return fetchWeeklyPlan(client, copiedPlanId);
+  });
+  res.status(201).json({ weeklyPlan: copied });
 }));
 
 const applyPlanSchema = z.object({

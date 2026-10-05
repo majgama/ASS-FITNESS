@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Calendar,
   Check,
+  Copy,
   Dumbbell,
   FileText,
   ArrowLeft,
@@ -481,6 +482,18 @@ export function Workouts({ initialTab = 'exercises' }) {
     }
   }
 
+  async function saveDailyWorkoutCopy(workout) {
+    setError('');
+    try {
+      await api(`/workouts/daily/${workout.id}/copy`, { method: 'POST' });
+      setDailyView('mine');
+      setNotice(`Treino "${workout.name}" e seus exercícios foram salvos em Meus treinos.`);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   async function addExerciseToWorkout(event) {
     event.preventDefault();
     setError('');
@@ -657,6 +670,18 @@ export function Workouts({ initialTab = 'exercises' }) {
       await api(`/workouts/weekly/${id}`, { method: 'DELETE' });
       if (selectedPlan === id) setSelectedPlan('');
       setNotice(`Plano semanal "${name}" excluído.`);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function saveWeeklyPlanCopy(plan) {
+    setError('');
+    try {
+      await api(`/workouts/weekly/${plan.id}/copy`, { method: 'POST' });
+      setWeeklyView('mine');
+      setNotice(`Plano "${plan.name}", treinos e exercícios dependentes foram salvos em Meus planos.`);
       await load();
     } catch (err) {
       setError(err.message);
@@ -994,6 +1019,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                 {visibleDailyWorkouts.map((workout) => {
                   const canEditWorkout = user.role === 'admin'
                     || (workout.visibility === 'private' && workout.owner_id === user.id);
+                  const canCopyWorkout = user.role === 'personal' && workout.visibility === 'public';
                   return (
                   <article className="panel sub-panel-manage manage-card manage-daily-card" key={workout.id}>
                     <div className="manage-header-row">
@@ -1006,6 +1032,11 @@ export function Workouts({ initialTab = 'exercises' }) {
                         >
                           <Plus size={16} />
                           Adicionar exercício
+                        </button>
+                      ) : canCopyWorkout ? (
+                        <button type="button" className="secondary-button fit-button" onClick={() => saveDailyWorkoutCopy(workout)}>
+                          <Copy size={16} />
+                          Salvar como meu treino
                         </button>
                       ) : null}
                     </div>
@@ -1235,10 +1266,20 @@ export function Workouts({ initialTab = 'exercises' }) {
               <div className="empty-state">Nenhum plano semanal cadastrado.</div>
             ) : (
               <div className="list-stack">
-                {visibleWeeklyPlans.map((plan) => (
+                {visibleWeeklyPlans.map((plan) => {
+                  const canEditPlan = user.role === 'admin'
+                    || (plan.visibility === 'private' && plan.owner_id === user.id);
+                  const canCopyPlan = user.role === 'personal' && plan.visibility === 'public';
+                  return (
                   <article className="panel sub-panel-manage manage-card manage-weekly-card" key={plan.id}>
                     <div className="manage-header-row">
                       <strong>{plan.name}</strong>
+                      {canCopyPlan ? (
+                        <button type="button" className="secondary-button fit-button" onClick={() => saveWeeklyPlanCopy(plan)}>
+                          <Copy size={16} />
+                          Salvar como meu plano
+                        </button>
+                      ) : null}
                     </div>
 
                     {plan.description ? <p className="manage-desc">{plan.description}</p> : null}
@@ -1258,24 +1299,26 @@ export function Workouts({ initialTab = 'exercises' }) {
                     </div>
                     <div className="manage-card-footer">
                       <StatusBadge value={plan.visibility} />
-                      <div className="card-actions">
-                        <button
-                          type="button"
-                          className="action-btn btn-edit"
-                          title="Editar plano semanal"
-                          onClick={() => openEditWeekly(plan)}
-                        >
-                          <Pencil size={16} />
-                        </button>
-                        <button
-                          type="button"
-                          className="action-btn btn-delete"
-                          title="Excluir plano semanal"
-                          onClick={() => deleteWeeklyPlan(plan.id, plan.name)}
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
+                      {canEditPlan ? (
+                        <div className="card-actions">
+                          <button
+                            type="button"
+                            className="action-btn btn-edit"
+                            title="Editar plano semanal"
+                            onClick={() => openEditWeekly(plan)}
+                          >
+                            <Pencil size={16} />
+                          </button>
+                          <button
+                            type="button"
+                            className="action-btn btn-delete"
+                            title="Excluir plano semanal"
+                            onClick={() => deleteWeeklyPlan(plan.id, plan.name)}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      ) : null}
                     </div>
                     <button
                       type="button"
@@ -1286,7 +1329,8 @@ export function Workouts({ initialTab = 'exercises' }) {
                       Aplicar plano ao aluno
                     </button>
                   </article>
-                ))}
+                  );
+                })}
               </div>
             )}
             <button type="button" className="secondary-button plan-back-button" onClick={() => navigate('/treinos')}>
