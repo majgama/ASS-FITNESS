@@ -1,0 +1,55 @@
+{
+  "name": "Plano público de exemplo — musculação e cardio",
+  "description": "Exemplo com exercícios da biblioteca pública criada por npm run db:seed.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "name": "Treino A — base e condicionamento",
+      "description": "Musculação seguida de caminhada.",
+      "instructions": "Aquecer antes de iniciar.",
+      "exercises": [
+        {
+          "exerciseName": "Supino máquina",
+          "sets": "3",
+          "repetitions": "8-12",
+          "load": null,
+          "restSeconds": 90,
+          "notes": "Controlar a descida."
+        },
+        {
+          "exerciseName": "Puxada frontal",
+          "sets": "3",
+          "repetitions": "8-12",
+          "load": null,
+          "restSeconds": 90,
+          "notes": null
+        }
+      ],
+      "cardio": [
+        {
+          "exerciseName": "Caminhada na esteira",
+          "duration": "20 minutos",
+          "intensity": "leve a moderada",
+          "notes": "Manter ritmo confortável."
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "name": "Treino B — cardio",
+      "cardio": [
+        {
+          "exerciseName": "Bicicleta ergométrica",
+          "duration": "15 minutos",
+          "intensity": "leve",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 0,
+      "isRest": true,
+      "instructions": "Descanso."
+    }
+  ]
+}
