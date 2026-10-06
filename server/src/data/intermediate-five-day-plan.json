@@ -1,0 +1,79 @@
+{
+  "name": "Hipertrofia Intermediário 5 Dias + Cardio",
+  "description": "Plano público de hipertrofia intermediária com cinco sessões semanais de musculação e cardio complementar.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "name": "Treino A - Peitoral, Costas e Core",
+      "description": "Treino de membros superiores com ênfase em peitoral e costas.",
+      "exercises": [
+        { "exerciseName": "Supino maquina", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 90, "notes": "Executar com amplitude controlada." },
+        { "exerciseName": "Puxada frontal", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 90, "notes": "Evitar balanço excessivo do tronco." },
+        { "exerciseName": "Remada baixa", "sets": "3", "repetitions": "10-12", "load": null, "restSeconds": 90, "notes": "Iniciar o movimento pelas escápulas." },
+        { "exerciseName": "Prancha", "sets": "3", "repetitions": "30-45 segundos", "load": null, "restSeconds": 60, "notes": "Manter coluna neutra." }
+      ],
+      "cardio": [
+        { "exerciseName": "Caminhada na esteira", "duration": "20 minutos", "intensity": "moderada", "notes": "Cardio após a musculação." }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "name": "Treino B - Pernas e Glúteos",
+      "description": "Treino de membros inferiores com ênfase em quadríceps, posteriores e glúteos.",
+      "exercises": [
+        { "exerciseName": "Leg press 45 graus", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 120, "notes": "Manter lombar apoiada." },
+        { "exerciseName": "Cadeira extensora", "sets": "4", "repetitions": "10-15", "load": null, "restSeconds": 75, "notes": "Controlar a fase de retorno." },
+        { "exerciseName": "Mesa flexora", "sets": "4", "repetitions": "10-15", "load": null, "restSeconds": 75, "notes": "Evitar movimentos bruscos." },
+        { "exerciseName": "Elevacao pelvica", "sets": "4", "repetitions": "10-12", "load": null, "restSeconds": 90, "notes": "Pausar brevemente no topo." }
+      ],
+      "cardio": [
+        { "exerciseName": "Bicicleta ergometrica", "duration": "15 minutos", "intensity": "leve a moderada", "notes": "Cardio complementar após o treino." }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "name": "Treino C - Costas, Ombros e Core",
+      "description": "Sessão de hipertrofia para costas, ombros e estabilização do core.",
+      "exercises": [
+        { "exerciseName": "Puxada frontal", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 90, "notes": "Manter execução controlada." },
+        { "exerciseName": "Remada baixa", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 90, "notes": "Contrair as escápulas ao final." },
+        { "exerciseName": "Desenvolvimento maquina", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 90, "notes": "Manter lombar apoiada." },
+        { "exerciseName": "Prancha", "sets": "3", "repetitions": "30-45 segundos", "load": null, "restSeconds": 60, "notes": "Manter alinhamento corporal." }
+      ],
+      "cardio": [
+        { "exerciseName": "Caminhada na esteira", "duration": "20 minutos", "intensity": "moderada", "notes": "Manter ritmo confortável." }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "name": "Treino D - Pernas e Glúteos",
+      "description": "Segunda sessão semanal de membros inferiores.",
+      "exercises": [
+        { "exerciseName": "Leg press 45 graus", "sets": "4", "repetitions": "10-12", "load": null, "restSeconds": 120, "notes": "Movimento controlado." },
+        { "exerciseName": "Mesa flexora", "sets": "4", "repetitions": "10-15", "load": null, "restSeconds": 75, "notes": "Controlar a fase excêntrica." },
+        { "exerciseName": "Cadeira extensora", "sets": "3", "repetitions": "12-15", "load": null, "restSeconds": 75, "notes": "Evitar impulso." },
+        { "exerciseName": "Elevacao pelvica", "sets": "4", "repetitions": "10-15", "load": null, "restSeconds": 90, "notes": "Contrair glúteos no topo." }
+      ],
+      "cardio": [
+        { "exerciseName": "Bicicleta ergometrica", "duration": "15 minutos", "intensity": "moderada", "notes": "Cardio após a musculação." }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "name": "Treino E - Superior Completo",
+      "description": "Treino combinado de membros superiores para finalizar a semana.",
+      "exercises": [
+        { "exerciseName": "Supino maquina", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 90, "notes": "Manter execução controlada." },
+        { "exerciseName": "Remada baixa", "sets": "4", "repetitions": "8-12", "load": null, "restSeconds": 90, "notes": "Priorizar contração das costas." },
+        { "exerciseName": "Desenvolvimento maquina", "sets": "3", "repetitions": "10-12", "load": null, "restSeconds": 90, "notes": "Não compensar com a lombar." },
+        { "exerciseName": "Puxada frontal", "sets": "3", "repetitions": "10-12", "load": null, "restSeconds": 90, "notes": "Controlar todo o movimento." },
+        { "exerciseName": "Prancha", "sets": "3", "repetitions": "30-45 segundos", "load": null, "restSeconds": 60, "notes": "Finalizar mantendo boa técnica." }
+      ],
+      "cardio": [
+        { "exerciseName": "Caminhada na esteira", "duration": "20 minutos", "intensity": "leve a moderada", "notes": "Cardio de encerramento da semana." }
+      ]
+    },
+    { "dayOfWeek": 6, "isRest": true, "instructions": "Descanso e recuperação." },
+    { "dayOfWeek": 0, "isRest": true, "instructions": "Descanso completo." }
+  ]
+}

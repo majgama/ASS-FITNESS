@@ -68,6 +68,10 @@ Backend: http://localhost:3333/api
 
 ### Modelos iniciais e limpeza dos testes
 
+Para importar o plano publico **Hipertrofia Intermediario 5 Dias + Cardio**, no console do servidor da DigitalOcean com `DATABASE_URL` e `DATABASE_SSL` configurados, execute primeiro `npm run db:import-intermediate-plan`. Essa consulta mostra os exercicios publicos correspondentes, os ausentes e os ambiguos, sem alterar dados. O comando reutiliza o mesmo servico do importador administrativo JSON, ignorando caixa, espacos repetidos e, como segunda tentativa, acentos. Nomes ausentes ou ambiguos bloqueiam a gravacao: ajuste os nomes em `server/src/data/intermediate-five-day-plan.json` para os cadastrados na biblioteca publica. Nenhum exercicio ou midia e criado automaticamente.
+
+Apos conferir o banco, fazer backup e revisar a consulta, execute `npm run db:import-intermediate-plan -- --confirm-import`. A importacao grava em uma unica transacao e verifica o conteudo completo: 7 dias, 5 treinos, 21 prescricoes de musculacao e 5 de cardio. Cardio usa series `1`, duracao em repeticoes, carga/descanso nulos e intensidade nas observacoes. Nao modifica exercicios existentes, preservando suas midias, nem recria o plano iniciante. Reexecutar o comando nao duplica um plano identico; um plano existente com conteudo diferente gera erro sem sobrescrita. Treinos novos sao exclusivos deste plano, mesmo que outros modelos tenham nomes iguais. E necessario um administrador cadastrado; o mais antigo e registrado como autor. Nao ha importacao automatica no inicio do servidor.
+
 O servidor e `db:migrate` nao recriam modelos de treino. Somente `npm run db:seed` cria ou completa o plano iniciante e seus treinos/exercicios publicos. Nao execute esse seed apos limpar o banco se desejar manter os modelos vazios.
 
 Para limpar os testes em producao:
