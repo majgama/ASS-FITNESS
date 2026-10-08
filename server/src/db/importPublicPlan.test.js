@@ -9,7 +9,7 @@ const input = JSON.parse(await readFile(new URL('../data/intermediate-five-day-p
 
 function database({ duplicateExercise = false, corrupt = false, missingExercises = false } = {}) {
   const calls = [];
-  const exercises = new Map([['existing-exercise', { name: 'Supino maquina', gif_path: 'existing.gif' }]]);
+  const exercises = new Map([['existing-exercise', { name: 'Supino maquina', visibility: 'public', owner_id: null, gif_path: 'existing.gif' }]]);
   if (!missingExercises) {
     const names = new Set(input.days.flatMap((day) => [...(day.exercises || []), ...(day.cardio || [])].map((item) => item.exerciseName)));
     for (const name of names) {
@@ -39,7 +39,7 @@ function database({ duplicateExercise = false, corrupt = false, missingExercises
       if (sql.startsWith('SELECT id FROM users')) return { rows: [{ id: 'admin' }], rowCount: 1 };
       if (sql.startsWith('INSERT INTO exercises')) {
         const newId = id();
-        exercises.set(newId, { name: params[0] });
+        exercises.set(newId, { name: params[0], visibility: 'public', owner_id: null, created_by: params[1] });
         return { rowCount: 1, rows: [{ id: newId }] };
       }
       if (sql.startsWith('INSERT INTO weekly_plans')) {
@@ -113,11 +113,12 @@ test('supplied plan preserves every prescription and all five cardio sessions', 
 
 test('preview reports missing exercises without writing or taking write locks', async () => {
   const client = database({ missingExercises: true });
-  const result = await importPublicPlan(client, input);
+  const result = await importPublicPlan(client, input, { createMissingExercises: true });
   assert.equal(result.status, 'preview');
   assert.equal(result.matchedExercises.length, 1);
-  assert.equal(result.valid, false);
+  assert.equal(result.valid, true);
   assert.equal(result.missingExercises.length, 10);
+  assert.equal(result.exercisesToCreate.length, 10);
   assert.equal(result.exerciseLinks, 26);
   assert.equal(client.calls.every(({ sql }) => sql.startsWith('SELECT id')), true);
 });
@@ -125,7 +126,9 @@ test('preview reports missing exercises without writing or taking write locks', 
 test('import verifies complete content and reruns without duplicating or modifying existing media', async () => {
   const client = database();
   client.exercises.get('existing-exercise').name = 'Supino máquina';
-  const result = await importPublicPlan(client, input, { write: true });
+  client.exercises.clear();
+  client.exercises.set('existing-exercise', { name: 'Supino máquina', gif_path: 'existing.gif' });
+  const result = await importPublicPlan(client, input, { write: true, createMissingExercises: true });
   assert.equal(result.status, 'created');
   assert.equal(client.plans.size, 1);
   assert.equal(client.workouts.size, 5);
@@ -134,18 +137,22 @@ test('import verifies complete content and reruns without duplicating or modifyi
   assert.equal(client.exercises.get('existing-exercise').gif_path, 'existing.gif');
   assert.equal([...client.workouts.values()][0].exercises[0].exerciseName, 'Supino máquina');
   const insertCount = client.calls.filter(({ sql }) => sql.startsWith('INSERT')).length;
-  const rerun = await importPublicPlan(client, input, { write: true });
+  const rerun = await importPublicPlan(client, input, { write: true, createMissingExercises: true });
   assert.deepEqual(rerun, { status: 'already-exists', planId: result.planId });
   assert.equal(client.calls.filter(({ sql }) => sql.startsWith('INSERT')).length, insertCount);
 });
 
 test('missing or ambiguous exercise names fail before any insert', async () => {
   const client = database({ duplicateExercise: true });
-  await assert.rejects(importPublicPlan(client, input, { write: true }), /Mais de um exercicio/);
+  await assert.rejects(importPublicPlan(client, input, { write: true, createMissingExercises: true }), /Mais de um exercicio/);
   assert.equal(client.calls.some(({ sql }) => sql.startsWith('INSERT')), false);
   const missing = database({ missingExercises: true });
-  await assert.rejects(importPublicPlan(missing, input, { write: true }), /nao encontrados/);
-  assert.equal(missing.calls.some(({ sql }) => sql.startsWith('INSERT')), false);
+  const imported = await importPublicPlan(missing, input, { write: true, createMissingExercises: true });
+  assert.equal(imported.status, 'created');
+  assert.equal([...missing.exercises.values()].filter((exercise) => exercise.visibility === 'public').length, 11);
+  assert.equal([...missing.exercises.values()]
+    .filter((exercise) => exercise.created_by === 'admin')
+    .every((exercise) => !exercise.gif_path), true);
 });
 
 test('mismatched existing plans are rejected without overwriting and final verification rejects corruption', async () => {

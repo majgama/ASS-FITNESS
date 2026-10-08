@@ -14,16 +14,19 @@ async function main() {
   const database = await pool.query('SELECT current_database() AS name');
   console.log(`Banco: ${database.rows[0].name}`);
   const write = args.includes('--confirm-import');
-  const result = await withTransaction((client) => importPublicPlan(client, input, { write }));
+  const result = await withTransaction((client) => importPublicPlan(client, input, {
+    write,
+    createMissingExercises: true
+  }));
   console.log(JSON.stringify(result, null, 2));
   if (result.status === 'already-exists') {
     console.log('Plano identico ja existe; nenhum dado foi duplicado.');
   } else if (write) {
     console.log('Plano publico, treinos e prescricoes gravados e verificados.');
   } else {
-    console.log('Somente consulta; nenhum dado foi alterado. Confira os exercicios ausentes antes de confirmar.');
-    console.log('Nomes ausentes ou ambiguos bloqueiam a importacao; ajuste os nomes no JSON para exercicios publicos cadastrados.');
-    console.log('Para importar: npm run db:import-intermediate-plan -- --confirm-import');
+    console.log('Somente consulta; nenhum dado foi alterado. Os exercicios em missingExercises serao criados como publicos, sem midia.');
+    console.log('Revise os nomes antes de confirmar. Nomes ambiguos bloqueiam a importacao.');
+    console.log('Para criar exercicios ausentes e importar tudo: npm run db:import-intermediate-plan -- --confirm-import');
   }
 }
 

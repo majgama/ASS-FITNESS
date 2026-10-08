@@ -96,15 +96,31 @@ export function importedDayExercises(day) {
   }))];
 }
 
-export async function createImportedWeeklyPlan(client, payload, adminId) {
+export async function createImportedWeeklyPlan(client, payload, adminId, { createMissingExercises = false } = {}) {
+  await client.query("SELECT pg_advisory_xact_lock(hashtext('ass-fitness-public-plan-import'))");
   const resolution = await resolveImportedExercises(client, payload, true);
-  if (resolution.missingExercises.length > 0) {
-    throw new AppError('Exercicios publicos nao encontrados.', 400, 'EXERCISES_NOT_FOUND', resolution);
-  }
   if (resolution.ambiguousExercises.length > 0) {
     throw new AppError('Mais de um exercicio publico corresponde ao nome informado.', 409, 'EXERCISES_AMBIGUOUS', resolution);
   }
-  const exerciseIds = new Map(resolution.matchedExercises.map((exercise) => [exercise.exerciseName, exercise.exerciseId]));
+  if (resolution.missingExercises.length > 0 && !createMissingExercises) {
+    throw new AppError('Exercicios publicos nao encontrados.', 400, 'EXERCISES_NOT_FOUND', resolution);
+  }
+  if (resolution.missingExercises.length > 0) {
+    for (const name of resolution.missingExercises) {
+      await client.query(
+        `INSERT INTO exercises (name, visibility, owner_id, created_by)
+         VALUES ($1, 'public', NULL, $2)`,
+        [name, adminId]
+      );
+    }
+  }
+  const resolved = resolution.missingExercises.length > 0
+    ? await resolveImportedExercises(client, payload, true)
+    : resolution;
+  if (resolved.missingExercises.length > 0 || resolved.ambiguousExercises.length > 0) {
+    throw new AppError('Nao foi possivel resolver todos os exercicios apos a criacao.', 409, 'EXERCISE_RESOLUTION_FAILED', resolved);
+  }
+  const exerciseIds = new Map(resolved.matchedExercises.map((exercise) => [exercise.exerciseName, exercise.exerciseId]));
   const workoutIds = new Map();
   for (const day of payload.days) {
     if (day.isRest) continue;

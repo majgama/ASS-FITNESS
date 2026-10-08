@@ -80,12 +80,9 @@ async function verifyPlan(client, planId, expected) {
   }
 }
 
-export async function importPublicPlan(client, input, { write = false } = {}) {
+export async function importPublicPlan(client, input, { write = false, createMissingExercises = false } = {}) {
   const payload = weeklyImportSchema.parse(input);
   const plan = normalizePublicPlan(input);
-  if (write) {
-    await client.query("SELECT pg_advisory_xact_lock(hashtext('ass-fitness-public-plan-import'))");
-  }
   const resolution = await resolveImportedExercises(client, payload, write);
   const matchedNames = new Map(resolution.matchedExercises.map((exercise) => [exercise.exerciseName, exercise.matchedName]));
   for (const day of plan.days) {
@@ -107,14 +104,16 @@ export async function importPublicPlan(client, input, { write = false } = {}) {
     workouts: plan.days.filter((day) => day.workout).length,
     days: plan.days.length,
     exerciseLinks: plan.days.reduce((total, day) => total + (day.workout?.exercises.length || 0), 0),
-    valid: resolution.missingExercises.length === 0 && resolution.ambiguousExercises.length === 0,
+    valid: resolution.ambiguousExercises.length === 0
+      && (createMissingExercises || resolution.missingExercises.length === 0),
+    exercisesToCreate: createMissingExercises ? resolution.missingExercises : [],
     ...resolution
   };
   if (!write) return { status: 'preview', ...summary };
 
   const admin = await client.query("SELECT id FROM users WHERE role = 'admin' ORDER BY created_at, id LIMIT 1");
   if (admin.rowCount === 0) throw new Error('Nenhum administrador cadastrado para registrar a importacao.');
-  const planId = await createImportedWeeklyPlan(client, payload, admin.rows[0].id);
+  const planId = await createImportedWeeklyPlan(client, payload, admin.rows[0].id, { createMissingExercises });
   await verifyPlan(client, planId, plan);
   return { status: 'created', planId, ...summary };
 }

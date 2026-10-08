@@ -48,7 +48,7 @@ Nomes ambíguos retornam HTTP 409 com `error.code: "EXERCISES_AMBIGUOUS"` e a li
 
 ## Testar localmente
 
-Para o plano **Hipertrofia Intermediário 5 Dias + Cardio**, também existe um comando de console: `npm run db:import-intermediate-plan` faz a consulta prévia e `npm run db:import-intermediate-plan -- --confirm-import` grava e verifica o conteúdo. Esse comando usa o mesmo serviço da API, mas acrescenta proteção contra duplicação de um plano idêntico e recusa sobrescrever um plano diferente com o mesmo nome. Requer `DATABASE_URL` explícita e um administrador cadastrado. Veja os cuidados de produção no [README](../README.md).
+Para o plano **Hipertrofia Intermediário 5 Dias + Cardio**, também existe um comando de console: `npm run db:import-intermediate-plan` faz a consulta prévia e `npm run db:import-intermediate-plan -- --confirm-import` grava e verifica o conteúdo. Exercícios públicos existentes são reutilizados; os ausentes são criados como públicos, sem mídia, na mesma transação. Nomes ambíguos bloqueiam a importação. O comando acrescenta proteção contra duplicação de um plano idêntico e recusa sobrescrever um plano diferente com o mesmo nome. Requer `DATABASE_URL` explícita e um administrador cadastrado. Veja os cuidados de produção no [README](../README.md).
 
 Prepare o ambiente conforme o README, com PostgreSQL local, dependências instaladas, schema aplicado e API em execução por `npm run dev`. O exemplo precisa que os nomes referenciados existam na biblioteca pública.
 
