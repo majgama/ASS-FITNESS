@@ -211,6 +211,21 @@ describe('weekly JSON import with PostgreSQL', { skip: !testDatabaseUrl }, () =>
     assert.equal(body.error.code, 'EXERCISES_NOT_FOUND');
     assert.deepEqual(body.error.details.missingExercises, dryRun.missingExercises);
     assert.deepEqual(await counts(), initial);
+
+    const imported = await request('/weekly/import', 'admin', { ...data, createMissingExercises: true });
+    assert.equal(imported.status, 201);
+    const importedPlan = (await imported.json()).weeklyPlan;
+    const importedExercises = importedPlan.days.flatMap((day) => day.dailyWorkout?.exercises || []);
+    for (const name of dryRun.missingExercises) {
+      const exercise = await pool.query(
+        "SELECT visibility, owner_id, gif_path, video_path FROM exercises WHERE lower(name) = lower($1) AND created_by = $2",
+        [name, userIds.get('admin')]
+      );
+      assert.equal(exercise.rowCount, 1);
+      assert.deepEqual(exercise.rows[0], { visibility: 'public', owner_id: null, gif_path: null, video_path: null });
+      assert.ok(importedExercises.some((item) => item.exerciseId === exerciseIds.get(name) || item.exerciseName === name));
+    }
+    assert.equal((await counts()).plans, initial.plans + 1);
   });
 
   test('rejects ambiguous public names rather than choosing an arbitrary media record', async () => {

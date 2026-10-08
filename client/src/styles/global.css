@@ -1961,6 +1961,64 @@ iframe.exercise-media {
   gap: 8px;
 }
 
+.weekly-json-import {
+  display: grid;
+  gap: 12px;
+}
+
+.weekly-json-import > .manage-desc {
+  margin: 0;
+}
+
+.weekly-json-import-file {
+  display: grid;
+  gap: 6px;
+  max-width: 360px;
+}
+
+.weekly-json-import-file input {
+  padding: 8px;
+}
+
+.weekly-json-import textarea {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.weekly-json-import-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.weekly-json-import-preview {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid #3a403b;
+  border-radius: 7px;
+  background: #171b19;
+  font-size: 13px;
+}
+
+.weekly-json-import-preview.valid {
+  border-color: #477b55;
+}
+
+.weekly-json-import-preview.invalid {
+  border-color: #a64e43;
+}
+
+.weekly-json-import-preview p {
+  margin: 0;
+}
+
+.weekly-json-import button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .daily-workout-exercise {
   display: grid;
   gap: 8px;

@@ -13,6 +13,9 @@ export const workoutsRouter = Router();
 workoutsRouter.use(authRequired);
 
 const weekdays = [0, 1, 2, 3, 4, 5, 6];
+const createMissingExercisesSchema = z.object({
+  createMissingExercises: z.boolean().default(false)
+});
 
 function editableModel(user, model) {
   if (user.role === 'admin') return true;
@@ -451,8 +454,9 @@ workoutsRouter.post('/weekly/import/validate', requireRoles('admin'), asyncHandl
 
 workoutsRouter.post('/weekly/import', requireRoles('admin'), asyncHandler(async (req, res) => {
   const payload = parseBody(weeklyImportSchema, req.body);
+  const { createMissingExercises } = createMissingExercisesSchema.parse(req.body);
   const plan = await withTransaction(async (client) => {
-    const planId = await createImportedWeeklyPlan(client, payload, req.user.id);
+    const planId = await createImportedWeeklyPlan(client, payload, req.user.id, { createMissingExercises });
     return fetchWeeklyPlan(client, planId);
   });
   res.status(201).json({ success: true, weeklyPlan: plan });

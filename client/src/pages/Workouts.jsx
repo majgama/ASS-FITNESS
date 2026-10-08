@@ -154,6 +154,9 @@ export function Workouts({ initialTab = 'exercises' }) {
   const [exerciseSearch, setExerciseSearch] = useState('');
   const [dailySearch, setDailySearch] = useState('');
   const [weeklySearch, setWeeklySearch] = useState('');
+  const [weeklyImportJson, setWeeklyImportJson] = useState('');
+  const [weeklyImportPreview, setWeeklyImportPreview] = useState(null);
+  const [weeklyImportBusy, setWeeklyImportBusy] = useState(false);
 
   // Modals state
   const [editingExercise, setEditingExercise] = useState(null);
@@ -688,6 +691,60 @@ export function Workouts({ initialTab = 'exercises' }) {
     }
   }
 
+  async function validateWeeklyJsonImport() {
+    setError('');
+    setNotice('');
+    setWeeklyImportPreview(null);
+    let payload;
+    try {
+      payload = JSON.parse(weeklyImportJson);
+    } catch {
+      setError('O JSON não é válido. Confira as vírgulas, aspas e chaves.');
+      return;
+    }
+
+    setWeeklyImportBusy(true);
+    try {
+      const result = await api('/workouts/weekly/import/validate', { method: 'POST', body: payload });
+      const existingPlan = weeklyPlans.find((plan) => (
+        plan.visibility === 'public'
+        && plan.name.trim().toLocaleLowerCase() === payload.name?.trim().toLocaleLowerCase()
+      ));
+      setWeeklyImportPreview({
+        payload,
+        ...result,
+        existingPlan,
+        canImport: result.ambiguousExercises.length === 0 && !existingPlan
+      });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setWeeklyImportBusy(false);
+    }
+  }
+
+  async function importWeeklyJsonPlan() {
+    if (!weeklyImportPreview?.canImport) return;
+    setError('');
+    setNotice('');
+    setWeeklyImportBusy(true);
+    try {
+      await api('/workouts/weekly/import', {
+        method: 'POST',
+        body: { ...weeklyImportPreview.payload, createMissingExercises: true }
+      });
+      const createdCount = weeklyImportPreview.missingExercises.length;
+      setWeeklyImportJson('');
+      setWeeklyImportPreview(null);
+      setNotice(`Plano importado com sucesso.${createdCount ? ` ${createdCount} exercícios ausentes foram criados automaticamente como públicos, sem mídia.` : ' Os exercícios públicos existentes foram reutilizados.'}`);
+      await load();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setWeeklyImportBusy(false);
+    }
+  }
+
   async function applyPlan(event) {
     event.preventDefault();
     setError('');
@@ -1188,6 +1245,71 @@ export function Workouts({ initialTab = 'exercises' }) {
       {tab === 'weekly' ? (
         <>
           <ManagementViewSelector value={weeklyView} onChange={setWeeklyView} publicLabel="Planos públicos" mineLabel="Meus planos" createLabel="Criar plano" />
+          {user.role === 'admin' && weeklyView !== 'create' ? (
+            <section className="panel weekly-json-import">
+              <div className="section-title">
+                <h2>Importar plano pelo JSON</h2>
+              </div>
+              <p className="manage-desc">Cole o JSON do plano ou selecione um arquivo. A prévia mostra os exercícios existentes e quais serão criados automaticamente como públicos, sem mídia.</p>
+              <label className="weekly-json-import-file">Selecionar arquivo JSON
+                <input
+                  type="file"
+                  accept="application/json,.json"
+                  onChange={async (event) => {
+                    const file = event.currentTarget.files?.[0];
+                    if (!file) return;
+                    try {
+                      setWeeklyImportJson(await file.text());
+                      setWeeklyImportPreview(null);
+                      setError('');
+                    } catch (err) {
+                      setError(`Não foi possível ler o arquivo JSON: ${err.message}`);
+                    }
+                  }}
+                />
+              </label>
+              <label>Conteúdo JSON
+                <textarea
+                  rows="10"
+                  value={weeklyImportJson}
+                  onChange={(event) => {
+                    setWeeklyImportJson(event.target.value);
+                    setWeeklyImportPreview(null);
+                  }}
+                  placeholder={'{\n  "name": "Nome do plano",\n  "description": "...",\n  "days": []\n}'}
+                />
+              </label>
+              <div className="weekly-json-import-actions">
+                <button type="button" className="secondary-button fit-button" onClick={validateWeeklyJsonImport} disabled={weeklyImportBusy || !weeklyImportJson.trim()}>
+                  <Check size={16} />
+                  {weeklyImportBusy ? 'Verificando...' : 'Verificar JSON'}
+                </button>
+                {weeklyImportPreview ? (
+                  <button type="button" className="primary-button fit-button" onClick={importWeeklyJsonPlan} disabled={weeklyImportBusy || !weeklyImportPreview.canImport}>
+                    <Save size={16} />
+                    {weeklyImportBusy ? 'Importando...' : 'Importar plano e exercícios'}
+                  </button>
+                ) : null}
+              </div>
+              {weeklyImportPreview ? (
+                <div className={`weekly-json-import-preview ${weeklyImportPreview.canImport ? 'valid' : 'invalid'}`} role="status">
+                  {weeklyImportPreview.existingPlan ? (
+                    <p>Já existe um plano público chamado “{weeklyImportPreview.existingPlan.name}”. Altere o nome no JSON para evitar duplicação.</p>
+                  ) : null}
+                  {weeklyImportPreview.ambiguousExercises.length ? (
+                    <p>Exercícios ambíguos (corrija os nomes no JSON): {weeklyImportPreview.ambiguousExercises.join(', ')}.</p>
+                  ) : null}
+                  {weeklyImportPreview.matchedExercises.length ? (
+                    <p>Exercícios públicos existentes que serão reutilizados ({weeklyImportPreview.matchedExercises.length}): {weeklyImportPreview.matchedExercises.map((item) => item.matchedName).join(', ')}.</p>
+                  ) : null}
+                  {weeklyImportPreview.missingExercises.length ? (
+                    <p>Serão criados como exercícios públicos sem mídia ({weeklyImportPreview.missingExercises.length}): {weeklyImportPreview.missingExercises.join(', ')}.</p>
+                  ) : null}
+                  {weeklyImportPreview.canImport ? <p>Prévia válida. Confirme para importar o plano inteiro.</p> : null}
+                </div>
+              ) : null}
+            </section>
+          ) : null}
           {weeklyView !== 'create' ? (
             <button type="button" className="secondary-button plan-back-button plan-back-button-top" onClick={() => navigate('/treinos')}>
               <ArrowLeft size={16} />

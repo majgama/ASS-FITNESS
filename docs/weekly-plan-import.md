@@ -1,5 +1,7 @@
 # Importação administrativa de planos semanais
 
+Administradores também podem importar planos diretamente pela aplicação em **Treinos > Planos semanais > Importar plano pelo JSON**. Cole o JSON ou selecione um arquivo, verifique a prévia e confirme. Exercícios públicos ausentes são criados automaticamente sem mídia, dentro da mesma transação do plano; nomes ambíguos ou inválidos interrompem a importação. Assim não é necessário abrir o console do servidor.
+
 As rotas exigem Bearer token de administrador. O prefixo completo da API é `/api/workouts`:
 
 | Método e rota | Resultado |
@@ -13,6 +15,7 @@ Use [weekly-plan-import.example.json](weekly-plan-import.example.json) como payl
 
 - `name`: string com pelo menos dois caracteres; `description`: string opcional ou `null`.
 - `days`: de um a sete dias distintos, com `dayOfWeek` inteiro entre 0 (domingo) e 6 (sábado).
+- Na importação (`POST /weekly/import`), `createMissingExercises: true` cria nomes ausentes como exercícios públicos sem mídia, na mesma transação. O padrão `false` preserva o comportamento estrito da API; a tela de administração ativa a opção depois de exibir a prévia.
 - Dia ativo: `isRest` omitido ou `false`, `name` obrigatório, ao menos um item em `exercises` ou `cardio`. `description` e `instructions` são opcionais.
 - Descanso: `isRest: true`, `instructions` opcional, sem exercícios/cardio. Dias omitidos viram descanso automaticamente.
 - Musculação: `exerciseName` obrigatório; `sets`, `repetitions`, `load` e `notes` são strings opcionais ou `null`. `restSeconds` é inteiro entre 0 e 2147483647, opcional ou `null`.
