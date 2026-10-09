@@ -1513,17 +1513,20 @@ export function Workouts({ initialTab = 'exercises' }) {
         {editingExercise ? (
           <form className="form-stack" onSubmit={updateExercise} ref={editFormRef}>
             <div className="form-grid">
-              <label>Nome do Exercício<input name="name" defaultValue={editingExercise.name} required /></label>
-              <label>Grupo Muscular<input name="muscleGroup" defaultValue={editingExercise.muscle_group || ''} /></label>
-              <label>Séries<input name="defaultSets" defaultValue={editingExercise.default_sets || ''} /></label>
-              <label>Repetições<input name="defaultRepetitions" defaultValue={editingExercise.default_repetitions || ''} /></label>
-              <label>Carga<input name="defaultLoad" defaultValue={editingExercise.default_load || ''} /></label>
-              <label>Descanso<input name="defaultRestSeconds" defaultValue={editingExercise.default_rest_seconds ?? ''} /></label>
-
               <div className="wide media-choice-field">
                 <span>Mídia demonstrativa</span>
                 <MediaChoiceGrid value={editExerciseMediaType} favoritesOnly={editLibraryFavoritesOnly} onChoose={chooseEditMedia} />
               </div>
+
+              {editLibraryPickerOpen ? (
+                <div className="wide gif-picker-overlay workout-gif-picker-overlay">
+                  <GifLibraryPicker
+                    onSelect={handleEditLibrarySelect}
+                    onClose={() => setEditLibraryPickerOpen(false)}
+                    initialFavoritesOnly={editLibraryFavoritesOnly}
+                  />
+                </div>
+              ) : null}
 
               {editExerciseMediaType === 'library' ? (
                 <div className="wide gif-selected-preview">
@@ -1541,6 +1544,13 @@ export function Workouts({ initialTab = 'exercises' }) {
                   </button>
                 </div>
               ) : null}
+
+              <label>Nome do Exercício<input name="name" defaultValue={editingExercise.name} required /></label>
+              <label>Grupo Muscular<input name="muscleGroup" defaultValue={editingExercise.muscle_group || ''} /></label>
+              <label>Séries<input name="defaultSets" defaultValue={editingExercise.default_sets || ''} /></label>
+              <label>Repetições<input name="defaultRepetitions" defaultValue={editingExercise.default_repetitions || ''} /></label>
+              <label>Carga<input name="defaultLoad" defaultValue={editingExercise.default_load || ''} /></label>
+              <label>Descanso<input name="defaultRestSeconds" defaultValue={editingExercise.default_rest_seconds ?? ''} /></label>
 
               {editExerciseMediaType === 'youtube' ? (
                 <label className="wide">Link do YouTube
@@ -1576,16 +1586,6 @@ export function Workouts({ initialTab = 'exercises' }) {
                 <textarea name="observations" rows="3" defaultValue={editingExercise.observations || ''} />
               </label>
             </div>
-
-            {editLibraryPickerOpen ? (
-              <div className="gif-picker-overlay">
-                <GifLibraryPicker
-                  onSelect={handleEditLibrarySelect}
-                  onClose={() => setEditLibraryPickerOpen(false)}
-                  initialFavoritesOnly={editLibraryFavoritesOnly}
-                />
-              </div>
-            ) : null}
 
             <div className="actions modal-actions">
               <button type="button" className="secondary-button" onClick={() => setEditingExercise(null)}>Cancelar</button>
