@@ -62,36 +62,65 @@ function applyOverride(item, override) {
   };
 }
 
-gifLibraryRouter.get('/filters', asyncHandler(async (req, res) => {
-  const { gender, environment, categoryPath, muscleGroup } = req.query;
-  const parentSegments = categoryPath ? String(categoryPath).split('/').filter(Boolean) : [];
-
-  let scoped = catalog;
-  if (gender) scoped = scoped.filter((item) => item.gender === gender);
-  if (environment) scoped = scoped.filter((item) => item.environment === environment);
-  if (parentSegments.length > 0) {
-    scoped = scoped.filter((item) => parentSegments.every((seg, idx) => item.categoryPath[idx] === seg));
-  }
-  const muscleGroups = [...new Set(scoped.map((item) => item.muscleGroupPt))]
-    .filter(Boolean)
-    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  if (muscleGroup) scoped = scoped.filter((item) => item.muscleGroupPt === muscleGroup);
-
-  const genders = [...new Set(catalog.map((item) => item.gender))].filter(Boolean).sort();
-  const environments = [...new Set(
-    catalog.filter((item) => !gender || item.gender === gender).map((item) => item.environment)
-  )].filter(Boolean).sort();
-  const nextLevel = [...new Set(scoped.map((item) => item.categoryPath[parentSegments.length]))]
-    .filter(Boolean)
-    .sort();
-  res.json({ genders, environments, categoryOptions: nextLevel, muscleGroups });
-}));
-
-const listQuerySchema = z.object({
+const multipleValues = z.preprocess(
+  (value) => value === undefined ? [] : Array.isArray(value) ? value : [value],
+  z.array(z.string().min(1)).max(100)
+);
+const filterQuerySchema = z.object({
   gender: z.string().optional(),
   environment: z.string().optional(),
   categoryPath: z.string().optional(),
   muscleGroup: z.string().optional(),
+  genders: multipleValues,
+  environments: multipleValues,
+  categories: multipleValues,
+  subcategories: multipleValues,
+  muscleGroups: multipleValues
+});
+
+function normalizeCategory(value) {
+  return value.replace(/\s+/g, ' ').trim();
+}
+
+function filterCatalog(filters, excluded = '') {
+  const parentSegments = filters.categoryPath ? filters.categoryPath.split('/').filter(Boolean) : [];
+  return catalog.filter((item) => {
+    if (excluded !== 'genders' && (filters.gender && item.gender !== filters.gender ||
+      filters.genders.length && !filters.genders.includes(item.gender))) return false;
+    if (excluded !== 'environments' && (filters.environment && item.environment !== filters.environment ||
+      filters.environments.length && !filters.environments.includes(item.environment))) return false;
+    if (excluded !== 'categories' && filters.categories.length &&
+      !filters.categories.includes(normalizeCategory(item.categoryPath[0] || ''))) return false;
+    if (excluded !== 'subcategories' && filters.subcategories.length &&
+      !item.categoryPath.slice(1).some((value) => filters.subcategories.includes(value))) return false;
+    if (parentSegments.length && !parentSegments.every((segment, index) => item.categoryPath[index] === segment)) return false;
+    if (excluded !== 'muscleGroups' && (filters.muscleGroup && item.muscleGroupPt !== filters.muscleGroup ||
+      filters.muscleGroups.length && !filters.muscleGroups.includes(item.muscleGroupPt))) return false;
+    return true;
+  });
+}
+
+gifLibraryRouter.get('/filters', asyncHandler(async (req, res) => {
+  const filters = parseBody(filterQuerySchema, req.query);
+  const parentSegments = filters.categoryPath ? filters.categoryPath.split('/').filter(Boolean) : [];
+  const scoped = filterCatalog(filters, 'muscleGroups');
+  const muscleGroups = [...new Set(scoped.map((item) => item.muscleGroupPt))]
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+  const genders = [...new Set(catalog.map((item) => item.gender))].filter(Boolean).sort();
+  const environments = [...new Set(catalog.map((item) => item.environment))].filter(Boolean).sort();
+  const categories = [...new Set(filterCatalog(filters, 'categories').map((item) => normalizeCategory(item.categoryPath[0] || '')))]
+    .filter(Boolean).sort();
+  const subcategories = [...new Set(filterCatalog(filters, 'subcategories').flatMap((item) => item.categoryPath.slice(1)))]
+    .filter(Boolean).sort();
+  const nextLevel = [...new Set(filterCatalog(filters).map((item) => item.categoryPath[parentSegments.length]))]
+    .filter(Boolean)
+    .sort();
+  res.json({ genders, environments, categories, subcategories, categoryOptions: nextLevel, muscleGroups });
+}));
+
+const listQuerySchema = filterQuerySchema.extend({
   search: z.string().optional(),
   favoritesOnly: z.preprocess((v) => v === 'true' || v === true || v === '1', z.boolean()).optional(),
   translationStatus: z.enum(['updated', 'pending']).optional(),
@@ -101,15 +130,7 @@ const listQuerySchema = z.object({
 
 gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
   const filters = parseBody(listQuerySchema, req.query);
-  const parentSegments = filters.categoryPath ? filters.categoryPath.split('/').filter(Boolean) : [];
-
-  let scoped = catalog;
-  if (filters.gender) scoped = scoped.filter((item) => item.gender === filters.gender);
-  if (filters.environment) scoped = scoped.filter((item) => item.environment === filters.environment);
-  if (parentSegments.length > 0) {
-    scoped = scoped.filter((item) => parentSegments.every((seg, idx) => item.categoryPath[idx] === seg));
-  }
-  if (filters.muscleGroup) scoped = scoped.filter((item) => item.muscleGroupPt === filters.muscleGroup);
+  let scoped = filterCatalog(filters);
   if (filters.search) {
     const q = filters.search.toLowerCase();
     scoped = scoped.filter((item) =>

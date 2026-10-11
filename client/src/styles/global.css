@@ -2312,16 +2312,8 @@ iframe.exercise-media {
 }
 
 .gif-picker-filters {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 8px;
-  align-items: center;
-}
-
-.gif-picker-filters select {
-  min-height: 36px;
-  width: auto;
-  min-width: 140px;
 }
 
 .gif-breadcrumb {

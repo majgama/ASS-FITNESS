@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FileDown, Heart, ListFilter, Pencil, Plus, Search, Star, Trash2, X } from 'lucide-react';
 import { api, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -17,6 +17,57 @@ const PRIMARY_MUSCLE_GROUPS = [
   { label: 'Cárdio', value: 'Cardio' }
 ];
 
+const FILTER_LABELS = {
+  FEMININO: 'Feminino',
+  MASCULINO: 'Masculino',
+  ACADEMIA: 'Academia',
+  FUNCIONAL: 'Funcional',
+  CARDIO: 'Cárdio',
+  'EXERCÍCIOS COM BARRAS': 'Barras',
+  'EXERCÍCIOS COM HALTERES': 'Halteres',
+  'EXERCÍCIOS NA MAQUINA - HACK - BANCO': 'Máquinas',
+  'EXERCÍCIOS NO CABO OU POLIA': 'Polias',
+  'AGILIDADE E COORDENAÇÃO': 'Agilidade',
+  'ATIVAÇÃO NEUROMUSCULAR': 'Ativação',
+  'BOLA PILATES': 'Pilates',
+  'BOSU BALL': 'Bosu',
+  'CORDA NAVAL': 'Corda',
+  'ESPECÍFICOS MODALIDADES': 'Modalidades',
+  'LIBERAÇÃO MIOFASCIAL': 'Liberação',
+  'MEDICINE BALL': 'Medicine',
+  'PESO CORPORAL': 'Corporal',
+  PROPIOCEPÇÃO: 'Propriocepção',
+  STEPS: 'Steps',
+  'PEITORAL E TRONCO': 'Tronco',
+  'PARADA DE MÃOS': 'Invertidos',
+  BICEPS: 'Bíceps',
+  TRICEPS: 'Tríceps',
+  ANDEBRAÇO: 'Antebraço'
+};
+
+function filterLabel(value) {
+  return FILTER_LABELS[value] || value.charAt(0) + value.slice(1).toLocaleLowerCase('pt-BR');
+}
+
+function FilterButtons({ label, options, selected, onChange }) {
+  const values = [...new Set([...options, ...selected])];
+  return (
+    <div>
+      <strong>{label}</strong>
+      <div className="gif-muscle-groups" role="group" aria-label={`Filtrar por ${label.toLocaleLowerCase('pt-BR')}`}>
+        <button type="button" className={!selected.length ? 'active' : ''} aria-pressed={!selected.length} onClick={() => onChange([])}>Todos</button>
+        {values.map((value) => (
+          <button key={value} type="button" title={value} className={selected.includes(value) ? 'active' : ''}
+            aria-pressed={selected.includes(value)}
+            onClick={() => onChange(selected.includes(value) ? selected.filter((item) => item !== value) : [...selected, value])}>
+            {filterLabel(value)}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function GifLibraryPicker({
   onSelect,
   onClose,
@@ -31,11 +82,12 @@ export function GifLibraryPicker({
   const { user } = useAuth();
   const isAdmin = user.role === 'admin';
 
-  const [gender, setGender] = useState(initialGender);
-  const [environment, setEnvironment] = useState(initialEnvironment);
-  const [categorySegments, setCategorySegments] = useState([]);
-  const [muscleGroup, setMuscleGroup] = useState('');
-  const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categoryOptions: [], muscleGroups: [] });
+  const [genders, setGenders] = useState(initialGender ? [initialGender] : []);
+  const [environments, setEnvironments] = useState(initialEnvironment ? [initialEnvironment] : []);
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  const [muscleGroups, setMuscleGroups] = useState([]);
+  const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categories: [], subcategories: [], muscleGroups: [] });
   const [search, setSearch] = useState('');
   const [favoritesOnly, setFavoritesOnly] = useState(initialFavoritesOnly);
   const [translationStatus, setTranslationStatus] = useState('');
@@ -46,28 +98,30 @@ export function GifLibraryPicker({
   const [editingItem, setEditingItem] = useState(null);
   const [exporting, setExporting] = useState(false);
 
-  const categoryPath = useMemo(() => categorySegments.join('/'), [categorySegments]);
+  const filterLoadVersion = useRef(0);
+  const itemLoadVersion = useRef(0);
 
   async function loadFilters() {
-    const params = new URLSearchParams();
-    if (gender) params.set('gender', gender);
-    if (environment) params.set('environment', environment);
-    if (categoryPath) params.set('categoryPath', categoryPath);
-    if (muscleGroup) params.set('muscleGroup', muscleGroup);
+    const version = ++filterLoadVersion.current;
+    const params = buildFilterParams();
     try {
       const data = await api(`/gif-library/filters?${params.toString()}`);
-      setFilterOptions(data);
+      if (version === filterLoadVersion.current) setFilterOptions(data);
     } catch (err) {
-      setError(err.message);
+      if (version === filterLoadVersion.current) setError(err.message);
     }
   }
 
-  function buildItemsParams(nextPage = 1, requestedPageSize = pageSize) {
+  function buildFilterParams() {
     const params = new URLSearchParams();
-    if (gender) params.set('gender', gender);
-    if (environment) params.set('environment', environment);
-    if (categoryPath) params.set('categoryPath', categoryPath);
-    if (muscleGroup) params.set('muscleGroup', muscleGroup);
+    for (const [key, values] of Object.entries({ genders, environments, categories, subcategories, muscleGroups })) {
+      values.forEach((value) => params.append(key, value));
+    }
+    return params;
+  }
+
+  function buildItemsParams(nextPage = 1, requestedPageSize = pageSize) {
+    const params = buildFilterParams();
     if (search) params.set('search', search);
     if (favoritesOnly) params.set('favoritesOnly', 'true');
     if (translationStatus) params.set('translationStatus', translationStatus);
@@ -77,43 +131,28 @@ export function GifLibraryPicker({
   }
 
   async function loadItems(nextPage = 1) {
+    const version = ++itemLoadVersion.current;
     const params = buildItemsParams(nextPage);
     try {
       const data = await api(`/gif-library?${params.toString()}`);
+      if (version !== itemLoadVersion.current) return;
       setItems(data.items);
       setTotal(data.total);
       setPage(data.page);
     } catch (err) {
-      setError(err.message);
+      if (version === itemLoadVersion.current) setError(err.message);
     }
   }
 
-  useEffect(() => { loadFilters(); }, [gender, environment, categoryPath, muscleGroup]);
+  useEffect(() => {
+    loadFilters();
+    return () => { filterLoadVersion.current += 1; };
+  }, [genders, environments, categories, subcategories, muscleGroups]);
   useEffect(() => { setFavoritesOnly(initialFavoritesOnly); }, [initialFavoritesOnly]);
-  useEffect(() => { loadItems(1); }, [gender, environment, categoryPath, muscleGroup, search, favoritesOnly, translationStatus]);
-
-  function selectGender(value) {
-    setGender(value);
-    setCategorySegments([]);
-    setMuscleGroup('');
-  }
-
-  function selectEnvironment(value) {
-    setEnvironment(value);
-    setCategorySegments([]);
-    setMuscleGroup('');
-  }
-
-  function selectCategoryLevel(index, value) {
-    const next = categorySegments.slice(0, index);
-    if (value) next.push(value);
-    setCategorySegments(next);
-  }
-
-  function pickNextCategory(value) {
-    if (!value) return;
-    setCategorySegments((current) => [...current, value]);
-  }
+  useEffect(() => {
+    loadItems(1);
+    return () => { itemLoadVersion.current += 1; };
+  }, [genders, environments, categories, subcategories, muscleGroups, search, favoritesOnly, translationStatus]);
 
   async function toggleFavorite(item) {
     try {
@@ -196,9 +235,11 @@ export function GifLibraryPicker({
       } while (exportedItems.length < exportTotal);
 
       const activeFilters = [
-        gender && `Gênero: ${gender}`,
-        environment && `Ambiente: ${environment}`,
-        categoryPath && `Categoria: ${categorySegments.join(' / ')}`,
+        genders.length && `Gênero: ${genders.map(filterLabel).join(', ')}`,
+        environments.length && `Ambiente: ${environments.map(filterLabel).join(', ')}`,
+        categories.length && `Categoria: ${categories.map(filterLabel).join(', ')}`,
+        subcategories.length && `Detalhes: ${subcategories.map(filterLabel).join(', ')}`,
+        muscleGroups.length && `Grupo muscular: ${muscleGroups.join(', ')}`,
         search && `Busca: ${search}`,
         favoritesOnly && 'Favoritos',
         translationStatus === 'pending' && 'Pendentes'
@@ -267,7 +308,12 @@ export function GifLibraryPicker({
   }
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
-  const visibleMuscleGroups = PRIMARY_MUSCLE_GROUPS.filter(({ value }) => filterOptions.muscleGroups.includes(value));
+  const visibleMuscleGroups = PRIMARY_MUSCLE_GROUPS.filter(({ value }) => filterOptions.muscleGroups.includes(value) || muscleGroups.includes(value));
+  const normalizeGroup = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const muscleLabels = PRIMARY_MUSCLE_GROUPS.map(({ label }) => normalizeGroup(label));
+  const detailOptions = filterOptions.subcategories.filter((value) =>
+    !showMuscleGroups || !muscleLabels.includes(normalizeGroup(filterLabel(value)))
+  );
 
   return (
     <div className={`gif-picker ${managementMode ? 'gif-picker-management' : ''} ${fullPage ? 'gif-picker-full-page' : ''}`}>
@@ -283,34 +329,11 @@ export function GifLibraryPicker({
       {error ? <div className="alert alert-error">{error}</div> : null}
 
       <div className="gif-picker-filters">
-        <select value={gender} onChange={(event) => selectGender(event.target.value)}>
-          <option value="">Gênero</option>
-          {filterOptions.genders.map((g) => <option key={g} value={g}>{g}</option>)}
-        </select>
-        <select value={environment} onChange={(event) => selectEnvironment(event.target.value)} disabled={!gender}>
-          <option value="">Ambiente</option>
-          {filterOptions.environments.map((e) => <option key={e} value={e}>{e}</option>)}
-        </select>
-        {categorySegments.length > 0 ? (
-          <div className="gif-breadcrumb">
-            {categorySegments.map((segment, index) => (
-              <button
-                key={`${segment}-${index}`}
-                type="button"
-                className="breadcrumb-chip"
-                onClick={() => selectCategoryLevel(index, null)}
-                title="Remover a partir deste nível"
-              >
-                {segment} <X size={11} />
-              </button>
-            ))}
-          </div>
-        ) : null}
-        {environment && filterOptions.categoryOptions.length > 0 ? (
-          <select value="" onChange={(event) => pickNextCategory(event.target.value)}>
-            <option value="">Categoria...</option>
-            {filterOptions.categoryOptions.map((c) => <option key={c} value={c}>{c}</option>)}
-          </select>
+        <FilterButtons label="Gênero" options={filterOptions.genders} selected={genders} onChange={setGenders} />
+        <FilterButtons label="Ambiente" options={filterOptions.environments} selected={environments} onChange={setEnvironments} />
+        <FilterButtons label="Categoria" options={filterOptions.categories} selected={categories} onChange={setCategories} />
+        {(categories.length > 0 && detailOptions.length > 0) || subcategories.length > 0 ? (
+          <FilterButtons label="Detalhes" options={detailOptions} selected={subcategories} onChange={setSubcategories} />
         ) : null}
       </div>
 
@@ -318,8 +341,9 @@ export function GifLibraryPicker({
         <div className="gif-muscle-groups" aria-label="Filtrar por grupo muscular">
           <button
             type="button"
-            className={!muscleGroup ? 'active' : ''}
-            onClick={() => setMuscleGroup('')}
+            className={!muscleGroups.length ? 'active' : ''}
+            aria-pressed={!muscleGroups.length}
+            onClick={() => setMuscleGroups([])}
           >
             Todos
           </button>
@@ -327,8 +351,9 @@ export function GifLibraryPicker({
             <button
               key={value}
               type="button"
-              className={muscleGroup === value ? 'active' : ''}
-              onClick={() => setMuscleGroup(value)}
+              className={muscleGroups.includes(value) ? 'active' : ''}
+              aria-pressed={muscleGroups.includes(value)}
+              onClick={() => setMuscleGroups((current) => current.includes(value) ? current.filter((item) => item !== value) : [...current, value])}
             >
               {label}
             </button>
