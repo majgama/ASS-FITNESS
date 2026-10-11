@@ -37,6 +37,10 @@ Os players do YouTube usam `strict-origin-when-cross-origin` nos frames e no hea
 
 Em **Avaliacoes**, o personal seleciona um aluno vinculado e clica em **Liberar avaliacao para o aluno**. Uma avaliacao pendente fica disponivel no portal e na tela de avaliacoes do aluno, sem abertura automatica. O aluno envia medidas, objetivo, observacoes e fotos pelo mesmo formulario; o envio conclui a solicitacao e entra no historico do personal. Apenas o proprio aluno pode responder a uma solicitacao ativa, e o vinculo com o personal e conferido novamente no envio. Existe apenas uma pendencia por aluno; solicitacoes de personais desvinculados ficam ocultas e sao substituidas quando uma nova avaliacao e liberada. O registro direto pelo personal permanece disponivel. O schema cria `assessment_requests` na inicializacao; nao e necessario seed.
 
+### Link de divulgacao do personal
+
+Em **Alunos > Link de divulgacao**, o personal encontra seu unico link permanente, com **Copiar** e **Compartilhar** ao lado. O link usa o codigo ja existente em `personal_profiles.invite_code`, nao expira e pode ser usado por varias pessoas, sem informar previamente o e-mail de cada aluno. No cadastro, a pessoa informa o proprio e-mail e fica vinculada automaticamente ao personal exibido na tela. Compartilhar usa o menu nativo quando disponivel e WhatsApp nos demais navegadores. Convites individuais antigos continuam sujeitos ao e-mail, validade e uso unico originais. O link deixa de funcionar se a conta do personal for excluida.
+
 ## Rodando localmente
 
 1. Instale dependencias:

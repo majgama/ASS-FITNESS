@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ChevronRight, Copy, Plus, UserPlus } from 'lucide-react';
+import { ChevronRight, Copy, Plus, Share2, UserPlus } from 'lucide-react';
 import { api, fileUrl } from '../api/client.js';
 import { Modal } from '../components/Modal.jsx';
 import { StatusBadge } from '../components/StatusBadge.jsx';
@@ -15,8 +15,8 @@ export function Students() {
   const [personals, setPersonals] = useState([]);
   const [filter, setFilter] = useState('active');
   const [modal, setModal] = useState('');
-  const [inviteEmail, setInviteEmail] = useState('');
   const [inviteLink, setInviteLink] = useState('');
+  const [inviteLoading, setInviteLoading] = useState(false);
   const [temporaryPassword, setTemporaryPassword] = useState('');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
@@ -88,16 +88,18 @@ export function Students() {
     await load();
   }
 
-  async function createInvite(event) {
-    event.preventDefault();
+  async function openInvite() {
+    setModal('invite');
     setError('');
-    setInviteLink('');
+    setNotice('');
+    setInviteLoading(true);
     try {
-      const data = await api('/invitations', { method: 'POST', body: { email: inviteEmail } });
+      const data = await api('/invitations/me/code');
       setInviteLink(data.inviteLink);
-      setNotice('Convite gerado.');
     } catch (err) {
       setError(err.message);
+    } finally {
+      setInviteLoading(false);
     }
   }
 
@@ -118,8 +120,22 @@ export function Students() {
   }
 
   async function copyInvite() {
-    await navigator.clipboard.writeText(inviteLink);
-    setNotice('Link copiado.');
+    setError('');
+    try {
+      await navigator.clipboard.writeText(inviteLink);
+      setNotice('Link de divulgacao copiado.');
+    } catch (err) {
+      setError('Nao foi possivel copiar o link. Selecione o endereco e copie manualmente.');
+    }
+  }
+
+  async function shareInvite() {
+    setError('');
+    try {
+      await navigator.share({ title: 'Athlon Coach', text: 'Cadastre-se para treinar comigo.', url: inviteLink });
+    } catch (err) {
+      if (err.name !== 'AbortError') setError('Nao foi possivel compartilhar. Use Copiar para enviar o link.');
+    }
   }
 
   return (
@@ -132,9 +148,9 @@ export function Students() {
         {canManage ? (
           <div className="actions">
             {user.role === 'personal' ? (
-              <button className="secondary-button fit-button" type="button" onClick={() => setModal('invite')}>
+              <button className="secondary-button fit-button" type="button" onClick={openInvite}>
                 <UserPlus size={18} />
-                Convite
+                Link de divulgação
               </button>
             ) : null}
             <button className="primary-button fit-button" type="button" onClick={() => setModal('student')}>
@@ -273,19 +289,30 @@ export function Students() {
         </form>
       </Modal>
 
-      <Modal title="Gerar convite" open={modal === 'invite'} onClose={() => setModal('')}>
-        <form className="form-stack" onSubmit={createInvite}>
-          <label>E-mail do aluno<input type="email" value={inviteEmail} onChange={(event) => setInviteEmail(event.target.value)} required /></label>
-          <button className="primary-button" type="submit">Gerar</button>
+      <Modal title="Meu link de divulgação" open={modal === 'invite'} onClose={() => setModal('')}>
+        <div className="form-stack">
+          <p>Este é seu link único e permanente. Compartilhe com quantas pessoas quiser: quem se cadastrar por ele terá você como personal. Não expira e não exige e-mail prévio.</p>
+          {inviteLoading ? <div className="alert">Carregando link...</div> : null}
+          {error ? <div className="alert alert-error">{error}</div> : null}
+          {notice ? <div className="alert alert-success">{notice}</div> : null}
           {inviteLink ? (
-            <div className="copy-line">
-              <input value={inviteLink} readOnly />
-              <button className="icon-button solid" type="button" onClick={copyInvite} aria-label="Copiar convite">
-                <Copy size={18} />
+            <div className="invite-share-line">
+              <input aria-label="Link de divulgação" value={inviteLink} readOnly />
+              <button className="secondary-button fit-button" type="button" disabled={inviteLoading} onClick={copyInvite}>
+                <Copy size={18} />Copiar
               </button>
+              {navigator.share ? (
+                <button className="primary-button fit-button" type="button" disabled={inviteLoading} onClick={shareInvite}>
+                  <Share2 size={18} />Compartilhar
+                </button>
+              ) : (
+                <a className="primary-button fit-button" href={`https://wa.me/?text=${encodeURIComponent(`Cadastre-se para treinar comigo na Athlon Coach: ${inviteLink}`)}`} target="_blank" rel="noopener noreferrer">
+                  <Share2 size={18} />Compartilhar
+                </a>
+              )}
             </div>
           ) : null}
-        </form>
+        </div>
       </Modal>
     </section>
   );

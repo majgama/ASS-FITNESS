@@ -10,14 +10,21 @@ export function Register() {
   const [invitation, setInvitation] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(Boolean(inviteCode));
+  const [busy, setBusy] = useState(false);
   const isStudent = Boolean(inviteCode);
 
   useEffect(() => {
+    setInvitation(null);
+    setError('');
+    setLoading(Boolean(inviteCode));
     if (!inviteCode) return;
     let alive = true;
-    api(`/invitations/${inviteCode}`)
+    api(`/invitations/${encodeURIComponent(inviteCode)}`)
       .then((data) => {
-        if (alive) setInvitation(data.invitation);
+        if (alive) {
+          setInvitation(data.invitation);
+          if (!data.invitation.valid) setError('Convite invalido ou expirado.');
+        }
       })
       .catch((err) => {
         if (alive) setError(err.message);
@@ -34,8 +41,10 @@ export function Register() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (busy || loading || (isStudent && !invitation?.valid)) return;
     setError('');
     const form = new FormData(event.currentTarget);
+    setBusy(true);
     try {
       await register({
         name: form.get('name'),
@@ -52,6 +61,8 @@ export function Register() {
       navigate('/login');
     } catch (err) {
       setError(err.message);
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -77,7 +88,7 @@ export function Register() {
             </label>
             <label>
               E-mail
-              <input name="email" type="email" required disabled={isStudent} defaultValue={fixedEmail} />
+              <input key={fixedEmail} name="email" type="email" required disabled={Boolean(fixedEmail)} defaultValue={fixedEmail} />
             </label>
             <label>
               Senha
@@ -112,7 +123,9 @@ export function Register() {
             )}
           </div>
 
-          <button className="primary-button" type="submit">Cadastrar</button>
+          <button className="primary-button" type="submit" disabled={busy || loading || (isStudent && !invitation?.valid)}>
+            {busy ? 'Cadastrando...' : 'Cadastrar'}
+          </button>
           <Link className="text-link" to="/login">Voltar para login</Link>
         </form>
       </section>

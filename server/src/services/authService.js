@@ -4,6 +4,7 @@ import { query, withTransaction } from '../db/pool.js';
 import { badRequest, forbidden, notFound, unauthorized } from '../utils/errors.js';
 import { addDays, createInviteCode, createToken, hashToken } from '../utils/tokens.js';
 import { toUser } from '../middleware/auth.js';
+import { resolveInvitation } from './invitationService.js';
 
 export function sanitizeUser(row) {
   return toUser(row);
@@ -27,26 +28,19 @@ export async function registerUser(payload) {
 
     const passwordHash = await bcrypt.hash(payload.password, env.bcryptRounds);
     let trainerIdFromInvite = null;
+    let invitation = null;
 
     if (role === 'student') {
       if (!payload.inviteCode) {
         throw badRequest('Convite obrigatorio para cadastro de aluno.');
       }
 
-      const invite = await client.query(
-        `SELECT * FROM invitations
-         WHERE upper(code) = upper($1)
-           AND lower(email) = lower($2)
-           AND accepted_at IS NULL
-           AND expires_at > now()`,
-        [payload.inviteCode, payload.email]
-      );
-
-      if (invite.rowCount === 0) {
+      invitation = await resolveInvitation(client, payload.inviteCode, { lock: true });
+      if (!invitation?.valid || (!invitation.permanent && invitation.email.toLowerCase() !== payload.email.toLowerCase())) {
         throw badRequest('Convite invalido ou expirado.');
       }
 
-      trainerIdFromInvite = invite.rows[0].trainer_id;
+      trainerIdFromInvite = invitation.trainerId;
     }
 
     const user = await client.query(
@@ -89,7 +83,9 @@ export async function registerUser(payload) {
          VALUES ($1, $2, 'primary', $1)`,
         [trainerIdFromInvite, created.id]
       );
-      await client.query('UPDATE invitations SET accepted_at = now() WHERE upper(code) = upper($1)', [payload.inviteCode]);
+      if (!invitation.permanent) {
+        await client.query('UPDATE invitations SET accepted_at = now() WHERE id = $1', [invitation.id]);
+      }
     }
 
     const hydrated = await client.query(

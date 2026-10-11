@@ -4,35 +4,25 @@ import { env } from '../config/env.js';
 import { query } from '../db/pool.js';
 import { authRequired, requireRoles } from '../middleware/auth.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
-import { badRequest } from '../utils/errors.js';
+import { badRequest, notFound } from '../utils/errors.js';
+import { resolveInvitation } from '../services/invitationService.js';
 import { addDays, createInviteCode } from '../utils/tokens.js';
 import { emailSchema, parseBody } from '../utils/validators.js';
 
 export const invitationsRouter = Router();
 
 invitationsRouter.get('/:code', asyncHandler(async (req, res) => {
-  const result = await query(
-    `SELECT i.code, i.email, i.expires_at, i.accepted_at, u.name AS trainer_name
-     FROM invitations i
-     JOIN users u ON u.id = i.trainer_id
-     WHERE upper(i.code) = upper($1)`,
-    [req.params.code]
-  );
-
-  if (result.rowCount === 0) {
-    res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Convite nao encontrado.' } });
-    return;
-  }
-
-  const invitation = result.rows[0];
+  const invitation = await resolveInvitation({ query }, req.params.code);
+  if (!invitation) throw notFound('Convite nao encontrado.');
   res.json({
     invitation: {
       code: invitation.code,
       email: invitation.email,
-      trainerName: invitation.trainer_name,
-      expiresAt: invitation.expires_at,
-      accepted: Boolean(invitation.accepted_at),
-      valid: !invitation.accepted_at && new Date(invitation.expires_at) > new Date()
+      trainerName: invitation.trainerName,
+      expiresAt: invitation.expiresAt,
+      accepted: invitation.accepted,
+      valid: invitation.valid,
+      permanent: invitation.permanent
     }
   });
 }));
@@ -53,9 +43,10 @@ invitationsRouter.get('/', requireRoles('personal'), asyncHandler(async (req, re
 invitationsRouter.get('/me/code', requireRoles('personal'), asyncHandler(async (req, res) => {
   const result = await query('SELECT invite_code FROM personal_profiles WHERE user_id = $1', [req.user.id]);
   const inviteCode = result.rows[0]?.invite_code;
+  if (!inviteCode) throw notFound('Link de divulgacao nao encontrado.');
   res.json({
     inviteCode,
-    inviteLink: `${env.appUrl}/register/${inviteCode}`
+    inviteLink: `${env.appUrl.replace(/\/+$/, '')}/register/${encodeURIComponent(inviteCode)}`
   });
 }));
 
