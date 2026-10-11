@@ -30,6 +30,10 @@ Os players do YouTube usam `strict-origin-when-cross-origin` nos frames e no hea
 - As exclusoes exigem confirmacao na interface e permissao no servidor. Personais nao podem excluir contas de alunos ou de outros personais.
 - Planos aplicados sao snapshots e mantem seus dados e acesso a midias quando um modelo ou personal e excluido. Arquivos fisicos nao sao removidos por essas exclusoes.
 
+### Avaliacoes preenchidas pelo aluno
+
+Em **Avaliacoes**, o personal seleciona um aluno vinculado e clica em **Liberar avaliacao para o aluno**. Uma avaliacao pendente fica disponivel no portal e na tela de avaliacoes do aluno, sem abertura automatica. O aluno envia medidas, objetivo, observacoes e fotos pelo mesmo formulario; o envio conclui a solicitacao e entra no historico do personal. Apenas o proprio aluno pode responder a uma solicitacao ativa, e o vinculo com o personal e conferido novamente no envio. Existe apenas uma pendencia por aluno; solicitacoes de personais desvinculados ficam ocultas e sao substituidas quando uma nova avaliacao e liberada. O registro direto pelo personal permanece disponivel. O schema cria `assessment_requests` na inicializacao; nao e necessario seed.
+
 ## Rodando localmente
 
 1. Instale dependencias:

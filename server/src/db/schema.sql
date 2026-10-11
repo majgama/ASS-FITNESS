@@ -308,6 +308,18 @@ CREATE TABLE IF NOT EXISTS assessments (
 
 CREATE INDEX IF NOT EXISTS assessments_student_idx ON assessments(student_id, assessment_date DESC);
 
+CREATE TABLE IF NOT EXISTS assessment_requests (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  student_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  requested_by UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  assessment_id UUID REFERENCES assessments(id) ON DELETE SET NULL,
+  completed_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS assessment_requests_pending_student_idx
+ON assessment_requests(student_id) WHERE completed_at IS NULL;
+
 CREATE TABLE IF NOT EXISTS student_billing (
   student_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
   due_date DATE,

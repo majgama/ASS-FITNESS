@@ -6,7 +6,8 @@ import { authRequired, requireRoles } from '../middleware/auth.js';
 import { assessmentPhotosUpload } from '../middleware/upload.js';
 import { assertStudentAccess } from '../services/accessService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
-import { optionalNumber, parseBody } from '../utils/validators.js';
+import { idSchema, optionalNumber, parseBody } from '../utils/validators.js';
+import { forbidden, notFound } from '../utils/errors.js';
 
 export const assessmentsRouter = Router();
 
@@ -36,10 +37,7 @@ const assessmentSchema = z.object({
   observations: z.string().trim().optional().nullable()
 });
 
-assessmentsRouter.post('/', requireRoles('admin', 'personal'), assessmentPhotosUpload, asyncHandler(async (req, res) => {
-  const payload = parseBody(assessmentSchema, req.body);
-  const assessment = await withTransaction(async (client) => {
-    await assertStudentAccess(client, req.user, payload.studentId);
+async function insertAssessment(client, payload, trainerId, uploadedFiles) {
     const result = await client.query(
       `INSERT INTO assessments (
         student_id, trainer_id, assessment_date, weight_kg, height_cm, chest_cm,
@@ -54,7 +52,7 @@ assessmentsRouter.post('/', requireRoles('admin', 'personal'), assessmentPhotosU
       RETURNING *`,
       [
         payload.studentId,
-        req.user.role === 'personal' ? req.user.id : null,
+        trainerId,
         payload.assessmentDate || null,
         optionalNumber(payload.weightKg),
         optionalNumber(payload.heightCm),
@@ -74,9 +72,9 @@ assessmentsRouter.post('/', requireRoles('admin', 'personal'), assessmentPhotosU
     );
 
     const files = [
-      ['front', req.files?.front?.[0]],
-      ['side', req.files?.side?.[0]],
-      ['back', req.files?.back?.[0]]
+      ['front', uploadedFiles?.front?.[0]],
+      ['side', uploadedFiles?.side?.[0]],
+      ['back', uploadedFiles?.back?.[0]]
     ];
 
     for (const [angle, file] of files) {
@@ -96,8 +94,88 @@ assessmentsRouter.post('/', requireRoles('admin', 'personal'), assessmentPhotosU
     }
 
     return result.rows[0];
+}
+
+assessmentsRouter.post('/', requireRoles('admin', 'personal'), assessmentPhotosUpload, asyncHandler(async (req, res) => {
+  const payload = parseBody(assessmentSchema, req.body);
+  const assessment = await withTransaction(async (client) => {
+    await assertStudentAccess(client, req.user, payload.studentId);
+    return insertAssessment(client, payload, req.user.role === 'personal' ? req.user.id : null, req.files);
   });
 
+  res.status(201).json({ assessment });
+}));
+
+assessmentsRouter.post('/students/:studentId/requests', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const studentId = parseBody(idSchema, req.params.studentId);
+  const request = await withTransaction(async (client) => {
+    await assertStudentAccess(client, req.user, studentId);
+    const student = await client.query("SELECT id FROM users WHERE id = $1 AND role = 'student'", [studentId]);
+    if (!student.rowCount) throw notFound('Aluno nao encontrado.');
+    await client.query(
+      `DELETE FROM assessment_requests ar
+       WHERE ar.student_id = $1 AND ar.completed_at IS NULL AND NOT EXISTS (
+         SELECT 1 FROM users u WHERE u.id = ar.requested_by
+         AND (u.role = 'admin' OR (u.role = 'personal' AND EXISTS (
+           SELECT 1 FROM trainer_students ts WHERE ts.student_id = ar.student_id AND ts.trainer_id = u.id
+         )))
+       )`,
+      [studentId]
+    );
+    const result = await client.query(
+      `INSERT INTO assessment_requests (student_id, requested_by) VALUES ($1, $2)
+       ON CONFLICT (student_id) WHERE completed_at IS NULL
+       DO UPDATE SET student_id = EXCLUDED.student_id RETURNING *`,
+      [studentId, req.user.id]
+    );
+    return result.rows[0];
+  });
+  res.status(201).json({ request });
+}));
+
+assessmentsRouter.get('/students/:studentId/requests', asyncHandler(async (req, res) => {
+  const studentId = parseBody(idSchema, req.params.studentId);
+  const requests = await withTransaction(async (client) => {
+    await assertStudentAccess(client, req.user, studentId);
+    const result = await client.query(
+      `SELECT ar.id, ar.created_at, u.name AS requested_by_name
+       FROM assessment_requests ar JOIN users u ON u.id = ar.requested_by
+       WHERE ar.student_id = $1 AND ar.completed_at IS NULL
+         AND (u.role = 'admin' OR (u.role = 'personal' AND EXISTS (
+           SELECT 1 FROM trainer_students ts WHERE ts.student_id = ar.student_id AND ts.trainer_id = ar.requested_by
+         )))
+       ORDER BY ar.created_at`,
+      [studentId]
+    );
+    return result.rows;
+  });
+  res.json({ requests });
+}));
+
+assessmentsRouter.post('/requests/:id/submit', requireRoles('student'), assessmentPhotosUpload, asyncHandler(async (req, res) => {
+  const requestId = parseBody(idSchema, req.params.id);
+  const payload = parseBody(assessmentSchema, { ...req.body, studentId: req.user.id });
+  const assessment = await withTransaction(async (client) => {
+    const pending = await client.query(
+      `SELECT ar.*, u.role AS requester_role FROM assessment_requests ar
+       JOIN users u ON u.id = ar.requested_by
+       WHERE ar.id = $1 AND ar.student_id = $2 AND ar.completed_at IS NULL
+       FOR UPDATE OF ar`,
+      [requestId, req.user.id]
+    );
+    if (!pending.rowCount) throw notFound('Avaliacao pendente nao encontrada ou ja enviada.');
+    const request = pending.rows[0];
+    if (request.requester_role !== 'admin') {
+      if (request.requester_role !== 'personal') throw forbidden('Solicitante invalido.');
+      await assertStudentAccess(client, { id: request.requested_by, role: 'personal' }, req.user.id);
+    }
+    const created = await insertAssessment(client, payload, request.requester_role === 'personal' ? request.requested_by : null, req.files);
+    await client.query(
+      'UPDATE assessment_requests SET assessment_id = $2, completed_at = now() WHERE id = $1',
+      [requestId, created.id]
+    );
+    return created;
+  });
   res.status(201).json({ assessment });
 }));
 

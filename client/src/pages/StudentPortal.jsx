@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Check, ClipboardList, Dumbbell, FileText, Repeat, Send, Timer, Volume2 } from 'lucide-react';
 import { api, fileUrl, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
+import { Link } from 'react-router-dom';
 import { formatDate, normalizeSnapshot, weekDays } from './pageHelpers.js';
 
 function youtubeEmbedUrl(value) {
@@ -31,6 +32,7 @@ export function StudentPortal() {
   const [currentPlan, setCurrentPlan] = useState(null);
   const [diet, setDiet] = useState(null);
   const [assessments, setAssessments] = useState([]);
+  const [assessmentRequests, setAssessmentRequests] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date().getDay());
   const [completedDays, setCompletedDays] = useState({});
   const [dailyLoading, setDailyLoading] = useState(false);
@@ -42,11 +44,13 @@ export function StudentPortal() {
   async function load() {
     setError('');
     try {
-      const [workoutData, dietData, assessmentData] = await Promise.all([
+      const [workoutData, dietData, assessmentData, requestData] = await Promise.all([
         api('/workouts/student/current'),
         api('/diets/student/current'),
-        api(`/assessments/students/${user.id}`)
+        api(`/assessments/students/${user.id}`),
+        api(`/assessments/students/${user.id}/requests`)
       ]);
+      setAssessmentRequests(requestData.requests);
       setCurrentPlan(workoutData.currentPlan);
       setDiet(dietData.currentDiet);
       setAssessments(assessmentData.assessments);
@@ -109,6 +113,16 @@ export function StudentPortal() {
 
       {notice ? <div className="alert alert-success">{notice}</div> : null}
       {error ? <div className="alert alert-error">{error}</div> : null}
+
+      {assessmentRequests.length > 0 ? (
+        <section className="panel">
+          <h2>Avaliação pendente</h2>
+          <p>{assessmentRequests[0].requested_by_name} liberou uma avaliação para você preencher suas medidas e enviar fotos.</p>
+          <Link to="/avaliacoes" className="primary-button fit-button">
+            <ClipboardList size={18} />Preencher avaliação
+          </Link>
+        </section>
+      ) : null}
 
       {!currentPlan ? (
         <section className="panel empty-state">Nenhum plano ativo no momento. Aguarde seu personal trainer disponibilizar seu treino.</section>
