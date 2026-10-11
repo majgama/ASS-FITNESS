@@ -1387,6 +1387,44 @@ iframe.exercise-media {
   min-width: 0;
 }
 
+.student-trainers {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.student-trainer-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  background: #000000;
+  border: 1px solid #d8ac4b;
+  border-radius: var(--radius);
+}
+
+.student-trainer-name {
+  display: grid;
+  gap: 4px;
+  flex: 1;
+  min-width: 120px;
+  overflow-wrap: anywhere;
+  color: #ffffff;
+}
+
+.student-trainer-name span,
+.trainer-contact-unavailable {
+  color: #e7b94f;
+  font-size: 12px;
+}
+
+.trainer-whatsapp img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .profile-summary {
   gap: 14px;
   margin-bottom: 20px;

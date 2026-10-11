@@ -77,6 +77,8 @@ export function Profile() {
               <>
                 <label>CREF<input name="cref" defaultValue={user.cref || ''} /></label>
                 <label>Especialidade<input name="specialty" defaultValue={user.specialty || ''} /></label>
+                <label>WhatsApp<input name="whatsapp" type="tel" defaultValue={user.whatsapp || ''} placeholder="+55 11 99999-9999" /></label>
+                <small>Inclua o código do país e o DDD. Este contato será exibido aos seus alunos.</small>
               </>
             ) : null}
             {user.role === 'student' ? (

@@ -89,7 +89,7 @@ export async function registerUser(payload) {
     }
 
     const hydrated = await client.query(
-      `SELECT u.*, pp.specialty, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
+      `SELECT u.*, pp.specialty, pp.whatsapp, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
               sp.next_assessment_date, sp.status AS student_status, sp.inactive_reason
        FROM users u
        LEFT JOIN personal_profiles pp ON pp.user_id = u.id
@@ -104,7 +104,7 @@ export async function registerUser(payload) {
 
 export async function loginUser({ email, password, userAgent, ipAddress }) {
   const userResult = await query(
-    `SELECT u.*, pp.specialty, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
+    `SELECT u.*, pp.specialty, pp.whatsapp, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
             sp.next_assessment_date, sp.status AS student_status, sp.inactive_reason
      FROM users u
      LEFT JOIN personal_profiles pp ON pp.user_id = u.id

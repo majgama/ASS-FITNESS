@@ -20,6 +20,20 @@ export const studentsRouter = Router();
 
 studentsRouter.use(authRequired);
 
+studentsRouter.get('/me/trainers', requireRoles('student'), asyncHandler(async (req, res) => {
+  const result = await query(
+    `SELECT u.id, u.name, u.profile_photo_path AS "profilePhotoPath", pp.whatsapp,
+            ts.relationship_type AS "relationshipType"
+     FROM trainer_students ts
+     JOIN users u ON u.id = ts.trainer_id AND u.role = 'personal'
+     LEFT JOIN personal_profiles pp ON pp.user_id = u.id
+     WHERE ts.student_id = $1
+     ORDER BY CASE WHEN ts.relationship_type = 'primary' THEN 0 ELSE 1 END, u.name, u.id`,
+    [req.user.id]
+  );
+  res.json({ trainers: result.rows });
+}));
+
 function temporaryPassword() {
   return `Fit@${crypto.randomBytes(5).toString('hex')}`;
 }

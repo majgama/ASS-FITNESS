@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS personal_profiles (
 );
 
 DROP TRIGGER IF EXISTS personal_profiles_set_updated_at ON personal_profiles;
+ALTER TABLE personal_profiles ADD COLUMN IF NOT EXISTS whatsapp TEXT;
 CREATE TRIGGER personal_profiles_set_updated_at
 BEFORE UPDATE ON personal_profiles
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();

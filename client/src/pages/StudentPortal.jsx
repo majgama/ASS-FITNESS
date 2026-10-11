@@ -33,6 +33,7 @@ export function StudentPortal() {
   const [diet, setDiet] = useState(null);
   const [assessments, setAssessments] = useState([]);
   const [assessmentRequests, setAssessmentRequests] = useState([]);
+  const [trainers, setTrainers] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date().getDay());
   const [completedDays, setCompletedDays] = useState({});
   const [dailyLoading, setDailyLoading] = useState(false);
@@ -62,6 +63,16 @@ export function StudentPortal() {
   useEffect(() => {
     load();
   }, []);
+
+  useEffect(() => {
+    let alive = true;
+    api('/students/me/trainers').then((data) => {
+      if (alive) setTrainers(data.trainers);
+    }).catch((err) => {
+      if (alive) setError(err.message);
+    });
+    return () => { alive = false; };
+  }, [user.id]);
 
   const plan = useMemo(() => normalizeSnapshot(currentPlan?.plan_snapshot), [currentPlan]);
   const days = plan?.days || [];
@@ -101,6 +112,28 @@ export function StudentPortal() {
 
   return (
     <section className="page student-workout-page">
+      {trainers.length > 0 ? (
+        <section className="student-trainers" aria-label="Seus personais">
+          {trainers.map((trainer) => (
+            <article className="student-trainer-card" key={trainer.id}>
+              <div className="avatar">
+                {trainer.profilePhotoPath ? <img src={fileUrl(trainer.profilePhotoPath)} alt={`Foto de ${trainer.name}`} /> : trainer.name.slice(0, 2)}
+              </div>
+              <div className="student-trainer-name">
+                <span>Seu personal</span>
+                <strong>{trainer.name}</strong>
+              </div>
+              {trainer.whatsapp ? (
+                <a className="secondary-button fit-button trainer-whatsapp" href={`https://wa.me/${trainer.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp de ${trainer.name}`}>
+                  <img src="/icones/whatssap_icone.png" alt="" />WhatsApp
+                </a>
+              ) : (
+                <span className="trainer-contact-unavailable">WhatsApp não informado</span>
+              )}
+            </article>
+          ))}
+        </section>
+      ) : null}
       <div className="student-header">
         <span className="student-tagline">Disciplina hoje. Resultados reais.</span>
         <div className="page-heading">

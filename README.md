@@ -41,6 +41,10 @@ Em **Avaliacoes**, o personal seleciona um aluno vinculado e clica em **Liberar 
 
 Em **Alunos > Link de divulgacao**, o personal encontra seu unico link permanente, com **Copiar** e **Compartilhar** ao lado. O link usa o codigo ja existente em `personal_profiles.invite_code`, nao expira e pode ser usado por varias pessoas, sem informar previamente o e-mail de cada aluno. No cadastro, a pessoa informa o proprio e-mail e fica vinculada automaticamente ao personal exibido na tela. Compartilhar usa o menu nativo quando disponivel e WhatsApp nos demais navegadores. Convites individuais antigos continuam sujeitos ao e-mail, validade e uso unico originais. O link deixa de funcionar se a conta do personal for excluida.
 
+### Contato do personal no portal do aluno
+
+Logo abaixo da barra superior, o portal mostra foto, nome e WhatsApp dos personais vinculados, com o principal primeiro. Sem vinculo, a secao nao aparece; sem foto, aparecem as iniciais; sem numero, aparece WhatsApp nao informado. O personal cadastra ou remove seu numero em **Perfil > WhatsApp**, incluindo codigo do pais e DDD (exemplo: +55 11 99999-9999). O contato abre em uma nova aba e e visivel apenas aos alunos vinculados pelo endpoint autenticado. A inicializacao adiciona a coluna `personal_profiles.whatsapp`.
+
 ## Rodando localmente
 
 1. Instale dependencias:
