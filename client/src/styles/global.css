@@ -1404,7 +1404,7 @@ iframe.exercise-media {
 .student-trainer-card {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 12px;
   padding: 12px;
   background: #000000;
@@ -1416,7 +1416,7 @@ iframe.exercise-media {
   display: grid;
   gap: 4px;
   flex: 1;
-  min-width: 120px;
+  min-width: 0;
   overflow-wrap: anywhere;
   color: #ffffff;
 }
@@ -1431,6 +1431,29 @@ iframe.exercise-media {
   width: 24px;
   height: 24px;
   object-fit: contain;
+}
+
+.student-trainer-card .avatar {
+  flex-shrink: 0;
+}
+
+.student-trainer-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.student-trainer-contact-row strong {
+  flex: 1;
+  min-width: 0;
+}
+
+.trainer-whatsapp {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  justify-content: center;
 }
 
 .profile-summary {

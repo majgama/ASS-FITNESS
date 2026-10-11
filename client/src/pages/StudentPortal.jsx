@@ -121,15 +121,16 @@ export function StudentPortal() {
               </div>
               <div className="student-trainer-name">
                 <span>Seu personal</span>
-                <strong>{trainer.name}</strong>
+                <div className="student-trainer-contact-row">
+                  <strong>{trainer.name}</strong>
+                  {trainer.whatsapp ? (
+                    <a className="secondary-button fit-button trainer-whatsapp" href={`https://wa.me/${trainer.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp de ${trainer.name}`} title={`WhatsApp de ${trainer.name}`}>
+                      <img src="/icones/whatssap_icone.png" alt="" />
+                    </a>
+                  ) : null}
+                </div>
+                {!trainer.whatsapp ? <span className="trainer-contact-unavailable">WhatsApp não informado</span> : null}
               </div>
-              {trainer.whatsapp ? (
-                <a className="secondary-button fit-button trainer-whatsapp" href={`https://wa.me/${trainer.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp de ${trainer.name}`}>
-                  <img src="/icones/whatssap_icone.png" alt="" />WhatsApp
-                </a>
-              ) : (
-                <span className="trainer-contact-unavailable">WhatsApp não informado</span>
-              )}
             </article>
           ))}
         </section>

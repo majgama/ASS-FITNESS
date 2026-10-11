@@ -44,7 +44,7 @@ Em **Alunos > Link de divulgacao**, o personal encontra seu unico link permanent
 
 ### Contato do personal no portal do aluno
 
-Logo abaixo da barra superior, o portal mostra foto, nome e WhatsApp dos personais vinculados, com o principal primeiro. Sem vinculo, a secao nao aparece; sem foto, aparecem as iniciais; sem numero, aparece WhatsApp nao informado. O personal cadastra ou remove seu numero em **Perfil > WhatsApp**, incluindo codigo do pais e DDD (exemplo: +55 11 99999-9999). O contato abre em uma nova aba e e visivel apenas aos alunos vinculados pelo endpoint autenticado. A inicializacao adiciona a coluna `personal_profiles.whatsapp`.
+Logo abaixo da barra superior, o portal mostra foto, nome e o icone de WhatsApp dos personais vinculados, com o principal primeiro. O icone fica a direita na mesma linha do nome, sem legenda visivel, com identificacao acessivel. Sem vinculo, a secao nao aparece; sem foto, aparecem as iniciais; sem numero, aparece WhatsApp nao informado. O personal cadastra ou remove seu numero em **Perfil > WhatsApp**, incluindo codigo do pais e DDD (exemplo: +55 11 99999-9999). O contato abre em uma nova aba e e visivel apenas aos alunos vinculados pelo endpoint autenticado. A inicializacao adiciona a coluna `personal_profiles.whatsapp`.
 
 ## Rodando localmente
 
