@@ -664,7 +664,7 @@ textarea:focus {
   gap: 6px;
   border: 0;
   background: transparent;
-  color: #745522;
+  color: var(--blue);
   font-weight: 800;
   padding: 0;
 }
@@ -698,7 +698,7 @@ textarea:focus {
 .student-management-profile > div:last-child > span,
 .management-card > span {
   display: block;
-  color: #936b2d;
+  color: var(--blue);
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
@@ -775,7 +775,7 @@ textarea:focus {
 }
 
 .management-panel-title svg {
-  color: #936b2d;
+  color: var(--blue);
 }
 
 .management-panel-title h2 {
@@ -791,7 +791,7 @@ textarea:focus {
 }
 
 .management-panel > a {
-  color: #745522;
+  color: var(--blue);
   font-size: 13px;
   font-weight: 900;
 }
@@ -871,7 +871,7 @@ th {
 
 .badge-active {
   background: var(--green-soft);
-  color: #166534;
+  color: #4ade80;
 }
 
 .badge-public {
@@ -2650,6 +2650,7 @@ body {
 }
 
 .app-shell {
+  color: var(--text);
   background:
     linear-gradient(90deg, rgba(7, 9, 9, 0.98), rgba(9, 12, 12, 0.84)),
     repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(255, 255, 255, 0.018) 80px);
@@ -2659,6 +2660,10 @@ body {
 .app-shell h2,
 .app-shell h3 {
   color: #ffffff;
+}
+
+.app-shell label {
+  color: var(--text);
 }
 
 .sidebar {
