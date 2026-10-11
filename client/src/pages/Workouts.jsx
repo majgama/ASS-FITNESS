@@ -96,6 +96,7 @@ function WorkoutModalityNav({ activeTab }) {
           className={`workout-modality-card ${activeTab === modality.tab ? 'active' : ''}`}
           onClick={() => navigate(modality.path)}
           aria-label={modality.title}
+          aria-pressed={activeTab === modality.tab}
           title={modality.title}
         >
           <img src={modality.image} alt="" />
@@ -112,17 +113,7 @@ export function WorkoutsHome() {
     return <section className="page"><div className="panel empty-state">Área disponível no portal do aluno</div></section>;
   }
 
-  return (
-    <section className="page workouts-home-page">
-      <div className="page-heading">
-        <div>
-          <span>Gestão de Treinos</span>
-          <h1>Treinos</h1>
-        </div>
-      </div>
-      <WorkoutModalityNav />
-    </section>
-  );
+  return <Workouts initialTab="weekly" />;
 }
 
 export function Workouts({ initialTab = 'exercises' }) {

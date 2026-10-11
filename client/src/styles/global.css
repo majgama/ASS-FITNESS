@@ -2759,8 +2759,8 @@ textarea::placeholder {
 }
 
 .workout-modality-card.active {
-  border-color: #ffd979;
-  box-shadow: 0 0 0 2px rgba(231, 185, 79, 0.4);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px #ffffff;
 }
 
 .plan-back-button {
