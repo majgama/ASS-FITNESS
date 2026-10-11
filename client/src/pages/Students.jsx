@@ -189,16 +189,15 @@ export function Students() {
             const progress = student.workoutProgress || {};
             return (
               <button className="student-roster-item" type="button" key={student.id} onClick={() => navigate(`/alunos/${student.id}`)}>
+                <div className="student-roster-status"><StatusBadge value={student.status} /></div>
                 <div className="student-roster-avatar">
                   {student.profile_photo_path ? <img src={fileUrl(student.profile_photo_path)} alt="" /> : student.name.slice(0, 2)}
                 </div>
                 <div className="student-roster-name">
                   <strong>{student.name.split(' ')[0]}</strong>
-                  <StatusBadge value={student.status} />
                 </div>
                 <div className="student-roster-progress">
-                  <span>Evolução</span>
-                  <strong>{progress.percentage || 0}%</strong>
+                  <strong aria-label={`Evolução do treino: ${progress.percentage || 0}%`}>{progress.percentage || 0}%</strong>
                 </div>
                 <ChevronRight className="student-roster-chevron" size={20} />
               </button>
