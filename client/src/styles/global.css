@@ -3160,9 +3160,30 @@ textarea::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #ffffff;
   font-weight: 800;
   font-size: 13px;
+}
+
+.gif-picker-pagination .secondary-button {
+  color: #ffffff;
+  padding: 0 10px;
+}
+
+.gif-picker-pagination .gif-page-number {
+  min-width: 38px;
+}
+
+.gif-picker-pagination .gif-page-number.active {
+  background: #000000;
+  box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+.gif-pagination-summary {
+  flex-basis: 100%;
+  text-align: center;
 }
 
 .gif-edit-overlay {

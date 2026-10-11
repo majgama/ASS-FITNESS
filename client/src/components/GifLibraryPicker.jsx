@@ -308,6 +308,8 @@ export function GifLibraryPicker({
   }
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const firstVisiblePage = Math.max(1, Math.min(page - 1, totalPages - 2));
+  const visiblePages = Array.from({ length: Math.min(3, totalPages) }, (_, index) => firstVisiblePage + index);
   const visibleMuscleGroups = PRIMARY_MUSCLE_GROUPS.filter(({ value }) => filterOptions.muscleGroups.includes(value) || muscleGroups.includes(value));
   const normalizeGroup = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const muscleLabels = PRIMARY_MUSCLE_GROUPS.map(({ label }) => normalizeGroup(label));
@@ -447,11 +449,18 @@ export function GifLibraryPicker({
       </div>
 
       {total > pageSize ? (
-        <div className="gif-picker-pagination">
+        <nav className="gif-picker-pagination" aria-label="Paginação do Banco de GIFs">
           <button type="button" className="secondary-button" disabled={page <= 1} onClick={() => loadItems(page - 1)}>Anterior</button>
-          <span>{page} / {totalPages}</span>
+          {visiblePages.map((pageNumber) => (
+            <button key={pageNumber} type="button" className={`secondary-button gif-page-number ${page === pageNumber ? 'active' : ''}`}
+              aria-label={`Página ${pageNumber}`} aria-current={page === pageNumber ? 'page' : undefined}
+              onClick={() => loadItems(pageNumber)}>
+              {pageNumber}
+            </button>
+          ))}
           <button type="button" className="secondary-button" disabled={page >= totalPages} onClick={() => loadItems(page + 1)}>Próxima</button>
-        </div>
+          <span className="gif-pagination-summary">Página {page} de {totalPages}</span>
+        </nav>
       ) : null}
 
       {editingItem ? (
