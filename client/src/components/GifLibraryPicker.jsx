@@ -49,13 +49,13 @@ function filterLabel(value) {
   return FILTER_LABELS[value] || value.charAt(0) + value.slice(1).toLocaleLowerCase('pt-BR');
 }
 
-function FilterButtons({ label, options, selected, onChange }) {
+function FilterButtons({ label, options, selected, onChange, showAll = true, showLabel = true }) {
   const values = [...new Set([...options, ...selected])];
   return (
     <div>
-      <strong>{label}</strong>
+      {showLabel ? <strong className="gif-filter-legend">{label}</strong> : null}
       <div className="gif-muscle-groups" role="group" aria-label={`Filtrar por ${label.toLocaleLowerCase('pt-BR')}`}>
-        <button type="button" className={!selected.length ? 'active' : ''} aria-pressed={!selected.length} onClick={() => onChange([])}>Todos</button>
+        {showAll ? <button type="button" className={!selected.length ? 'active' : ''} aria-pressed={!selected.length} onClick={() => onChange([])}>Todos</button> : null}
         {values.map((value) => (
           <button key={value} type="button" title={value} className={selected.includes(value) ? 'active' : ''}
             aria-pressed={selected.includes(value)}
@@ -329,8 +329,13 @@ export function GifLibraryPicker({
       {error ? <div className="alert alert-error">{error}</div> : null}
 
       <div className="gif-picker-filters">
-        <FilterButtons label="Gênero" options={filterOptions.genders} selected={genders} onChange={setGenders} />
-        <FilterButtons label="Ambiente" options={filterOptions.environments} selected={environments} onChange={setEnvironments} />
+        <div>
+          <strong className="gif-filter-legend">Gênero/Ambiente</strong>
+          <div className="gif-gender-environment">
+            <FilterButtons label="Gênero" options={filterOptions.genders} selected={genders} onChange={setGenders} showAll={false} showLabel={false} />
+            <FilterButtons label="Ambiente" options={filterOptions.environments} selected={environments} onChange={setEnvironments} showAll={false} showLabel={false} />
+          </div>
+        </div>
         <FilterButtons label="Categoria" options={filterOptions.categories} selected={categories} onChange={setCategories} />
         {(categories.length > 0 && detailOptions.length > 0) || subcategories.length > 0 ? (
           <FilterButtons label="Detalhes" options={detailOptions} selected={subcategories} onChange={setSubcategories} />
@@ -374,9 +379,10 @@ export function GifLibraryPicker({
         <button
           type="button"
           className={`favorites-toggle ${favoritesOnly ? 'active' : ''}`}
+          aria-pressed={favoritesOnly}
           onClick={() => setFavoritesOnly((current) => !current)}
         >
-          <Star size={16} />
+          <Star size={12} />
           Favoritos
         </button>
         {managementMode ? (

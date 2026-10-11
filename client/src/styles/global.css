@@ -2316,6 +2316,33 @@ iframe.exercise-media {
   gap: 8px;
 }
 
+.gif-filter-legend {
+  color: #ffffff;
+}
+
+.gif-gender-environment {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.gif-gender-environment .gif-muscle-groups {
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .gif-gender-environment {
+    gap: 6px;
+  }
+
+  .gif-gender-environment .gif-muscle-groups button {
+    padding: 9px 6px;
+    font-size: 11px;
+  }
+}
+
 .gif-breadcrumb {
   display: flex;
   flex-wrap: wrap;
@@ -2352,9 +2379,10 @@ iframe.exercise-media {
   gap: 6px;
   border: 1px solid var(--line);
   background: #ffffff;
-  border-radius: var(--radius);
-  min-height: 38px;
-  padding: 0 14px;
+  border-radius: 6px;
+  padding: 9px 13px;
+  font-size: 12px;
+  line-height: 1;
   font-weight: 800;
   color: #465266;
 }
