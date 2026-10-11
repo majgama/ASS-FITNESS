@@ -53,7 +53,7 @@ Logo abaixo da barra superior, o portal mostra foto, nome e o icone de WhatsApp 
 
 ### Intervalo e carga do aluno
 
-Cada card tem Iniciar intervalo: o cronometro conta o tempo decorrido, independentemente do intervalo prescrito, ate Parar intervalo ou o limite de 10 minutos. Trocar o dia nao interrompe o cronometro; sair/recarregar o portal reinicia esse estado. Inserir carga permite salvar uma carga pessoal (ex.: 20 kg), reutilizada pelo ID do exercicio em todos os dias e planos desse aluno, inclusive depois de entrar novamente. A prescricao e os modelos do personal nao sao alterados. Somente o proprio aluno pode salvar cargas de exercicios presentes em seu plano ativo. A inicializacao cria `student_exercise_loads`.
+Cada card tem Iniciar intervalo com fundo verde: o cronometro conta o tempo decorrido, independentemente do intervalo prescrito, ate Parar intervalo ou o limite de 10 minutos. A contagem ativa fica verde e, depois de parar, vermelha. Apenas um intervalo pode ficar ativo: iniciar outro interrompe o anterior e preserva seu tempo. Trocar o dia nao interrompe o cronometro; sair/recarregar o portal reinicia esse estado. Inserir carga permite salvar uma carga pessoal (ex.: 20 kg), reutilizada pelo ID do exercicio em todos os dias e planos desse aluno, inclusive depois de entrar novamente. A prescricao e os modelos do personal nao sao alterados. Somente o proprio aluno pode salvar cargas de exercicios presentes em seu plano ativo. A inicializacao cria `student_exercise_loads`.
 
 ## Rodando localmente
 

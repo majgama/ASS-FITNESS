@@ -105,10 +105,16 @@ export function StudentPortal() {
     setTimerNow(now);
     setRestTimers((current) => {
       const timer = current[key];
+      const stoppedTimers = Object.fromEntries(Object.entries(current).map(([timerKey, value]) => [
+        timerKey,
+        value.startedAt !== null
+          ? { startedAt: null, elapsed: Math.min(600, Math.max(0, Math.floor((now - value.startedAt) / 1000))) }
+          : value
+      ]));
       return {
-        ...current,
+        ...stoppedTimers,
         [key]: timer?.startedAt != null
-          ? { startedAt: null, elapsed: Math.min(600, Math.floor((now - timer.startedAt) / 1000)) }
+          ? stoppedTimers[key]
           : { startedAt: now, elapsed: 0 }
       };
     });
@@ -323,8 +329,8 @@ export function StudentPortal() {
                         <div>
                           <small>Intervalo</small>
                           <strong>{item.restSeconds ? `${item.restSeconds}s` : 'Livre'}</strong>
-                          <output className="student-rest-time" role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</output>
-                          <button type="button" className="secondary-button student-exercise-action" onClick={() => toggleRestTimer(item.id)}>
+                          <output className={`student-rest-time${restTimers[item.id] ? (restTimers[item.id].startedAt !== null ? ' is-running' : ' is-stopped') : ''}`} role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</output>
+                          <button type="button" className={`secondary-button student-exercise-action${restTimers[item.id]?.startedAt != null ? '' : ' student-rest-start'}`} onClick={() => toggleRestTimer(item.id)}>
                             {restTimers[item.id]?.startedAt != null ? 'Parar intervalo' : 'Iniciar intervalo'}
                           </button>
                         </div>

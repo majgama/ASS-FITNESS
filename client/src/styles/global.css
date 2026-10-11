@@ -1184,6 +1184,23 @@ iframe.exercise-media {
   margin-top: 4px;
 }
 
+.student-rest-time.is-running {
+  color: #4ade80;
+}
+
+.student-rest-time.is-stopped {
+  color: #f87171;
+}
+
+.student-exercise-action.student-rest-start {
+  background: #15803d;
+  color: #ffffff;
+}
+
+.student-exercise-action.student-rest-start:hover {
+  background: #166534;
+}
+
 .spec-item {
   display: flex;
   align-items: center;
