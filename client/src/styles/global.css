@@ -368,6 +368,40 @@ textarea:focus {
   color: var(--red);
 }
 
+.nav-list .install-app-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #e7b94f;
+  border-radius: var(--radius);
+  background: #080909;
+  color: #ffd979;
+  font-size: 13px;
+  font-weight: 750;
+  text-align: left;
+}
+
+.install-app-button svg {
+  flex-shrink: 0;
+}
+
+.install-app-button:hover {
+  background: #1b1810;
+}
+
+.install-app-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+}
+
+.install-app-help {
+  color: var(--text);
+}
+
 .shell-main {
   min-width: 0;
 }

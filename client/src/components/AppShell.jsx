@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 import { fileUrl } from '../api/client.js';
+import { InstallAppButton } from './InstallAppButton.jsx';
 
 const navByRole = {
   admin: [
@@ -78,6 +79,7 @@ export function AppShell() {
               </NavLink>
             );
           })}
+          <InstallAppButton onOpen={() => setMenuOpen(false)} />
         </nav>
 
         <button className="logout-button" type="button" onClick={handleLogout}>
