@@ -671,7 +671,7 @@ textarea:focus {
 
 .student-roster-name strong {
   font-size: 16px;
-  text-align: center;
+  text-align: left;
   overflow-wrap: anywhere;
 }
 
