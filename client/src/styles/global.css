@@ -1321,6 +1321,24 @@ iframe.exercise-media {
   border-color: #1d2430;
 }
 
+.icon-button.popup-close-button {
+  background: #000000;
+  border-color: #d8ac4b;
+  color: #e7b94f;
+  flex-shrink: 0;
+}
+
+.icon-button.popup-close-button:hover {
+  background: #000000;
+  border-color: #f5d682;
+  color: #ffe09a;
+}
+
+.icon-button.popup-close-button:focus-visible {
+  outline: 2px solid #f5d682;
+  outline-offset: 2px;
+}
+
 .only-mobile {
   display: none;
 }

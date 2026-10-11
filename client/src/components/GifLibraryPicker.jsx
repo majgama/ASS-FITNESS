@@ -320,7 +320,7 @@ export function GifLibraryPicker({
       {!managementMode && !fullPage ? (
         <div className="gif-picker-header">
           <strong>Biblioteca de animações</strong>
-          <button type="button" className="icon-button" onClick={onClose} aria-label="Fechar biblioteca">
+          <button type="button" className="icon-button popup-close-button" onClick={onClose} aria-label="Fechar biblioteca">
             <X size={16} />
           </button>
         </div>
