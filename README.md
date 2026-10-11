@@ -21,6 +21,7 @@ Aplicativo web para gestao de assessoria fitness com tres perfis: administrador,
 - Botoes com X para fechar modais e o popup da biblioteca de GIFs usam fundo preto, borda e icone dourados, inclusive ao passar o mouse, com foco visivel pelo teclado.
 - Evolucao do treino exibida apenas em percentual na lista e na gestao do aluno, sem barra ou contagem de atividades.
 - Dashboard e gestao de alunos herdam a fonte clara do tema escuro, incluindo valores dos indicadores e dados das tabelas. Legendas e links da gestao individual usam dourado claro, e o status ativo usa verde claro para preservar o contraste.
+- Na tela de login em celular (ate 780px), o bloco decorativo com escudo e slogan fica oculto, mantendo o logo horizontal e o formulario. A apresentacao desktop permanece igual.
 - Catalogo de GIFs: 377 nomes de abdominais masculinos substituidos pela lista fornecida em 02/10/2026, incluindo os 17 marcados para revisao. IDs, imagens e demais campos foram preservados. Nomes personalizados pelo administrador continuam tendo prioridade; exercicios e planos ja salvos nao sao renomeados retroativamente.
 
 Os players do YouTube usam `strict-origin-when-cross-origin` nos frames e no header `Referrer-Policy` do servidor. Essa politica envia apenas a origem ao YouTube, permitindo identificar a aplicacao e evitando o erro 153 sem expor o caminho ou os parametros da pagina. Proxies de producao devem preservar essa politica.
