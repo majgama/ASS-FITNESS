@@ -1402,7 +1402,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                     <div className="manage-header-row">
                       <strong>{plan.name}</strong>
                       {canCopyPlan ? (
-                        <button type="button" className="secondary-button fit-button" onClick={() => saveWeeklyPlanCopy(plan)}>
+                        <button type="button" className="primary-button fit-button" onClick={() => saveWeeklyPlanCopy(plan)}>
                           <Copy size={16} />
                           Salvar como meu plano
                         </button>

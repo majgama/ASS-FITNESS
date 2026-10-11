@@ -33,6 +33,7 @@ Os players do YouTube usam `strict-origin-when-cross-origin` nos frames e no hea
 - Na biblioteca de GIFs, genero, ambiente e categoria usam botoes de selecao multipla, assim como os grupos musculares. Rotulos curtos como Polias, Barras, Halteres e Maquinas substituem os nomes longos. Opcoes do mesmo filtro somam resultados; filtros diferentes sao combinados. Clique novamente para desmarcar ou em Todos para limpar o grupo. Busca, favoritos, paginacao e PDF respeitam as selecoes.
 - Genero e ambiente ficam na mesma linha sob a legenda branca Genero/Ambiente, sem botao Todos; clique nos botoes ativos para desmarcar. As demais legendas tambem sao brancas, e Favoritos tem o mesmo tamanho dos botoes de filtro.
 - Personais podem salvar treinos e planos semanais publicos como copias particulares. A copia de um plano inclui treinos diarios e exercicios independentes, para edicao sem alterar os modelos publicos de origem.
+- Nos cards dos planos semanais, o titulo e o botao Salvar como meu plano ficam em linhas separadas. O botao de copia usa fundo dourado e texto preto.
 - As exclusoes exigem confirmacao na interface e permissao no servidor. Personais nao podem excluir contas de alunos ou de outros personais.
 - Planos aplicados sao snapshots e mantem seus dados e acesso a midias quando um modelo ou personal e excluido. Arquivos fisicos nao sao removidos por essas exclusoes.
 

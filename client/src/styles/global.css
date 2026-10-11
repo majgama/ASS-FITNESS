@@ -2015,6 +2015,14 @@ iframe.exercise-media {
   color: #f5f3ec;
 }
 
+.manage-weekly-card > .manage-header-row {
+  flex-direction: column;
+}
+
+.manage-weekly-card > .manage-header-row strong {
+  overflow-wrap: anywhere;
+}
+
 .manage-card-footer {
   display: flex;
   align-items: center;
