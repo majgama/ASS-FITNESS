@@ -314,31 +314,36 @@ textarea:focus {
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100dvh;
   background: #111213;
   border-right: 1px solid #2f2e2b;
-  padding: 18px;
+  padding: 12px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .brand {
   gap: 12px;
   min-height: 48px;
+  flex-shrink: 0;
 }
 
 .nav-list {
   display: grid;
-  gap: 6px;
+  gap: 4px;
+  align-content: start;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
 }
 
 .nav-list a {
-  gap: 10px;
-  min-height: 42px;
-  padding: 0 12px;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 10px;
+  font-size: 13px;
   border-radius: var(--radius);
   color: #bcb6aa;
   text-decoration: none;
@@ -354,7 +359,10 @@ textarea:focus {
 .logout-button {
   margin-top: auto;
   flex-shrink: 0;
-  gap: 10px;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 10px;
+  font-size: 13px;
   justify-content: flex-start;
   background: var(--red-soft);
   color: var(--red);
@@ -2588,7 +2596,7 @@ body {
 
 .brand {
   border-bottom: 1px solid #37362f;
-  padding-bottom: 16px;
+  padding-bottom: 10px;
 }
 
 .nav-list a {
