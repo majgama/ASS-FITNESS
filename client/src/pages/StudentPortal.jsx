@@ -3,6 +3,7 @@ import { Check, ClipboardList, Dumbbell, FileText, Repeat, Send, Timer, Volume2 
 import { api, fileUrl, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { Link } from 'react-router-dom';
+import { Modal } from '../components/Modal.jsx';
 import { formatDate, normalizeSnapshot, weekDays } from './pageHelpers.js';
 
 function youtubeEmbedUrl(value) {
@@ -41,6 +42,13 @@ export function StudentPortal() {
   const [difficulty, setDifficulty] = useState('');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
+  const [exerciseLoads, setExerciseLoads] = useState({});
+  const [editingLoad, setEditingLoad] = useState(null);
+  const [loadValue, setLoadValue] = useState('');
+  const [savingLoad, setSavingLoad] = useState(false);
+  const [loadError, setLoadError] = useState('');
+  const [restTimers, setRestTimers] = useState({});
+  const [timerNow, setTimerNow] = useState(Date.now());
 
   async function load() {
     setError('');
@@ -53,6 +61,7 @@ export function StudentPortal() {
       ]);
       setAssessmentRequests(requestData.requests);
       setCurrentPlan(workoutData.currentPlan);
+      setExerciseLoads(Object.fromEntries(workoutData.exerciseLoads.map((item) => [item.exerciseId, item.load])));
       setDiet(dietData.currentDiet);
       setAssessments(assessmentData.assessments);
     } catch (err) {
@@ -73,6 +82,64 @@ export function StudentPortal() {
     });
     return () => { alive = false; };
   }, [user.id]);
+
+  const hasRunningTimer = Object.values(restTimers).some((timer) => timer.startedAt !== null);
+  useEffect(() => {
+    if (!hasRunningTimer) return;
+    function tick() {
+      const now = Date.now();
+      setTimerNow(now);
+      setRestTimers((current) => Object.fromEntries(Object.entries(current).map(([key, timer]) => [
+        key,
+        timer.startedAt !== null && now - timer.startedAt >= 600000
+          ? { startedAt: null, elapsed: 600 }
+          : timer
+      ])));
+    }
+    const interval = setInterval(tick, 250);
+    return () => clearInterval(interval);
+  }, [hasRunningTimer]);
+
+  function toggleRestTimer(key) {
+    const now = Date.now();
+    setTimerNow(now);
+    setRestTimers((current) => {
+      const timer = current[key];
+      return {
+        ...current,
+        [key]: timer?.startedAt != null
+          ? { startedAt: null, elapsed: Math.min(600, Math.floor((now - timer.startedAt) / 1000)) }
+          : { startedAt: now, elapsed: 0 }
+      };
+    });
+  }
+
+  function restElapsed(key) {
+    const timer = restTimers[key];
+    const seconds = timer?.startedAt != null
+      ? Math.min(600, Math.max(0, Math.floor((timerNow - timer.startedAt) / 1000)))
+      : timer?.elapsed || 0;
+    return `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+  }
+
+  async function saveLoad(event) {
+    event.preventDefault();
+    if (savingLoad) return;
+    setSavingLoad(true);
+    setLoadError('');
+    try {
+      const data = await api(`/workouts/student/exercises/${editingLoad.exerciseId}/load`, {
+        method: 'PUT', body: { load: loadValue }
+      });
+      setExerciseLoads((current) => ({ ...current, [data.exerciseLoad.exerciseId]: data.exerciseLoad.load }));
+      setEditingLoad(null);
+      setNotice('Carga salva para este exercício em todos os dias.');
+    } catch (err) {
+      setLoadError(err.message);
+    } finally {
+      setSavingLoad(false);
+    }
+  }
 
   const plan = useMemo(() => normalizeSnapshot(currentPlan?.plan_snapshot), [currentPlan]);
   const days = plan?.days || [];
@@ -241,7 +308,14 @@ export function StudentPortal() {
                         <Dumbbell size={16} className="spec-icon" />
                         <div>
                           <small>Carga</small>
-                          <strong>{item.load || 'Carga livre'}</strong>
+                          <strong>{exerciseLoads[item.exerciseId] ?? (item.load || 'Carga livre')}</strong>
+                          {item.exerciseId ? (
+                            <button type="button" className="secondary-button student-exercise-action" onClick={() => {
+                              setEditingLoad(item);
+                              setLoadValue(exerciseLoads[item.exerciseId] ?? item.load ?? '');
+                              setLoadError('');
+                            }}>{exerciseLoads[item.exerciseId] ? 'Editar carga' : 'Inserir carga'}</button>
+                          ) : null}
                         </div>
                       </div>
                       <div className="spec-item">
@@ -249,6 +323,10 @@ export function StudentPortal() {
                         <div>
                           <small>Intervalo</small>
                           <strong>{item.restSeconds ? `${item.restSeconds}s` : 'Livre'}</strong>
+                          <output className="student-rest-time" role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</output>
+                          <button type="button" className="secondary-button student-exercise-action" onClick={() => toggleRestTimer(item.id)}>
+                            {restTimers[item.id]?.startedAt != null ? 'Parar intervalo' : 'Iniciar intervalo'}
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -316,6 +394,14 @@ export function StudentPortal() {
           </p>
         </section>
       </div>
+      <Modal title={`Carga: ${editingLoad?.exerciseName || ''}`} open={Boolean(editingLoad)} onClose={() => { if (!savingLoad) setEditingLoad(null); }}>
+        <form className="form-stack" onSubmit={saveLoad}>
+          <p>A carga será usada neste exercício em todos os dias dos seus treinos, sem alterar o modelo do personal.</p>
+          {loadError ? <div className="alert alert-error">{loadError}</div> : null}
+          <label>Carga<input value={loadValue} onChange={(event) => setLoadValue(event.target.value)} placeholder="Ex.: 20 kg" maxLength={100} required disabled={savingLoad} /></label>
+          <button className="primary-button" type="submit" disabled={savingLoad || !loadValue.trim()}>{savingLoad ? 'Salvando...' : 'Salvar carga'}</button>
+        </form>
+      </Modal>
     </section>
   );
 }

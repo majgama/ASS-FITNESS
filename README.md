@@ -51,6 +51,10 @@ Em **Alunos > Link de divulgacao**, o personal encontra seu unico link permanent
 
 Logo abaixo da barra superior, o portal mostra foto, nome e o icone de WhatsApp dos personais vinculados, com o principal primeiro. O icone fica a direita na mesma linha do nome, sem legenda visivel, com identificacao acessivel. Sem vinculo, a secao nao aparece; sem foto, aparecem as iniciais; sem numero, aparece WhatsApp nao informado. O personal cadastra ou remove seu numero em **Perfil > WhatsApp**, incluindo codigo do pais e DDD (exemplo: +55 11 99999-9999). O contato abre em uma nova aba e e visivel apenas aos alunos vinculados pelo endpoint autenticado. A inicializacao adiciona a coluna `personal_profiles.whatsapp`.
 
+### Intervalo e carga do aluno
+
+Cada card tem Iniciar intervalo: o cronometro conta o tempo decorrido, independentemente do intervalo prescrito, ate Parar intervalo ou o limite de 10 minutos. Trocar o dia nao interrompe o cronometro; sair/recarregar o portal reinicia esse estado. Inserir carga permite salvar uma carga pessoal (ex.: 20 kg), reutilizada pelo ID do exercicio em todos os dias e planos desse aluno, inclusive depois de entrar novamente. A prescricao e os modelos do personal nao sao alterados. Somente o proprio aluno pode salvar cargas de exercicios presentes em seu plano ativo. A inicializacao cria `student_exercise_loads`.
+
 ## Rodando localmente
 
 1. Instale dependencias:

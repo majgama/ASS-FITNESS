@@ -329,6 +329,15 @@ CREATE TABLE IF NOT EXISTS student_billing (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS student_exercise_loads (
+  student_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  -- Applied snapshots retain exercise IDs even after catalog exercises are deleted.
+  exercise_id UUID NOT NULL,
+  load TEXT NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (student_id, exercise_id)
+);
+
 CREATE TABLE IF NOT EXISTS student_payment_history (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   student_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,

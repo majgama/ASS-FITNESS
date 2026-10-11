@@ -1160,6 +1160,30 @@ iframe.exercise-media {
   padding: 10px 12px;
 }
 
+.student-specs-grid .spec-item {
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.student-specs-grid .spec-item > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.student-exercise-action {
+  margin-top: 6px;
+  padding: 6px 8px;
+  min-height: 34px;
+  font-size: 11px;
+}
+
+.student-rest-time {
+  display: block;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+
 .spec-item {
   display: flex;
   align-items: center;

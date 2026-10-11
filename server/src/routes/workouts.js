@@ -6,7 +6,7 @@ import { assertExerciseAccess, assertStudentAccess } from '../services/accessSer
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { forbidden, notFound } from '../utils/errors.js';
 import { createImportedWeeklyPlan, resolveImportedExercises, weeklyImportSchema } from '../services/weeklyPlanImportService.js';
-import { parseBody } from '../utils/validators.js';
+import { idSchema, parseBody } from '../utils/validators.js';
 
 export const workoutsRouter = Router();
 
@@ -653,7 +653,42 @@ workoutsRouter.get('/student/current', requireRoles('student'), asyncHandler(asy
      LIMIT 1`,
     [req.user.id]
   );
-  res.json({ currentPlan: result.rows[0] || null });
+  const loads = await query(
+    'SELECT exercise_id AS "exerciseId", load FROM student_exercise_loads WHERE student_id = $1',
+    [req.user.id]
+  );
+  res.json({ currentPlan: result.rows[0] || null, exerciseLoads: loads.rows });
+}));
+
+const studentLoadSchema = z.object({
+  load: z.string().trim().min(1).max(100)
+});
+
+workoutsRouter.put('/student/exercises/:exerciseId/load', requireRoles('student'), asyncHandler(async (req, res) => {
+  const exerciseId = parseBody(idSchema, req.params.exerciseId);
+  const payload = parseBody(studentLoadSchema, req.body);
+  const exerciseLoad = await withTransaction(async (client) => {
+    const plan = await client.query(
+      `SELECT plan_snapshot FROM student_weekly_plans
+       WHERE student_id = $1 AND status = 'active'
+       ORDER BY created_at DESC LIMIT 1 FOR SHARE`,
+      [req.user.id]
+    );
+    const snapshot = plan.rows[0]?.plan_snapshot;
+    const included = snapshot?.days?.some((day) =>
+      day.dailyWorkout?.exercises?.some((exercise) => exercise.exerciseId === exerciseId));
+    if (!included) throw notFound('Exercicio nao encontrado no seu plano ativo.');
+    const result = await client.query(
+      `INSERT INTO student_exercise_loads (student_id, exercise_id, load)
+       VALUES ($1, $2, $3)
+       ON CONFLICT (student_id, exercise_id)
+       DO UPDATE SET load = EXCLUDED.load, updated_at = now()
+       RETURNING exercise_id AS "exerciseId", load`,
+      [req.user.id, exerciseId, payload.load]
+    );
+    return result.rows[0];
+  });
+  res.json({ exerciseLoad });
 }));
 
 workoutsRouter.post('/students/:studentId/complete', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
