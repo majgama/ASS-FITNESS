@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Calendar,
   Check,
@@ -784,6 +784,20 @@ export function Workouts({ initialTab = 'exercises' }) {
       {tab === 'exercises' ? (
         <>
           <ManagementViewSelector value={exerciseView} onChange={setExerciseView} publicLabel="Exercícios públicos" mineLabel="Meus exercícios" createLabel="Novo exercício" />
+          {exerciseView === 'public' ? (
+            <aside className="alert exercise-library-info" aria-label="Sobre os exercícios públicos">
+              <p>
+                Estes exercícios são modelos criados pela plataforma, não o catálogo completo.
+                Você também pode criar seus próprios exercícios com nosso banco de mais de 5 mil
+                animações. Clique em <strong>Banco de GIFs</strong>, escolha uma animação e personalize
+                o exercício para seus alunos.
+              </p>
+              <Link className="secondary-button fit-button exercise-library-info-link" to="/treinos/biblioteca-gifs">
+                <img src="/icones/banco_gif2.PNG" alt="" />
+                Banco de GIFs
+              </Link>
+            </aside>
+          ) : null}
           <div className="two-column wide-left workout-view-content">
           <section className="panel" hidden={exerciseView !== 'create'}>
             <div className="section-title">

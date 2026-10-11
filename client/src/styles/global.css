@@ -2736,6 +2736,28 @@ textarea::placeholder {
   max-width: 960px;
 }
 
+.exercise-library-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.exercise-library-info p {
+  flex: 1 1 280px;
+  margin: 0;
+}
+
+.exercise-library-info-link {
+  gap: 8px;
+}
+
+.exercise-library-info-link img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
 .workout-modality-card {
   display: grid;
   place-items: center;
