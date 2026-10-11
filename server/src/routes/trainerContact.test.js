@@ -8,6 +8,8 @@ const studentId = '11111111-1111-4111-8111-111111111111';
 const trainerId = '22222222-2222-4222-8222-222222222222';
 let calls;
 let whatsapp;
+let cpfLastFour;
+let claims;
 let linked;
 let server;
 let baseUrl;
@@ -17,7 +19,7 @@ async function query(sql, params = []) {
   if (sql.includes('FROM sessions s')) {
     const role = ['student', 'personal', 'admin'].find((value) => hashToken(value) === params[0]);
     return { rowCount: role ? 1 : 0, rows: role ? [{
-      id: role === 'student' ? studentId : trainerId, role, name: 'Teste', whatsapp
+      id: role === 'student' ? studentId : trainerId, role, name: 'Teste', whatsapp, cpf_last_four: cpfLastFour
     }] : [] };
   }
   if (sql.includes('FROM trainer_students ts') && sql.includes('"profilePhotoPath"')) {
@@ -26,10 +28,21 @@ async function query(sql, params = []) {
     }] : [] };
   }
   if (sql.includes('UPDATE personal_profiles')) {
-    if (params[2]) whatsapp = params[3];
+    if (sql.includes('cpf_last_four')) { whatsapp = params[2]; cpfLastFour = params[1]; }
   }
+  if (sql.includes('SELECT cpf_last_four, whatsapp FROM personal_profiles')) return { rowCount: 1, rows: [{ cpf_last_four: cpfLastFour, whatsapp }] };
+  if (sql.includes('FROM anti_abuse_key')) return { rowCount: 1, rows: [{ fingerprint: hashToken(params[0]) }] };
+  if (sql.includes('INSERT INTO personal_identity_claims')) {
+    claims.set(`${params[0]}:${params[1]}`, params[2]);
+    return { rowCount: 1, rows: [{ fingerprint: params[1] }] };
+  }
+  if (sql.includes('SELECT 1 FROM personal_identity_claims')) {
+    const found = claims.get(`cpf:${params[0]}`) === params[1];
+    return { rowCount: found ? 1 : 0, rows: found ? [{}] : [] };
+  }
+  if (sql.includes('regexp_replace(whatsapp') && params[1] === '5511222222222') return { rowCount: 1, rows: [{}] };
   if (sql.includes('SELECT u.*, pp.specialty')) return { rowCount: 1, rows: [{
-    id: trainerId, name: 'Personal teste', role: 'personal', whatsapp
+    id: trainerId, name: 'Personal teste', role: 'personal', whatsapp, cpf_last_four: cpfLastFour, invite_code: 'PT-test'
   }] };
   return { rowCount: 0, rows: [] };
 }
@@ -56,6 +69,8 @@ before(async () => {
 beforeEach(() => {
   calls = [];
   whatsapp = '5511999999999';
+  cpfLastFour = null;
+  claims = new Map();
   linked = true;
 });
 
@@ -99,9 +114,9 @@ test('personal can save a formatted number and get normalized contact back', asy
   const response = await request('/profile/me', 'personal', { whatsapp: '+55 (11) 99999-9999' });
   assert.equal(response.status, 200);
   assert.equal((await response.json()).user.whatsapp, '5511999999999');
-  const update = calls.find(({ sql }) => sql.includes('UPDATE personal_profiles'));
+  const update = calls.find(({ sql }) => sql.includes('UPDATE personal_profiles SET cpf_last_four'));
   assert.equal(update.params[0], trainerId);
-  assert.equal(update.params[2], true);
+  assert.equal(update.params[2], '5511999999999');
 });
 
 test('empty number clears contact, omitted number preserves it', async () => {
@@ -122,4 +137,23 @@ test('student cannot update any trainer contact through their profile', async ()
   const response = await request('/profile/me', 'student', { whatsapp: '5511888888888' });
   assert.equal(response.status, 200);
   assert.ok(!calls.some(({ sql }) => sql.includes('UPDATE personal_profiles')));
+});
+
+test('existing personal completes identity through profile without changing student links', async () => {
+  const response = await request('/profile/me', 'personal', { cpf: '529.982.247-25', whatsapp: '+55 (11) 99999-9999' });
+  assert.equal(response.status, 200);
+  const { user } = await response.json();
+  assert.equal(user.canShareInvite, true);
+  assert.equal(user.cpfLastFour, '4725');
+  assert.equal(user.inviteCode, 'PT-test');
+  assert.ok(!('cpf' in user));
+  assert.ok(!calls.some(({ sql }) => sql.includes('UPDATE trainer_students') || sql.includes('DELETE FROM trainer_students')));
+  assert.equal((await request('/profile/me', 'personal', { cpf: '11144477735', whatsapp })).status, 400);
+});
+
+test('CPF invalidity and duplicate WhatsApp surface actionable errors', async () => {
+  assert.equal((await request('/profile/me', 'personal', { cpf: '11111111111', whatsapp })).status, 400);
+  const response = await request('/profile/me', 'personal', { whatsapp: '+55 11 22222-2222' });
+  assert.equal(response.status, 409);
+  assert.equal((await response.json()).error.code, 'IDENTITY_ALREADY_USED');
 });

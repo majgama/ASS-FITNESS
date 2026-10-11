@@ -42,9 +42,34 @@ CREATE TABLE IF NOT EXISTS personal_profiles (
 
 DROP TRIGGER IF EXISTS personal_profiles_set_updated_at ON personal_profiles;
 ALTER TABLE personal_profiles ADD COLUMN IF NOT EXISTS whatsapp TEXT;
+ALTER TABLE personal_profiles ADD COLUMN IF NOT EXISTS cpf_last_four TEXT;
 CREATE TRIGGER personal_profiles_set_updated_at
 BEFORE UPDATE ON personal_profiles
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+CREATE TABLE IF NOT EXISTS anti_abuse_key (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  secret TEXT NOT NULL
+);
+INSERT INTO anti_abuse_key (id, secret)
+VALUES (1, encode(gen_random_bytes(32), 'hex')) ON CONFLICT (id) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS personal_identity_claims (
+  kind TEXT NOT NULL CHECK (kind IN ('cpf', 'whatsapp')),
+  fingerprint TEXT NOT NULL,
+  trainer_id UUID REFERENCES users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  last_used_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (kind, fingerprint)
+);
+CREATE INDEX IF NOT EXISTS personal_identity_claims_trainer_idx ON personal_identity_claims(trainer_id);
+
+CREATE TABLE IF NOT EXISTS registration_attempts (
+  fingerprint TEXT PRIMARY KEY,
+  attempts INTEGER NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL
+);
+CREATE INDEX IF NOT EXISTS registration_attempts_expiry_idx ON registration_attempts(expires_at);
 
 CREATE TABLE IF NOT EXISTS student_profiles (
   user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,

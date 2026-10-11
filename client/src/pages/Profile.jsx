@@ -66,6 +66,7 @@ export function Profile() {
               <strong>{roleLabel(user.role)}</strong>
               <span>{user.email}</span>
               {user.inviteCode ? <span>Codigo: {user.inviteCode}</span> : null}
+              {user.role === 'personal' && !user.canShareInvite ? <span>Complete CPF e WhatsApp para liberar o link de divulgação.</span> : null}
             </div>
           </div>
 
@@ -75,10 +76,16 @@ export function Profile() {
             <label>Foto<input name="photo" type="file" accept="image/*" /></label>
             {user.role === 'personal' ? (
               <>
+                {user.hasCpf ? (
+                  <p>CPF vinculado: ***.***.*{user.cpfLastFour?.slice(0, 2)}-{user.cpfLastFour?.slice(2)}. Para corrigir, entre em contato com o suporte.</p>
+                ) : (
+                  <label>CPF<input name="cpf" required inputMode="numeric" maxLength="14" placeholder="000.000.000-00" /></label>
+                )}
                 <label>CREF<input name="cref" defaultValue={user.cref || ''} /></label>
                 <label>Especialidade<input name="specialty" defaultValue={user.specialty || ''} /></label>
-                <label>WhatsApp<input name="whatsapp" type="tel" defaultValue={user.whatsapp || ''} placeholder="+55 11 99999-9999" /></label>
-                <small>Inclua o código do país e o DDD. Este contato será exibido aos seus alunos.</small>
+                <label>WhatsApp<input name="whatsapp" type="tel" required maxLength="25" defaultValue={user.whatsapp || ''} placeholder="+55 11 99999-9999" /></label>
+                <small>Informe seu próprio número, com código do país e DDD. Este contato será exibido aos seus alunos e não pode ser usado por outra conta. CPF e WhatsApp são obrigatórios para liberar o link.</small>
+                <small>Não enviamos SMS nem confirmamos a titularidade. O CPF completo não é armazenado; identificadores protegidos por chave permanecem após exclusão da conta para impedir a repetição do benefício gratuito.</small>
               </>
             ) : null}
             {user.role === 'student' ? (

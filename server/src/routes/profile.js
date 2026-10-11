@@ -6,6 +6,8 @@ import { profilePhotoUpload } from '../middleware/upload.js';
 import { changePassword } from '../services/authService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { parseBody, passwordSchema } from '../utils/validators.js';
+import { cpfSchema, whatsappSchema } from '../utils/personalIdentity.js';
+import { savePersonalIdentity } from '../services/personalIdentityService.js';
 
 export const profileRouter = Router();
 
@@ -16,11 +18,8 @@ const profileSchema = z.object({
   dateOfBirth: z.string().optional().nullable(),
   cref: z.string().trim().optional().nullable(),
   specialty: z.string().trim().optional().nullable(),
-  whatsapp: z.string().trim()
-    .regex(/^(?:|\+?[1-9][0-9 ()-]{7,24})$/, 'Informe o WhatsApp com codigo do pais e DDD.')
-    .transform((value) => value.replace(/\D/g, ''))
-    .refine((value) => !value || (value.length >= 8 && value.length <= 15), 'O WhatsApp deve ter de 8 a 15 digitos.')
-    .optional().nullable(),
+  cpf: cpfSchema.optional(),
+  whatsapp: whatsappSchema.optional().nullable(),
   objective: z.string().trim().optional().nullable(),
   restrictions: z.string().trim().optional().nullable(),
   nextAssessmentDate: z.string().optional().nullable()
@@ -53,12 +52,14 @@ profileRouter.patch('/me', profilePhotoUpload, asyncHandler(async (req, res) => 
     );
 
     if (req.user.role === 'personal') {
+      if (payload.cpf !== undefined || payload.whatsapp !== undefined) {
+        await savePersonalIdentity(client, req.user.id, payload);
+      }
       await client.query(
         `UPDATE personal_profiles
-         SET specialty = COALESCE($2, specialty),
-             whatsapp = CASE WHEN $3::boolean THEN $4 ELSE whatsapp END
+         SET specialty = COALESCE($2, specialty)
          WHERE user_id = $1`,
-        [req.user.id, payload.specialty || null, payload.whatsapp !== undefined, payload.whatsapp || null]
+        [req.user.id, payload.specialty || null]
       );
     }
 
@@ -75,7 +76,7 @@ profileRouter.patch('/me', profilePhotoUpload, asyncHandler(async (req, res) => 
   });
 
   const updated = await query(
-    `SELECT u.*, pp.specialty, pp.whatsapp, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
+    `SELECT u.*, pp.specialty, pp.whatsapp, pp.cpf_last_four, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
             sp.next_assessment_date, sp.status AS student_status, sp.inactive_reason
      FROM users u
      LEFT JOIN personal_profiles pp ON pp.user_id = u.id

@@ -5,7 +5,7 @@ import { Modal } from '../components/Modal.jsx';
 import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { formatDate } from './pageHelpers.js';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function Students() {
   const { user } = useAuth();
@@ -92,6 +92,11 @@ export function Students() {
     setModal('invite');
     setError('');
     setNotice('');
+    setInviteLink('');
+    if (!user.canShareInvite) {
+      setInviteLoading(false);
+      return;
+    }
     setInviteLoading(true);
     try {
       const data = await api('/invitations/me/code');
@@ -292,6 +297,12 @@ export function Students() {
       <Modal title="Meu link de divulgação" open={modal === 'invite'} onClose={() => setModal('')}>
         <div className="form-stack">
           <p>Este é seu link único e permanente. Compartilhe com quantas pessoas quiser: quem se cadastrar por ele terá você como personal. Não expira e não exige e-mail prévio.</p>
+          {!user.canShareInvite ? (
+            <div className="alert alert-warning">
+              Para liberar seu link, informe seu CPF e seu WhatsApp no Perfil. Seus alunos atuais continuam vinculados.
+              <Link className="text-link" to="/perfil">Completar meu perfil</Link>
+            </div>
+          ) : null}
           {inviteLoading ? <div className="alert">Carregando link...</div> : null}
           {error ? <div className="alert alert-error">{error}</div> : null}
           {notice ? <div className="alert alert-success">{notice}</div> : null}

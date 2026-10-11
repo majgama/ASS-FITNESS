@@ -6,6 +6,7 @@ import { authRequired, requireRoles } from '../middleware/auth.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { badRequest, notFound } from '../utils/errors.js';
 import { resolveInvitation } from '../services/invitationService.js';
+import { assertPersonalInviteEnabled } from '../services/personalIdentityService.js';
 import { addDays, createInviteCode } from '../utils/tokens.js';
 import { emailSchema, parseBody } from '../utils/validators.js';
 
@@ -30,6 +31,7 @@ invitationsRouter.get('/:code', asyncHandler(async (req, res) => {
 invitationsRouter.use(authRequired);
 
 invitationsRouter.get('/', requireRoles('personal'), asyncHandler(async (req, res) => {
+  await assertPersonalInviteEnabled({ query }, req.user.id);
   const result = await query(
     `SELECT id, email, code, expires_at, accepted_at, created_at
      FROM invitations
@@ -41,6 +43,7 @@ invitationsRouter.get('/', requireRoles('personal'), asyncHandler(async (req, re
 }));
 
 invitationsRouter.get('/me/code', requireRoles('personal'), asyncHandler(async (req, res) => {
+  await assertPersonalInviteEnabled({ query }, req.user.id);
   const result = await query('SELECT invite_code FROM personal_profiles WHERE user_id = $1', [req.user.id]);
   const inviteCode = result.rows[0]?.invite_code;
   if (!inviteCode) throw notFound('Link de divulgacao nao encontrado.');
@@ -55,6 +58,7 @@ const createInvitationSchema = z.object({
 });
 
 invitationsRouter.post('/', requireRoles('personal'), asyncHandler(async (req, res) => {
+  await assertPersonalInviteEnabled({ query }, req.user.id);
   const payload = parseBody(createInvitationSchema, req.body);
   const existingUser = await query('SELECT id FROM users WHERE lower(email) = lower($1)', [payload.email]);
   if (existingUser.rowCount > 0) {

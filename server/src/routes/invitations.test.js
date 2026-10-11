@@ -18,6 +18,9 @@ let users;
 let server;
 let baseUrl;
 let registerUser;
+let identityComplete;
+let activeStudents;
+let registrationAttempts;
 
 async function query(sql, params = []) {
   calls.push({ sql, params });
@@ -30,16 +33,29 @@ async function query(sql, params = []) {
   }
   if (sql.includes('FROM personal_profiles pp JOIN users')) {
     const found = trainerExists && String(params[0]).toUpperCase() === personalCode;
-    return { rowCount: found ? 1 : 0, rows: found ? [{ invite_code: personalCode, trainer_id: trainerId, trainer_name: 'Personal teste' }] : [] };
+    return { rowCount: found ? 1 : 0, rows: found ? [{ invite_code: personalCode, trainer_id: trainerId, trainer_name: 'Personal teste', cpf_last_four: identityComplete ? '4725' : null, whatsapp: '5511999999999' }] : [] };
   }
   if (sql.includes('FROM invitations i JOIN users')) {
     const found = trainerExists && params[0] === 'ALU-OLD';
     return { rowCount: found ? 1 : 0, rows: found ? [{
       id: invitationId, code: 'ALU-OLD', trainer_id: trainerId, trainer_name: 'Personal teste',
+      cpf_last_four: identityComplete ? '4725' : null, whatsapp: '5511999999999',
       email: 'old@example.test', accepted_at: legacyAccepted ? new Date() : null,
       expires_at: new Date(Date.now() + (legacyExpired ? -1 : 1) * 86400000)
     }] : [] };
   }
+  if (sql.includes('SELECT cpf_last_four, whatsapp FROM personal_profiles')) {
+    return { rowCount: profileExists ? 1 : 0, rows: profileExists ? [{ cpf_last_four: identityComplete ? '4725' : null, whatsapp: '5511999999999' }] : [] };
+  }
+  if (sql.includes('FROM anti_abuse_key')) return { rowCount: 1, rows: [{ fingerprint: hashToken(params[0]) }] };
+  if (sql.includes('INSERT INTO registration_attempts')) {
+    registrationAttempts++;
+    return { rowCount: 1, rows: [{ attempts: registrationAttempts, retry_after: 600 }] };
+  }
+  if (sql.includes('INSERT INTO personal_identity_claims')) return { rowCount: 1, rows: [{ fingerprint: params[1] }] };
+  if (sql.includes('SELECT 1 FROM personal_identity_claims')) return { rowCount: 1, rows: [{}] };
+  if (sql.includes('COUNT(DISTINCT ts.student_id)')) return { rowCount: 1, rows: [{ total: activeStudents }] };
+  if (sql.includes('SELECT free_student_limit')) return { rowCount: 1, rows: [{ free_student_limit: 3, paid_student_limit: 0, status: 'free' }] };
   if (sql.includes('INSERT INTO users')) {
     if (users.some((user) => user.email === params[1].toLowerCase())) {
       const error = new Error('Duplicate email');
@@ -95,6 +111,9 @@ beforeEach(() => {
   legacyAccepted = false;
   legacyExpired = false;
   profileExists = true;
+  identityComplete = true;
+  activeStudents = 0;
+  registrationAttempts = 0;
   failRelationship = false;
   calls = [];
   users = [];
@@ -206,9 +225,56 @@ test('public legacy invitation response retains email and validity', async () =>
 });
 
 test('personal public registration still creates a stored permanent code and billing profile', async () => {
-  const personal = await registerUser({ name: 'Personal novo', email: 'personal@example.test', password: 'password-test-123', role: 'personal' });
+  const personal = await registerUser({ name: 'Personal novo', email: 'personal@example.test', password: 'password-test-123', role: 'personal', cpf: '529.982.247-25', whatsapp: '+55 11 99999-9999' });
   assert.equal(personal.role, 'personal');
   assert.ok(calls.some(({ sql }) => sql.includes('INSERT INTO personal_profiles')));
   assert.ok(calls.some(({ sql }) => sql.includes('INSERT INTO trainer_billing')));
   assert.ok(!calls.some(({ sql }) => sql.includes('INSERT INTO trainer_students')));
+});
+
+test('incomplete personal cannot retrieve or use permanent and legacy codes', async () => {
+  identityComplete = false;
+  assert.equal((await fetch(`${baseUrl}/invitations/me/code`, { headers: { Authorization: 'Bearer personal' } })).status, 403);
+  assert.equal((await (await fetch(`${baseUrl}/invitations/${personalCode}`)).json()).invitation.valid, false);
+  assert.equal((await (await fetch(`${baseUrl}/invitations/ALU-OLD`)).json()).invitation.valid, false);
+  await assert.rejects(registerUser(payload('blocked@example.test')), /Convite invalido/);
+  assert.equal(users.length, 0);
+});
+
+test('share link cannot bypass the three active student limit', async () => {
+  activeStudents = 3;
+  await assert.rejects(registerUser(payload('fourth@example.test')), /Limite de alunos/);
+  assert.equal(users.length, 0);
+  assert.ok(calls.some(({ sql }) => sql.includes('SELECT id FROM users') && sql.includes('FOR UPDATE')));
+});
+
+test('public personal registration requires valid CPF and WhatsApp before creating an account', async () => {
+  const personal = { name: 'Personal teste', email: 'personal@example.test', password: 'password-test-123', role: 'personal' };
+  for (const identity of [{}, { cpf: '11111111111', whatsapp: '5511999999999' }, { cpf: '52998224725', whatsapp: '' }]) {
+    const response = await fetch(`${baseUrl}/auth/register`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...personal, ...identity })
+    });
+    assert.equal(response.status, 400);
+  }
+  assert.equal(users.length, 0);
+  const response = await fetch(`${baseUrl}/auth/register`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...personal, cpf: '529.982.247-25', whatsapp: '+55 11 99999-9999' })
+  });
+  assert.equal(response.status, 201);
+  assert.equal(users.length, 1);
+  assert.equal(calls.filter(({ sql }) => sql.includes('INSERT INTO personal_identity_claims')).length, 2);
+});
+
+test('sixth personal registration attempt returns 429 and Retry-After, without throttling invited students', async () => {
+  const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: 'personal' }) };
+  for (let i = 0; i < 5; i++) assert.equal((await fetch(`${baseUrl}/auth/register`, options)).status, 400);
+  const response = await fetch(`${baseUrl}/auth/register`, options);
+  assert.equal(response.status, 429);
+  assert.equal(response.headers.get('Retry-After'), '600');
+  assert.equal((await response.json()).error.code, 'REGISTRATION_RATE_LIMIT');
+  const studentResponse = await fetch(`${baseUrl}/auth/register`, {
+    ...options, body: JSON.stringify(payload('invited@example.test'))
+  });
+  assert.equal(studentResponse.status, 201);
 });

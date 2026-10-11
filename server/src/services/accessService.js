@@ -65,6 +65,7 @@ export async function getTrainerCapacity(client, trainerId) {
 }
 
 export async function assertTrainerCanAddActiveStudent(client, trainerId) {
+  await client.query('SELECT id FROM users WHERE id = $1 FOR UPDATE', [trainerId]);
   const capacity = await getTrainerCapacity(client, trainerId);
   if (capacity.activeStudents >= capacity.allowedStudents) {
     throw paymentRequired('Limite de alunos gratis atingido. Libere mais alunos pelo pagamento.', capacity);

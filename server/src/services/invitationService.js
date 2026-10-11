@@ -1,6 +1,6 @@
 export async function resolveInvitation(client, code, { lock = false } = {}) {
   const personal = await client.query(
-    `SELECT pp.invite_code, u.id AS trainer_id, u.name AS trainer_name
+    `SELECT pp.invite_code, pp.cpf_last_four, pp.whatsapp, u.id AS trainer_id, u.name AS trainer_name
      FROM personal_profiles pp JOIN users u ON u.id = pp.user_id
      WHERE upper(pp.invite_code) = upper($1) AND u.role = 'personal'`,
     [code]
@@ -14,14 +14,15 @@ export async function resolveInvitation(client, code, { lock = false } = {}) {
       email: null,
       expiresAt: null,
       accepted: false,
-      valid: true,
+      valid: Boolean(row.cpf_last_four && row.whatsapp),
       permanent: true
     };
   }
 
   const result = await client.query(
-    `SELECT i.*, u.name AS trainer_name
+    `SELECT i.*, pp.cpf_last_four, pp.whatsapp, u.name AS trainer_name
      FROM invitations i JOIN users u ON u.id = i.trainer_id
+     JOIN personal_profiles pp ON pp.user_id = u.id
      WHERE upper(i.code) = upper($1) AND u.role = 'personal'
      ${lock ? 'FOR UPDATE OF i' : ''}`,
     [code]
@@ -36,7 +37,7 @@ export async function resolveInvitation(client, code, { lock = false } = {}) {
     email: row.email,
     expiresAt: row.expires_at,
     accepted: Boolean(row.accepted_at),
-    valid: !row.accepted_at && new Date(row.expires_at) > new Date(),
+    valid: Boolean(row.cpf_last_four && row.whatsapp) && !row.accepted_at && new Date(row.expires_at) > new Date(),
     permanent: false
   };
 }

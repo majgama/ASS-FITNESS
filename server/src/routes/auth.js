@@ -4,6 +4,8 @@ import { authRequired } from '../middleware/auth.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { emailSchema, parseBody, passwordSchema } from '../utils/validators.js';
 import { loginUser, logoutSession, registerUser } from '../services/authService.js';
+import { query } from '../db/pool.js';
+import { limitPersonalRegistrations } from '../services/personalIdentityService.js';
 
 export const authRouter = Router();
 
@@ -15,6 +17,8 @@ const registerSchema = z.object({
   dateOfBirth: z.string().optional().nullable(),
   cref: z.string().trim().optional().nullable(),
   specialty: z.string().trim().optional().nullable(),
+  cpf: z.string().optional(),
+  whatsapp: z.string().optional(),
   inviteCode: z.string().trim().optional().nullable(),
   objective: z.string().trim().optional().nullable(),
   startDate: z.string().optional().nullable(),
@@ -28,6 +32,9 @@ const loginSchema = z.object({
 });
 
 authRouter.post('/register', asyncHandler(async (req, res) => {
+  if (req.body?.role !== 'student') {
+    await limitPersonalRegistrations({ query }, req.ip);
+  }
   const payload = parseBody(registerSchema, req.body);
   const user = await registerUser(payload);
   res.status(201).json({ user });

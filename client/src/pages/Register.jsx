@@ -55,6 +55,7 @@ export function Register() {
         dateOfBirth: form.get('dateOfBirth') || null,
         cref: form.get('cref') || null,
         specialty: form.get('specialty') || null,
+        ...(!isStudent ? { cpf: form.get('cpf'), whatsapp: form.get('whatsapp') } : {}),
         objective: form.get('objective') || null,
         restrictions: form.get('restrictions') || null
       });
@@ -101,6 +102,15 @@ export function Register() {
             {!isStudent ? (
               <>
                 <label>
+                  CPF
+                  <input name="cpf" required inputMode="numeric" maxLength="14" placeholder="000.000.000-00" />
+                </label>
+                <label>
+                  WhatsApp
+                  <input name="whatsapp" type="tel" required maxLength="25" placeholder="+55 11 99999-9999" />
+                </label>
+                <p className="muted wide">CPF e WhatsApp devem ser seus e não podem ser reutilizados em outra conta. O WhatsApp será exibido aos alunos. Não enviamos SMS nem verificamos a titularidade desses dados.</p>
+                <label>
                   CREF
                   <input name="cref" />
                 </label>
@@ -123,6 +133,7 @@ export function Register() {
             )}
           </div>
 
+          {!isStudent ? <p className="muted">Usamos esses dados para impedir contas duplicadas e repetição do benefício gratuito. O CPF completo não é armazenado; mantemos identificadores protegidos por chave, inclusive após excluir a conta, para impedir a reutilização. CPF não é exibido aos alunos.</p> : null}
           <button className="primary-button" type="submit" disabled={busy || loading || (isStudent && !invitation?.valid)}>
             {busy ? 'Cadastrando...' : 'Cadastrar'}
           </button>

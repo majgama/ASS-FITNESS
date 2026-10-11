@@ -5,6 +5,10 @@ import { badRequest, forbidden, notFound, unauthorized } from '../utils/errors.j
 import { addDays, createInviteCode, createToken, hashToken } from '../utils/tokens.js';
 import { toUser } from '../middleware/auth.js';
 import { resolveInvitation } from './invitationService.js';
+import { assertPersonalInviteEnabled, savePersonalIdentity } from './personalIdentityService.js';
+import { cpfSchema, requiredWhatsappSchema } from '../utils/personalIdentity.js';
+import { parseBody } from '../utils/validators.js';
+import { assertTrainerCanAddActiveStudent } from './accessService.js';
 
 export function sanitizeUser(row) {
   return toUser(row);
@@ -25,6 +29,10 @@ export async function registerUser(payload) {
     if (!['personal', 'student'].includes(role)) {
       throw forbidden('Cadastro publico permitido apenas para personal ou aluno convidado.');
     }
+    const identity = role === 'personal' ? {
+      cpf: parseBody(cpfSchema, payload.cpf),
+      whatsapp: parseBody(requiredWhatsappSchema, payload.whatsapp)
+    } : null;
 
     const passwordHash = await bcrypt.hash(payload.password, env.bcryptRounds);
     let trainerIdFromInvite = null;
@@ -41,6 +49,8 @@ export async function registerUser(payload) {
       }
 
       trainerIdFromInvite = invitation.trainerId;
+      await assertTrainerCanAddActiveStudent(client, trainerIdFromInvite);
+      await assertPersonalInviteEnabled(client, trainerIdFromInvite);
     }
 
     const user = await client.query(
@@ -59,6 +69,7 @@ export async function registerUser(payload) {
          VALUES ($1, $2, $3)`,
         [created.id, payload.specialty || null, inviteCode]
       );
+      await savePersonalIdentity(client, created.id, identity);
       await client.query(
         `INSERT INTO trainer_billing (trainer_id, free_student_limit)
          VALUES ($1, $2)`,
@@ -89,7 +100,7 @@ export async function registerUser(payload) {
     }
 
     const hydrated = await client.query(
-      `SELECT u.*, pp.specialty, pp.whatsapp, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
+      `SELECT u.*, pp.specialty, pp.whatsapp, pp.cpf_last_four, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
               sp.next_assessment_date, sp.status AS student_status, sp.inactive_reason
        FROM users u
        LEFT JOIN personal_profiles pp ON pp.user_id = u.id
@@ -104,7 +115,7 @@ export async function registerUser(payload) {
 
 export async function loginUser({ email, password, userAgent, ipAddress }) {
   const userResult = await query(
-    `SELECT u.*, pp.specialty, pp.whatsapp, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
+    `SELECT u.*, pp.specialty, pp.whatsapp, pp.cpf_last_four, pp.invite_code, sp.objective, sp.start_date, sp.restrictions,
             sp.next_assessment_date, sp.status AS student_status, sp.inactive_reason
      FROM users u
      LEFT JOIN personal_profiles pp ON pp.user_id = u.id
