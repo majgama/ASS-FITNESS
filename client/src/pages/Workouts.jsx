@@ -136,6 +136,30 @@ export function Workouts({ initialTab = 'exercises' }) {
   const [selectedPlan, setSelectedPlan] = useState('');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
+  const [libraryInfoClosed, setLibraryInfoClosed] = useState(false);
+  const [hideLibraryInfo, setHideLibraryInfo] = useState(true);
+  const libraryInfoKey = `assFitness:hideExerciseLibraryInfo:${user.id}`;
+
+  useEffect(() => {
+    setLibraryInfoClosed(false);
+    try {
+      setHideLibraryInfo(localStorage.getItem(libraryInfoKey) === 'true');
+    } catch (err) {
+      setHideLibraryInfo(false);
+      setError('Não foi possível carregar a preferência do aviso neste navegador.');
+    }
+  }, [libraryInfoKey]);
+
+  function changeLibraryInfoPreference(event) {
+    const checked = event.target.checked;
+    try {
+      if (checked) localStorage.setItem(libraryInfoKey, 'true');
+      else localStorage.removeItem(libraryInfoKey);
+      setHideLibraryInfo(checked);
+    } catch (err) {
+      setError('Não foi possível salvar a preferência do aviso neste navegador.');
+    }
+  }
   const [mediaType, setMediaType] = useState('none');
   const [libraryFavoritesOnly, setLibraryFavoritesOnly] = useState(false);
   const [selectedLibraryGif, setSelectedLibraryGif] = useState(null);
@@ -784,8 +808,11 @@ export function Workouts({ initialTab = 'exercises' }) {
       {tab === 'exercises' ? (
         <>
           <ManagementViewSelector value={exerciseView} onChange={setExerciseView} publicLabel="Exercícios públicos" mineLabel="Meus exercícios" createLabel="Novo exercício" />
-          {exerciseView === 'public' ? (
+          {exerciseView === 'public' && !libraryInfoClosed && !hideLibraryInfo ? (
             <aside className="alert exercise-library-info" aria-label="Sobre os exercícios públicos">
+              <button className="icon-button popup-close-button exercise-library-info-close" type="button" aria-label="Fechar aviso do Banco de GIFs" onClick={() => setLibraryInfoClosed(true)}>
+                <X size={18} />
+              </button>
               <p>
                 Estes exercícios são modelos criados pela plataforma, não o catálogo completo.
                 Você também pode criar seus próprios exercícios com nosso banco de mais de 5 mil
@@ -796,6 +823,10 @@ export function Workouts({ initialTab = 'exercises' }) {
                 <img src="/icones/banco_gif2.PNG" alt="" />
                 Banco de GIFs
               </Link>
+              <label className="exercise-library-info-preference">
+                <input type="checkbox" checked={hideLibraryInfo} onChange={changeLibraryInfoPreference} />
+                Não mostrar este aviso novamente
+              </label>
             </aside>
           ) : null}
           <div className="two-column wide-left workout-view-content">
