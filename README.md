@@ -14,7 +14,7 @@ Aplicativo web para gestao de assessoria fitness com tres perfis: administrador,
 
 - Tema escuro com titulos claros e destaques dourados.
 - Ao abrir Treinos, os planos semanais ja aparecem selecionados. A opcao ativa entre exercicios, treinos e planos tem borda branca para se distinguir da borda dourada dos icones.
-- Acima dos exercicios publicos, um aviso explica que sao modelos da plataforma, nao o catalogo completo. O atalho Banco de GIFs, com icone pequeno, abre a biblioteca com mais de 5 mil animacoes para criar exercicios personalizados.
+- Acima dos exercicios publicos, um aviso explica que sao modelos prontos da plataforma e orienta clicar em Novo exercicio ou Banco de GIFs para criar exercicios personalizados. O atalho Banco de GIFs, com icone pequeno, abre a biblioteca com mais de 5 mil animacoes.
 - O aviso pode ser fechado pelo X. Marcar Nao mostrar este aviso novamente oculta o aviso e salva a preferencia por conta neste navegador; apenas fechar nao salva uma preferencia permanente.
 - Botoes de abrir e recolher o menu mobile com fundo preto, borda e icones dourados.
 - Menu lateral compacto: opcoes alinhadas ao topo, sem esticar os itens para preencher a tela. Sair permanece na parte inferior; apenas a lista de opcoes rola quando necessario, respeitando a altura visivel e a area segura do celular.

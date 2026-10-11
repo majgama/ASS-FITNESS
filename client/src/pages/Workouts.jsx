@@ -814,10 +814,10 @@ export function Workouts({ initialTab = 'exercises' }) {
                 <X size={18} />
               </button>
               <p>
-                Estes exercícios são modelos criados pela plataforma, não o catálogo completo.
-                Você também pode criar seus próprios exercícios com nosso banco de mais de 5 mil
-                animações. Clique em <strong>Banco de GIFs</strong>, escolha uma animação e personalize
-                o exercício para seus alunos.
+                Os exercícios públicos são modelos prontos da plataforma, mas suas opções não
+                terminam aqui. Para criar seus próprios exercícios, clique em <strong>Novo exercício</strong> ou
+                em <strong>Banco de GIFs</strong>. Explore mais de 5 mil animações e personalize
+                o nome, as séries e as repetições para seus alunos.
               </p>
               <Link className="secondary-button fit-button exercise-library-info-link" to="/treinos/biblioteca-gifs">
                 <img src="/icones/banco_gif2.PNG" alt="" />
