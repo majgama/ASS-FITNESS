@@ -2356,6 +2356,118 @@ iframe.exercise-media {
   background: #1a1608;
 }
 
+.daily-exercise-picker-field {
+  display: grid;
+  gap: 6px;
+}
+
+.daily-exercise-picker-field > span {
+  color: #f5f3ec;
+  font-weight: 700;
+}
+
+.daily-exercise-picker-trigger {
+  justify-self: stretch;
+  justify-content: flex-start;
+  min-height: 42px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.exercise-picker {
+  display: grid;
+  gap: 12px;
+}
+
+.exercise-picker-list {
+  display: grid;
+  gap: 10px;
+  max-height: min(60vh, 560px);
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.exercise-picker-item {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid #3d433e;
+  border-radius: 8px;
+  background: #121615;
+}
+
+.exercise-picker-item > img,
+.exercise-picker-item > .daily-exercise-choice-placeholder {
+  width: 86px;
+  height: 86px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #ffffff;
+}
+
+.exercise-picker-item > .daily-exercise-choice-placeholder {
+  background: #202421;
+}
+
+.exercise-picker-info {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.exercise-picker-info p {
+  margin: 0;
+  color: #c9c6bd;
+  font-size: 13px;
+}
+
+.exercise-picker-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+}
+
+.exercise-picker-title strong {
+  color: #f5f3ec;
+  overflow-wrap: anywhere;
+}
+
+.exercise-picker-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #0b0b0b;
+  background: #f3ca67;
+}
+
+.exercise-picker-badge.private {
+  color: #f3ca67;
+  background: transparent;
+  border: 1px solid #d4a72c;
+}
+
+.exercise-picker-muscle {
+  color: #d9b86c;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  .exercise-picker-item {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .exercise-picker-item > img,
+  .exercise-picker-item > .daily-exercise-choice-placeholder {
+    width: 64px;
+    height: 64px;
+  }
+}
+
 .daily-exercises-toggle svg {
   transition: transform 0.2s ease;
 }

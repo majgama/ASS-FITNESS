@@ -139,6 +139,9 @@ export function Workouts({ initialTab = 'exercises' }) {
   const [selectedDailyWorkout, setSelectedDailyWorkout] = useState('');
   const [addingExerciseToDailyId, setAddingExerciseToDailyId] = useState('');
   const [expandedDailyIds, setExpandedDailyIds] = useState(() => new Set());
+  const [dailyAddDraft, setDailyAddDraft] = useState(null);
+  const [exercisePickerWorkout, setExercisePickerWorkout] = useState(null);
+  const [exercisePickerSearch, setExercisePickerSearch] = useState('');
   const [editingDailyExerciseId, setEditingDailyExerciseId] = useState('');
   const [selectedPlan, setSelectedPlan] = useState('');
   const [notice, setNotice] = useState('');
@@ -323,6 +326,17 @@ export function Workouts({ initialTab = 'exercises' }) {
   const exerciseWorkoutTargets = useMemo(() => (
     exerciseForWorkout ? workoutTargets.filter((workout) => exerciseFitsWorkout(exerciseForWorkout, workout)) : []
   ), [exerciseForWorkout, workoutTargets]);
+
+  const pickerExercises = useMemo(() => {
+    if (!exercisePickerWorkout) return [];
+    const term = exercisePickerSearch.trim().toLowerCase();
+    return exercises
+      .filter((exercise) => exerciseFitsWorkout(exercise, exercisePickerWorkout))
+      .filter((exercise) => !term
+        || exercise.name?.toLowerCase().includes(term)
+        || exercise.muscle_group?.toLowerCase().includes(term))
+      .sort((a, b) => (a.visibility === b.visibility ? a.name.localeCompare(b.name) : a.visibility === 'private' ? -1 : 1));
+  }, [exercisePickerSearch, exercisePickerWorkout, exercises]);
 
   // Exercise Handlers
   async function createExercise(event) {
@@ -564,24 +578,75 @@ export function Workouts({ initialTab = 'exercises' }) {
     }
   }
 
+  function toggleDailyAddForm(workout) {
+    if (addingExerciseToDailyId === workout.id) {
+      setAddingExerciseToDailyId('');
+      setDailyAddDraft(null);
+      return;
+    }
+    setAddingExerciseToDailyId(workout.id);
+    setDailyAddDraft({
+      exerciseId: '',
+      exerciseName: '',
+      position: String((workout.exercises?.length || 0) + 1),
+      sets: '',
+      repetitions: '',
+      load: '',
+      restSeconds: '60',
+      notes: ''
+    });
+  }
+
+  function closeDailyAddForm() {
+    setAddingExerciseToDailyId('');
+    setDailyAddDraft(null);
+  }
+
+  function updateDailyAddDraft(field, value) {
+    setDailyAddDraft((current) => ({ ...current, [field]: value }));
+  }
+
+  function openExercisePicker(workout) {
+    setExercisePickerSearch('');
+    setExercisePickerWorkout(workout);
+  }
+
+  function chooseExerciseForDailyDraft(exercise) {
+    const rest = exercise.default_rest_seconds;
+    setDailyAddDraft((current) => ({
+      ...current,
+      exerciseId: exercise.id,
+      exerciseName: exercise.name,
+      sets: exercise.default_sets || '',
+      repetitions: exercise.default_repetitions || '',
+      load: exercise.default_load || '',
+      restSeconds: rest === null || rest === undefined || rest === '' ? current.restSeconds : String(rest),
+      notes: exercise.observations || ''
+    }));
+    setExercisePickerWorkout(null);
+  }
+
   async function addExerciseToDailyCard(event, workout) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
     setError('');
+    if (!dailyAddDraft?.exerciseId) {
+      setError('Escolha um exercício para adicionar ao treino.');
+      return;
+    }
     try {
       await api(`/workouts/daily/${workout.id}/exercises`, {
         method: 'POST',
         body: {
-          exerciseId: form.get('exerciseId'),
-          position: Number(form.get('position') || 0),
-          sets: form.get('sets') || null,
-          repetitions: form.get('repetitions') || null,
-          load: form.get('load') || null,
-          restSeconds: form.get('restSeconds') === '' ? null : Number(form.get('restSeconds')),
-          notes: form.get('notes') || null
+          exerciseId: dailyAddDraft.exerciseId,
+          position: Number(dailyAddDraft.position || 0),
+          sets: dailyAddDraft.sets || null,
+          repetitions: dailyAddDraft.repetitions || null,
+          load: dailyAddDraft.load || null,
+          restSeconds: dailyAddDraft.restSeconds === '' ? null : Number(dailyAddDraft.restSeconds),
+          notes: dailyAddDraft.notes || null
         }
       });
-      setAddingExerciseToDailyId('');
+      closeDailyAddForm();
       setExpandedDailyIds((current) => new Set(current).add(workout.id));
       setNotice('Exercício adicionado ao treino.');
       await load();
@@ -1139,23 +1204,24 @@ export function Workouts({ initialTab = 'exercises' }) {
                   const exercisesExpanded = expandedDailyIds.has(workout.id);
                   const exerciseCount = workout.exercises?.length || 0;
                   const exercisesPanelId = `daily-exercises-${workout.id}`;
-                  const addForm = addingExerciseToDailyId === workout.id ? (
+                  const addForm = addingExerciseToDailyId === workout.id && dailyAddDraft ? (
                     <form className="daily-workout-exercise-form" onSubmit={(event) => addExerciseToDailyCard(event, workout)}>
-                      <label className="wide">Exercício
-                        <select name="exerciseId" required defaultValue="">
-                          <option value="" disabled>{workout.visibility === 'public' ? 'Selecione um exercício público' : 'Selecione um exercício'}</option>
-                          {exercises.filter((exercise) => exerciseFitsWorkout(exercise, workout)).map((exercise) => <option key={exercise.id} value={exercise.id}>{exercise.name}</option>)}
-                        </select>
-                      </label>
-                      <label>Ordem<input name="position" type="number" min="0" defaultValue={exerciseCount + 1} /></label>
-                      <label>Séries<input name="sets" placeholder="Ex.: 4" /></label>
-                      <label>Repetições<input name="repetitions" placeholder="Ex.: 10-12" /></label>
-                      <label>Carga<input name="load" placeholder="Ex.: 25 kg" /></label>
-                      <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue="60" /></label>
-                      <label className="wide">Observações<textarea name="notes" rows="2" /></label>
+                      <div className="wide daily-exercise-picker-field">
+                        <span>Exercício</span>
+                        <button type="button" className="daily-card-action daily-exercise-picker-trigger" onClick={() => openExercisePicker(workout)}>
+                          <Search size={16} aria-hidden="true" />
+                          {dailyAddDraft.exerciseId ? `${dailyAddDraft.exerciseName} — trocar exercício` : 'Escolher exercício'}
+                        </button>
+                      </div>
+                      <label>Ordem<input type="number" min="0" value={dailyAddDraft.position} onChange={(e) => updateDailyAddDraft('position', e.target.value)} /></label>
+                      <label>Séries<input placeholder="Ex.: 4" value={dailyAddDraft.sets} onChange={(e) => updateDailyAddDraft('sets', e.target.value)} /></label>
+                      <label>Repetições<input placeholder="Ex.: 10-12" value={dailyAddDraft.repetitions} onChange={(e) => updateDailyAddDraft('repetitions', e.target.value)} /></label>
+                      <label>Carga<input placeholder="Ex.: 25 kg" value={dailyAddDraft.load} onChange={(e) => updateDailyAddDraft('load', e.target.value)} /></label>
+                      <label>Descanso (s)<input type="number" min="0" value={dailyAddDraft.restSeconds} onChange={(e) => updateDailyAddDraft('restSeconds', e.target.value)} /></label>
+                      <label className="wide">Observações<textarea rows="2" value={dailyAddDraft.notes} onChange={(e) => updateDailyAddDraft('notes', e.target.value)} /></label>
                       <div className="daily-workout-exercise-form-actions">
-                        <button type="submit" className="primary-button fit-button"><Plus size={15} />Adicionar ao treino</button>
-                        <button type="button" className="secondary-button fit-button" onClick={() => setAddingExerciseToDailyId('')}>Cancelar</button>
+                        <button type="submit" className="primary-button fit-button" disabled={!dailyAddDraft.exerciseId}><Plus size={15} />Adicionar ao treino</button>
+                        <button type="button" className="secondary-button fit-button" onClick={closeDailyAddForm}>Cancelar</button>
                       </div>
                     </form>
                   ) : null;
@@ -1172,7 +1238,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                         type="button"
                         className="daily-card-action"
                         aria-expanded={addingExerciseToDailyId === workout.id}
-                        onClick={() => setAddingExerciseToDailyId((current) => current === workout.id ? '' : workout.id)}
+                        onClick={() => toggleDailyAddForm(workout)}
                       >
                         <Plus size={16} aria-hidden="true" />
                         Adicionar exercício
@@ -1590,6 +1656,74 @@ export function Workouts({ initialTab = 'exercises' }) {
             ))}
           </div>
         )}
+      </Modal>
+
+      <Modal
+        title={`Escolher exercício para ${exercisePickerWorkout?.name || 'o treino'}`}
+        open={Boolean(exercisePickerWorkout)}
+        onClose={() => setExercisePickerWorkout(null)}
+      >
+        <div className="exercise-picker">
+          <div className="search-bar">
+            <Search size={18} className="search-icon" />
+            <input
+              value={exercisePickerSearch}
+              onChange={(event) => setExercisePickerSearch(event.target.value)}
+              placeholder="Buscar por nome ou grupo muscular..."
+              aria-label="Buscar exercício"
+              autoFocus
+            />
+            {exercisePickerSearch ? (
+              <button type="button" className="clear-search-btn" onClick={() => setExercisePickerSearch('')} aria-label="Limpar busca">
+                <X size={16} />
+              </button>
+            ) : null}
+          </div>
+          {exercisePickerWorkout?.visibility === 'public' ? (
+            <small className="muted-small">Treinos públicos aceitam somente exercícios públicos.</small>
+          ) : null}
+          {pickerExercises.length === 0 ? (
+            <div className="empty-state">Nenhum exercício encontrado.</div>
+          ) : (
+            <div className="exercise-picker-list">
+              {pickerExercises.map((exercise) => {
+                const imageUrl = exercise.gif_library_path
+                  ? gifLibraryFileUrl(exercise.gif_library_path)
+                  : exercise.gif_path
+                    ? fileUrl(exercise.gif_path)
+                    : null;
+                const rest = exercise.default_rest_seconds;
+                return (
+                  <article className="exercise-picker-item" key={exercise.id}>
+                    {imageUrl ? (
+                      <img src={imageUrl} alt={`Demonstração de ${exercise.name}`} loading="lazy" />
+                    ) : (
+                      <div className="daily-exercise-choice-placeholder" aria-hidden="true"><Dumbbell size={21} /></div>
+                    )}
+                    <div className="exercise-picker-info">
+                      <div className="exercise-picker-title">
+                        <strong>{exercise.name}</strong>
+                        <span className={`exercise-picker-badge ${exercise.visibility}`}>{exercise.visibility === 'public' ? 'Público' : 'Particular'}</span>
+                      </div>
+                      <span className="exercise-picker-muscle">{exercise.muscle_group || 'Geral'}</span>
+                      <div className="daily-workout-exercise-meta">
+                        {exercise.default_sets ? <span>{exercise.default_sets} séries</span> : null}
+                        {exercise.default_repetitions ? <span>{exercise.default_repetitions} repetições</span> : null}
+                        {exercise.default_load ? <span>Carga: {exercise.default_load}</span> : null}
+                        {rest !== null && rest !== undefined && rest !== '' ? <span>Descanso: {rest}s</span> : null}
+                      </div>
+                      {exercise.observations ? <p>{exercise.observations}</p> : null}
+                      <button type="button" className="daily-card-action" onClick={() => chooseExerciseForDailyDraft(exercise)}>
+                        <Plus size={15} aria-hidden="true" />
+                        Adicionar ao treino selecionado
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </Modal>
 
       {/* ===================== MODAL EDITAR EXERCÍCIO ===================== */}
