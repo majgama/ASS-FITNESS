@@ -9,6 +9,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  PlayCircle,
   Shield,
   User,
   Users,
@@ -27,6 +28,7 @@ const navByRole = {
     { to: '/avaliacoes', label: 'Avaliacoes', icon: BarChart3 },
     { to: '/administracao', label: 'Administracao', icon: Shield },
     { to: '/administracao/animacoes', label: 'Nomes dos exercicios', icon: Images },
+    { to: '/tutoriais', label: 'Tutorial', icon: PlayCircle },
     { to: '/perfil', label: 'Perfil', icon: User }
   ],
   personal: [
@@ -35,6 +37,7 @@ const navByRole = {
     { to: '/treinos', label: 'Treinos', icon: Dumbbell },
     { to: '/dietas', label: 'Dietas', icon: Apple },
     { to: '/avaliacoes', label: 'Avaliacoes', icon: BarChart3 },
+    { to: '/tutoriais', label: 'Tutorial', icon: PlayCircle },
     { to: '/perfil', label: 'Perfil', icon: User }
   ],
   student: [

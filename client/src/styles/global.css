@@ -3439,3 +3439,64 @@ textarea::placeholder {
   padding: 16px;
   width: min(360px, 100%);
 }
+
+/* Tutoriais */
+.tutorial-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.tutorial-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #d4a72c;
+  border-radius: 12px;
+  background: #0b0b0b;
+}
+
+.tutorial-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.tutorial-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.tutorial-body {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.tutorial-body h3 {
+  margin: 0;
+  color: #f3ca67;
+  font-size: 1.05rem;
+}
+
+.tutorial-body p {
+  margin: 0;
+  color: #f2f2f2;
+  white-space: pre-line;
+  line-height: 1.45;
+}
+
+.tutorial-body .card-actions {
+  justify-content: flex-end;
+}

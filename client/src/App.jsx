@@ -14,6 +14,7 @@ import { Register } from './pages/Register.jsx';
 import { StudentPortal } from './pages/StudentPortal.jsx';
 import { StudentManagement } from './pages/StudentManagement.jsx';
 import { Students } from './pages/Students.jsx';
+import { Tutorials } from './pages/Tutorials.jsx';
 import { Workouts, WorkoutsHome } from './pages/Workouts.jsx';
 
 function ProtectedRoute() {
@@ -48,6 +49,7 @@ export function App() {
         <Route path="/avaliacoes" element={<Assessments />} />
         <Route path="/administracao" element={<Admin />} />
         <Route path="/administracao/animacoes" element={<GifLibraryAdmin />} />
+        <Route path="/tutoriais" element={<Tutorials />} />
         <Route path="/perfil" element={<Profile />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
