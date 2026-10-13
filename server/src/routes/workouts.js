@@ -22,6 +22,16 @@ function editableModel(user, model) {
   return model.visibility === 'private' && model.owner_id === user.id;
 }
 
+function assertExerciseFitsWorkout(workout, exercise) {
+  if (exercise.visibility === 'public') return;
+  if (workout.visibility === 'public') {
+    throw forbidden('Treinos publicos aceitam somente exercicios publicos.');
+  }
+  if (exercise.owner_id !== workout.owner_id) {
+    throw forbidden('Use exercicios publicos ou do proprio dono do treino.');
+  }
+}
+
 function modelVisibility(user, requestedVisibility) {
   if (requestedVisibility === 'public') {
     if (user.role !== 'admin') throw forbidden('Apenas administrador pode criar modelo publico.');
@@ -368,7 +378,8 @@ workoutsRouter.post('/daily/:id/exercises', requireRoles('admin', 'personal'), a
   const result = await withTransaction(async (client) => {
     const workout = await fetchDailyWorkout(client, req.params.id);
     if (!editableModel(req.user, workout)) throw forbidden('Voce nao pode editar este treino.');
-    await assertExerciseAccess(client, req.user, payload.exerciseId);
+    const exercise = await assertExerciseAccess(client, req.user, payload.exerciseId);
+    assertExerciseFitsWorkout(workout, exercise);
 
     const inserted = await client.query(
       `INSERT INTO daily_workout_exercises

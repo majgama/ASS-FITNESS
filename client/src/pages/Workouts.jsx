@@ -106,6 +106,11 @@ function WorkoutModalityNav({ activeTab }) {
   );
 }
 
+function exerciseFitsWorkout(exercise, workout) {
+  if (exercise.visibility === 'public') return true;
+  return workout.visibility === 'private' && exercise.owner_id === workout.owner_id;
+}
+
 export function WorkoutsHome() {
   const { user } = useAuth();
 
@@ -299,13 +304,23 @@ export function Workouts({ initialTab = 'exercises' }) {
     weeklyView === 'public' ? plan.visibility === 'public' : plan.owner_id === user.id
   )), [filteredWeeklyPlans, user.id, weeklyView]);
 
-  const availableDailyExercises = useMemo(() => exercises.filter((exercise) => (
-    dailyExerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
-  )), [dailyExerciseView, exercises, user.id]);
+  const workoutTargets = useMemo(() => dailyWorkouts.filter((workout) => (
+    (user.role === 'admin' && workout.visibility === 'public')
+    || (workout.visibility === 'private' && workout.owner_id === user.id)
+  )).sort((a, b) => (a.visibility === b.visibility ? 0 : a.visibility === 'public' ? -1 : 1)), [dailyWorkouts, user.id, user.role]);
 
-  const ownedDailyWorkouts = useMemo(() => dailyWorkouts.filter((workout) => (
-    workout.owner_id === user.id
-  )), [dailyWorkouts, user.id]);
+  const selectedTargetWorkout = useMemo(() => (
+    dailyWorkouts.find((workout) => workout.id === selectedDailyWorkout) || null
+  ), [dailyWorkouts, selectedDailyWorkout]);
+
+  const availableDailyExercises = useMemo(() => exercises.filter((exercise) => (
+    (selectedTargetWorkout ? exerciseFitsWorkout(exercise, selectedTargetWorkout) : true)
+    && (dailyExerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id)
+  )), [dailyExerciseView, exercises, selectedTargetWorkout, user.id]);
+
+  const exerciseWorkoutTargets = useMemo(() => (
+    exerciseForWorkout ? workoutTargets.filter((workout) => exerciseFitsWorkout(exerciseForWorkout, workout)) : []
+  ), [exerciseForWorkout, workoutTargets]);
 
   // Exercise Handlers
   async function createExercise(event) {
@@ -1021,9 +1036,14 @@ export function Workouts({ initialTab = 'exercises' }) {
               </div>
               <form className="form-stack" onSubmit={addExerciseToWorkout}>
                 <label>Treino Diário de Destino
-                  <select value={selectedDailyWorkout} onChange={(event) => setSelectedDailyWorkout(event.target.value)} required>
+                  <select value={selectedDailyWorkout} onChange={(event) => {
+                    const target = dailyWorkouts.find((workout) => workout.id === event.target.value);
+                    setSelectedDailyWorkout(event.target.value);
+                    setSelectedExerciseForDaily('');
+                    if (target?.visibility === 'public') setDailyExerciseView('public');
+                  }} required>
                     <option value="">Selecione o treino</option>
-                    {dailyWorkouts.map((workout) => <option key={workout.id} value={workout.id}>{workout.name}</option>)}
+                    {workoutTargets.map((workout) => <option key={workout.id} value={workout.id}>{workout.visibility === 'public' ? `${workout.name} (público)` : workout.name}</option>)}
                   </select>
                 </label>
 
@@ -1228,8 +1248,8 @@ export function Workouts({ initialTab = 'exercises' }) {
                         <form className="daily-workout-exercise-form" onSubmit={(event) => addExerciseToDailyCard(event, workout)}>
                           <label className="wide">Exercício
                             <select name="exerciseId" required defaultValue="">
-                              <option value="" disabled>Selecione um exercício</option>
-                              {exercises.map((exercise) => <option key={exercise.id} value={exercise.id}>{exercise.name}</option>)}
+                              <option value="" disabled>{workout.visibility === 'public' ? 'Selecione um exercício público' : 'Selecione um exercício'}</option>
+                              {exercises.filter((exercise) => exerciseFitsWorkout(exercise, workout)).map((exercise) => <option key={exercise.id} value={exercise.id}>{exercise.name}</option>)}
                             </select>
                           </label>
                           <label>Ordem<input name="position" type="number" min="0" defaultValue={(workout.exercises?.length || 0) + 1} /></label>
@@ -1526,15 +1546,19 @@ export function Workouts({ initialTab = 'exercises' }) {
       ) : null}
 
       <Modal title={`Adicionar ${exerciseForWorkout?.name || 'exercício'} a um treino`} open={Boolean(exerciseForWorkout)} onClose={() => setExerciseForWorkout(null)}>
-        {ownedDailyWorkouts.length === 0 ? (
-          <div className="empty-state">Nenhum treino próprio disponível. Crie um treino diário para adicionar exercícios.</div>
+        {exerciseWorkoutTargets.length === 0 ? (
+          <div className="empty-state">
+            {user.role === 'admin'
+              ? 'Nenhum treino disponível. Treinos públicos aceitam somente exercícios públicos.'
+              : 'Nenhum treino próprio disponível. Crie um treino diário para adicionar exercícios.'}
+          </div>
         ) : (
           <div className="plan-target-list">
-            {ownedDailyWorkouts.map((workout) => (
+            {exerciseWorkoutTargets.map((workout) => (
               <article className="plan-target-card" key={workout.id}>
                 <div className="plan-target-days">
                   <button type="button" onClick={() => addExerciseToOwnedWorkout(workout)}>
-                    <strong>{workout.name}</strong>
+                    <strong>{workout.name}{workout.visibility === 'public' ? ' (público)' : ''}</strong>
                     {workout.description ? <small>{workout.description}</small> : null}
                   </button>
                 </div>

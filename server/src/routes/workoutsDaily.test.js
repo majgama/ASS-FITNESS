@@ -14,6 +14,8 @@ let visibility = 'private';
 let ownerId = personalId;
 let workoutExists = true;
 let relationExists = true;
+let exerciseVisibility = 'public';
+let exerciseOwnerId = null;
 let server;
 let baseUrl;
 
@@ -44,6 +46,12 @@ async function query(sql, params = []) {
       }]
     }] : [];
     return { rowCount: rows.length, rows };
+  }
+  if (sql.includes('SELECT * FROM exercises WHERE id = $1')) {
+    return { rowCount: 1, rows: [{ id: params[0], visibility: exerciseVisibility, owner_id: exerciseOwnerId }] };
+  }
+  if (sql.includes('INSERT INTO daily_workout_exercises')) {
+    return { rowCount: 1, rows: [{ id: relationId, daily_workout_id: params[0], exercise_id: params[1] }] };
   }
   if (sql.startsWith('UPDATE daily_workout_exercises')) {
     const rows = relationExists ? [{ id: relationId, position: params[2], sets: params[4], repetitions: params[6], load: params[8], rest_seconds: params[10], notes: params[12] }] : [];
@@ -192,6 +200,58 @@ test('missing workout and exercise relation return clear errors and scope update
   } finally {
     relationExists = true;
   }
+});
+
+async function addExercise(role, scenario) {
+  queries.length = 0;
+  visibility = scenario.workoutVisibility;
+  ownerId = scenario.workoutOwnerId;
+  exerciseVisibility = scenario.exerciseVisibility;
+  exerciseOwnerId = scenario.exerciseOwnerId;
+  try {
+    const response = await request(`/workouts/daily/${workoutId}/exercises`, role, {
+      method: 'POST',
+      body: JSON.stringify({ exerciseId, position: 1 })
+    });
+    return { status: response.status, inserted: queries.some(({ sql }) => sql.includes('INSERT INTO daily_workout_exercises')) };
+  } finally {
+    visibility = 'private';
+    ownerId = personalId;
+    exerciseVisibility = 'public';
+    exerciseOwnerId = null;
+  }
+}
+
+test('only admins can add exercises to public workouts and only public exercises are accepted', async () => {
+  const publicExercise = { workoutVisibility: 'public', workoutOwnerId: null, exerciseVisibility: 'public', exerciseOwnerId: null };
+  assert.deepEqual(await addExercise('admin', publicExercise), { status: 201, inserted: true });
+  assert.deepEqual(await addExercise('personal', publicExercise), { status: 403, inserted: false });
+  assert.deepEqual(await addExercise('student', publicExercise), { status: 403, inserted: false });
+  assert.deepEqual(await addExercise('admin', { ...publicExercise, exerciseVisibility: 'private', exerciseOwnerId: 'admin-id' }), { status: 403, inserted: false });
+});
+
+test('personals add public or own exercises only to their own workouts', async () => {
+  const ownWorkout = { workoutVisibility: 'private', workoutOwnerId: personalId, exerciseVisibility: 'public', exerciseOwnerId: null };
+  assert.deepEqual(await addExercise('personal', ownWorkout), { status: 201, inserted: true });
+  assert.deepEqual(await addExercise('personal', { ...ownWorkout, exerciseVisibility: 'private', exerciseOwnerId: personalId }), { status: 201, inserted: true });
+  assert.deepEqual(await addExercise('personal', { ...ownWorkout, workoutOwnerId: 'another-personal' }), { status: 403, inserted: false });
+  assert.deepEqual(await addExercise('personal', { ...ownWorkout, exerciseVisibility: 'private', exerciseOwnerId: 'another-personal' }), { status: 403, inserted: false });
+});
+
+test('adding an exercise without authentication or with invalid IDs is rejected', async () => {
+  const anonymous = await fetch(`${baseUrl}/workouts/daily/${workoutId}/exercises`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ exerciseId })
+  });
+  assert.equal(anonymous.status, 401);
+  queries.length = 0;
+  const invalid = await request(`/workouts/daily/${workoutId}/exercises`, 'admin', {
+    method: 'POST',
+    body: JSON.stringify({ exerciseId: 'not-a-uuid' })
+  });
+  assert.equal(invalid.status, 400);
+  assert.ok(!queries.some(({ sql }) => sql.includes('INSERT INTO daily_workout_exercises')));
 });
 
 test('invalid prescription fields are rejected before transaction', async () => {
