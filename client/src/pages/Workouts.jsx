@@ -7,6 +7,7 @@ import {
   Dumbbell,
   FileText,
   ArrowLeft,
+  ChevronDown,
   Pencil,
   Plus,
   Repeat,
@@ -137,6 +138,7 @@ export function Workouts({ initialTab = 'exercises' }) {
   const [students, setStudents] = useState([]);
   const [selectedDailyWorkout, setSelectedDailyWorkout] = useState('');
   const [addingExerciseToDailyId, setAddingExerciseToDailyId] = useState('');
+  const [expandedDailyIds, setExpandedDailyIds] = useState(() => new Set());
   const [editingDailyExerciseId, setEditingDailyExerciseId] = useState('');
   const [selectedPlan, setSelectedPlan] = useState('');
   const [notice, setNotice] = useState('');
@@ -580,6 +582,7 @@ export function Workouts({ initialTab = 'exercises' }) {
         }
       });
       setAddingExerciseToDailyId('');
+      setExpandedDailyIds((current) => new Set(current).add(workout.id));
       setNotice('Exercício adicionado ao treino.');
       await load();
     } catch (err) {
@@ -1133,8 +1136,31 @@ export function Workouts({ initialTab = 'exercises' }) {
                   const canEditWorkout = user.role === 'admin'
                     || (workout.visibility === 'private' && workout.owner_id === user.id);
                   const canCopyWorkout = user.role === 'personal' && workout.visibility === 'public';
+                  const exercisesExpanded = expandedDailyIds.has(workout.id);
+                  const exerciseCount = workout.exercises?.length || 0;
+                  const exercisesPanelId = `daily-exercises-${workout.id}`;
+                  const addForm = addingExerciseToDailyId === workout.id ? (
+                    <form className="daily-workout-exercise-form" onSubmit={(event) => addExerciseToDailyCard(event, workout)}>
+                      <label className="wide">Exercício
+                        <select name="exerciseId" required defaultValue="">
+                          <option value="" disabled>{workout.visibility === 'public' ? 'Selecione um exercício público' : 'Selecione um exercício'}</option>
+                          {exercises.filter((exercise) => exerciseFitsWorkout(exercise, workout)).map((exercise) => <option key={exercise.id} value={exercise.id}>{exercise.name}</option>)}
+                        </select>
+                      </label>
+                      <label>Ordem<input name="position" type="number" min="0" defaultValue={exerciseCount + 1} /></label>
+                      <label>Séries<input name="sets" placeholder="Ex.: 4" /></label>
+                      <label>Repetições<input name="repetitions" placeholder="Ex.: 10-12" /></label>
+                      <label>Carga<input name="load" placeholder="Ex.: 25 kg" /></label>
+                      <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue="60" /></label>
+                      <label className="wide">Observações<textarea name="notes" rows="2" /></label>
+                      <div className="daily-workout-exercise-form-actions">
+                        <button type="submit" className="primary-button fit-button"><Plus size={15} />Adicionar ao treino</button>
+                        <button type="button" className="secondary-button fit-button" onClick={() => setAddingExerciseToDailyId('')}>Cancelar</button>
+                      </div>
+                    </form>
+                  ) : null;
                   return (
-                  <article className="panel sub-panel-manage manage-card manage-daily-card" key={workout.id}>
+                  <article className={`panel sub-panel-manage manage-card manage-daily-card ${exercisesExpanded ? 'expanded' : ''}`} key={workout.id}>
                     <div className="manage-header-row">
                       <strong>{workout.name}</strong>
                       {canEditWorkout ? (
@@ -1156,11 +1182,27 @@ export function Workouts({ initialTab = 'exercises' }) {
 
                     {workout.description ? <p className="manage-desc">{workout.description}</p> : null}
 
-                    <div className="manage-subexercises-list">
-                      <small className="manage-sublabel">
-                        Exercícios ({workout.exercises?.length || 0}):
-                      </small>
-                      {(!workout.exercises || workout.exercises.length === 0) ? (
+                    <button
+                      type="button"
+                      className="daily-exercises-toggle"
+                      aria-expanded={exercisesExpanded}
+                      aria-controls={exercisesPanelId}
+                      onClick={() => setExpandedDailyIds((current) => {
+                        const next = new Set(current);
+                        if (next.has(workout.id)) next.delete(workout.id);
+                        else next.add(workout.id);
+                        return next;
+                      })}
+                    >
+                      {exercisesExpanded ? 'Ocultar exercícios' : 'Ver exercícios'} ({exerciseCount})
+                      <ChevronDown size={16} aria-hidden="true" />
+                    </button>
+
+                    {addForm}
+
+                    {exercisesExpanded ? (
+                    <div className="manage-subexercises-list" id={exercisesPanelId}>
+                      {exerciseCount === 0 ? (
                         <span className="muted-small">Nenhum exercício vinculado ainda.{canEditWorkout ? ' Use “Adicionar exercício” para montar este treino.' : ''}</span>
                       ) : (
                         <div className="daily-workout-exercises">
@@ -1244,27 +1286,6 @@ export function Workouts({ initialTab = 'exercises' }) {
                         </div>
                       )}
 
-                      {addingExerciseToDailyId === workout.id ? (
-                        <form className="daily-workout-exercise-form" onSubmit={(event) => addExerciseToDailyCard(event, workout)}>
-                          <label className="wide">Exercício
-                            <select name="exerciseId" required defaultValue="">
-                              <option value="" disabled>{workout.visibility === 'public' ? 'Selecione um exercício público' : 'Selecione um exercício'}</option>
-                              {exercises.filter((exercise) => exerciseFitsWorkout(exercise, workout)).map((exercise) => <option key={exercise.id} value={exercise.id}>{exercise.name}</option>)}
-                            </select>
-                          </label>
-                          <label>Ordem<input name="position" type="number" min="0" defaultValue={(workout.exercises?.length || 0) + 1} /></label>
-                          <label>Séries<input name="sets" placeholder="Ex.: 4" /></label>
-                          <label>Repetições<input name="repetitions" placeholder="Ex.: 10-12" /></label>
-                          <label>Carga<input name="load" placeholder="Ex.: 25 kg" /></label>
-                          <label>Descanso (s)<input name="restSeconds" type="number" min="0" defaultValue="60" /></label>
-                          <label className="wide">Observações<textarea name="notes" rows="2" /></label>
-                          <div className="daily-workout-exercise-form-actions">
-                            <button type="submit" className="primary-button fit-button"><Plus size={15} />Adicionar ao treino</button>
-                            <button type="button" className="secondary-button fit-button" onClick={() => setAddingExerciseToDailyId('')}>Cancelar</button>
-                          </div>
-                        </form>
-                      ) : null}
-
                       <div className="manage-card-footer">
                         <StatusBadge value={workout.visibility} />
                         {canEditWorkout ? <div className="card-actions">
@@ -1287,6 +1308,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                         </div> : null}
                       </div>
                     </div>
+                    ) : null}
                   </article>
                   );
                 })}

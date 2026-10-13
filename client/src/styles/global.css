@@ -2335,6 +2335,35 @@ iframe.exercise-media {
   padding: 0 10px;
 }
 
+.daily-exercises-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  justify-self: start;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid #d4a72c;
+  border-radius: 7px;
+  background: #0b0b0b;
+  color: #f3ca67;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.daily-exercises-toggle:hover,
+.daily-exercises-toggle:focus-visible {
+  background: #1a1608;
+}
+
+.daily-exercises-toggle svg {
+  transition: transform 0.2s ease;
+}
+
+.daily-exercises-toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
 @media (max-width: 520px) {
   .manage-daily-card > .manage-header-row {
     align-items: flex-start;
