@@ -1163,28 +1163,32 @@ export function Workouts({ initialTab = 'exercises' }) {
                   <article className={`panel sub-panel-manage manage-card manage-daily-card ${exercisesExpanded ? 'expanded' : ''}`} key={workout.id}>
                     <div className="manage-header-row">
                       <strong>{workout.name}</strong>
-                      {canEditWorkout ? (
-                        <button
-                          type="button"
-                          className="secondary-button fit-button"
-                          onClick={() => setAddingExerciseToDailyId((current) => current === workout.id ? '' : workout.id)}
-                        >
-                          <Plus size={16} />
-                          Adicionar exercício
-                        </button>
-                      ) : canCopyWorkout ? (
-                        <button type="button" className="secondary-button fit-button" onClick={() => saveDailyWorkoutCopy(workout)}>
-                          <Copy size={16} />
-                          Salvar como meu treino
-                        </button>
-                      ) : null}
                     </div>
 
                     {workout.description ? <p className="manage-desc">{workout.description}</p> : null}
 
+                    {canEditWorkout ? (
+                      <button
+                        type="button"
+                        className="daily-card-action"
+                        aria-expanded={addingExerciseToDailyId === workout.id}
+                        onClick={() => setAddingExerciseToDailyId((current) => current === workout.id ? '' : workout.id)}
+                      >
+                        <Plus size={16} aria-hidden="true" />
+                        Adicionar exercício
+                      </button>
+                    ) : canCopyWorkout ? (
+                      <button type="button" className="daily-card-action" onClick={() => saveDailyWorkoutCopy(workout)}>
+                        <Copy size={16} aria-hidden="true" />
+                        Salvar como meu treino
+                      </button>
+                    ) : null}
+
+                    {addForm}
+
                     <button
                       type="button"
-                      className="daily-exercises-toggle"
+                      className="daily-card-action daily-exercises-toggle"
                       aria-expanded={exercisesExpanded}
                       aria-controls={exercisesPanelId}
                       onClick={() => setExpandedDailyIds((current) => {
@@ -1197,8 +1201,6 @@ export function Workouts({ initialTab = 'exercises' }) {
                       {exercisesExpanded ? 'Ocultar exercícios' : 'Ver exercícios'} ({exerciseCount})
                       <ChevronDown size={16} aria-hidden="true" />
                     </button>
-
-                    {addForm}
 
                     {exercisesExpanded ? (
                     <div className="manage-subexercises-list" id={exercisesPanelId}>

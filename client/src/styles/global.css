@@ -2335,7 +2335,7 @@ iframe.exercise-media {
   padding: 0 10px;
 }
 
-.daily-exercises-toggle {
+.daily-card-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2351,8 +2351,8 @@ iframe.exercise-media {
   cursor: pointer;
 }
 
-.daily-exercises-toggle:hover,
-.daily-exercises-toggle:focus-visible {
+.daily-card-action:hover,
+.daily-card-action:focus-visible {
   background: #1a1608;
 }
 
