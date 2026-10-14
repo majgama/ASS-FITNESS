@@ -1237,6 +1237,18 @@ export function Workouts({ initialTab = 'exercises' }) {
                       <button
                         type="button"
                         className="daily-card-action"
+                        aria-label={`Editar nome e descrição de ${workout.name}`}
+                        onClick={() => setEditingDaily(workout)}
+                      >
+                        <Pencil size={16} aria-hidden="true" />
+                        Editar nome e descrição
+                      </button>
+                    ) : null}
+
+                    {canEditWorkout ? (
+                      <button
+                        type="button"
+                        className="daily-card-action"
                         aria-expanded={addingExerciseToDailyId === workout.id}
                         onClick={() => toggleDailyAddForm(workout)}
                       >
@@ -1357,14 +1369,6 @@ export function Workouts({ initialTab = 'exercises' }) {
                       <div className="manage-card-footer">
                         <StatusBadge value={workout.visibility} />
                         {canEditWorkout ? <div className="card-actions">
-                          <button
-                            type="button"
-                            className="action-btn btn-edit"
-                            title="Editar treino diário"
-                            onClick={() => setEditingDaily(workout)}
-                          >
-                            <Pencil size={16} />
-                          </button>
                           <button
                             type="button"
                             className="action-btn btn-delete"
@@ -1817,7 +1821,7 @@ export function Workouts({ initialTab = 'exercises' }) {
       <Modal title={`Editar Treino: ${editingDaily?.name || ''}`} open={Boolean(editingDaily)} onClose={() => setEditingDaily(null)}>
         {editingDaily ? (
           <form className="form-stack" onSubmit={updateDailyWorkout}>
-            <label>Nome do Treino<input name="name" defaultValue={editingDaily.name} required /></label>
+            <label>Nome do Treino<input name="name" defaultValue={editingDaily.name} required minLength={2} /></label>
             <label>Descrição<textarea name="description" rows="3" defaultValue={editingDaily.description || ''} /></label>
             <label>Visibilidade
               <select name="visibility" defaultValue={editingDaily.visibility} disabled={!canCreatePublic}>

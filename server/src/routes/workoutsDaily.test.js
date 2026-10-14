@@ -53,6 +53,15 @@ async function query(sql, params = []) {
   if (sql.includes('INSERT INTO daily_workout_exercises')) {
     return { rowCount: 1, rows: [{ id: relationId, daily_workout_id: params[0], exercise_id: params[1] }] };
   }
+  if (sql.startsWith('UPDATE daily_workouts')) {
+    return { rowCount: 1, rows: [{
+      id: workoutId,
+      name: params[1] || 'Treino de teste',
+      description: params[2] ? params[3] : null,
+      visibility,
+      owner_id: ownerId
+    }] };
+  }
   if (sql.startsWith('UPDATE daily_workout_exercises')) {
     const rows = relationExists ? [{ id: relationId, position: params[2], sets: params[4], repetitions: params[6], load: params[8], rest_seconds: params[10], notes: params[12] }] : [];
     return { rowCount: rows.length, rows };
@@ -139,6 +148,41 @@ test('admin can read private workouts while other roles cannot', async () => {
   } finally {
     visibility = 'private';
     ownerId = personalId;
+  }
+});
+
+test('workout name and description editing respects public and private ownership', async () => {
+  const scenarios = [
+    { role: 'admin', visibility: 'public', ownerId: null, status: 200 },
+    { role: 'personal', visibility: 'public', ownerId: personalId, status: 403 },
+    { role: 'personal', visibility: 'private', ownerId: personalId, status: 200 },
+    { role: 'personal', visibility: 'private', ownerId: 'other-personal', status: 403 },
+    { role: 'student', visibility: 'private', ownerId: personalId, status: 403 }
+  ];
+  try {
+    for (const scenario of scenarios) {
+      queries.length = 0;
+      visibility = scenario.visibility;
+      ownerId = scenario.ownerId;
+      const response = await request(`/workouts/daily/${workoutId}`, scenario.role, {
+        method: 'PATCH',
+        body: JSON.stringify({ name: 'Treino atualizado', description: 'Nova descrição' })
+      });
+      assert.equal(response.status, scenario.status);
+      const update = queries.find(({ sql }) => sql.startsWith('UPDATE daily_workouts'));
+      if (scenario.status === 200) {
+        assert.deepEqual(update.params, [workoutId, 'Treino atualizado', true, 'Nova descrição', null, null]);
+        const body = await response.json();
+        assert.equal(body.dailyWorkout.name, 'Treino atualizado');
+        assert.equal(body.dailyWorkout.description, 'Nova descrição');
+      } else {
+        assert.equal(update, undefined);
+      }
+    }
+  } finally {
+    visibility = 'private';
+    ownerId = personalId;
+    queries.length = 0;
   }
 });
 
