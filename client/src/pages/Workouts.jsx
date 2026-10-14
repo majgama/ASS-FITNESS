@@ -1229,21 +1229,20 @@ export function Workouts({ initialTab = 'exercises' }) {
                   <article className={`panel sub-panel-manage manage-card manage-daily-card ${exercisesExpanded ? 'expanded' : ''}`} key={workout.id}>
                     <div className="manage-header-row">
                       <strong>{workout.name}</strong>
+                      {canEditWorkout ? (
+                        <button
+                          type="button"
+                          className="action-btn btn-edit daily-card-edit"
+                          title="Editar nome e descrição"
+                          aria-label={`Editar nome e descrição de ${workout.name}`}
+                          onClick={() => setEditingDaily(workout)}
+                        >
+                          <Pencil size={16} aria-hidden="true" />
+                        </button>
+                      ) : null}
                     </div>
 
                     {workout.description ? <p className="manage-desc">{workout.description}</p> : null}
-
-                    {canEditWorkout ? (
-                      <button
-                        type="button"
-                        className="daily-card-action"
-                        aria-label={`Editar nome e descrição de ${workout.name}`}
-                        onClick={() => setEditingDaily(workout)}
-                      >
-                        <Pencil size={16} aria-hidden="true" />
-                        Editar nome e descrição
-                      </button>
-                    ) : null}
 
                     {canEditWorkout ? (
                       <button

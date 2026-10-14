@@ -2330,6 +2330,15 @@ iframe.exercise-media {
   align-items: center;
 }
 
+.manage-daily-card > .manage-header-row strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.manage-daily-card .daily-card-edit {
+  flex-shrink: 0;
+}
+
 .manage-daily-card > .manage-header-row .secondary-button {
   flex-shrink: 0;
   padding: 0 10px;
@@ -2479,7 +2488,7 @@ iframe.exercise-media {
 @media (max-width: 520px) {
   .manage-daily-card > .manage-header-row {
     align-items: flex-start;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .daily-workout-exercise-heading {
