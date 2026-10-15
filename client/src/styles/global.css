@@ -3142,6 +3142,7 @@ textarea::placeholder {
   align-items: center;
   gap: 8px;
   flex-basis: 100%;
+  color: #000000;
   cursor: pointer;
 }
 
