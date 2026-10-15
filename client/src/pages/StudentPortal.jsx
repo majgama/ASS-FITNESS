@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Check, ClipboardList, Dumbbell, FileText, Repeat, Send, Timer, Volume2, X } from 'lucide-react';
+import { Check, ClipboardList, Dumbbell, FileText, Pause, Repeat, Send, Timer, Volume2, X } from 'lucide-react';
 import { api, fileUrl, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { Link } from 'react-router-dom';
@@ -349,9 +349,21 @@ export function StudentPortal() {
                         <div>
                           <small>Intervalo</small>
                           <strong>{item.restSeconds ? `${item.restSeconds}s` : 'Livre'}</strong>
-                          <output className={`student-rest-time${restTimers[item.id] ? (restTimers[item.id].startedAt !== null ? ' is-running' : ' is-stopped') : ''}`} role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</output>
-                          <button type="button" className={`secondary-button student-exercise-action${restTimers[item.id]?.startedAt != null ? '' : ' student-rest-start'}`} onClick={() => toggleRestTimer(item.id)}>
-                            {restTimers[item.id]?.startedAt != null ? 'Parar intervalo' : 'Iniciar intervalo'}
+                          {restTimers[item.id]?.startedAt === null ? (
+                            <output className="student-rest-time is-stopped" role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</output>
+                          ) : null}
+                          <button
+                            type="button"
+                            className={`secondary-button student-exercise-action${restTimers[item.id]?.startedAt != null ? ' student-rest-running' : ' student-rest-start'}`}
+                            aria-label={restTimers[item.id]?.startedAt != null ? `Pausar intervalo de ${item.exerciseName}` : `Iniciar intervalo de ${item.exerciseName}`}
+                            onClick={() => toggleRestTimer(item.id)}
+                          >
+                            {restTimers[item.id]?.startedAt != null ? (
+                              <>
+                                <span role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</span>
+                                <Pause size={16} aria-hidden="true" />
+                              </>
+                            ) : 'Iniciar intervalo'}
                           </button>
                         </div>
                       </div>

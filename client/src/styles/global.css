@@ -1265,8 +1265,9 @@ iframe.exercise-media {
   margin-top: 4px;
 }
 
-.student-rest-time.is-running {
+.student-exercise-action.student-rest-running {
   color: #4ade80;
+  font-variant-numeric: tabular-nums;
 }
 
 .student-rest-time.is-stopped {
