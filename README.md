@@ -21,6 +21,7 @@ Aplicativo web para gestao de assessoria fitness com tres perfis: administrador,
 - Botoes com X para fechar modais e o popup da biblioteca de GIFs usam fundo preto, borda e icone dourados, inclusive ao passar o mouse, com foco visivel pelo teclado.
 - Evolucao do treino exibida apenas em percentual na lista e na gestao do aluno, sem barra ou contagem de atividades.
 - Na tela do aluno, o dia selecionado (inicialmente o dia vigente) tem fundo dourado e texto preto. Dias de descanso cadastrados no plano usam fundo escuro e texto branco; ao selecionar um deles, o destaque dourado indica a selecao.
+- Acima dos dias da semana, o aluno ve um card com o titulo e a descricao do plano semanal ativo. O X fecha somente esse card durante a visita atual, sem remover o plano nem ocultar os treinos; ao reabrir a pagina, o card aparece novamente.
 - Cards da lista do personal mostram status compacto amarelo no canto superior direito, foto, nome alinhado a esquerda e percentual na mesma linha, sem a legenda Evolucao. O percentual mantem identificacao acessivel e o card inteiro abre a gestao do aluno.
 - Dashboard e gestao de alunos herdam a fonte clara do tema escuro, incluindo valores dos indicadores e dados das tabelas. Legendas e links da gestao individual usam dourado claro, e o status ativo usa verde claro para preservar o contraste.
 - Na tela de login em celular (ate 780px), o bloco decorativo com escudo e slogan fica oculto, mantendo o logo horizontal e o formulario. A apresentacao desktop permanece igual.

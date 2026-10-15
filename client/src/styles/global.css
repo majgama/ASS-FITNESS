@@ -1073,6 +1073,30 @@ iframe.exercise-media {
   font-size: 14px;
 }
 
+.student-active-plan-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.student-active-plan-heading > div {
+  min-width: 0;
+}
+
+.student-active-plan h2 {
+  margin: 6px 0 0;
+  color: #f3ca67;
+  overflow-wrap: anywhere;
+}
+
+.student-active-plan p {
+  margin: 12px 0 0;
+  color: #f5f1e8;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
 .student-workout-panel {
   background: #101112;
   border: 1px solid #2e2c28;
