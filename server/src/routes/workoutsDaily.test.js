@@ -16,6 +16,12 @@ let workoutExists = true;
 let relationExists = true;
 let exerciseVisibility = 'public';
 let exerciseOwnerId = null;
+let linkedStudent = true;
+const feedbackRow = {
+  id: relationId, message: 'Senti dificuldade no movimento', difficulty: 'Postura',
+  dayOfWeek: 3, createdAt: '2026-10-15T12:00:00Z',
+  planName: 'Plano semanal', workoutName: 'Treino A', workoutDescription: 'Peito e tríceps'
+};
 let server;
 let baseUrl;
 
@@ -24,6 +30,18 @@ async function query(sql, params = []) {
   if (sql.includes('FROM sessions s')) {
     const role = roles.get(params[0]);
     return { rowCount: role ? 1 : 0, rows: role ? [{ id: role === 'admin' ? 'admin-id' : personalId, role, name: 'Test' }] : [] };
+  }
+  if (sql.includes('SELECT 1 FROM trainer_students')) {
+    return { rowCount: linkedStudent ? 1 : 0, rows: linkedStudent ? [{}] : [] };
+  }
+  if (sql.includes('FROM workout_feedback wf')) {
+    return { rowCount: 1, rows: [feedbackRow] };
+  }
+  if (sql.includes('SELECT id FROM student_weekly_plans')) {
+    return { rowCount: 1, rows: [{ id: workoutId }] };
+  }
+  if (sql.includes('INSERT INTO workout_feedback')) {
+    return { rowCount: 1, rows: [{ id: relationId, message: params[3], difficulty: params[4] }] };
   }
   if (sql.includes('FROM daily_workouts dw')) {
     const rows = workoutExists ? [{
@@ -182,6 +200,44 @@ test('workout name and description editing respects public and private ownership
   } finally {
     visibility = 'private';
     ownerId = personalId;
+    queries.length = 0;
+  }
+});
+
+test('student sends feedback with the day selected in the workout page', async () => {
+  queries.length = 0;
+  const response = await request('/workouts/student/current/feedback', 'student', {
+    method: 'POST',
+    body: JSON.stringify({ dayOfWeek: 3, message: feedbackRow.message, difficulty: feedbackRow.difficulty })
+  });
+  assert.equal(response.status, 201);
+  const insert = queries.find(({ sql }) => sql.includes('INSERT INTO workout_feedback'));
+  assert.deepEqual(insert.params, [workoutId, personalId, 3, feedbackRow.message, feedbackRow.difficulty]);
+});
+
+test('linked personal and admin see feedback with original workout context; other users cannot', async () => {
+  try {
+    for (const role of ['personal', 'admin']) {
+      queries.length = 0;
+      const response = await request(`/workouts/students/${workoutId}/feedback`, role);
+      assert.equal(response.status, 200);
+      assert.deepEqual((await response.json()).feedback, [feedbackRow]);
+      const read = queries.find(({ sql }) => sql.includes('FROM workout_feedback wf'));
+      assert.deepEqual(read.params, [workoutId]);
+      assert.match(read.sql, /swp\.plan_snapshot/);
+      assert.match(read.sql, /dayOfWeek.*::int = wf\.day_of_week/);
+      assert.match(read.sql, /wf\.is_plan_completed = false/);
+      assert.match(read.sql, /wf\.message <> 'Treino do dia concluido'/);
+    }
+    linkedStudent = false;
+    queries.length = 0;
+    assert.equal((await request(`/workouts/students/${workoutId}/feedback`, 'personal')).status, 403);
+    assert.ok(!queries.some(({ sql }) => sql.includes('FROM workout_feedback wf')));
+    assert.equal((await request(`/workouts/students/${workoutId}/feedback`, 'student')).status, 403);
+    assert.equal((await request(`/workouts/students/${workoutId}/feedback`, 'invalid')).status, 401);
+    assert.equal((await request('/workouts/students/invalid/feedback', 'admin')).status, 400);
+  } finally {
+    linkedStudent = true;
     queries.length = 0;
   }
 });

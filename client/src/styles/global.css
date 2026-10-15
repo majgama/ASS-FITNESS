@@ -1073,6 +1073,13 @@ iframe.exercise-media {
   font-size: 14px;
 }
 
+.student-feedback-message p {
+  margin: 4px 0;
+  color: #f5f1e8;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
 .student-active-plan-heading {
   display: flex;
   justify-content: space-between;

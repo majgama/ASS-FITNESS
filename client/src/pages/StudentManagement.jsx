@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, CalendarDays, ClipboardList, Dumbbell, FileText, Save, Utensils, WalletCards } from 'lucide-react';
+import { ArrowLeft, CalendarDays, ClipboardList, Dumbbell, FileText, MessageSquare, Save, Utensils, WalletCards } from 'lucide-react';
 import { api, fileUrl } from '../api/client.js';
 import { StatusBadge } from '../components/StatusBadge.jsx';
-import { formatDate, normalizeSnapshot } from './pageHelpers.js';
+import { formatDate, normalizeSnapshot, weekDays } from './pageHelpers.js';
 
 function planName(plan) {
   return normalizeSnapshot(plan?.plan_snapshot)?.name || 'Treino sem nome';
@@ -12,19 +12,20 @@ function planName(plan) {
 export function StudentManagement() {
   const { studentId } = useParams();
   const navigate = useNavigate();
-  const [state, setState] = useState({ loading: true, student: null, plans: [], diets: [], assessments: [], billing: null, payments: [], error: '' });
+  const [state, setState] = useState({ loading: true, student: null, plans: [], diets: [], assessments: [], feedback: [], billing: null, payments: [], error: '' });
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     let active = true;
     async function load() {
       try {
-        const [studentsData, plansData, dietsData, assessmentsData, billingData] = await Promise.all([
+        const [studentsData, plansData, dietsData, assessmentsData, billingData, feedbackData] = await Promise.all([
           api('/students?status=all'),
           api(`/workouts/students/${studentId}/history`),
           api(`/diets/students/${studentId}`),
           api(`/assessments/students/${studentId}`),
-          api(`/students/${studentId}/billing`)
+          api(`/students/${studentId}/billing`),
+          api(`/workouts/students/${studentId}/feedback`)
         ]);
         const student = studentsData.students.find((item) => item.id === studentId) || null;
         if (active) {
@@ -34,6 +35,7 @@ export function StudentManagement() {
             plans: plansData.plans,
             diets: dietsData.diets,
             assessments: assessmentsData.assessments,
+            feedback: feedbackData.feedback,
             billing: billingData.billing,
             payments: billingData.payments,
             error: student ? '' : 'Aluno não encontrado.'
@@ -127,6 +129,22 @@ export function StudentManagement() {
       </div>
 
       <div className="student-management-grid">
+        <section className="management-panel management-panel-wide">
+          <div className="management-panel-title"><MessageSquare size={18} /><h2>Dúvidas e dificuldades ({state.feedback.length})</h2></div>
+          {state.feedback.length === 0 ? <p className="muted">Nenhuma dúvida ou dificuldade enviada por este aluno.</p> : (
+            state.feedback.map((item) => (
+              <article className="management-record student-feedback-message" key={item.id}>
+                <small>{formatDate(item.createdAt)}{item.dayOfWeek != null ? ` · ${weekDays[item.dayOfWeek]}` : ''}</small>
+                {item.planName ? <span>Plano: {item.planName}</span> : null}
+                <strong>Treino: {item.workoutName || (item.dayOfWeek != null ? `${weekDays[item.dayOfWeek]} — Treino do dia` : 'Não informado')}</strong>
+                {item.workoutDescription ? <p>{item.workoutDescription}</p> : null}
+                {item.difficulty ? <p><b>Dificuldade:</b> {item.difficulty}</p> : null}
+                <p><b>Mensagem:</b> {item.message}</p>
+              </article>
+            ))
+          )}
+        </section>
+
         <section className="management-panel">
           <div className="management-panel-title"><Dumbbell size={18} /><h2>Treino ativo</h2></div>
           {activePlan ? <div className="management-record"><strong>{planName(activePlan)}</strong><span>Iniciado em {formatDate(activePlan.start_date)}</span></div> : <p className="muted">Nenhum treino ativo.</p>}

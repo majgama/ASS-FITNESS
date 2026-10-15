@@ -52,6 +52,8 @@ async function addWorkoutProgress(students) {
                 FROM workout_feedback wf
                 WHERE wf.student_weekly_plan_id = swp.id
                   AND wf.day_of_week IS NOT NULL
+                  AND wf.message = 'Treino do dia concluido'
+                  AND wf.difficulty IS NULL
               ), 0)::int AS completed_days
        FROM student_weekly_plans swp
        WHERE swp.student_id = $1 AND swp.status = 'active'

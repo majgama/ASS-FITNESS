@@ -755,6 +755,32 @@ const feedbackSchema = z.object({
   difficulty: z.string().trim().optional().nullable()
 });
 
+workoutsRouter.get('/students/:studentId/feedback', requireRoles('admin', 'personal'), asyncHandler(async (req, res) => {
+  const studentId = parseBody(idSchema, req.params.studentId);
+  await assertStudentAccess({ query }, req.user, studentId);
+  const result = await query(
+    `SELECT wf.id, wf.message, wf.difficulty, wf.day_of_week AS "dayOfWeek",
+            wf.created_at AS "createdAt",
+            swp.plan_snapshot->>'name' AS "planName",
+            context.day->'dailyWorkout'->>'name' AS "workoutName",
+            COALESCE(NULLIF(context.day->'dailyWorkout'->>'description', ''),
+                     NULLIF(context.day->>'instructions', ''),
+                     'Fortalecimento, estética e performance.') AS "workoutDescription"
+     FROM workout_feedback wf
+     JOIN student_weekly_plans swp ON swp.id = wf.student_weekly_plan_id
+     LEFT JOIN LATERAL (
+       SELECT day FROM jsonb_array_elements(swp.plan_snapshot->'days') AS day
+       WHERE (day->>'dayOfWeek')::int = wf.day_of_week
+       LIMIT 1
+     ) context ON true
+     WHERE wf.student_id = $1 AND wf.is_plan_completed = false
+       AND (wf.difficulty IS NOT NULL OR wf.message <> 'Treino do dia concluido')
+     ORDER BY wf.created_at DESC, wf.id DESC`,
+    [studentId]
+  );
+  res.json({ feedback: result.rows });
+}));
+
 workoutsRouter.post('/student/current/feedback', requireRoles('student'), asyncHandler(async (req, res) => {
   const payload = parseBody(feedbackSchema, req.body);
   const current = await query(
