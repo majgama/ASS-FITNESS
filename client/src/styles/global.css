@@ -605,10 +605,16 @@ textarea:focus {
 }
 
 .segmented button.active,
-.day-tabs button.active {
+.day-tabs button.is-rest {
   background: #1d2430;
   color: #ffffff;
   border-color: #1d2430;
+}
+
+.day-tabs button.active {
+  background: #d4a72c;
+  color: #000000;
+  border-color: #d4a72c;
 }
 
 .table-wrap {

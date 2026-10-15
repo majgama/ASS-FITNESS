@@ -240,7 +240,11 @@ export function StudentPortal() {
               <button
                 key={index}
                 type="button"
-                className={activeDay === index ? 'active' : ''}
+                className={[
+                  days.some((day) => Number(day.dayOfWeek) === index && day.isRest) ? 'is-rest' : '',
+                  activeDay === index ? 'active' : ''
+                ].filter(Boolean).join(' ')}
+                aria-pressed={activeDay === index}
                 onClick={() => setActiveDay(index)}
               >
                 {label}
