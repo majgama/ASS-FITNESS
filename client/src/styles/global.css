@@ -3137,7 +3137,7 @@ textarea::placeholder {
   right: 10px;
 }
 
-.exercise-library-info-preference {
+.app-shell .exercise-library-info .exercise-library-info-preference {
   display: flex;
   align-items: center;
   gap: 8px;
