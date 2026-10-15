@@ -338,9 +338,6 @@ export function StudentPortal() {
                         <div>
                           <small>Intervalo</small>
                           <strong>{item.restSeconds ? `${item.restSeconds}s` : 'Livre'}</strong>
-                          {restTimers[item.id]?.startedAt === null ? (
-                            <output className="student-rest-time is-stopped" role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</output>
-                          ) : null}
                           <button
                             type="button"
                             className={`secondary-button student-exercise-action${restTimers[item.id]?.startedAt != null ? ' student-rest-running' : ' student-rest-start'}`}
@@ -354,6 +351,9 @@ export function StudentPortal() {
                               </>
                             ) : 'Iniciar intervalo'}
                           </button>
+                          {restTimers[item.id]?.startedAt === null ? (
+                            <output className="student-rest-time is-stopped" role="timer" aria-live="off" aria-label={`Tempo de intervalo de ${item.exerciseName}`}>{restElapsed(item.id)}</output>
+                          ) : null}
                         </div>
                       </div>
                     </div>
