@@ -18,6 +18,7 @@ import { paymentsRouter } from './routes/payments.js';
 import { profileRouter } from './routes/profile.js';
 import { studentsRouter } from './routes/students.js';
 import { tutorialsRouter } from './routes/tutorials.js';
+import { notificationsRouter } from './routes/notifications.js';
 import { workoutsRouter } from './routes/workouts.js';
 import { initializeDatabase } from './db/initialize.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
@@ -63,6 +64,7 @@ app.use('/api/admin', adminRouter);
 app.use('/api/files', filesRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/tutorials', tutorialsRouter);
+app.use('/api/notifications', notificationsRouter);
 
 if (env.nodeEnv === 'production' && fs.existsSync(clientIndexPath)) {
   app.use(express.static(clientDistPath));

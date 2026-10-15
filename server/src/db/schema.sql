@@ -316,6 +316,13 @@ CREATE TABLE IF NOT EXISTS student_weekly_plans (
 
 CREATE INDEX IF NOT EXISTS student_weekly_plans_student_idx ON student_weekly_plans(student_id, status);
 
+CREATE TABLE IF NOT EXISTS notification_reads (
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  notification_id TEXT NOT NULL,
+  read_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (user_id, notification_id)
+);
+
 CREATE TABLE IF NOT EXISTS workout_feedback (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   student_weekly_plan_id UUID NOT NULL REFERENCES student_weekly_plans(id) ON DELETE CASCADE,

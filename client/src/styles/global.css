@@ -1073,6 +1073,89 @@ iframe.exercise-media {
   font-size: 14px;
 }
 
+.topbar-actions,
+.notification-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.notification-bell {
+  position: relative;
+}
+
+.notification-count {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  min-width: 18px;
+  padding: 2px 4px;
+  border-radius: 12px;
+  background: #d4a72c;
+  color: #000 !important;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.notification-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(360px, calc(100vw - 32px));
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 16px;
+  border: 1px solid #d4a72c;
+  border-radius: 12px;
+  background: #101112;
+  color: #fff;
+  z-index: 100;
+  box-shadow: 0 8px 24px #0008;
+}
+
+.notification-heading h2 {
+  margin: 0;
+  color: #f3ca67;
+  font-size: 18px;
+}
+
+.notification-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.notification-item {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #454545;
+  border-radius: 8px;
+  background: #181818;
+  color: #fff;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.notification-item.unread {
+  border-color: #d4a72c;
+}
+
+.notification-item span,
+.notification-item small {
+  color: #eee;
+}
+
+@media (max-width: 780px) {
+  .notification-panel {
+    position: fixed;
+    top: 70px;
+    right: 16px;
+  }
+}
+
 .student-feedback-message p {
   margin: 4px 0;
   color: #f5f1e8;

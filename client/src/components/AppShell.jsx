@@ -18,6 +18,7 @@ import {
 import { useAuth } from '../context/AuthContext.jsx';
 import { fileUrl } from '../api/client.js';
 import { InstallAppButton } from './InstallAppButton.jsx';
+import { NotificationBell } from './NotificationBell.jsx';
 
 const navByRole = {
   admin: [
@@ -99,9 +100,12 @@ export function AppShell() {
             </div>
             <strong>{user?.name}</strong>
           </div>
-          <button className="icon-button menu-toggle only-mobile topbar-menu" type="button" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
-            <Menu size={20} />
-          </button>
+          <div className="topbar-actions">
+            <NotificationBell key={user.id} user={user} />
+            <button className="icon-button menu-toggle only-mobile topbar-menu" type="button" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
+              <Menu size={20} />
+            </button>
+          </div>
         </header>
         <Outlet />
         {user?.role === 'student' ? (
