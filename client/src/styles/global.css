@@ -1076,12 +1076,23 @@ iframe.exercise-media {
 .student-active-plan-heading {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
+  cursor: pointer;
+  list-style: none;
+  color: #f3ca67;
 }
 
-.student-active-plan-heading > div {
-  min-width: 0;
+.student-active-plan-heading::-webkit-details-marker {
+  display: none;
+}
+
+.student-active-plan-heading svg {
+  flex-shrink: 0;
+}
+
+.student-active-plan[open] .student-active-plan-heading svg {
+  transform: rotate(180deg);
 }
 
 .student-active-plan h2 {

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Check, ClipboardList, Dumbbell, FileText, Pause, Repeat, Send, Timer, Volume2, X } from 'lucide-react';
+import { Check, ChevronDown, ClipboardList, Dumbbell, FileText, Pause, Repeat, Send, Timer, Volume2 } from 'lucide-react';
 import { api, fileUrl, gifLibraryFileUrl } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,6 @@ const dayTabsOrder = [
 export function StudentPortal() {
   const { user } = useAuth();
   const [currentPlan, setCurrentPlan] = useState(null);
-  const [dismissedPlanId, setDismissedPlanId] = useState(null);
   const [diet, setDiet] = useState(null);
   const [assessments, setAssessments] = useState([]);
   const [assessmentRequests, setAssessmentRequests] = useState([]);
@@ -230,25 +229,15 @@ export function StudentPortal() {
         <section className="panel empty-state">Nenhum plano ativo no momento. Aguarde seu personal trainer disponibilizar seu treino.</section>
       ) : (
         <>
-          {plan && dismissedPlanId !== currentPlan.id ? (
-            <section className="panel student-active-plan" aria-label="Plano semanal ativo">
-              <div className="student-active-plan-heading">
-                <div>
-                  <span className="student-tagline">Plano semanal ativo</span>
-                  <h2>{plan.name}</h2>
-                </div>
-                <button
-                  type="button"
-                  className="icon-button popup-close-button"
-                  aria-label="Fechar card do plano semanal ativo"
-                  title="Fechar"
-                  onClick={() => setDismissedPlanId(currentPlan.id)}
-                >
-                  <X size={18} aria-hidden="true" />
-                </button>
-              </div>
+          {plan ? (
+            <details className="panel student-active-plan" key={currentPlan.id}>
+              <summary className="student-active-plan-heading">
+                <span className="student-tagline">Plano semanal ativo</span>
+                <ChevronDown size={18} aria-hidden="true" />
+              </summary>
+              <h2>{plan.name}</h2>
               {plan.description ? <p>{plan.description}</p> : null}
-            </section>
+            </details>
           ) : null}
 
           <div className="day-tabs">
