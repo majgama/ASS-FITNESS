@@ -210,11 +210,9 @@ export function StudentPortal() {
         </section>
       ) : null}
       <div className="student-header">
-        <span className="student-tagline">Disciplina hoje. Resultados reais.</span>
         <div className="page-heading">
           <div>
             <h1>Meu treino</h1>
-            <p className="student-subtitle">Acompanhe seus treinos e evolua todos os dias.</p>
           </div>
         </div>
       </div>
@@ -223,13 +221,9 @@ export function StudentPortal() {
       {error ? <div className="alert alert-error">{error}</div> : null}
 
       {assessmentRequests.length > 0 ? (
-        <section className="panel">
-          <h2>Avaliação pendente</h2>
-          <p>{assessmentRequests[0].requested_by_name} liberou uma avaliação para você preencher suas medidas e enviar fotos.</p>
-          <Link to="/avaliacoes" className="primary-button fit-button">
-            <ClipboardList size={18} />Preencher avaliação
-          </Link>
-        </section>
+        <Link to="/avaliacoes" className="primary-button fit-button">
+          <ClipboardList size={18} aria-hidden="true" />Avaliação Pendente
+        </Link>
       ) : null}
 
       {!currentPlan ? (
