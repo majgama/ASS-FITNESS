@@ -28,7 +28,7 @@ export function GifLibrarySelection() {
         onSelect={selectGif}
         onClose={() => navigate('/treinos/exercicios')}
         initialFavoritesOnly={Boolean(location.state?.favoritesOnly)}
-        initialGender="MASCULINO"
+        initialGender="FEMININO"
         initialEnvironment="ACADEMIA"
         pageSize={20}
         fullPage

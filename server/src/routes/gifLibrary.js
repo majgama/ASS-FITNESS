@@ -57,7 +57,8 @@ function applyOverride(item, override) {
     environment: item.environment,
     categoryPath: item.categoryPath,
     name: override?.name_pt || item.namePt || item.nameEn,
-    muscleGroup: override?.muscle_group_pt || item.muscleGroupPt || null,
+    muscleGroup: override?.muscle_group_pt && !['true', 'false'].includes(override.muscle_group_pt)
+      ? override.muscle_group_pt : item.muscleGroupPt || null,
     hidden: override?.hidden || false
   };
 }
@@ -82,9 +83,9 @@ function normalizeCategory(value) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
-function filterCatalog(filters, excluded = '') {
+function filterCatalog(filters, excluded = '', source = catalog) {
   const parentSegments = filters.categoryPath ? filters.categoryPath.split('/').filter(Boolean) : [];
-  return catalog.filter((item) => {
+  return source.filter((item) => {
     if (excluded !== 'genders' && (filters.gender && item.gender !== filters.gender ||
       filters.genders.length && !filters.genders.includes(item.gender))) return false;
     if (excluded !== 'environments' && (filters.environment && item.environment !== filters.environment ||
@@ -103,18 +104,22 @@ function filterCatalog(filters, excluded = '') {
 gifLibraryRouter.get('/filters', asyncHandler(async (req, res) => {
   const filters = parseBody(filterQuerySchema, req.query);
   const parentSegments = filters.categoryPath ? filters.categoryPath.split('/').filter(Boolean) : [];
-  const scoped = filterCatalog(filters, 'muscleGroups');
+  const overrides = await getOverridesById(catalog.map((item) => item.id));
+  const effectiveCatalog = catalog.map((item) => ({
+    ...item, muscleGroupPt: applyOverride(item, overrides.get(item.id)).muscleGroup
+  }));
+  const scoped = filterCatalog(filters, 'muscleGroups', effectiveCatalog);
   const muscleGroups = [...new Set(scoped.map((item) => item.muscleGroupPt))]
     .filter(Boolean)
     .sort((a, b) => a.localeCompare(b, 'pt-BR'));
 
   const genders = [...new Set(catalog.map((item) => item.gender))].filter(Boolean).sort();
   const environments = [...new Set(catalog.map((item) => item.environment))].filter(Boolean).sort();
-  const categories = [...new Set(filterCatalog(filters, 'categories').map((item) => normalizeCategory(item.categoryPath[0] || '')))]
+  const categories = [...new Set(filterCatalog(filters, 'categories', effectiveCatalog).map((item) => normalizeCategory(item.categoryPath[0] || '')))]
     .filter(Boolean).sort();
-  const subcategories = [...new Set(filterCatalog(filters, 'subcategories').flatMap((item) => item.categoryPath.slice(1)))]
+  const subcategories = [...new Set(filterCatalog(filters, 'subcategories', effectiveCatalog).flatMap((item) => item.categoryPath.slice(1)))]
     .filter(Boolean).sort();
-  const nextLevel = [...new Set(filterCatalog(filters).map((item) => item.categoryPath[parentSegments.length]))]
+  const nextLevel = [...new Set(filterCatalog(filters, '', effectiveCatalog).map((item) => item.categoryPath[parentSegments.length]))]
     .filter(Boolean)
     .sort();
   res.json({ genders, environments, categories, subcategories, categoryOptions: nextLevel, muscleGroups });
@@ -130,15 +135,7 @@ const listQuerySchema = filterQuerySchema.extend({
 
 gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
   const filters = parseBody(listQuerySchema, req.query);
-  let scoped = filterCatalog(filters);
-  if (filters.search) {
-    const q = filters.search.toLowerCase();
-    scoped = scoped.filter((item) =>
-      item.namePt.toLowerCase().includes(q) ||
-      item.nameEn.toLowerCase().includes(q) ||
-      (item.muscleGroupPt || '').toLowerCase().includes(q)
-    );
-  }
+  const scoped = filterCatalog(filters, 'muscleGroups');
 
   const ids = scoped.map((item) => item.id);
   const [overrides, favoriteIds, translationUpdates] = await Promise.all([
@@ -151,6 +148,16 @@ gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
     ...applyOverride(item, overrides.get(item.id)),
     translatedAt: translationUpdates.get(item.id) || null
   }));
+  if (filters.muscleGroup) mapped = mapped.filter((item) => item.muscleGroup === filters.muscleGroup);
+  if (filters.muscleGroups.length) mapped = mapped.filter((item) => filters.muscleGroups.includes(item.muscleGroup));
+  if (filters.search) {
+    const q = filters.search.trim().toLowerCase();
+    mapped = mapped.filter((item) =>
+      item.name.toLowerCase().includes(q) ||
+      (catalogById.get(item.id).nameEn || '').toLowerCase().includes(q) ||
+      (item.muscleGroup || '').toLowerCase().includes(q)
+    );
+  }
   if (req.user.role !== 'admin') mapped = mapped.filter((item) => !item.hidden);
   if (filters.favoritesOnly) mapped = mapped.filter((item) => favoriteIds.has(item.id));
   if (filters.translationStatus === 'updated') mapped = mapped.filter((item) => item.translatedAt);
@@ -228,7 +235,7 @@ gifLibraryRouter.patch('/:id', requireRoles('admin'), asyncHandler(async (req, r
 
   const result = await query(
     `INSERT INTO gif_library_overrides (gif_id, name_pt, muscle_group_pt, updated_by)
-     VALUES ($1, $2, $3, $4)
+     VALUES ($1, $2, $5, $4)
      ON CONFLICT (gif_id) DO UPDATE SET
        name_pt = COALESCE($2, gif_library_overrides.name_pt),
        muscle_group_pt = CASE WHEN $3::boolean THEN $5 ELSE gif_library_overrides.muscle_group_pt END,

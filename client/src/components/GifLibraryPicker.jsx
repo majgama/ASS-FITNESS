@@ -74,10 +74,10 @@ export function GifLibraryPicker({
   pageSize = 24,
   managementMode = false,
   initialFavoritesOnly = false,
-  initialGender = '',
-  initialEnvironment = '',
+  initialGender = 'FEMININO',
+  initialEnvironment = 'ACADEMIA',
   fullPage = false,
-  showMuscleGroups = false
+  showMuscleGroups = true
 }) {
   const { user } = useAuth();
   const isAdmin = user.role === 'admin';
@@ -176,6 +176,7 @@ export function GifLibraryPicker({
         }
       });
       setEditingItem(null);
+      await loadFilters();
       await loadItems(page);
     } catch (err) {
       setError(err.message);
