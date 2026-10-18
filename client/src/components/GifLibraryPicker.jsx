@@ -423,7 +423,14 @@ export function GifLibraryPicker({
         ) : null}
       </div>
 
-      {managementMode ? pagination : null}
+      {managementMode ? (
+        <>
+          <p className="gif-pagination-summary" role="status">
+            {total.toLocaleString('pt-BR')} {total === 1 ? 'resultado encontrado' : 'resultados encontrados'}
+          </p>
+          {pagination}
+        </>
+      ) : null}
 
       <div className="gif-picker-grid">
         {items.length === 0 ? <div className="empty-state">Nenhuma animação encontrada.</div> : null}
