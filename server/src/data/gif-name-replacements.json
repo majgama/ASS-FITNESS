@@ -4868,5 +4868,2329 @@
       "W Postura Against Parede"
     ],
     "name": "Braços em W com apoio na parede"
+  },
+  {
+    "id": "e539b48638077f42f7f849b551365530b8808a06",
+    "previousNames": [
+      "Abdominal Com Cadeira Assistido"
+    ],
+    "name": "Abdominal com auxílio da cadeira"
+  },
+  {
+    "id": "f663c978a2faefb5c39eac382e7c1dd0e90209d1",
+    "previousNames": [
+      "Abdominal Em Stability Bola"
+    ],
+    "name": "Abdominal completo na bola suíça"
+  },
+  {
+    "id": "91b59d3352ed57a1b1edc0e3b8874f1c8c9d451b",
+    "previousNames": [
+      "Abdominal Stand Para Cima"
+    ],
+    "name": "Abdominal completo seguido de subida em pé"
+  },
+  {
+    "id": "de2946b49b0e5dd39d8e6a5cd81ad42d9bf7cc59",
+    "previousNames": [
+      "Abdominal Supra (on Stability Ball)"
+    ],
+    "name": "Abdominal supra na bola suíça"
+  },
+  {
+    "id": "6d32e8c6ea169306ea8a1f96d4ee8d5d6006aa8e",
+    "previousNames": [
+      "Aberto E Joelho Tuck Em Acolchoado Banquinho"
+    ],
+    "name": "Abertura das pernas com recolhimento de joelhos sentado no banco acolchoado"
+  },
+  {
+    "id": "e73b39bdb13856e24c1c5817e01fe9969a6ef299",
+    "previousNames": [
+      "Agachamento Búlgaro Acolchoado Banquinho Apoiado"
+    ],
+    "name": "Agachamento búlgaro com apoio no banco acolchoado"
+  },
+  {
+    "id": "daf0fa1535e95b628cc3f36560bd0e802fbb59b6",
+    "previousNames": [
+      "Agachamento Búlgaro Com Baixo Caixote"
+    ],
+    "name": "Agachamento búlgaro com caixa baixa"
+  },
+  {
+    "id": "771c245efc371da5f04719023c29b3c997d11935",
+    "previousNames": [
+      "Agachamento Em Acolchoado Banquinho"
+    ],
+    "name": "Agachamento até o banco acolchoado"
+  },
+  {
+    "id": "8d928187ab16d1c025488a0c76e2f16f7ac469fe",
+    "previousNames": [
+      "Ajoelhado Inclinado Finger Pressão"
+    ],
+    "name": "Pressão dos dedos com apoio inclinado e joelhos apoiados"
+  },
+  {
+    "id": "30311eaf6dff252233a4505d04f480dab5fa5f12",
+    "previousNames": [
+      "Animal Resting Yoga Postura"
+    ],
+    "name": "Postura de descanso do animal"
+  },
+  {
+    "id": "97b6372aee7435e8fee9c98d7b2586312093de41",
+    "previousNames": [
+      "Ardha Matsyendrasana Yoga Postura"
+    ],
+    "name": "Postura de torção sentada — Ardha Matsyendrasana"
+  },
+  {
+    "id": "fa8130e893dc4fe4a0c664ea61ad0d2dee093d64",
+    "previousNames": [
+      "Barra Fixa Com Flexionado Joelho Entre Chairs"
+    ],
+    "name": "Remada invertida com joelhos flexionados entre cadeiras"
+  },
+  {
+    "id": "5cf50126dd09313edc587fdff2c107b33a4e61c4",
+    "previousNames": [
+      "Bosu Bola Agachamento Coxas"
+    ],
+    "name": "Agachamento no bosu"
+  },
+  {
+    "id": "d04f5a20806c91d0ab5dbf1f6edb90e5cb69802a",
+    "previousNames": [
+      "Bosu Bola Alternado Calcanhar Toque Lateral Chute Agachamento"
+    ],
+    "name": "Agachamento no bosu com toque alternado nos calcanhares e chute lateral"
+  },
+  {
+    "id": "5ffb209f2a61c056b8eb95a609b7a85e071ed108",
+    "previousNames": [
+      "Bosu Bola Balance Counterbalanced Skater Agachamento (ma"
+    ],
+    "name": "Agachamento do patinador no bosu"
+  },
+  {
+    "id": "91d5dfb3dd651cd89361ef6a1e40c4b79cbbbf00",
+    "previousNames": [
+      "Bosu Bola Escalador"
+    ],
+    "name": "Escalador no bosu"
+  },
+  {
+    "id": "12f3b081988cfead33bc38db311c0ebd6b182282",
+    "previousNames": [
+      "Bosu Bola Goblet Agachamento"
+    ],
+    "name": "Agachamento goblet no bosu"
+  },
+  {
+    "id": "feb1caf422e83ca186f0b937784d4618340b19dc",
+    "previousNames": [
+      "Bosu Bola Subida No Step Joelho Alto"
+    ],
+    "name": "Subida no bosu com joelho alto"
+  },
+  {
+    "id": "269a04b809036e29cb2aa1c158a1739a027eee5b",
+    "previousNames": [
+      "Bosu Bola Subida No Step Joelho Alto Air Torção"
+    ],
+    "name": "Subida no bosu com joelho alto e rotação"
+  },
+  {
+    "id": "79fa232063bab4bcd97b58d645c640b9cc64666e",
+    "previousNames": [
+      "Bosu Bola Subida No Step Unilateral Perna Levantamento Terra"
+    ],
+    "name": "Subida no bosu seguida de levantamento terra unilateral"
+  },
+  {
+    "id": "78dd713b5c16ac465237900895940e55726532c5",
+    "previousNames": [
+      "Bosu Bola Unilateral Perna Good Morning"
+    ],
+    "name": "Bom dia unilateral no bosu"
+  },
+  {
+    "id": "81852814f47f8e24d6d1cb99c5d0b9408f6f57e5",
+    "previousNames": [
+      "Bow Yoga Postura Costas"
+    ],
+    "name": "Postura do arco"
+  },
+  {
+    "id": "0d5e0640e324e0e6bb282dbe9644e2119a978526",
+    "previousNames": [
+      "Bulgarian Agachamento Búlgaro Com Cadeira"
+    ],
+    "name": "Agachamento búlgaro com cadeira"
+  },
+  {
+    "id": "51817f0c2a3e8bca8d36b33635bb4944aa33c9d7",
+    "previousNames": [
+      "Burpee Salto Caixote"
+    ],
+    "name": "Burpee com salto na caixa"
+  },
+  {
+    "id": "312b30b9f24ebe222662f67f2b8fa72a4e94dec9",
+    "previousNames": [
+      "Butterfly Yoga Flaps"
+    ],
+    "name": "Movimentos de pernas na postura da borboleta"
+  },
+  {
+    "id": "938c5e3796ddb247f70f5dd30b5c29edd8b59627",
+    "previousNames": [
+      "Butterfly Yoga Postura"
+    ],
+    "name": "Postura da borboleta"
+  },
+  {
+    "id": "a1e9205f15b8ddd00190eedfe8a18abd856987da",
+    "previousNames": [
+      "Cadeira Extensora Abdominal Supra (with Stability Ball)"
+    ],
+    "name": "Abdominal com extensão de joelhos na bola suíça"
+  },
+  {
+    "id": "f4f407fea38a39c32f8af7dffa36423e78d97244",
+    "previousNames": [
+      "Caixote Drop 2 Pé Land"
+    ],
+    "name": "Descida da caixa com aterrissagem nos dois pés"
+  },
+  {
+    "id": "dd2ddf4f177ae48fa6a90fd5bd71c2dbc0b5353d",
+    "previousNames": [
+      "Caixote Drop Para Unilateral Perna Land"
+    ],
+    "name": "Descida da caixa com aterrissagem em uma perna"
+  },
+  {
+    "id": "56a5faa33b8834e8aece2e05cf5e985c8fca8914",
+    "previousNames": [
+      "Caixote Drop Salto"
+    ],
+    "name": "Salto em profundidade a partir da caixa"
+  },
+  {
+    "id": "e8f7a2a432a9fafdb32703dbd221dd4e61fba8e2",
+    "previousNames": [
+      "Caixote Drop Split Stance Land"
+    ],
+    "name": "Descida da caixa com aterrissagem em posição de afundo"
+  },
+  {
+    "id": "0b67f0409cda792657a1b5cc22ebcd79051ee39a",
+    "previousNames": [
+      "Círculo Braços Elevação De Joelhos Em Cadeira"
+    ],
+    "name": "Círculos dos braços com elevação de joelhos sentado na cadeira"
+  },
+  {
+    "id": "3bd39c67477efd3171e4596bd4d25cab6167b69c",
+    "previousNames": [
+      "Climber Acolchoado Banquinho Apoiado"
+    ],
+    "name": "Escalador com apoio no banco acolchoado"
+  },
+  {
+    "id": "aba7c72679d2a8d7e4ac163676861b7d6100751c",
+    "previousNames": [
+      "Cobra Yoga Postura"
+    ],
+    "name": "Postura da cobra"
+  },
+  {
+    "id": "e6bd7cd1472e711dab3d27ed54e1fddfb0186dda",
+    "previousNames": [
+      "Com Peso Completo Agachamento De Deficit"
+    ],
+    "name": "Agachamento completo com carga sobre plataforma"
+  },
+  {
+    "id": "4df4e8828bd57c4fd38cf0718b05b9ad708e3090",
+    "previousNames": [
+      "Com Peso Exercise Bola Parede Agachamento"
+    ],
+    "name": "Agachamento na parede com bola suíça e carga"
+  },
+  {
+    "id": "4a268af00eabf3747cb767989ce967ed4899c699",
+    "previousNames": [
+      "Com Peso Hyperextension (on Stability Ball)"
+    ],
+    "name": "Extensão lombar na bola suíça com carga"
+  },
+  {
+    "id": "d6612929b8fd8a3055644a11de63eb552bb13490",
+    "previousNames": [
+      "Com Peso Lateral Inclinação (on Stability Ball) Cintura"
+    ],
+    "name": "Inclinação lateral na bola suíça com carga"
+  },
+  {
+    "id": "fd92b38b3cb4d84e378852562cd1e1a57bf3648e",
+    "previousNames": [
+      "Com Peso Plates Bulgarian Agachamento Búlgaro Com Ring"
+    ],
+    "name": "Agachamento búlgaro com anilhas e apoio nas argolas"
+  },
+  {
+    "id": "47b53a47b0cbea71a9c4d65ea48a3caa9314c247",
+    "previousNames": [
+      "Costas Extensão Em Exercise Bola"
+    ],
+    "name": "Extensão de tronco na bola suíça"
+  },
+  {
+    "id": "e060b283d830b7d5dd6219b970a40e7c52e8e966",
+    "previousNames": [
+      "Cruzado Climber Em Acolchoado Banquinho"
+    ],
+    "name": "Escalador cruzado com apoio no banco acolchoado"
+  },
+  {
+    "id": "7ddb706c94eaaf2f99427a34d3f72713818f986d",
+    "previousNames": [
+      "Declinado Ajoelhado Flexão"
+    ],
+    "name": "Flexão de braços com joelhos apoiados e elevados"
+  },
+  {
+    "id": "93808b20a51091f6279f97e566dfa30debdb4df8",
+    "previousNames": [
+      "Declinado Ajoelhado Flexão Em Caixote"
+    ],
+    "name": "Flexão de braços com joelhos apoiados sobre caixa"
+  },
+  {
+    "id": "6df0b02084f2df12d53901284237a971dbd7b38b",
+    "previousNames": [
+      "Declinado Flexão Com Cadeira"
+    ],
+    "name": "Flexão de braços com pés apoiados na cadeira"
+  },
+  {
+    "id": "328fed965e4020f45ba0b3d3c6003b6a6a6c818c",
+    "previousNames": [
+      "Diagonal Alcance Em Cadeira"
+    ],
+    "name": "Alcance diagonal sentado na cadeira"
+  },
+  {
+    "id": "446179013d3d4d92ff7b521e54f9146d3df9f765",
+    "previousNames": [
+      "Diagonal Em Para Fora Em Cadeira"
+    ],
+    "name": "Abertura e fechamento diagonal sentado na cadeira"
+  },
+  {
+    "id": "9c68bc61b3776ea15437ce5e8bac0bc4714a0fb4",
+    "previousNames": [
+      "Elevação De Panturrilha De Deficit Com Cadeira Apoiado"
+    ],
+    "name": "Panturrilha sobre plataforma com apoio na cadeira"
+  },
+  {
+    "id": "cd2ef2fa38acee604e364d59bdeb2740ef0a338d",
+    "previousNames": [
+      "Elevação De Pernass Segurar Em Cadeira"
+    ],
+    "name": "Isometria de pernas elevadas na cadeira"
+  },
+  {
+    "id": "587cb26881538012694dff7007a6aa33364e7e63",
+    "previousNames": [
+      "Elevanted Pique Flexão De Deficit Com Parallett"
+    ],
+    "name": "Flexão pike com pés elevados e mãos nas barras de apoio"
+  },
+  {
+    "id": "dd38f1c81171a847a584bc7061063237424c7931",
+    "previousNames": [
+      "Elevanted Profundo Afundo Dorsi Flexão"
+    ],
+    "name": "Mobilidade de dorsiflexão em afundo profundo com pé elevado"
+  },
+  {
+    "id": "d7bf27b63ddb1b18f651c3ed5c7a39010cbece38",
+    "previousNames": [
+      "Elevated Em Pé Elevação De Panturrilha"
+    ],
+    "name": "Panturrilha em pé sobre apoio elevado"
+  },
+  {
+    "id": "17d44fd2717c2e2d9ed5e12519c65cad492783d3",
+    "previousNames": [
+      "Elevated Escalador Com Hands Em Cadeira (m"
+    ],
+    "name": "Escalador com mãos apoiadas na cadeira"
+  },
+  {
+    "id": "623d071a3e15e576ae34a3a556228052a9ffcf5d",
+    "previousNames": [
+      "Elevated Prancha Walkout Com Cadeira"
+    ],
+    "name": "Caminhada das mãos na prancha com apoio na cadeira"
+  },
+  {
+    "id": "4bc550985e04b67d55e565c6b0185a5f13621fd1",
+    "previousNames": [
+      "Em Pé Lateral Perna Círculo Com Cadeira"
+    ],
+    "name": "Círculos laterais de perna em pé com apoio na cadeira"
+  },
+  {
+    "id": "152d146449adf7a95a01f111c01173deb0d98b45",
+    "previousNames": [
+      "Em Pé Unilateral Frente Elevação De Pernas Cadeira Apoiado (f"
+    ],
+    "name": "Elevação frontal unilateral de perna com apoio na cadeira"
+  },
+  {
+    "id": "fe2fb46af562002ba76c060af4eeab907e8ca300",
+    "previousNames": [
+      "Em Supino Spinal Torção Yoga Postura Quadris"
+    ],
+    "name": "Torção da coluna deitado"
+  },
+  {
+    "id": "359b24ee448b83880a5d382f261c729b314b2149",
+    "previousNames": [
+      "Exercise Bola Body Saw"
+    ],
+    "name": "Prancha serrote na bola suíça"
+  },
+  {
+    "id": "e72c308fcedb6a3f8e8ea2dc7cecac2b731d16a0",
+    "previousNames": [
+      "Exercise Bola Mesa Flexora"
+    ],
+    "name": "Flexão de joelhos na bola suíça"
+  },
+  {
+    "id": "3aeac18ab3ee09ef204d81a52973f238a0b37e1d",
+    "previousNames": [
+      "Exercise Bola One Legged Diagonal Chute Hamstring C"
+    ],
+    "name": "Chute diagonal unilateral com bola suíça e flexão de joelho"
+  },
+  {
+    "id": "1809bb07f32b94abf6003e280c2af9d2fb1ccf04",
+    "previousNames": [
+      "Exercise Bola Parede Agachamento"
+    ],
+    "name": "Agachamento na parede com bola suíça"
+  },
+  {
+    "id": "b6687cb65c2ec35fad2a3748bfef1302b1c117b5",
+    "previousNames": [
+      "Exercise Bola Pique Pushup"
+    ],
+    "name": "Flexão de braços com elevação de quadril na bola suíça"
+  },
+  {
+    "id": "d9e00d9987e0248ce3b0b2b76b6c4ae071c0a392",
+    "previousNames": [
+      "Exercise Bola Serratus Parede Slide"
+    ],
+    "name": "Deslizamento na parede com bola suíça para serrátil anterior"
+  },
+  {
+    "id": "f0a24e0579ab5ace902fe7ccd56538c029108dde",
+    "previousNames": [
+      "Extended Lateral Angle Yoga Postura"
+    ],
+    "name": "Postura do ângulo lateral estendido"
+  },
+  {
+    "id": "e3b3b4a9ce48d3032a79ddbf734b2002e72313b2",
+    "previousNames": [
+      "Faixa Unilateral Perna Agachamento Búlgaro Com Baixo Caixote"
+    ],
+    "name": "Agachamento búlgaro com faixa elástica e caixa baixa"
+  },
+  {
+    "id": "2c51fe9d5305210e18d4b67657c0df1ad72ffe40",
+    "previousNames": [
+      "Flexão (bosu Ball)"
+    ],
+    "name": "Flexão de braços no bosu"
+  },
+  {
+    "id": "a77bf6fe51a71ebf85cb5d8cb14f2def3b805cb8",
+    "previousNames": [
+      "Flexão Em Cadeira (version 2)"
+    ],
+    "name": "Flexão de braços na cadeira — variação 2"
+  },
+  {
+    "id": "75700000dc47c12480bfa595cd625d287c1c803a",
+    "previousNames": [
+      "Floating Run Em Cadeira"
+    ],
+    "name": "Corrida com pernas suspensas sentado na cadeira"
+  },
+  {
+    "id": "fc021affc9f9f45c9b68ca8bd37c30352974053d",
+    "previousNames": [
+      "Halteres Unilateral Perna Agachamento Búlgaro Com Ring"
+    ],
+    "name": "Agachamento búlgaro com halteres e apoio nas argolas"
+  },
+  {
+    "id": "846065af162399b74c3455524f78d021b1fcdee6",
+    "previousNames": [
+      "Head Para Joelho Janu Sirsasana Yoga Postura"
+    ],
+    "name": "Postura da cabeça ao joelho — Janu Sirsasana"
+  },
+  {
+    "id": "7a8e00dbccefb48cb5a1495b5895fe6b3c34add0",
+    "previousNames": [
+      "Inclinado Escalador Em Stepbox"
+    ],
+    "name": "Escalador inclinado com apoio no step"
+  },
+  {
+    "id": "289dda852b82854b033354a80dd951aa10d1e95a",
+    "previousNames": [
+      "Inclinado Fechado Pegada Flexão Com Cadeira"
+    ],
+    "name": "Flexão inclinada com mãos próximas na cadeira"
+  },
+  {
+    "id": "e2b152a9136a4149932f80d91a2b6de1edcaf25e",
+    "previousNames": [
+      "Inclinado Finger Pressão"
+    ],
+    "name": "Pressão dos dedos em apoio inclinado"
+  },
+  {
+    "id": "1991a75330ba0df24e195b3efc917b4a1ceefb7b",
+    "previousNames": [
+      "Inclinado Flexão"
+    ],
+    "name": "Flexão de braços inclinada"
+  },
+  {
+    "id": "bf408578540ab4c78209376d961d78aa5915a389",
+    "previousNames": [
+      "Inclinado Flexão (on Box)"
+    ],
+    "name": "Flexão inclinada com mãos apoiadas na caixa"
+  },
+  {
+    "id": "0490eb043568bf4492fdf6a0e2b7abbb682ade00",
+    "previousNames": [
+      "Inclinado Flexão Com Cadeira"
+    ],
+    "name": "Flexão inclinada com mãos apoiadas na cadeira"
+  },
+  {
+    "id": "850f0e5da27817f08ed79daeef5038a5efbf77b3",
+    "previousNames": [
+      "Inclinado Plyo Flexão"
+    ],
+    "name": "Flexão inclinada pliométrica"
+  },
+  {
+    "id": "38fd6794af9d4294ea4383d7ead0ffad7dafd607",
+    "previousNames": [
+      "Inclinado Reverso Flexão"
+    ],
+    "name": "Flexão inclinada com pegada invertida"
+  },
+  {
+    "id": "b975d9bff6460542507ee6c18564d5bb56cf5931",
+    "previousNames": [
+      "Inverted Chin Rosca Com Flexionado Joelho Entre Chairs"
+    ],
+    "name": "Rosca invertida com joelhos flexionados entre cadeiras"
+  },
+  {
+    "id": "bc942511254ad77da3c9a93fcab4b976382216a6",
+    "previousNames": [
+      "Inverted Remada Com Flexionado Joelho Entre Chairs"
+    ],
+    "name": "Remada invertida com joelhos flexionados entre cadeiras"
+  },
+  {
+    "id": "5524205f64594e387367f112e892fdf58f995236",
+    "previousNames": [
+      "Inverted Remada Entre Chairs"
+    ],
+    "name": "Remada invertida entre cadeiras"
+  },
+  {
+    "id": "49c29c78b9eb701110af68c8d8138970813cae58",
+    "previousNames": [
+      "Joelho Alto Afundo Em Bosu Bola"
+    ],
+    "name": "Afundo no bosu com elevação de joelho"
+  },
+  {
+    "id": "97d1d6903614e0e99fe1055d30eac1a909628f26",
+    "previousNames": [
+      "Joelho Alto Em Acolchoado Banquinho"
+    ],
+    "name": "Elevação de joelhos com apoio no banco acolchoado"
+  },
+  {
+    "id": "39601ab8ac4de203b088f794f3f8f94fff99715a",
+    "previousNames": [
+      "Joelho Articulations Extensão Coxas"
+    ],
+    "name": "Mobilidade dos joelhos com extensão"
+  },
+  {
+    "id": "c8a4e986cc7de09a4c9ccf04ae496c784f04301a",
+    "previousNames": [
+      "Kettlebell Unilateral Perna Agachamento Búlgaro Com Ring"
+    ],
+    "name": "Agachamento búlgaro com kettlebell e apoio nas argolas"
+  },
+  {
+    "id": "25088ae91f4a08b14938106029fad39a66290ada",
+    "previousNames": [
+      "L Sit Em Cadeira"
+    ],
+    "name": "Isometria em L na cadeira"
+  },
+  {
+    "id": "c5fafda2ee72463de1ea56bb632c69aa4644c589",
+    "previousNames": [
+      "L Sit Pernas Chute Em Cadeira"
+    ],
+    "name": "Isometria em L com chutes na cadeira"
+  },
+  {
+    "id": "0886d47e6a400630f9b7ed00974507fd027a304c",
+    "previousNames": [
+      "Lateral Subida No Step"
+    ],
+    "name": "Subida lateral no step"
+  },
+  {
+    "id": "c39c2d774a6dc1e96ab107cc6482ec9f7d87ec3a",
+    "previousNames": [
+      "Lateral Subida No Step Com Elevação De Joelho"
+    ],
+    "name": "Subida lateral no step com elevação de joelho"
+  },
+  {
+    "id": "61acdd2a81d5b1022cb7a23bb00ebb17c2da22b9",
+    "previousNames": [
+      "Mergulho Elevação De Pernas Acolchoado Banquinho Apoiado"
+    ],
+    "name": "Mergulho com elevação de pernas no banco acolchoado"
+  },
+  {
+    "id": "5ced6f8cca2eaa18a33b0f896266c67545ffd536",
+    "previousNames": [
+      "Mergulho Em Chão Com Cadeira"
+    ],
+    "name": "Tríceps na cadeira com pés no chão"
+  },
+  {
+    "id": "054a68c75fa7cd3e33ca91f64e218d56755d0262",
+    "previousNames": [
+      "Mergulho Flexionado Joelhos Com Cadeira"
+    ],
+    "name": "Tríceps na cadeira com joelhos flexionados"
+  },
+  {
+    "id": "64f9fd0a7c1ba63bf340f978faac6851b0b5c3dc",
+    "previousNames": [
+      "Mergulhos Entre Chairs Peito"
+    ],
+    "name": "Mergulho entre cadeiras com foco no peitoral"
+  },
+  {
+    "id": "d2fb203baeb9eac904d8d8761320643224b840c8",
+    "previousNames": [
+      "Mini Agachamento Com Cadeira"
+    ],
+    "name": "Meio agachamento com cadeira"
+  },
+  {
+    "id": "7706f0532aaadb27282244f786f03225e37a694c",
+    "previousNames": [
+      "Muscle Para Cima"
+    ],
+    "name": "Muscle-up"
+  },
+  {
+    "id": "457ea995b421e38e9f25c9498e9455cd16b13a94",
+    "previousNames": [
+      "Namaskarasana Yoga Postura"
+    ],
+    "name": "Postura da prece — Namaskarasana"
+  },
+  {
+    "id": "365af72df5d9c4f9c9f806e11be8be64fd462b14",
+    "previousNames": [
+      "One Perna Agachamento"
+    ],
+    "name": "Agachamento unilateral"
+  },
+  {
+    "id": "3b4f4eac0dcd215f2f18947915555fba8136dd59",
+    "previousNames": [
+      "Para Frente Salto Curto Em Acolchoado Banquinho"
+    ],
+    "name": "Salto curto à frente sobre banco acolchoado"
+  },
+  {
+    "id": "dbd3b87af42052fdb392b8103bdc4408c8311e7b",
+    "previousNames": [
+      "Parsva Balasana Yoga Postura"
+    ],
+    "name": "Postura de passar o fio na agulha — Parsva Balasana"
+  },
+  {
+    "id": "3e1cfb94a01b1c30e59f69912179acff45225f62",
+    "previousNames": [
+      "Peso Corporal Agachamento Búlgaro Frente Pé Elevanted"
+    ],
+    "name": "Agachamento búlgaro sem carga com pé da frente elevado"
+  },
+  {
+    "id": "77e7c94fe86ff4e269f2054391daa51665726689",
+    "previousNames": [
+      "Peso Corporal Sentado Alternado Shrug"
+    ],
+    "name": "Encolhimento alternado de ombros sentado sem carga"
+  },
+  {
+    "id": "ec0ddd4a24805652af1643b211d8ba9d5e9fb340",
+    "previousNames": [
+      "Peso Corporal Subida No Step Em Stepbox"
+    ],
+    "name": "Subida no step"
+  },
+  {
+    "id": "06242c0707195495f8190bfd686acb5e2a559b42",
+    "previousNames": [
+      "Pique Flexão De Deficit"
+    ],
+    "name": "Flexão pike com maior amplitude"
+  },
+  {
+    "id": "586141382e75a47883a5bae997d521bb2cd321d5",
+    "previousNames": [
+      "Pique Stand"
+    ],
+    "name": "Apoio pike com pés elevados"
+  },
+  {
+    "id": "5143f3b51db6c20bb0176093b014fd6b7c158368",
+    "previousNames": [
+      "Pistol Agachamento Com Cadeira"
+    ],
+    "name": "Agachamento pistola com cadeira"
+  },
+  {
+    "id": "9bd1edc0cbc116ad9cfc9262fd73fe10c821ec46",
+    "previousNames": [
+      "Pistol Agachamento Para Caixote"
+    ],
+    "name": "Agachamento pistola até a caixa"
+  },
+  {
+    "id": "d53ab887478b1fd1d4282c9b440aa59aa6f040a8",
+    "previousNames": [
+      "Planche Em Cadeira"
+    ],
+    "name": "Planche na cadeira"
+  },
+  {
+    "id": "31a1a066a88847367b109a0ce812d70b5e44f358",
+    "previousNames": [
+      "Ponte Yoga Postura Setu Bandha Sarvangasana"
+    ],
+    "name": "Postura da ponte — Setu Bandha Sarvangasana"
+  },
+  {
+    "id": "759dd2b540c4ee7dc8d7051f0e26a66cfdf226cb",
+    "previousNames": [
+      "Power Sled Arrasto"
+    ],
+    "name": "Arrasto de trenó"
+  },
+  {
+    "id": "27492fe230858200f9fb90d494c31adef7a476fa",
+    "previousNames": [
+      "Power Sled Empurrão"
+    ],
+    "name": "Empurrada de trenó"
+  },
+  {
+    "id": "e9bba637d2955785a747d25d275290c614358854",
+    "previousNames": [
+      "Power Sled Para Trás Empurrão"
+    ],
+    "name": "Empurrada de trenó para trás"
+  },
+  {
+    "id": "5a7ed861a7eca15d13d56045fe972955cdd793d9",
+    "previousNames": [
+      "Power Sled Rear Arrasto (version 2)"
+    ],
+    "name": "Arrasto de trenó para trás — variação 2"
+  },
+  {
+    "id": "225f96deafb4cf832c48722fbb5a049bfaa39eb1",
+    "previousNames": [
+      "Prancha Lateral Lift Em Acolchoado Banquinho"
+    ],
+    "name": "Prancha lateral com elevação de quadril no banco acolchoado"
+  },
+  {
+    "id": "faa49e21eeb451cf3a1fc6d6eb5eadeb282ee804",
+    "previousNames": [
+      "Prancha Lateral Rotação Acolchoado Banquinho Apoiado"
+    ],
+    "name": "Prancha lateral com rotação apoiado no banco acolchoado"
+  },
+  {
+    "id": "4a62dce9cbfde82d846161eb1c08f99e276e0dda",
+    "previousNames": [
+      "Prancha Polichinelo Em Acolchoado Banquinho"
+    ],
+    "name": "Polichinelo na prancha com apoio no banco acolchoado"
+  },
+  {
+    "id": "0cd221ba0db58fdf929c6755eca9bb2a0ef34613",
+    "previousNames": [
+      "Prayer Agachamento Yoga Postura"
+    ],
+    "name": "Agachamento na postura de prece"
+  },
+  {
+    "id": "41c3d42535b0158c48c1687dfeab71210021f088",
+    "previousNames": [
+      "Puxada Em (on Stability Ball)"
+    ],
+    "name": "Abdominal com recolhimento das pernas na bola suíça"
+  },
+  {
+    "id": "fdbe91d860ac55c1f8ff481671b54d0c8c533dca",
+    "previousNames": [
+      "Reverso Hyperextension Em Stability Bola"
+    ],
+    "name": "Extensão reversa de quadril na bola suíça"
+  },
+  {
+    "id": "b8a58273f23095781bb85ea5959545dfc2b8856a",
+    "previousNames": [
+      "Ring Aberto Barra Fixa"
+    ],
+    "name": "Barra fixa nas argolas com pegada aberta"
+  },
+  {
+    "id": "1b0183eee3b518492406de2ecd013ee40e8ef6d4",
+    "previousNames": [
+      "Ring Aberto Pegada Inverted Remada"
+    ],
+    "name": "Remada invertida nas argolas com pegada aberta"
+  },
+  {
+    "id": "32366f78325badc2a86961760ec24cb4acb44322",
+    "previousNames": [
+      "Ring Aberto Pegada Inverted Remada Em Chão"
+    ],
+    "name": "Remada invertida nas argolas com pegada aberta e pés no chão"
+  },
+  {
+    "id": "b96d02405221e255ad9575e650d3d8cdb602b91f",
+    "previousNames": [
+      "Ring Agachamento Búlgaro"
+    ],
+    "name": "Agachamento búlgaro nas argolas"
+  },
+  {
+    "id": "345131556572f8ed512209356e43629e11d8781a",
+    "previousNames": [
+      "Ring Alternado Reverso Rosca"
+    ],
+    "name": "Rosca inversa alternada nas argolas"
+  },
+  {
+    "id": "7581bdfffd8ab2a9371652d9338abfa98d7fb0f3",
+    "previousNames": [
+      "Ring Alto Remada"
+    ],
+    "name": "Remada alta nas argolas"
+  },
+  {
+    "id": "9474d17c26c306eba1e353ada7f6d61fc888ae55",
+    "previousNames": [
+      "Ring Archer Barra Fixa"
+    ],
+    "name": "Barra fixa arqueiro nas argolas"
+  },
+  {
+    "id": "ff92ba2c89599b0e505cd0254431a664faa1663e",
+    "previousNames": [
+      "Ring Archer Flexão"
+    ],
+    "name": "Flexão arqueiro nas argolas"
+  },
+  {
+    "id": "aa372c4c8ce4f973a480668f1495f3d45b6d22f6",
+    "previousNames": [
+      "Ring Archer Mergulho"
+    ],
+    "name": "Mergulho arqueiro nas argolas"
+  },
+  {
+    "id": "3137a45429d65bf1a31e7ae627f7435fb7376e33",
+    "previousNames": [
+      "Ring Braço Rosca"
+    ],
+    "name": "Rosca bíceps nas argolas"
+  },
+  {
+    "id": "336012a203de900f51f48937149962f989615532",
+    "previousNames": [
+      "Ring Com Peso Neutral Pegada Inverted Remada"
+    ],
+    "name": "Remada invertida nas argolas com carga e pegada neutra"
+  },
+  {
+    "id": "c04d1c822c911e6bff5e3420ff76d269b56d3f28",
+    "previousNames": [
+      "Ring Com Peso Pronated Pegada Inverted Remada"
+    ],
+    "name": "Remada invertida nas argolas com carga e pegada pronada"
+  },
+  {
+    "id": "3b3c263c712456028988c573b6c39c2af452d6f7",
+    "previousNames": [
+      "Ring Com Peso Vest Declinado Flexão"
+    ],
+    "name": "Flexão nas argolas com pés elevados e colete de peso"
+  },
+  {
+    "id": "a397022bb38439a1ffa67db1808d440e8791a134",
+    "previousNames": [
+      "Ring Costas Lever"
+    ],
+    "name": "Back lever nas argolas"
+  },
+  {
+    "id": "042b8e6a741c0bf9d94c01604cbbbe3dd890f0fd",
+    "previousNames": [
+      "Ring Costas Roll Para Support"
+    ],
+    "name": "Rolamento para trás até apoio nas argolas"
+  },
+  {
+    "id": "d1422f2da9951cfba47c9857e9889b03d82e22a8",
+    "previousNames": [
+      "Ring Crucifixo"
+    ],
+    "name": "Crucifixo nas argolas"
+  },
+  {
+    "id": "9f230df489f0b5b76ca1a093dafd22b80005f7b7",
+    "previousNames": [
+      "Ring Declinado Flexão"
+    ],
+    "name": "Flexão nas argolas com pés elevados"
+  },
+  {
+    "id": "0656e1a67b466f5fa786766d43a619d9dcd435ca",
+    "previousNames": [
+      "Ring Declinado Flexão"
+    ],
+    "name": "Flexão nas argolas com pés elevados"
+  },
+  {
+    "id": "c4fd302ac7801a82ac78346ee99e654fb1a23257",
+    "previousNames": [
+      "Ring Deltoide Posterior Remada"
+    ],
+    "name": "Remada para deltoide posterior nas argolas"
+  },
+  {
+    "id": "9599c8451bdd2b7792a8610989c0cbe078f509b2",
+    "previousNames": [
+      "Ring Eccentric Unilateral Mesa Flexora Com Toalha"
+    ],
+    "name": "Flexão unilateral de joelho na fase excêntrica com argolas e toalha"
+  },
+  {
+    "id": "b8054a03f3d1c6003bd60b9b48b9b5242aff9f8f",
+    "previousNames": [
+      "Ring Elevação Frontal"
+    ],
+    "name": "Elevação frontal nas argolas"
+  },
+  {
+    "id": "b72b52d603886e45729170406a7425f1942892e9",
+    "previousNames": [
+      "Ring Elevanted Pique Flexão De Deficit"
+    ],
+    "name": "Flexão pike nas argolas com pés elevados e maior amplitude"
+  },
+  {
+    "id": "4ce93d682b02f4cbebd9db1e376b3570f8d982b8",
+    "previousNames": [
+      "Ring Em Supino Abdominal Supra"
+    ],
+    "name": "Abdominal com pernas apoiadas nas argolas"
+  },
+  {
+    "id": "6bfe4a7b789bd25a0ae1f16c66823bd1d3001eeb",
+    "previousNames": [
+      "Ring Extended Prancha"
+    ],
+    "name": "Prancha com braços estendidos à frente nas argolas"
+  },
+  {
+    "id": "6939d16ea9a42bd2fcd0cf5891f599a48da62f82",
+    "previousNames": [
+      "Ring Extensão De Tríceps"
+    ],
+    "name": "Extensão de tríceps nas argolas"
+  },
+  {
+    "id": "9d2ab40ba866d043d78b8370c3b4870878cee2ff",
+    "previousNames": [
+      "Ring Face Puxada"
+    ],
+    "name": "Face pull nas argolas"
+  },
+  {
+    "id": "8367843500e1f975298dfdaf16c29c5137af1d40",
+    "previousNames": [
+      "Ring Flexão Para Prancha Lateral"
+    ],
+    "name": "Flexão nas argolas para prancha lateral"
+  },
+  {
+    "id": "2f39d939b85645cf560bf6e0b851318082cf3fe5",
+    "previousNames": [
+      "Ring Flexionado Joelho Inverted Remada"
+    ],
+    "name": "Remada invertida nas argolas com joelhos flexionados"
+  },
+  {
+    "id": "a6518468b10c72de8c8065632fb2e9befe7ea91b",
+    "previousNames": [
+      "Ring Frente Lever"
+    ],
+    "name": "Front lever nas argolas"
+  },
+  {
+    "id": "c6e78b2aae4d20715d481f15d504dad5d3b444e1",
+    "previousNames": [
+      "Ring Handstand"
+    ],
+    "name": "Parada de mãos nas argolas"
+  },
+  {
+    "id": "079909595f347c0ceac9dda681af8b615389e824",
+    "previousNames": [
+      "Ring Hanging Joelhos Para Cotovelos"
+    ],
+    "name": "Elevação de joelhos até os cotovelos suspenso nas argolas"
+  },
+  {
+    "id": "ba3b709d567d2cb7dbab6efe41d22f26c69221dd",
+    "previousNames": [
+      "Ring Inclinado Flexão"
+    ],
+    "name": "Flexão inclinada nas argolas"
+  },
+  {
+    "id": "c33758833fc8673434a9682d2c3ce3628b9540f6",
+    "previousNames": [
+      "Ring Inclinado Prancha"
+    ],
+    "name": "Prancha inclinada nas argolas"
+  },
+  {
+    "id": "1c8f0759dd8936cde694adf1e4e82a452f8c04b6",
+    "previousNames": [
+      "Ring Inverted Remada Parallel Para Chão"
+    ],
+    "name": "Remada invertida nas argolas com corpo paralelo ao chão"
+  },
+  {
+    "id": "24b82773f4b105cab9f4f7123c7aef2d02cf945f",
+    "previousNames": [
+      "Ring Isométrico Segurar Reverso Ab Rollout"
+    ],
+    "name": "Isometria no abdominal reverso com extensão nas argolas"
+  },
+  {
+    "id": "112b83d1502319b5569eed00b0ddd19a5abdf28c",
+    "previousNames": [
+      "Ring Lateral Agachamento"
+    ],
+    "name": "Agachamento lateral com argolas"
+  },
+  {
+    "id": "c498b9667ca002c3f24ef2edea459aa1584a7cb5",
+    "previousNames": [
+      "Ring Lateral Ponte"
+    ],
+    "name": "Ponte lateral nas argolas"
+  },
+  {
+    "id": "7e5908ee0312ae0835d169ae09c55ba4203d3021",
+    "previousNames": [
+      "Ring Mergulho"
+    ],
+    "name": "Mergulho nas argolas"
+  },
+  {
+    "id": "5a6ad74a3972eba819ca9fed4e9e663d636506a4",
+    "previousNames": [
+      "Ring Pique"
+    ],
+    "name": "Elevação de quadril nas argolas"
+  },
+  {
+    "id": "9dc5b46a214f1509e32026363affa20ede3aa369",
+    "previousNames": [
+      "Ring Planche"
+    ],
+    "name": "Planche nas argolas"
+  },
+  {
+    "id": "05c54387cd428ef0ab8a946cf4f162340f5d42e9",
+    "previousNames": [
+      "Ring Pullover"
+    ],
+    "name": "Pullover nas argolas"
+  },
+  {
+    "id": "1751dcb10b75b7625532227f5483a7c363402854",
+    "previousNames": [
+      "Ring Reverso Ab Rollout"
+    ],
+    "name": "Abdominal reverso com extensão nas argolas"
+  },
+  {
+    "id": "ea01177b32a277d120e2c95c7fbbbf903760e33d",
+    "previousNames": [
+      "Ring Reverso Crucifixo"
+    ],
+    "name": "Crucifixo inverso nas argolas"
+  },
+  {
+    "id": "a92336410918c81ae15ba1cdf055c4e31f4ed13c",
+    "previousNames": [
+      "Ring Reverso Flexão"
+    ],
+    "name": "Flexão inversa nas argolas"
+  },
+  {
+    "id": "f9dcfbb1c91265950159a1bc7dfa0b09a51cba8d",
+    "previousNames": [
+      "Ring Russian Flexão"
+    ],
+    "name": "Flexão russa nas argolas"
+  },
+  {
+    "id": "4f71d8fed4989ef8bb4879af30201986c464944e",
+    "previousNames": [
+      "Ring Russian Mergulho"
+    ],
+    "name": "Mergulho russo nas argolas"
+  },
+  {
+    "id": "6db1beed9cb1b15934f07e302366861f542add88",
+    "previousNames": [
+      "Ring Self Assistido Barra Fixa"
+    ],
+    "name": "Barra fixa pronada nas argolas com assistência dos pés"
+  },
+  {
+    "id": "3de9ff435a3936c6d7d2a31ee8f1c1ad05891c52",
+    "previousNames": [
+      "Ring Self Assistido Chin Para Cima"
+    ],
+    "name": "Barra fixa supinada nas argolas com assistência dos pés"
+  },
+  {
+    "id": "a845c9f31a3dfaef7b792fef4ff2d8709875cf21",
+    "previousNames": [
+      "Ring Split Crucifixo"
+    ],
+    "name": "Crucifixo nas argolas com braços em abertura alternada"
+  },
+  {
+    "id": "872c1ddd991e68ec6f9f9d607dfcb2b676f53af3",
+    "previousNames": [
+      "Ring Straddle L Sit"
+    ],
+    "name": "Isometria em L com pernas afastadas nas argolas"
+  },
+  {
+    "id": "ce5edad334c2e8dc57ef300b53fdd18dbd011790",
+    "previousNames": [
+      "Ring Support Segurar"
+    ],
+    "name": "Sustentação em apoio nas argolas"
+  },
+  {
+    "id": "3eb7f86b2ef22bf2a6aa71ab84d7fb71f4703a22",
+    "previousNames": [
+      "Ring Tuck Planche"
+    ],
+    "name": "Tuck planche nas argolas"
+  },
+  {
+    "id": "e6919828648d23f2a2d96f75232e22ff3b432424",
+    "previousNames": [
+      "Ring Unilateral Braço Deltoide Posterior Remada"
+    ],
+    "name": "Remada unilateral para deltoide posterior nas argolas"
+  },
+  {
+    "id": "6fbe8c328b0d15d37682402bc751262856d9de17",
+    "previousNames": [
+      "Ring Unilateral Mesa Flexora (version 2)"
+    ],
+    "name": "Flexão unilateral de joelho nas argolas — variação 2"
+  },
+  {
+    "id": "675b6fe21122d77b0ab9c4d1173b976a0d0801ed",
+    "previousNames": [
+      "Ring Unilateral Mesa Flexora Com Toalha"
+    ],
+    "name": "Flexão unilateral de joelho com argolas e toalha"
+  },
+  {
+    "id": "8a267c881ae8e683a503cb94e9afed0082158398",
+    "previousNames": [
+      "Ring Y Elevação"
+    ],
+    "name": "Elevação em Y nas argolas"
+  },
+  {
+    "id": "8892166ad08dbf5c138a5920eece70daa5b0ccae",
+    "previousNames": [
+      "Roll Bola Sentado Pectineus Activation"
+    ],
+    "name": "Liberação do pectíneo com bola sentado"
+  },
+  {
+    "id": "9f6ec6b62b5c0a5099ca8b251eafdb28e4b1557e",
+    "previousNames": [
+      "Roman Cadeira Abdominal"
+    ],
+    "name": "Abdominal na cadeira romana"
+  },
+  {
+    "id": "cecfe1124055f6f7d139d368e300718989775a02",
+    "previousNames": [
+      "Rotator Cuff Warm Para Cima"
+    ],
+    "name": "Aquecimento do manguito rotador"
+  },
+  {
+    "id": "246dda6eb03695a297e422a5f4901a9d77af9935",
+    "previousNames": [
+      "Salto Caixote"
+    ],
+    "name": "Salto na caixa"
+  },
+  {
+    "id": "86f5a781101b1977e32659b1c333a6bf59f06667",
+    "previousNames": [
+      "Salto Caixote Pliometria"
+    ],
+    "name": "Salto pliométrico na caixa"
+  },
+  {
+    "id": "d7f3aa6f0cf9a3f9053b902156e60f31fa60f20b",
+    "previousNames": [
+      "Salto Caixote Sobre"
+    ],
+    "name": "Salto por cima da caixa"
+  },
+  {
+    "id": "d17a8ede39a3fccf572b8583edade5b67d614157",
+    "previousNames": [
+      "Salto Em Fit Caixote"
+    ],
+    "name": "Salto sobre caixa"
+  },
+  {
+    "id": "1c81ab8deeeedfb285cf4960450c2bd204429ee4",
+    "previousNames": [
+      "Salto Pistol Agachamento Caixote"
+    ],
+    "name": "Salto na caixa a partir do agachamento pistola"
+  },
+  {
+    "id": "cec52afb671f0da84e34f0eccb53a39a37793357",
+    "previousNames": [
+      "Self Assistido Inverse Mesa Flexora (version 2) Coxas"
+    ],
+    "name": "Flexão nórdica com assistência — variação 2"
+  },
+  {
+    "id": "a7d9706200a81e6176a410dfb74b3da608e727a5",
+    "previousNames": [
+      "Self Assistido Inverse Mesa Flexora (version 3)"
+    ],
+    "name": "Flexão nórdica com assistência — variação 3"
+  },
+  {
+    "id": "e34bf2ab4325c8c0bc979226b5e8ee0a891bf525",
+    "previousNames": [
+      "Self Assistido Neutral Pegada Chin Para Cima"
+    ],
+    "name": "Barra fixa com pegada neutra e assistência dos pés"
+  },
+  {
+    "id": "405ee53dfb6fa2609cab79130be2e2d66fab3a45",
+    "previousNames": [
+      "Sentado 8 Perna Abdominal Supra Com Cadeira"
+    ],
+    "name": "Abdominal sentado na cadeira com pernas desenhando um oito"
+  },
+  {
+    "id": "5b26e9e9f757222419fba8451f205a8f1f29afd3",
+    "previousNames": [
+      "Sentado Aberto Joelho Elevação De Pernas Em Cadeira"
+    ],
+    "name": "Elevação de pernas sentado na cadeira com joelhos afastados"
+  },
+  {
+    "id": "01fcc19b975ed514fb807aa6489aca2c66cd5fa6",
+    "previousNames": [
+      "Sentado Aberto Para Cima E Sob Balanço Em Cadeira"
+    ],
+    "name": "Abertura e passagem por baixo com balanço sentado na cadeira"
+  },
+  {
+    "id": "857f7b9343a5a645b5d0a75251dca4c298e9ae4b",
+    "previousNames": [
+      "Sentado Acima Da Cabeça Extensão De Tríceps Em Cadeira (male"
+    ],
+    "name": "Tríceps francês sentado na cadeira"
+  },
+  {
+    "id": "30ea54ab27d34b75e5af9ad8381b10e0f76633c5",
+    "previousNames": [
+      "Sentado Air Bike Em Acolchoado Banquinho"
+    ],
+    "name": "Abdominal bicicleta sentado no banco acolchoado"
+  },
+  {
+    "id": "c098fb34726d012258e56f0e958381d0fc9694b9",
+    "previousNames": [
+      "Sentado Air Bike Em Cadeira"
+    ],
+    "name": "Abdominal bicicleta sentado na cadeira"
+  },
+  {
+    "id": "32a0a8629110c96d131b74c429afce561d660a4d",
+    "previousNames": [
+      "Sentado Air Torcendo Abdominal Supra Em Acolchoado Banquinho"
+    ],
+    "name": "Abdominal com rotação e pernas suspensas sentado no banco acolchoado"
+  },
+  {
+    "id": "f3ab50efce3e8282032360540f084f67acc830ad",
+    "previousNames": [
+      "Sentado Alternado Abduction Torção Em Cadeira (male"
+    ],
+    "name": "Abdução alternada com rotação sentado na cadeira"
+  },
+  {
+    "id": "efd2e9722dc602a2587f18f857a183f18d2fecee",
+    "previousNames": [
+      "Sentado Alternado Costas Rotação Em Cadeira"
+    ],
+    "name": "Rotação alternada de tronco sentado na cadeira"
+  },
+  {
+    "id": "a10773e6a0b1a66347db70ad58faf759d1dc01bc",
+    "previousNames": [
+      "Sentado Alternado Elevação De Joelhos Em Cadeira"
+    ],
+    "name": "Elevação alternada de joelhos sentado na cadeira"
+  },
+  {
+    "id": "350cf58d5ce751122ec0f200085c7f02bd2f4b48",
+    "previousNames": [
+      "Sentado Alternado Joelho Extensão Em Cadeira"
+    ],
+    "name": "Extensão alternada de joelhos sentado na cadeira"
+  },
+  {
+    "id": "52c2b2ce7af3af0700ab33385809e9a63c8ee23d",
+    "previousNames": [
+      "Sentado Alternado Pé Toques Em Cadeira"
+    ],
+    "name": "Toques alternados dos pés sentado na cadeira"
+  },
+  {
+    "id": "4dc492e700270710f8709a2b4c14f3a4130fadf3",
+    "previousNames": [
+      "Sentado Alternado Thoracic Rotação Em Cadeira (mal"
+    ],
+    "name": "Rotação torácica alternada sentado na cadeira"
+  },
+  {
+    "id": "42e9bac0f49ab0e610cfd04e6640bdc8f15e8ef5",
+    "previousNames": [
+      "Sentado Alto Remada Com Toalha Em Acolchoado Banquinho (ma"
+    ],
+    "name": "Remada alta com toalha sentado no banco acolchoado"
+  },
+  {
+    "id": "387e5d673dc3b784ad9166c928da5779822660a9",
+    "previousNames": [
+      "Sentado Boat Remada Com Toalha Em Acolchoado Banquinho (ma"
+    ],
+    "name": "Remada simulada com toalha sentado no banco acolchoado"
+  },
+  {
+    "id": "d351f4dc90f3f2f9cbe94128398eda410368b2aa",
+    "previousNames": [
+      "Sentado Braço Cruzado Em Cadeira"
+    ],
+    "name": "Cruzamento dos braços sentado na cadeira"
+  },
+  {
+    "id": "7fd81391665e98021c67c8a9edd537b4546adc08",
+    "previousNames": [
+      "Sentado Calcanhar Slide Em Cadeira"
+    ],
+    "name": "Deslizamento dos calcanhares sentado na cadeira"
+  },
+  {
+    "id": "7eb47d1e0c70f0efce6f3fd3a231c9c89f14e56b",
+    "previousNames": [
+      "Sentado Calcanhar Slide Em Cadeira"
+    ],
+    "name": "Deslizamento dos calcanhares sentado na cadeira"
+  },
+  {
+    "id": "ccbc44a542649efc800997136cb2c58f8a9ed595",
+    "previousNames": [
+      "Sentado Chin Tuck (version 2)"
+    ],
+    "name": "Retração cervical sentado — variação 2"
+  },
+  {
+    "id": "8208e9005dfa5fff6b4d7155a10e24f192a26c59",
+    "previousNames": [
+      "Sentado Cotovelo Crucifixo Em Cadeira"
+    ],
+    "name": "Abertura dos cotovelos sentado na cadeira"
+  },
+  {
+    "id": "2d482dc46d82fe4e83ab664d1ec32c57fd9a6a3d",
+    "previousNames": [
+      "Sentado Criss Cruzado Pernas Em Cadeira"
+    ],
+    "name": "Cruzamento de pernas sentado na cadeira"
+  },
+  {
+    "id": "0fccbad3e2312368292833067f9f034d4eb27b59",
+    "previousNames": [
+      "Sentado Crucifixo Em Acolchoado Banquinho"
+    ],
+    "name": "Crucifixo sentado no banco acolchoado sem carga"
+  },
+  {
+    "id": "5f6f1c214e46efc7289437aab060d826c56f592f",
+    "previousNames": [
+      "Sentado Cruzado Body Soco Em Cadeira"
+    ],
+    "name": "Socos cruzados sentado na cadeira"
+  },
+  {
+    "id": "8a49bd472ddc288b9326057bd6f7cf134fb74085",
+    "previousNames": [
+      "Sentado Declinado Peito Pressão Em Cadeira"
+    ],
+    "name": "Empurrada dos braços em direção declinada sentado na cadeira"
+  },
+  {
+    "id": "6fd8d2936feddbc07b78cbe2c9f7719206302ea3",
+    "previousNames": [
+      "Sentado Desenvolvimento De Ombros Dedo Do Pé Toque Em Acolchoado Banquinho"
+    ],
+    "name": "Desenvolvimento de ombros com toque nos pés sentado no banco acolchoado"
+  },
+  {
+    "id": "06c3f529f730df7e1595dd8a7031255e8caa3609",
+    "previousNames": [
+      "Sentado Desenvolvimento De Ombros Em Cadeira"
+    ],
+    "name": "Desenvolvimento de ombros sentado na cadeira sem carga"
+  },
+  {
+    "id": "5e6b7b593c3c44fb142bb8a22455699e1f0a476a",
+    "previousNames": [
+      "Sentado Elevação De Joelho Elevação De Pernas Em Cadeira"
+    ],
+    "name": "Elevação de joelhos e pernas sentado na cadeira"
+  },
+  {
+    "id": "6ee88e7107440f7f92bc243d0ccd2c7b99870c14",
+    "previousNames": [
+      "Sentado Elevação De Panturrilha Em Cadeira"
+    ],
+    "name": "Panturrilha sentado na cadeira"
+  },
+  {
+    "id": "167e949ff80a18c8c6275d824d67f4658a29ffe4",
+    "previousNames": [
+      "Sentado Elevação De Pernass Em Cadeira"
+    ],
+    "name": "Elevação de pernas sentado na cadeira"
+  },
+  {
+    "id": "5ea42864e1a10414ebd0dcd75edb923ce3cc7f97",
+    "previousNames": [
+      "Sentado Elevação Lateral Stepout Em Acolchoado Banquinho"
+    ],
+    "name": "Elevação lateral dos braços com passo para fora sentado no banco acolchoado"
+  },
+  {
+    "id": "c7ffb22a88c86610665b436c300ee22ca53eedc2",
+    "previousNames": [
+      "Sentado Em Para Fora Elevação De Pernas Com Cadeira"
+    ],
+    "name": "Elevação de pernas para dentro e para fora sentado na cadeira"
+  },
+  {
+    "id": "cefe4f6a024e1a11496d2533054f8f4caf8eaae5",
+    "previousNames": [
+      "Sentado Em Para Fora Elevação De Pernas Em Acolchoado Banquinho"
+    ],
+    "name": "Elevação de pernas para dentro e para fora sentado no banco acolchoado"
+  },
+  {
+    "id": "519d79c149ba0dffcc997a33e9451725380e295b",
+    "previousNames": [
+      "Sentado Extended Elevação De Pernas Em Cadeira"
+    ],
+    "name": "Elevação de pernas estendidas sentado na cadeira"
+  },
+  {
+    "id": "5da06c2745d2af8d34587ff588646ee2774883d0",
+    "previousNames": [
+      "Sentado External Rotação Em Cadeira"
+    ],
+    "name": "Rotação externa de ombros sentado na cadeira"
+  },
+  {
+    "id": "9c5722b9fbebefce65320d5b2aa2cc403448abfe",
+    "previousNames": [
+      "Sentado Flutter Chute Em Acolchoado Banquinho"
+    ],
+    "name": "Chutes alternados de pernas sentado no banco acolchoado"
+  },
+  {
+    "id": "c701ec3204577b23a735ac5c6bef449f31ffb80b",
+    "previousNames": [
+      "Sentado Frog Abdominal Supra Em Acolchoado Banquinho"
+    ],
+    "name": "Abdominal com pernas em posição de sapo sentado no banco acolchoado"
+  },
+  {
+    "id": "74f9c58bcc544d668370d1f3e6e10efc4d84643e",
+    "previousNames": [
+      "Sentado Inclinado Peito Pressão Em Cadeira"
+    ],
+    "name": "Empurrada dos braços em direção inclinada sentado na cadeira"
+  },
+  {
+    "id": "74fb6f8fe551219594e5cc43effae259ebf45b14",
+    "previousNames": [
+      "Sentado Inclinado Pressão Stepout Em Acolchoado Banquinho"
+    ],
+    "name": "Empurrada inclinada com passo para fora sentado no banco acolchoado"
+  },
+  {
+    "id": "40449b59f9383bc77a8752f1f38b4e7e5878cd2b",
+    "previousNames": [
+      "Sentado Joelho Impulso Em Cadeira"
+    ],
+    "name": "Impulso de joelho sentado na cadeira"
+  },
+  {
+    "id": "07550f9b82bdfb3405b19638d49bd691a7044a93",
+    "previousNames": [
+      "Sentado Joelho Tuck Em Acolchoado Banquinho"
+    ],
+    "name": "Recolhimento de joelhos sentado no banco acolchoado"
+  },
+  {
+    "id": "02d4bd1bc153b78e75289d020386f6fe3e0ce7ea",
+    "previousNames": [
+      "Sentado Joelho Tuck Em Cadeira"
+    ],
+    "name": "Recolhimento de joelhos sentado na cadeira"
+  },
+  {
+    "id": "dbc65ff343c28f825e4f1dd2478a8599d14f2fa8",
+    "previousNames": [
+      "Sentado Kayak Remada Com Toalha Em Acolchoado Banquinho (m"
+    ],
+    "name": "Remada de caiaque com toalha sentado no banco acolchoado"
+  },
+  {
+    "id": "a0d1e41a66a96a4e0fc76b186c105531efef086c",
+    "previousNames": [
+      "Sentado Lateral Abdominal Supra Em Acolchoado Banquinho"
+    ],
+    "name": "Abdominal lateral sentado no banco acolchoado"
+  },
+  {
+    "id": "a6d302ca667d1f36c280fe7af8d33c3844f49db1",
+    "previousNames": [
+      "Sentado Lateral Inclinação Em Acolchoado Banquinho"
+    ],
+    "name": "Inclinação lateral sentado no banco acolchoado"
+  },
+  {
+    "id": "52eb4e9267aa290bfa214d6045a3a45e764ee621",
+    "previousNames": [
+      "Sentado Lateral Inclinação Em Cadeira"
+    ],
+    "name": "Inclinação lateral sentado na cadeira"
+  },
+  {
+    "id": "37a2f2efa5057723206fc50f57050e5ad9603b4b",
+    "previousNames": [
+      "Sentado Lateral Inclinação Em Cadeira"
+    ],
+    "name": "Inclinação lateral sentado na cadeira"
+  },
+  {
+    "id": "fb9a0089966b45527abe8364baa572874bcc7d23",
+    "previousNames": [
+      "Sentado Lateral Step Em Cadeira"
+    ],
+    "name": "Passo lateral sentado na cadeira"
+  },
+  {
+    "id": "0784da2409f8faaaf14d9d990924050d93c3b80d",
+    "previousNames": [
+      "Sentado Lateral Step Remada Em Cadeira"
+    ],
+    "name": "Passo lateral com remada sentado na cadeira"
+  },
+  {
+    "id": "23f201ce2f09255e5741bfc51f262b6469501d09",
+    "previousNames": [
+      "Sentado Lean Costas Aberto E Fechado Em Cadeira"
+    ],
+    "name": "Abertura e fechamento das pernas com tronco inclinado para trás na cadeira"
+  },
+  {
+    "id": "23251b905a96fe9b7f341ccc375760c2e346005b",
+    "previousNames": [
+      "Sentado Lean Costas Cycling Em Cadeira"
+    ],
+    "name": "Bicicleta de pernas com tronco inclinado para trás na cadeira"
+  },
+  {
+    "id": "91bc51d388c1808bd2fd8aafe5e7abaf9ba23ebe",
+    "previousNames": [
+      "Sentado Lean Costas Em Cadeira"
+    ],
+    "name": "Inclinação do tronco para trás sentado na cadeira"
+  },
+  {
+    "id": "16ac9db25a91c97a6ddc67a3d6afb6c3f9ac9ceb",
+    "previousNames": [
+      "Sentado Lenhador Em Cadeira"
+    ],
+    "name": "Lenhador sentado na cadeira"
+  },
+  {
+    "id": "ca9fd9f17c4178b3329c34ff0ae4f8bcc43f8b34",
+    "previousNames": [
+      "Sentado Marcha Em Cadeira"
+    ],
+    "name": "Marcha sentado na cadeira"
+  },
+  {
+    "id": "3ef1faec839fbf80fe76aee67c42b4efffc381d9",
+    "previousNames": [
+      "Sentado Marchando Em Cadeira"
+    ],
+    "name": "Marcha sentado na cadeira"
+  },
+  {
+    "id": "94ee146e141a94cddc2a8dd6ebdd19d7569f36f0",
+    "previousNames": [
+      "Sentado Mergulho E Elevação De Pernas Em Cadeira"
+    ],
+    "name": "Mergulho com elevação de pernas na cadeira"
+  },
+  {
+    "id": "58da820dfa2c8da3ce11d07298c3d526f24503ef",
+    "previousNames": [
+      "Sentado Ombro 90 Degrees Internal Rotação"
+    ],
+    "name": "Rotação interna de ombro a 90 graus sentado"
+  },
+  {
+    "id": "50225aa683adb446198cbae0f68ccb22f2c930e5",
+    "previousNames": [
+      "Sentado Ombro Toque Em Cadeira"
+    ],
+    "name": "Toque nos ombros sentado na cadeira"
+  },
+  {
+    "id": "a6ce1a9abaa3480f947ebeefa2089833f9f31924",
+    "previousNames": [
+      "Sentado Opposite Toque Em Cadeira"
+    ],
+    "name": "Toque cruzado sentado na cadeira"
+  },
+  {
+    "id": "b36622bda1a93ff42ca44a58459fca593a9d1ff8",
+    "previousNames": [
+      "Sentado Para Frente Inclinação Yoga Postura"
+    ],
+    "name": "Postura de flexão à frente sentado"
+  },
+  {
+    "id": "2f19636e41fa001bfce4ddcfb9236c595b5de26d",
+    "previousNames": [
+      "Sentado Pec Dec Em Cadeira"
+    ],
+    "name": "Aproximação dos cotovelos à frente do peito sentado na cadeira"
+  },
+  {
+    "id": "1c53e4c157b726aaa8b2e2a462cd21605ecb6cc5",
+    "previousNames": [
+      "Sentado Peito Pressão Em Cadeira"
+    ],
+    "name": "Empurrada à frente do peito sentado na cadeira"
+  },
+  {
+    "id": "e3f5a1367d7d01800f7839592dfa7d7d762a3434",
+    "previousNames": [
+      "Sentado Perna Chute Em Cadeira"
+    ],
+    "name": "Chutes de perna sentado na cadeira"
+  },
+  {
+    "id": "0e1211cc9044af5ce8c99550ca100cab7ab53a64",
+    "previousNames": [
+      "Sentado Pescoço Rotação"
+    ],
+    "name": "Rotação do pescoço sentado"
+  },
+  {
+    "id": "705eddf4e9364f89b3eb82f31b63d81cae9a694a",
+    "previousNames": [
+      "Sentado Polichinelo Com Toalha Em Acolchoado Banquinho"
+    ],
+    "name": "Polichinelo com toalha sentado no banco acolchoado"
+  },
+  {
+    "id": "2dd36579b08001c80fb6a943adc4da04d5eec1f4",
+    "previousNames": [
+      "Sentado Polichinelo Em Acolchoado Banquinho"
+    ],
+    "name": "Polichinelo sentado no banco acolchoado"
+  },
+  {
+    "id": "a4403e5df02f36fda59185204eff1fe3313497d7",
+    "previousNames": [
+      "Sentado Polichinelo Em Cadeira"
+    ],
+    "name": "Polichinelo sentado na cadeira"
+  },
+  {
+    "id": "3baf1c58453f9e5a455b7fb0b12973caf0a5f964",
+    "previousNames": [
+      "Sentado Prayer Peito Squeeze Em Cadeira"
+    ],
+    "name": "Pressão das palmas à frente do peito sentado na cadeira"
+  },
+  {
+    "id": "7a9693f3ea507ef95ae07bc19e95fdda7107594e",
+    "previousNames": [
+      "Sentado Pular Corda Joelho Tuck Em Cadeira"
+    ],
+    "name": "Simulação de pular corda com recolhimento de joelhos sentado na cadeira"
+  },
+  {
+    "id": "008ba08a78074a4deb5f0afc76f7c1fcf69f9979",
+    "previousNames": [
+      "Sentado Rotating Boxing Rolls Em Cadeira"
+    ],
+    "name": "Giro dos braços no boxe com rotação sentado na cadeira"
+  },
+  {
+    "id": "7bdaa02898592877d44d0131f680dda205d64170",
+    "previousNames": [
+      "Sentado Scapular Adduction Em Stability Bola (male"
+    ],
+    "name": "Adução das escápulas sentado na bola suíça"
+  },
+  {
+    "id": "b39fc5770c548bf9c010db081e947af152cbb8ea",
+    "previousNames": [
+      "Sentado Scissors Lift Abdominal Supra Em Acolchoado Banquinho"
+    ],
+    "name": "Abdominal com elevação em tesoura sentado no banco acolchoado"
+  },
+  {
+    "id": "c7672880352050e8a9f5864e69644aeb69060e61",
+    "previousNames": [
+      "Sentado Skater Em Cadeira"
+    ],
+    "name": "Movimento de patinador sentado na cadeira"
+  },
+  {
+    "id": "ab5060f758c0f44df1411eeb55bfdf2f178d3528",
+    "previousNames": [
+      "Sentado Sob Joelho Palma Em Cadeira"
+    ],
+    "name": "Palma por baixo do joelho sentado na cadeira"
+  },
+  {
+    "id": "186789bfa74b6bf0ad5cac872623e625db5414ed",
+    "previousNames": [
+      "Sentado Soco Em Acolchoado Banquinho"
+    ],
+    "name": "Socos sentado no banco acolchoado"
+  },
+  {
+    "id": "e90abd5646a8961c61ab7252026821910acf45d9",
+    "previousNames": [
+      "Sentado Soco Joelho Toque Em Acolchoado Banquinho"
+    ],
+    "name": "Soco com toque no joelho sentado no banco acolchoado"
+  },
+  {
+    "id": "522e2a9c3ee4b23bd0b5640ac489194d3c449af1",
+    "previousNames": [
+      "Sentado Stepout Hands Para Cima Em Cadeira"
+    ],
+    "name": "Passo para fora com mãos elevadas sentado na cadeira"
+  },
+  {
+    "id": "ed3fbb76575dd348922cf6d759a912a01e8faa4b",
+    "previousNames": [
+      "Sentado Stepout Joelho Tuck Em Acolchoado Banquinho"
+    ],
+    "name": "Passo para fora com recolhimento de joelho sentado no banco acolchoado"
+  },
+  {
+    "id": "f174b932e1e11ce661cc9b02f825aafc8d7f24a3",
+    "previousNames": [
+      "Sentado Swimmer Em Cadeira"
+    ],
+    "name": "Movimento de natação sentado na cadeira"
+  },
+  {
+    "id": "517ec98b738329e27edf7e92deb1ca5607a02880",
+    "previousNames": [
+      "Sentado Swimming Elevação De Joelho Em Cadeira"
+    ],
+    "name": "Movimento de natação com elevação de joelhos sentado na cadeira"
+  },
+  {
+    "id": "c1db0d1e848b33cc479f5912d52a68639faab83e",
+    "previousNames": [
+      "Sentado Torção Com Toalha Em Acolchoado Banquinho"
+    ],
+    "name": "Rotação com toalha sentado no banco acolchoado"
+  },
+  {
+    "id": "243600d4b63e9978df26b92bcd5906368c0332fb",
+    "previousNames": [
+      "Sentado Torção Elevação De Joelho Em Acolchoado Banquinho"
+    ],
+    "name": "Rotação com elevação de joelho sentado no banco acolchoado"
+  },
+  {
+    "id": "5f6d897db16eb71c4882567db74ea22e55371873",
+    "previousNames": [
+      "Sentado Torção Russa Em Cadeira"
+    ],
+    "name": "Abdominal russo sentado na cadeira"
+  },
+  {
+    "id": "98a50df3624f2ae973436f6cc6741f5a7513a82a",
+    "previousNames": [
+      "Sentado Torso Torção Em Cadeira"
+    ],
+    "name": "Rotação de tronco sentado na cadeira"
+  },
+  {
+    "id": "e12bd5e3bfa052f964d8caa39937f916b22f52d1",
+    "previousNames": [
+      "Sentado Underhand Braço Círculo Em Cadeira"
+    ],
+    "name": "Círculos de braços por baixo sentado na cadeira"
+  },
+  {
+    "id": "4d73e520f93837b39c29b1cae6280cad72adeb9d",
+    "previousNames": [
+      "Sentado Unilateral Elevação De Pernas Em Cadeira"
+    ],
+    "name": "Elevação unilateral de perna sentado na cadeira"
+  },
+  {
+    "id": "666e76365734bcba399820e081968a6523580c7a",
+    "previousNames": [
+      "Sentado Uppercut Em Cadeira"
+    ],
+    "name": "Uppercut sentado na cadeira"
+  },
+  {
+    "id": "6d5ddbed3152e6a1d56025b690bcece33f7c2eae",
+    "previousNames": [
+      "Sentado Upright Twists Em Cadeira"
+    ],
+    "name": "Rotações com tronco ereto sentado na cadeira"
+  },
+  {
+    "id": "a71ac263f43ee97c3eecb372f2e7bf0b24809327",
+    "previousNames": [
+      "Sentado Windshield Wipers Em Cadeira"
+    ],
+    "name": "Abdominal limpador de para-brisa sentado na cadeira"
+  },
+  {
+    "id": "37acef4fab31d76fbfdabf46fe077ce448730932",
+    "previousNames": [
+      "Sideway Perna Lift Com Cadeira"
+    ],
+    "name": "Elevação lateral de perna com apoio na cadeira"
+  },
+  {
+    "id": "8657f9c8ab7615077597c051e46663de9c76af0c",
+    "previousNames": [
+      "Sit Para Stand Em Cadeira"
+    ],
+    "name": "Sentar e levantar da cadeira"
+  },
+  {
+    "id": "988d8097ab36085ed9b0d22c6902a6188560ef4f",
+    "previousNames": [
+      "Split Salto Para Caixote"
+    ],
+    "name": "Afundo com salto para a caixa"
+  },
+  {
+    "id": "dc559708e9ba0804ec13d124e60fd1befdd1d435",
+    "previousNames": [
+      "Stability Bola Abdominal Supra (full Range Hands Atrás Head)"
+    ],
+    "name": "Abdominal supra completo na bola suíça com mãos atrás da cabeça"
+  },
+  {
+    "id": "11d3f739deee5061085ec725568211af9e5e8af0",
+    "previousNames": [
+      "Stability Bola Prancha Frontal"
+    ],
+    "name": "Prancha frontal na bola suíça"
+  },
+  {
+    "id": "59d667c1e789f742863df500bccb0a2ef021633f",
+    "previousNames": [
+      "Stability Bola Rollout Em Joelhos"
+    ],
+    "name": "Abdominal com rolamento na bola suíça ajoelhado"
+  },
+  {
+    "id": "a638c0f73339a7efd9b34949a39348a84fe30006",
+    "previousNames": [
+      "Stability Bola Unilateral Perna Agachamento"
+    ],
+    "name": "Agachamento unilateral com bola suíça"
+  },
+  {
+    "id": "fa979d9dbaa6bb59f50b648a5042b2e987fcdc7f",
+    "previousNames": [
+      "Subida No Step Em Cadeira"
+    ],
+    "name": "Subida na cadeira"
+  },
+  {
+    "id": "7480bf0b37d0a2f7dc3274c8bf8615d001d4956f",
+    "previousNames": [
+      "Subida No Step Em Cadeira (version 2)"
+    ],
+    "name": "Subida na cadeira — variação 2"
+  },
+  {
+    "id": "b5a29abccdf97731004db7f762c06fa5c27c2d7b",
+    "previousNames": [
+      "Subida No Step Em Caixote"
+    ],
+    "name": "Subida na caixa"
+  },
+  {
+    "id": "69a032161ad0ae4f80c2712ca9fde73802d49342",
+    "previousNames": [
+      "Suspended Abdominal Fallout"
+    ],
+    "name": "Abdominal com extensão dos braços à frente no TRX"
+  },
+  {
+    "id": "c1124946fa6bb63ae80dc71ab78ee5c361a1a506",
+    "previousNames": [
+      "Suspended Agachamento Búlgaro"
+    ],
+    "name": "Agachamento búlgaro no TRX"
+  },
+  {
+    "id": "60359f8da5f577670532c974f5564d7330f2a483",
+    "previousNames": [
+      "Suspended Flexão"
+    ],
+    "name": "Flexão de braços no TRX"
+  },
+  {
+    "id": "1529dfd12b813b4101637378646804d743603331",
+    "previousNames": [
+      "Suspended Remada"
+    ],
+    "name": "Remada no TRX"
+  },
+  {
+    "id": "5fcb83a16d869c3ba3c21fba71f046415db4dad9",
+    "previousNames": [
+      "Suspender Aberto Pegada Inverted Remada"
+    ],
+    "name": "Remada invertida no TRX com pegada aberta"
+  },
+  {
+    "id": "4ce52ba34405abf6cfb8977f856d3a6c9a162793",
+    "previousNames": [
+      "Suspender Agachamento Salto"
+    ],
+    "name": "Agachamento com salto no TRX"
+  },
+  {
+    "id": "cbd924ddb50eb866e7f2a7c2611dfc4af6368c09",
+    "previousNames": [
+      "Suspender Alternado Super-homem"
+    ],
+    "name": "Superman alternado no TRX"
+  },
+  {
+    "id": "217e58edb048089ac4554d05a396d86ee474602b",
+    "previousNames": [
+      "Suspender Alto Remada"
+    ],
+    "name": "Remada alta no TRX"
+  },
+  {
+    "id": "7df3b7e647d726c08a67ca50256bb4b342e6e032",
+    "previousNames": [
+      "Suspender Braço Rosca"
+    ],
+    "name": "Rosca bíceps no TRX"
+  },
+  {
+    "id": "75bee1578ef70a6bdd535f34393df377bf52b739",
+    "previousNames": [
+      "Suspender Com Peso Vest Declinado Flexão"
+    ],
+    "name": "Flexão no TRX com pés elevados e colete de peso"
+  },
+  {
+    "id": "b3768e81ab8ac20c9ed830a3bf194e64af86143f",
+    "previousNames": [
+      "Suspender Deltoide Posterior Remada"
+    ],
+    "name": "Remada para deltoide posterior no TRX"
+  },
+  {
+    "id": "4bb3ae10be0e6c09fc95ce980fae5217168b1306",
+    "previousNames": [
+      "Suspender Em Prono Ts"
+    ],
+    "name": "Elevação dos braços em T no TRX"
+  },
+  {
+    "id": "17585f790524cd96a87ff54663524ace08acf037",
+    "previousNames": [
+      "Suspender Em Prono Ys"
+    ],
+    "name": "Elevação dos braços em Y no TRX"
+  },
+  {
+    "id": "18f0dbce40959357c3e44141abf812f29a44e053",
+    "previousNames": [
+      "Suspender Extended Prancha"
+    ],
+    "name": "Prancha com braços estendidos à frente no TRX"
+  },
+  {
+    "id": "942725231b5c1b707107062e2de48472c14370b9",
+    "previousNames": [
+      "Suspender External Rotação"
+    ],
+    "name": "Rotação externa de ombros no TRX"
+  },
+  {
+    "id": "42c3503ba5ae529afade56ab3a961436dd0f6de1",
+    "previousNames": [
+      "Suspender Flexão Para Prancha Lateral"
+    ],
+    "name": "Flexão no TRX para prancha lateral"
+  },
+  {
+    "id": "d9569fc402929102b7fc65c988335ac468e9b220",
+    "previousNames": [
+      "Suspender Inclinado Prancha"
+    ],
+    "name": "Prancha inclinada no TRX"
+  },
+  {
+    "id": "ed5785fbd8e80d0d18a4e5573044ae0dd20871ee",
+    "previousNames": [
+      "Suspender Internal Rotação"
+    ],
+    "name": "Rotação interna de ombros no TRX"
+  },
+  {
+    "id": "ee1cd345e14bb5b142d8b6899b4f24a241cd4d8a",
+    "previousNames": [
+      "Suspender Inverted Remada Parallel Para Chão (male"
+    ],
+    "name": "Remada invertida no TRX com corpo paralelo ao chão"
+  },
+  {
+    "id": "bb75f24bcb1ed035ddd909a534ddf7901f00f6ec",
+    "previousNames": [
+      "Suspender Joelho Tuck Remada"
+    ],
+    "name": "Remada com recolhimento de joelho no TRX"
+  },
+  {
+    "id": "5323868e9d7b28a39cdf71f9334ab812320ef61e",
+    "previousNames": [
+      "Suspender Lateral Agachamento"
+    ],
+    "name": "Agachamento lateral no TRX"
+  },
+  {
+    "id": "5aefe5189d3a6f0c57b4f1b740d4c7098af68c6c",
+    "previousNames": [
+      "Suspender One Braço Rosca Bíceps"
+    ],
+    "name": "Rosca bíceps unilateral no TRX"
+  },
+  {
+    "id": "82874d82b7408b4544a68dee9f2e0c92382addc3",
+    "previousNames": [
+      "Suspender Para Frente Afundo Com Rear Crucifixo"
+    ],
+    "name": "Afundo à frente com crucifixo inverso no TRX"
+  },
+  {
+    "id": "b61cecd3e126c6b1a8353d91f42d115bbe97c39f",
+    "previousNames": [
+      "Suspender Peito Pressão Para Rollout"
+    ],
+    "name": "Supino no TRX seguido de extensão dos braços à frente"
+  },
+  {
+    "id": "b74fce9bdd26a4c2e4e89f735247a09903a9a927",
+    "previousNames": [
+      "Suspender Pique"
+    ],
+    "name": "Elevação de quadril no TRX"
+  },
+  {
+    "id": "676b150c5d9a87833c3ebdfc3b6f27829015087c",
+    "previousNames": [
+      "Suspender Power Puxada"
+    ],
+    "name": "Puxada com rotação no TRX"
+  },
+  {
+    "id": "beb7c012b4b6ca0bda3279a8c0ffb0920c425899",
+    "previousNames": [
+      "Suspender Prancha"
+    ],
+    "name": "Prancha no TRX"
+  },
+  {
+    "id": "ff59029d02d311b5ccf8a4617167076d8176b5c5",
+    "previousNames": [
+      "Suspender Remada"
+    ],
+    "name": "Remada no TRX"
+  },
+  {
+    "id": "62cc9dac92d25cd864a34b862b357bbfee89479a",
+    "previousNames": [
+      "Suspender Reverso Ab Rollout"
+    ],
+    "name": "Abdominal reverso com extensão no TRX"
+  },
+  {
+    "id": "0a95dd108f71fc60f974b29ccc597e10315fdd3a",
+    "previousNames": [
+      "Suspender Reverso Abdominal Supra"
+    ],
+    "name": "Abdominal infra no TRX"
+  },
+  {
+    "id": "0c2270549fbb35d530d4fc1045639cfe648cfb0b",
+    "previousNames": [
+      "Suspender Reverso Flexão"
+    ],
+    "name": "Flexão inversa no TRX"
+  },
+  {
+    "id": "8a4336b6858a9e7cb56780232a73962508515557",
+    "previousNames": [
+      "Suspender Rosca Bíceps"
+    ],
+    "name": "Rosca bíceps no TRX"
+  },
+  {
+    "id": "b0991ad81e2895d753860497d58d45a96c432ea3",
+    "previousNames": [
+      "Suspender Scapular Retraction"
+    ],
+    "name": "Retração escapular no TRX"
+  },
+  {
+    "id": "c4726d925ce05076b9176039f90bfd52ffcfec6c",
+    "previousNames": [
+      "Suspender Triceps Pressão"
+    ],
+    "name": "Tríceps no TRX"
+  },
+  {
+    "id": "a36fb52bbf02f854ff11cb24f93a32810a79dcdc",
+    "previousNames": [
+      "Suspender Unilateral Perna Agachamento"
+    ],
+    "name": "Agachamento unilateral no TRX"
+  },
+  {
+    "id": "a5e5cf361bc67a82838006c7d1883d5564ccf2cf",
+    "previousNames": [
+      "Suspender Y Elevação"
+    ],
+    "name": "Elevação em Y no TRX"
+  },
+  {
+    "id": "f1d2827e0ad951e353e6cb78362ff6cdd839b7cb",
+    "previousNames": [
+      "Suspension Crucifixo Peito"
+    ],
+    "name": "Crucifixo no TRX"
+  },
+  {
+    "id": "fdf03b33946f46b31897dda88ffcd9bb96e98b64",
+    "previousNames": [
+      "Suspension Extensão De Tríceps"
+    ],
+    "name": "Extensão de tríceps no TRX"
+  },
+  {
+    "id": "cdf883ff4382a8b8b9607ea494f0dfb42150b9af",
+    "previousNames": [
+      "Suspension Fechado Pegada Peito Pressão"
+    ],
+    "name": "Supino com pegada fechada no TRX"
+  },
+  {
+    "id": "a3771f09c269d953d140fcb8b28febf1f7c878f3",
+    "previousNames": [
+      "Suspension Peito Pressão"
+    ],
+    "name": "Supino no TRX"
+  },
+  {
+    "id": "bcf1caad4354089a8133a19617bc91107e253ebf",
+    "previousNames": [
+      "Torção Russa Em Acolchoado Banquinho"
+    ],
+    "name": "Abdominal russo no banco acolchoado"
+  },
+  {
+    "id": "93c19de977fd44d12b38a75c6fa30acd3901150e",
+    "previousNames": [
+      "Torque Tank Empurrão"
+    ],
+    "name": "Empurrada de trenó Torque Tank"
+  },
+  {
+    "id": "4b35b1fb0875e41308cf9d898b4ce4b852c2b5bb",
+    "previousNames": [
+      "Unilateral Perna Baixo Caixote Agachamento"
+    ],
+    "name": "Agachamento unilateral até a caixa baixa"
+  },
+  {
+    "id": "cd3da47ee3a402e948eaf721a5b0cd252bea078c",
+    "previousNames": [
+      "Unilateral Perna Elevação De Panturrilha Off Step"
+    ],
+    "name": "Panturrilha unilateral na borda do step"
+  },
+  {
+    "id": "3d5a436423c59b32202abfad61ccb95f049ba829",
+    "previousNames": [
+      "Unilateral Perna Salto Na Caixa"
+    ],
+    "name": "Salto unilateral na caixa"
+  },
+  {
+    "id": "b3f398f83d4d34b1e81fe381f06b200b2404798e",
+    "previousNames": [
+      "Unilateral Perna Stand Em Bosu Bola"
+    ],
+    "name": "Equilíbrio unilateral em pé no bosu"
+  },
+  {
+    "id": "9c8ea015b21d287922df14476a79c61a74dbe6e2",
+    "previousNames": [
+      "V Para Cima Para Baixo (with Stability Ball)"
+    ],
+    "name": "Abdominal em V com bola suíça"
+  },
+  {
+    "id": "a783616a331536000da18391bbddd315cb74748c",
+    "previousNames": [
+      "Windmill Em Cadeira"
+    ],
+    "name": "Moinho de vento com cadeira"
+  },
+  {
+    "id": "92a9c508f8c107e2b52ec0e370c854b3191d5f96",
+    "previousNames": [
+      "Yoga Agachamento Dives"
+    ],
+    "name": "Agachamento com mergulho do tronco no yoga"
+  },
+  {
+    "id": "9521d18005c11571059f0c088da7328bb0658787",
+    "previousNames": [
+      "Yoga Vajrasana Thunderbolt Diamond Postura"
+    ],
+    "name": "Postura do diamante — Vajrasana"
   }
 ]
