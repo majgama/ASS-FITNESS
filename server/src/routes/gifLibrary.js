@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { randomUUID } from 'node:crypto';
+import multer from 'multer';
 import { fileURLToPath } from 'node:url';
 import { Router } from 'express';
 import { z } from 'zod';
@@ -7,7 +9,7 @@ import { env } from '../config/env.js';
 import { query } from '../db/pool.js';
 import { authRequired, requireRoles } from '../middleware/auth.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
-import { forbidden, notFound } from '../utils/errors.js';
+import { badRequest, forbidden, notFound } from '../utils/errors.js';
 import { parseBody } from '../utils/validators.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,11 +22,61 @@ try {
 } catch {
   catalog = [];
 }
-const catalogById = new Map(catalog.map((item) => [item.id, item]));
+
 
 export const gifLibraryRouter = Router();
 
 gifLibraryRouter.use(authRequired);
+
+const uploadGif = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024, files: 1, fields: 5, fieldSize: 1000 },
+  fileFilter: (req, file, callback) => callback(
+    file.mimetype === 'image/gif' && path.extname(file.originalname).toLowerCase() === '.gif'
+      ? null : badRequest('Selecione um arquivo GIF válido.'), true
+  )
+}).single('gif');
+const uploadSchema = z.object({
+  name: z.string().trim().min(2).max(200),
+  gender: z.enum(['FEMININO', 'MASCULINO']),
+  environment: z.enum(['ACADEMIA', 'FUNCIONAL']),
+  muscleGroup: z.string().trim().min(2).max(100)
+});
+
+gifLibraryRouter.post('/upload', requireRoles('admin'), (req, res, next) => {
+  uploadGif(req, res, (error) => {
+    if (error?.code === 'LIMIT_FILE_SIZE') return next(badRequest('O GIF deve ter no máximo 10 MB.'));
+    if (error instanceof multer.MulterError) return next(badRequest('Envie somente um GIF com os dados do exercício.'));
+    next(error);
+  });
+}, asyncHandler(async (req, res) => {
+  const payload = parseBody(uploadSchema, req.body);
+  const file = req.file;
+  if (!file) throw badRequest('Selecione um arquivo GIF.');
+  const header = file.buffer.subarray(0, 6).toString('ascii');
+  if (file.size < 14 || !['GIF87a', 'GIF89a'].includes(header) ||
+      !file.buffer.readUInt16LE(6) || !file.buffer.readUInt16LE(8) || file.buffer.at(-1) !== 0x3b) {
+    throw badRequest('O arquivo enviado não é um GIF válido.');
+  }
+  const id = randomUUID();
+  await query(
+    `INSERT INTO gif_library_uploads (id, name_pt, gender, environment, muscle_group_pt, file_data, size_bytes, created_by)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+    [id, payload.name, payload.gender, payload.environment, payload.muscleGroup, file.buffer, file.size, req.user.id]
+  );
+  res.status(201).json({ id, message: 'GIF adicionado à biblioteca.' });
+}));
+
+gifLibraryRouter.use(asyncHandler(async (req, res, next) => {
+  const result = await query('SELECT id, name_pt, gender, environment, muscle_group_pt FROM gif_library_uploads');
+  const uploaded = result.rows.map((row) => ({
+    id: row.id, namePt: row.name_pt, nameEn: '', gender: row.gender, environment: row.environment,
+    muscleGroupPt: row.muscle_group_pt, categoryPath: [row.muscle_group_pt], relativePath: row.id, uploaded: true
+  }));
+  req.gifCatalog = [...catalog, ...uploaded];
+  req.gifCatalogById = new Map(req.gifCatalog.map((item) => [item.id, item]));
+  next();
+}));
 
 async function getOverridesById(ids) {
   if (ids.length === 0) return new Map();
@@ -102,6 +154,7 @@ function filterCatalog(filters, excluded = '', source = catalog) {
 }
 
 gifLibraryRouter.get('/filters', asyncHandler(async (req, res) => {
+  const catalog = req.gifCatalog;
   const filters = parseBody(filterQuerySchema, req.query);
   const parentSegments = filters.categoryPath ? filters.categoryPath.split('/').filter(Boolean) : [];
   const overrides = await getOverridesById(catalog.map((item) => item.id));
@@ -135,7 +188,7 @@ const listQuerySchema = filterQuerySchema.extend({
 
 gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
   const filters = parseBody(listQuerySchema, req.query);
-  const scoped = filterCatalog(filters, 'muscleGroups');
+  const scoped = filterCatalog(filters, 'muscleGroups', req.gifCatalog);
 
   const ids = scoped.map((item) => item.id);
   const [overrides, favoriteIds, translationUpdates] = await Promise.all([
@@ -154,7 +207,7 @@ gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
     const q = filters.search.trim().toLowerCase();
     mapped = mapped.filter((item) =>
       item.name.toLowerCase().includes(q) ||
-      (catalogById.get(item.id).nameEn || '').toLowerCase().includes(q) ||
+      (req.gifCatalogById.get(item.id).nameEn || '').toLowerCase().includes(q) ||
       (item.muscleGroup || '').toLowerCase().includes(q)
     );
   }
@@ -174,8 +227,17 @@ gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
 }));
 
 gifLibraryRouter.get('/file/:id', asyncHandler(async (req, res) => {
-  const item = catalogById.get(req.params.id);
+  const item = req.gifCatalogById.get(req.params.id);
   if (!item) throw notFound('Animacao nao encontrada.');
+
+  if (item.uploaded) {
+    const result = await query('SELECT file_data FROM gif_library_uploads WHERE id = $1', [item.id]);
+    if (!result.rows[0]?.file_data) throw notFound('Arquivo não encontrado.');
+    res.setHeader('Content-Type', 'image/gif');
+    res.setHeader('Cache-Control', 'private, max-age=300');
+    res.send(result.rows[0].file_data);
+    return;
+  }
 
   if (env.gifLibraryPublicUrl) {
     const baseUrl = env.gifLibraryPublicUrl.replace(/\/+$/, '');
@@ -202,7 +264,7 @@ gifLibraryRouter.get('/file/:id', asyncHandler(async (req, res) => {
 }));
 
 gifLibraryRouter.post('/:id/favorite', asyncHandler(async (req, res) => {
-  const item = catalogById.get(req.params.id);
+  const item = req.gifCatalogById.get(req.params.id);
   if (!item) throw notFound('Animacao nao encontrada.');
 
   const existing = await query(
@@ -229,7 +291,7 @@ const overrideSchema = z.object({
 });
 
 gifLibraryRouter.patch('/:id', requireRoles('admin'), asyncHandler(async (req, res) => {
-  const item = catalogById.get(req.params.id);
+  const item = req.gifCatalogById.get(req.params.id);
   if (!item) throw notFound('Animacao nao encontrada.');
   const payload = parseBody(overrideSchema, req.body);
 
@@ -249,7 +311,7 @@ gifLibraryRouter.patch('/:id', requireRoles('admin'), asyncHandler(async (req, r
 }));
 
 gifLibraryRouter.delete('/:id', requireRoles('admin'), asyncHandler(async (req, res) => {
-  const item = catalogById.get(req.params.id);
+  const item = req.gifCatalogById.get(req.params.id);
   if (!item) throw notFound('Animacao nao encontrada.');
 
   await query(
@@ -263,7 +325,7 @@ gifLibraryRouter.delete('/:id', requireRoles('admin'), asyncHandler(async (req, 
 }));
 
 gifLibraryRouter.post('/:id/restore', requireRoles('admin'), asyncHandler(async (req, res) => {
-  const item = catalogById.get(req.params.id);
+  const item = req.gifCatalogById.get(req.params.id);
   if (!item) throw notFound('Animacao nao encontrada.');
 
   await query('UPDATE gif_library_overrides SET hidden = false, updated_by = $2, updated_at = now() WHERE gif_id = $1', [req.params.id, req.user.id]);

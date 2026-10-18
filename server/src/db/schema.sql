@@ -441,3 +441,16 @@ CREATE TABLE IF NOT EXISTS student_diet_plans (
 );
 
 CREATE INDEX IF NOT EXISTS student_diet_plans_student_idx ON student_diet_plans(student_id, applied_at DESC);
+
+CREATE TABLE IF NOT EXISTS gif_library_uploads (
+  id UUID PRIMARY KEY,
+  name_pt TEXT NOT NULL,
+  gender TEXT NOT NULL CHECK (gender IN ('FEMININO', 'MASCULINO')),
+  environment TEXT NOT NULL CHECK (environment IN ('ACADEMIA', 'FUNCIONAL')),
+  muscle_group_pt TEXT NOT NULL,
+  file_data BYTEA NOT NULL,
+  size_bytes INTEGER NOT NULL CHECK (size_bytes > 0 AND size_bytes <= 10485760),
+  created_by UUID REFERENCES users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  CHECK (octet_length(file_data) = size_bytes)
+);

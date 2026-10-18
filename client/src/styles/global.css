@@ -3642,3 +3642,7 @@ textarea::placeholder {
 .tutorial-body .card-actions {
   justify-content: flex-end;
 }
+
+.gif-upload-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.gif-upload-preview { display: grid; gap: 8px; margin: 16px 0; overflow-wrap: anywhere; }
+.gif-upload-preview img { max-width: 100%; width: 240px; max-height: 220px; object-fit: contain; border-radius: 12px; }
