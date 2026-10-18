@@ -3671,3 +3671,59 @@ textarea::placeholder {
   max-height: none;
   overflow: visible;
 }
+
+/* Mobile daily exercise cards: heading, image/details, then full-width notes. */
+@media (max-width: 600px) {
+  .daily-workout-exercise-main {
+    position: relative;
+    grid-template-columns: minmax(90px, 36%) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    gap: 8px 10px;
+  }
+  .daily-workout-exercise-content,
+  .daily-workout-exercise-heading,
+  .daily-workout-exercise-heading > div:first-child { display: contents; }
+  .daily-workout-exercise-heading strong {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    min-height: 34px;
+    padding-right: 80px;
+    font-size: 15px;
+    line-height: 1.4;
+    align-self: center;
+  }
+  .daily-workout-exercise-heading .card-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    display: flex;
+    gap: 5px;
+  }
+  .daily-workout-exercise-thumbnail {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    width: 100%;
+    align-self: start;
+  }
+  .daily-workout-exercise-thumbnail img { object-fit: contain; background: #fff; }
+  .daily-workout-exercise-heading > div:first-child > span {
+    grid-column: 2;
+    grid-row: 2;
+    overflow-wrap: anywhere;
+  }
+  .daily-workout-exercise-meta {
+    grid-column: 2;
+    grid-row: 3;
+    align-self: start;
+    align-content: start;
+    min-width: 0;
+  }
+  .daily-workout-exercise-meta span { max-width: 100%; overflow-wrap: anywhere; }
+  .daily-workout-exercise-content > p {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+}
