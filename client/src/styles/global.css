@@ -3777,3 +3777,14 @@ textarea::placeholder {
   }
   .exercise-picker-info > .daily-card-action svg { flex-shrink: 0; }
 }
+
+.plan-day-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
+.plan-day-preview { flex-shrink: 0; }
+.plan-day-exercise-list { list-style: none; padding: 0; margin: 0; display: grid; }
+.plan-day-exercise-row { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; padding: 12px 0; align-items: center; }
+.plan-day-exercise-row + .plan-day-exercise-row { border-top: 1px solid var(--line); }
+.plan-day-exercise-row img, .plan-day-image-placeholder { width: 72px; height: 72px; object-fit: contain; border-radius: 6px; background: #fff; }
+.plan-day-image-placeholder { display: grid; place-items: center; color: #716035; }
+.plan-day-exercise-row > div:last-child { display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+.plan-day-exercise-row span { color: var(--muted); font-size: 12px; }
+.plan-day-exercise-row p { margin: 0; font-size: 13px; }

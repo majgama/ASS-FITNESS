@@ -6,6 +6,7 @@ import {
   Copy,
   Dumbbell,
   FileText,
+  Eye,
   ArrowLeft,
   ChevronDown,
   Pencil,
@@ -157,6 +158,8 @@ export function Workouts({ initialTab = 'exercises' }) {
   const [exercisePickerSearch, setExercisePickerSearch] = useState('');
   const [editingDailyExerciseId, setEditingDailyExerciseId] = useState('');
   const [selectedPlan, setSelectedPlan] = useState('');
+  const [previewPlanDay, setPreviewPlanDay] = useState(null);
+  const previewDayWorkout = dailyWorkouts.find((workout) => workout.id === previewPlanDay?.workoutId);
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
   const [libraryInfoClosed, setLibraryInfoClosed] = useState(false);
@@ -1604,7 +1607,14 @@ export function Workouts({ initialTab = 'exercises' }) {
                         const workoutName = dayObj?.dailyWorkoutName;
                         return (
                           <div className={`plan-day-chip ${isRest ? 'chip-rest' : workoutName ? 'chip-workout' : 'chip-empty'}`} key={dayName}>
-                            <strong>{dayName}</strong>
+                            <div className="plan-day-heading">
+                              <strong>{dayName}</strong>
+                              {!isRest && dayObj?.dailyWorkoutId ? (
+                                <button type="button" className="action-btn plan-day-preview" title={`Ver exercícios de ${dayName}`} aria-label={`Ver exercícios de ${dayName}`} onClick={() => setPreviewPlanDay({ dayName, workoutId: dayObj.dailyWorkoutId, workoutName })}>
+                                  <Eye size={17} />
+                                </button>
+                              ) : null}
+                            </div>
                             <span>{isRest ? 'Descanso' : workoutName || '-'}</span>
                           </div>
                         );
@@ -1769,6 +1779,26 @@ export function Workouts({ initialTab = 'exercises' }) {
             </div>
           )}
         </div>
+      </Modal>
+
+      <Modal title={previewPlanDay ? `${previewPlanDay.dayName} — ${previewPlanDay.workoutName || 'Exercícios do dia'}` : 'Exercícios do dia'} open={Boolean(previewPlanDay)} onClose={() => setPreviewPlanDay(null)}>
+        {!previewDayWorkout ? <div className="empty-state">Treino indisponível.</div> : !previewDayWorkout.exercises?.length ? <div className="empty-state">Nenhum exercício neste dia.</div> : (
+          <ol className="plan-day-exercise-list">
+            {previewDayWorkout.exercises.map((item) => {
+              const image = item.gifLibraryPath ? gifLibraryFileUrl(item.gifLibraryPath) : item.gifPath ? fileUrl(item.gifPath) : null;
+              return (
+                <li key={item.id} className="plan-day-exercise-row">
+                  {image ? <img src={image} alt={item.exerciseName} loading="lazy" /> : <div className="plan-day-image-placeholder" aria-label="Sem imagem"><Dumbbell size={24} /></div>}
+                  <div>
+                    <strong>{item.position}. {item.exerciseName}</strong>
+                    <span>{item.muscleGroup || 'Grupo muscular não informado'}</span>
+                    <p>{item.sets || '—'} sér. · {item.repetitions || '—'} rep.</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        )}
       </Modal>
 
       {/* ===================== MODAL EDITAR EXERCÍCIO ===================== */}
