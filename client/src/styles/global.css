@@ -3665,3 +3665,9 @@ textarea::placeholder {
 @media (min-width: 1440px) {
   .exercise-cards-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+
+/* Let all results expand within the exercise editor instead of nesting scroll areas. */
+.workout-gif-picker-overlay .gif-picker-grid {
+  max-height: none;
+  overflow: visible;
+}

@@ -1776,6 +1776,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                     onSelect={handleEditLibrarySelect}
                     onClose={() => setEditLibraryPickerOpen(false)}
                     initialFavoritesOnly={editLibraryFavoritesOnly}
+                    pageSize={20}
                   />
                 </div>
               ) : null}
