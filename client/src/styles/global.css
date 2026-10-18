@@ -3693,12 +3693,6 @@ textarea::placeholder {
     font-size: 15px;
     line-height: 1.4;
     align-self: center;
-    background: #000;
-    color: #fff;
-    padding: 9px 10px;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
   }
   .daily-workout-exercise-heading .card-actions {
     position: static;
@@ -3759,4 +3753,16 @@ textarea::placeholder {
   .daily-workout-exercise + .daily-workout-exercise { border-top: 1px solid #353a36; }
   .daily-workout-exercise-meta .daily-label-full { display: none; }
   .daily-workout-exercise-meta .daily-label-short { display: inline; text-decoration: none; }
+}
+
+@media (max-width: 600px) {
+  .manage-daily-card > .manage-header-row {
+    background: #000;
+    color: #fff;
+    padding: 9px 10px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .manage-daily-card > .manage-header-row strong { color: #fff; }
 }
