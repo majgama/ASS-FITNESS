@@ -679,5 +679,391 @@
       "Urso Rastejante"
     ],
     "name": "Caminhada do urso"
+  },
+  {
+    "id": "fd51dde122f5ee272f7e4812e82778ac19099507",
+    "previousNames": [
+      "Aberto Pegada Peito Mergulho Em Alto Parallel Bars"
+    ],
+    "name": "Mergulho nas paralelas com pegada aberta e foco no peitoral"
+  },
+  {
+    "id": "7676b2ca50149f2f4aee2ad4783ff2e568e50719",
+    "previousNames": [
+      "Alto Pular Corda"
+    ],
+    "name": "Pular corda com saltos altos"
+  },
+  {
+    "id": "ea2c4fdaa1cf07e62b7c3d5d73b9496568efef01",
+    "previousNames": [
+      "Assault Bike Run"
+    ],
+    "name": "Pedalada na air bike"
+  },
+  {
+    "id": "69fa5c4eec3d58ef177fa16358ecc6e9e9c78770",
+    "previousNames": [
+      "Assault Run"
+    ],
+    "name": "Corrida na esteira curva"
+  },
+  {
+    "id": "1a02ebdc3e0104106237879c77e67236ab207027",
+    "previousNames": [
+      "Astride Jumps"
+    ],
+    "name": "Saltos com abertura das pernas"
+  },
+  {
+    "id": "e7dbd62d14d0448b69c65dded938a52d8d70cafa",
+    "previousNames": [
+      "Bicicleta Reclinado Caminhada"
+    ],
+    "name": "Bicicleta ergométrica horizontal"
+  },
+  {
+    "id": "717881795489b27cc9850182a892d18bee050690",
+    "previousNames": [
+      "Briskly Caminhando"
+    ],
+    "name": "Caminhada rápida"
+  },
+  {
+    "id": "52661147fc09dfea8488f9c51783269dc4ad88fe",
+    "previousNames": [
+      "Briskly Caminhando (360 Degrees)"
+    ],
+    "name": "Caminhada rápida — visualização em 360 graus"
+  },
+  {
+    "id": "15cc92f37db15b887ab3e0453d3f5b1889bff7c6",
+    "previousNames": [
+      "Burpee Long Salto Com Flexão"
+    ],
+    "name": "Burpee com flexão de braços e salto à frente"
+  },
+  {
+    "id": "a714fb84f545c1671b783928b7dd62648bafccf8",
+    "previousNames": [
+      "Calcanhar Para Calcanhar Toque"
+    ],
+    "name": "Toque de calcanhar com calcanhar"
+  },
+  {
+    "id": "6105e226cd3bcc32e2b576eb13fc49f65000cf21",
+    "previousNames": [
+      "Caminhada Elliptical Cruzado Trainer"
+    ],
+    "name": "Elíptico"
+  },
+  {
+    "id": "596fbf12dc7162eae45ebc6fe8d279c3b1de3290",
+    "previousNames": [
+      "Caminhada Wave Machine"
+    ],
+    "name": "Simulador de passada lateral"
+  },
+  {
+    "id": "d788711258fafb48f2f9111040127008a71af3b7",
+    "previousNames": [
+      "Caminhando Em Inclinado Treadmill"
+    ],
+    "name": "Caminhada na esteira inclinada"
+  },
+  {
+    "id": "e35607bf25284ae4d22da60e65ce39adf6d550de",
+    "previousNames": [
+      "Caminhando Em Stepmill"
+    ],
+    "name": "Subida de escadas no simulador"
+  },
+  {
+    "id": "63b9a1ccd4ca96b300c3f52f2b3e250c9bc05a49",
+    "previousNames": [
+      "Caminhando Em Treadmill"
+    ],
+    "name": "Caminhada na esteira"
+  },
+  {
+    "id": "348f4d64c107c9411d755de43123f19df2acbb56",
+    "previousNames": [
+      "Caminhando Para Trás Em Treadmill"
+    ],
+    "name": "Caminhada para trás na esteira"
+  },
+  {
+    "id": "64935ec5a6fb2cd454996798ce9366ab1bd43d4b",
+    "previousNames": [
+      "Chute No Glúteo (version 2)"
+    ],
+    "name": "Corrida com calcanhares nos glúteos — variação 2"
+  },
+  {
+    "id": "19b4e6313a4a6dee2bf2e6bf6f327ff677c39cb0",
+    "previousNames": [
+      "Chute No Glúteo Com Remada"
+    ],
+    "name": "Calcanhares nos glúteos com remada dos braços"
+  },
+  {
+    "id": "dbaf2d0ce4da69355ac0aed0789ddd2b094bc649",
+    "previousNames": [
+      "Chute No Glúteo E Polichinelo"
+    ],
+    "name": "Calcanhares nos glúteos com polichinelo"
+  },
+  {
+    "id": "dc9f451b4d74feb7816f1c5ff25439e34533baf9",
+    "previousNames": [
+      "Chute No Glúteo Salto"
+    ],
+    "name": "Salto com calcanhares nos glúteos"
+  },
+  {
+    "id": "916346b8b5cee71c8a7ee2463c3c3e24a3f0985f",
+    "previousNames": [
+      "Chute No Glúteos"
+    ],
+    "name": "Corrida com calcanhares nos glúteos"
+  },
+  {
+    "id": "f717aecbc8666fc31647a7a03cde63ee31082132",
+    "previousNames": [
+      "Chute No Glúteos (front Pov)"
+    ],
+    "name": "Corrida com calcanhares nos glúteos — vista frontal"
+  },
+  {
+    "id": "47f2a5658a5e632ab431c27c82b9c438a78a3b3d",
+    "previousNames": [
+      "Chute No Glúteos Cardio"
+    ],
+    "name": "Corrida com calcanhares nos glúteos"
+  },
+  {
+    "id": "35512406981d0289163e957133822ef38187f1a5",
+    "previousNames": [
+      "Corrida esteira Run",
+      "Run (equipment)"
+    ],
+    "name": "Corrida na esteira"
+  },
+  {
+    "id": "c99b35ae160b5bd49f417917ae841dad9a30b0dc",
+    "previousNames": [
+      "Costas Perna Lift Polichinelo"
+    ],
+    "name": "Polichinelo com elevação posterior de perna"
+  },
+  {
+    "id": "2fc7c7fcbb0d88174370c66a7e7a53c3bfac7444",
+    "previousNames": [
+      "Cruzado Braços Extensão De Tríceps"
+    ],
+    "name": "Extensão de tríceps com braços cruzados e peso corporal"
+  },
+  {
+    "id": "fbc99e268174b9db35b43766a9cadfa16f1e7068",
+    "previousNames": [
+      "Duplo Pular Corda"
+    ],
+    "name": "Pular corda com salto duplo"
+  },
+  {
+    "id": "67abaf84e1e2286abcab81506e86f5dddb44a6f4",
+    "previousNames": [
+      "Duplo Sob Pular Corda"
+    ],
+    "name": "Pular corda com duas passagens da corda por salto"
+  },
+  {
+    "id": "35aef6cd50eb986a6d87d0332e5b951b62389f22",
+    "previousNames": [
+      "Elliptical Lateral Caminhada"
+    ],
+    "name": "Elíptico com deslocamento lateral"
+  },
+  {
+    "id": "84bbda05fffdccd88b5ed77ee83af1d8903b69e5",
+    "previousNames": [
+      "Elliptical Machine Caminhada"
+    ],
+    "name": "Elíptico"
+  },
+  {
+    "id": "667b904a091276a9d7e2fccfa8febb84caf0d281",
+    "previousNames": [
+      "Hands Bike"
+    ],
+    "name": "Bicicleta de braços"
+  },
+  {
+    "id": "b4399f44a550315382bac5480dadd58d19d3fcb9",
+    "previousNames": [
+      "Hanging Oblique Elevação De Joelho Em Parallel Bars"
+    ],
+    "name": "Elevação de joelhos com rotação nas paralelas"
+  },
+  {
+    "id": "ac9ed0516694a988776c34fe11b908ad66a2d5b2",
+    "previousNames": [
+      "Joelho Alto Para Chute No Glúteo"
+    ],
+    "name": "Corrida alternando joelhos altos e calcanhares nos glúteos"
+  },
+  {
+    "id": "9f5a1fdc70cd0774cc67da4d8b144d95981f2ac3",
+    "previousNames": [
+      "Joelho Alto Run"
+    ],
+    "name": "Corrida com joelhos altos"
+  },
+  {
+    "id": "7e92ca7cf3a0f219ec17bbbcc4691d0499dd101e",
+    "previousNames": [
+      "Joelho Alto Skips Cardio"
+    ],
+    "name": "Saltitos com joelhos altos"
+  },
+  {
+    "id": "d57e5fc66dd5e9dfe9e560af5d1aac6a5e4e3102",
+    "previousNames": [
+      "Joelho Alto Sprints"
+    ],
+    "name": "Corrida rápida com joelhos altos"
+  },
+  {
+    "id": "ce19b762f1727aa288b35a105d6b96546ea90c8c",
+    "previousNames": [
+      "Lateral Para Lateral Pular Corda"
+    ],
+    "name": "Pular corda com saltos de um lado para o outro"
+  },
+  {
+    "id": "844363f892803d7eb6e91b63788630f0f8bb17ee",
+    "previousNames": [
+      "Lateral Shuffle Abdominal Supraes"
+    ],
+    "name": "Deslocamento lateral com abdominal em pé"
+  },
+  {
+    "id": "203fc26cc8008217b18b978397e29de7e3340d65",
+    "previousNames": [
+      "Lateral Shuffle Agachamento Toque"
+    ],
+    "name": "Deslocamento lateral com agachamento e toque no chão"
+  },
+  {
+    "id": "8b1b091262e7a1a15c0f34f9dd27f58fd014d742",
+    "previousNames": [
+      "Long Distance Running"
+    ],
+    "name": "Corrida de longa distância"
+  },
+  {
+    "id": "94a2bb0f6c5f61d5573aadb6129d56ab7c7901f0",
+    "previousNames": [
+      "Mini Lateral Shuffles Slight Elevação De Joelho"
+    ],
+    "name": "Passos laterais curtos com leve elevação dos joelhos"
+  },
+  {
+    "id": "2201f6afaf87f8011e36adc796587872e803f441",
+    "previousNames": [
+      "Palma Polichinelo"
+    ],
+    "name": "Polichinelo com palmas"
+  },
+  {
+    "id": "65808eaf945f34bae908bd86683db5b6f4cbc82b",
+    "previousNames": [
+      "Para Frente Para Trás Shuffle"
+    ],
+    "name": "Deslocamento com passos curtos para frente e para trás"
+  },
+  {
+    "id": "ba762fa9adddb8363011e4822be230043c188e0f",
+    "previousNames": [
+      "Para Trás Run"
+    ],
+    "name": "Corrida para trás"
+  },
+  {
+    "id": "5d67b89c44fa4c7e30e53fe34b6d6c106c423dae",
+    "previousNames": [
+      "Peso Corporal Ajoelhado Extensão De Tríceps"
+    ],
+    "name": "Extensão de tríceps ajoelhado com peso corporal"
+  },
+  {
+    "id": "d66f1f4bf438aabc4cc855ec8833fdd3920915cc",
+    "previousNames": [
+      "Peso Corporal Skipping"
+    ],
+    "name": "Skipping sem corda"
+  },
+  {
+    "id": "03f925b97cfc6b91c5462f2e27782204d697710e",
+    "previousNames": [
+      "Peso Corporal Skullcrusher"
+    ],
+    "name": "Tríceps testa com peso corporal"
+  },
+  {
+    "id": "96c9f21c53b4e9764b5a10be39ea75ba2646b04d",
+    "previousNames": [
+      "Polichinelo"
+    ],
+    "name": "Polichinelo"
+  },
+  {
+    "id": "4973bf576f1e86fdbbaed767fd37270428a548d5",
+    "previousNames": [
+      "Polichinelo Joelho Alto"
+    ],
+    "name": "Polichinelo com joelhos altos"
+  },
+  {
+    "id": "adfdb1f46f24c8eb5af86c394978f3fa8e8c91bf",
+    "previousNames": [
+      "Riding Outdoor Bicicleta"
+    ],
+    "name": "Ciclismo ao ar livre"
+  },
+  {
+    "id": "13fd6d71d3d6b6bdfa27bd7ea92026728e79c4dc",
+    "previousNames": [
+      "Run"
+    ],
+    "name": "Corrida"
+  },
+  {
+    "id": "f64318dbd25f89a30cc352d9b464dd5480a2d556",
+    "previousNames": [
+      "Sprint"
+    ],
+    "name": "Corrida de velocidade"
+  },
+  {
+    "id": "a46cceda891d555dae5f6fd4576dc692c0d270f0",
+    "previousNames": [
+      "Stationary Bike Caminhada"
+    ],
+    "name": "Pedalada na bicicleta ergométrica"
+  },
+  {
+    "id": "367deb1399c9dff965e84199c080fbc467c50737",
+    "previousNames": [
+      "Stationary Bike Run (version 4)"
+    ],
+    "name": "Pedalada na bicicleta ergométrica — variação 4"
+  },
+  {
+    "id": "b25e0d2f06275f2997144e48d892209cb1dffb99",
+    "previousNames": [
+      "Triceps Mergulho Em Alto Parallel Bars"
+    ],
+    "name": "Mergulho nas paralelas com foco no tríceps"
   }
 ]
