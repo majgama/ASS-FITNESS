@@ -1,0 +1,683 @@
+[
+  {
+    "id": "78cad9bafdd06e3cb10fabf764f74ec42c132290",
+    "previousNames": [
+      "Ajoelhado Elevação Pélvica"
+    ],
+    "name": "Extensão de quadril ajoelhado"
+  },
+  {
+    "id": "59bbdcea3e962b6817cab3471588c3e26a2f31e0",
+    "previousNames": [
+      "Ajoelhado Fist Flexão"
+    ],
+    "name": "Flexão de braços sobre os punhos com joelhos apoiados"
+  },
+  {
+    "id": "111276b791e2f831c15ebed5d0a50db36bb20253",
+    "previousNames": [
+      "Alternado Calcanhar Toque Lateral Chute Agachamento"
+    ],
+    "name": "Agachamento com toque alternado nos calcanhares e chute lateral"
+  },
+  {
+    "id": "2be585d21b7f2035a9f24fe9df7da8d14dda2158",
+    "previousNames": [
+      "Alto Bar Inclinado Flexão"
+    ],
+    "name": "Flexão de braços inclinada na barra alta"
+  },
+  {
+    "id": "267a0570835ec4f2efb00c63bbf062cd4350a14a",
+    "previousNames": [
+      "Assistido Com Peso Flexão"
+    ],
+    "name": "Flexão de braços com carga e auxílio de parceiro"
+  },
+  {
+    "id": "f7695ad698242c4bad31ee6bef4a98df9df8f52b",
+    "previousNames": [
+      "Assistido Inverse Mesa Flexora"
+    ],
+    "name": "Flexão nórdica assistida"
+  },
+  {
+    "id": "254b88f08615f271d30ac7075fef025908eb0772",
+    "previousNames": [
+      "Assistido Partial Range Inverse Mesa",
+      "Assistido Partial Range Inverse Mesa Flexora"
+    ],
+    "name": "Flexão nórdica assistida com amplitude parcial"
+  },
+  {
+    "id": "5a301ce54500df111a45ac95e35704bb33d28686",
+    "previousNames": [
+      "Balloon Drill"
+    ],
+    "name": "Exercício de agilidade com balão"
+  },
+  {
+    "id": "a6850722684818e6b0884e03b43417c7481fb8ab",
+    "previousNames": [
+      "Basketball Shot Salto"
+    ],
+    "name": "Salto simulando arremesso de basquete"
+  },
+  {
+    "id": "3ff8ee4c0415b44a8bfc06106262f9ba41d234ae",
+    "previousNames": [
+      "Biceps Perna Concentration Rosca"
+    ],
+    "name": "Rosca concentração usando a perna como resistência"
+  },
+  {
+    "id": "ed3fb70cd405abf28c03238e4f15a9eecbd50597",
+    "previousNames": [
+      "Body Extensão (backward Reach)"
+    ],
+    "name": "Extensão do corpo ajoelhado com alcance para trás"
+  },
+  {
+    "id": "9cfa3cc560098ce1d96b2a493d71eb1fee1780b8",
+    "previousNames": [
+      "Body Para Cima Superior Braços"
+    ],
+    "name": "Extensão de tríceps com peso corporal a partir do chão"
+  },
+  {
+    "id": "f9169141096a333c1184c7c144a662eaa39a147f",
+    "previousNames": [
+      "Braços Para Cima Rotational Lateral Step"
+    ],
+    "name": "Passo lateral com rotação e elevação dos braços"
+  },
+  {
+    "id": "937fdc4faa6420a31420799af35d4439a5635c97",
+    "previousNames": [
+      "Cadeira Agachamento Panturrilha Rock"
+    ],
+    "name": "Agachamento com movimento de panturrilha"
+  },
+  {
+    "id": "e293aeeea54e36b05200cea759d9b733e069dbb4",
+    "previousNames": [
+      "Clock Flexão"
+    ],
+    "name": "Flexão de braços em relógio"
+  },
+  {
+    "id": "270d8018ce270fa0f3f4b785a594b5c542fd9253",
+    "previousNames": [
+      "Cobra Flexão"
+    ],
+    "name": "Flexão cobra"
+  },
+  {
+    "id": "d68ec2166151de989ffe35f768ef9302a95a623e",
+    "previousNames": [
+      "Com Peso Flexão Com Vest"
+    ],
+    "name": "Flexão de braços com colete de peso"
+  },
+  {
+    "id": "bd828e9e2be9d25abc0676fb8ac6641f8ae07cb5",
+    "previousNames": [
+      "Completo Planche Flexão"
+    ],
+    "name": "Flexão de braços em planche completa"
+  },
+  {
+    "id": "9f6937aa267b53e05dce25642dea4a418b98f4d0",
+    "previousNames": [
+      "Counterbalanced Skater Agachamento"
+    ],
+    "name": "Agachamento do patinador com contrapeso dos braços"
+  },
+  {
+    "id": "f7aae7c2c6fbaab1d9c9cd3c04b9fc41b9dd196f",
+    "previousNames": [
+      "Curtsey Agachamento"
+    ],
+    "name": "Agachamento cruzado"
+  },
+  {
+    "id": "a7d4a2a7981fb89ec091b7791d41a190da237125",
+    "previousNames": [
+      "Curtsy Afundo Slide Com Toalha"
+    ],
+    "name": "Afundo cruzado com deslizamento do pé em toalha"
+  },
+  {
+    "id": "705f39d5f30297414e1f87329b5796a2e26d2793",
+    "previousNames": [
+      "Deitado Alternado Flutter Chute"
+    ],
+    "name": "Chutes alternados de pernas deitado"
+  },
+  {
+    "id": "620421ea6a1720ca745d0b7bf75d527c66125535",
+    "previousNames": [
+      "Diamond Flexão"
+    ],
+    "name": "Flexão de braços com mãos em diamante"
+  },
+  {
+    "id": "854e00db85fd7a2287dbd964c5b2814e47de43ef",
+    "previousNames": [
+      "Diamond Flexão (on Knees)"
+    ],
+    "name": "Flexão diamante com joelhos apoiados"
+  },
+  {
+    "id": "3771d97af5e77817cfd5190f7922f58f5e8d0ee0",
+    "previousNames": [
+      "Duplo Salto Agachamento"
+    ],
+    "name": "Agachamento com dois saltos"
+  },
+  {
+    "id": "19201220e22a882e0df88aae1a83674075217281",
+    "previousNames": [
+      "Elevanted Flexão"
+    ],
+    "name": "Flexão de braços com mãos elevadas sobre apoios"
+  },
+  {
+    "id": "280a3b35deabf043bf109fe9ef48ee97c0875e45",
+    "previousNames": [
+      "Explosivo Ajoelhado Flexão"
+    ],
+    "name": "Flexão explosiva com joelhos apoiados"
+  },
+  {
+    "id": "fa8514891603ca70ff5f757735b66ca26c1cdb65",
+    "previousNames": [
+      "Explosivo Flexão"
+    ],
+    "name": "Flexão de braços explosiva"
+  },
+  {
+    "id": "1f79430f4eea7f6e853a48e7df4b7c9ab39f26b2",
+    "previousNames": [
+      "Fechado Agachamento De Deficit"
+    ],
+    "name": "Agachamento com pés juntos sobre plataforma"
+  },
+  {
+    "id": "20e8e76a4d54b10420764eacd0572089804ec2b0",
+    "previousNames": [
+      "Fechado Pegada Flexão (on Knees)"
+    ],
+    "name": "Flexão de braços com mãos próximas e joelhos apoiados"
+  },
+  {
+    "id": "41b9926fad9204258f29c8b34a8c0bec0972ca07",
+    "previousNames": [
+      "Fechado Pegada Flexão Superior Braços"
+    ],
+    "name": "Flexão de braços com mãos próximas"
+  },
+  {
+    "id": "bf4c980a891ed836b8c70af006b8a5581e6e0be2",
+    "previousNames": [
+      "Fechado Stance Agachamento"
+    ],
+    "name": "Agachamento com pés juntos"
+  },
+  {
+    "id": "c0ff6d7233f5f47bb554e71491a10917e328921f",
+    "previousNames": [
+      "Finger Elevações Prancha"
+    ],
+    "name": "Elevação dos dedos na posição de prancha"
+  },
+  {
+    "id": "79bcad67fddb5009576c50321d190e1941f76748",
+    "previousNames": [
+      "Finger Flexão"
+    ],
+    "name": "Flexão de braços na ponta dos dedos"
+  },
+  {
+    "id": "ebfd9c91b8b750001c5102047fb2495bb88d7dda",
+    "previousNames": [
+      "Fist Flexão"
+    ],
+    "name": "Flexão de braços sobre os punhos"
+  },
+  {
+    "id": "3044d21afaec0d3d916fb3559cf7ce5655086514",
+    "previousNames": [
+      "Flexão Prancha Polichinelo Burpee"
+    ],
+    "name": "Burpee com flexão de braços e polichinelo na prancha"
+  },
+  {
+    "id": "74aacc737ea2c247a27c585969428519aeb91a20",
+    "previousNames": [
+      "Flexionado Perna Chuteback (kneeling) Quadris"
+    ],
+    "name": "Coice ajoelhado com joelho flexionado"
+  },
+  {
+    "id": "f7e0d6e1bee0dbb29e1bcfa608e8999d386d6ab2",
+    "previousNames": [
+      "Frog Reverso Hyperextension Toque Em Chão"
+    ],
+    "name": "Extensão reversa de quadril em posição de sapo com toque no chão"
+  },
+  {
+    "id": "d19a94a9a2cd54c6a72f298d188352392809fe49",
+    "previousNames": [
+      "Hands Release Flexão"
+    ],
+    "name": "Flexão de braços com retirada das mãos do chão"
+  },
+  {
+    "id": "5b7df25e-58f4-4bca-a75b-41f480af5e38",
+    "previousNames": [
+      "Leg Press 45° Articulado"
+    ],
+    "name": "Leg press articulado a 45 graus"
+  },
+  {
+    "id": "c3254eaddf2c6d95f0a1d827389adced92d51ad0",
+    "previousNames": [
+      "Lever Flexão Com Towels"
+    ],
+    "name": "Flexão de braços com deslizamento sobre toalhas"
+  },
+  {
+    "id": "7af38e00d6fa6d188fc2a4e8beb98388e499bd93",
+    "previousNames": [
+      "Meio Flexão Max Rep"
+    ],
+    "name": "Meia flexão de braços até o máximo de repetições"
+  },
+  {
+    "id": "c2ec40641cab62a1a589f28e8569f038388045ef",
+    "previousNames": [
+      "Nordic Hamstring Rosca"
+    ],
+    "name": "Flexão nórdica"
+  },
+  {
+    "id": "83d432ead162213db3545592858aea72f80446e1",
+    "previousNames": [
+      "Palma Flexão Pliometria"
+    ],
+    "name": "Flexão pliométrica com palmas"
+  },
+  {
+    "id": "442371483618eda2442aaa80c8cb733aa809d983",
+    "previousNames": [
+      "Para Frente Afundo"
+    ],
+    "name": "Afundo à frente"
+  },
+  {
+    "id": "dd627758cb27114258772bccc3700604480b33aa",
+    "previousNames": [
+      "Para Frente Afundo Soco"
+    ],
+    "name": "Afundo à frente com soco"
+  },
+  {
+    "id": "d75f5454ad3afa32d2fe8918cd6d2af4970a4174",
+    "previousNames": [
+      "Para Frente Pulso Afundo Com Hands Acima Da Cabeça"
+    ],
+    "name": "Afundo à frente com movimentos curtos e mãos acima da cabeça"
+  },
+  {
+    "id": "03d54b7c1093b5fea111ed36c04edb075a8c2f8e",
+    "previousNames": [
+      "Peito Toque Flexão"
+    ],
+    "name": "Flexão de braços com toque no peito"
+  },
+  {
+    "id": "73bf4cc31ec0c47c7649f9554cbc6116da70fcc2",
+    "previousNames": [
+      "Peso Corporal Acima Da Cabeça Agachamento"
+    ],
+    "name": "Agachamento com braços acima da cabeça"
+  },
+  {
+    "id": "5f262fdb28305bf115a4cfcdfee7d35031d90374",
+    "previousNames": [
+      "Peso Corporal Afundo Reverso Com Acima Da Cabeça Alcance (male"
+    ],
+    "name": "Afundo reverso com alcance acima da cabeça"
+  },
+  {
+    "id": "9b2480b6784024877b6e4b8797b4997a603caac8",
+    "previousNames": [
+      "Peso Corporal Agachamento"
+    ],
+    "name": "Agachamento livre sem carga"
+  },
+  {
+    "id": "d6e868ae84e068682baeca6a814e5450d4d3778b",
+    "previousNames": [
+      "Peso Corporal Agachamento"
+    ],
+    "name": "Agachamento livre sem carga"
+  },
+  {
+    "id": "b355453aa3c92376b3da0e30a0e7381e6688ddf0",
+    "previousNames": [
+      "Peso Corporal Agachamento Desenvolvimento"
+    ],
+    "name": "Agachamento com desenvolvimento de braços sem carga"
+  },
+  {
+    "id": "069304ec435fa34ebe25a5c54a67e3ea0cf63caa",
+    "previousNames": [
+      "Peso Corporal Agachamento Lateral Shuffle"
+    ],
+    "name": "Agachamento com deslocamento lateral"
+  },
+  {
+    "id": "6ef2920f4303b37c6a1234d04701cc7cfcd2ab3b",
+    "previousNames": [
+      "Peso Corporal Agachamento Para Frente Perna"
+    ],
+    "name": "Agachamento com perna à frente"
+  },
+  {
+    "id": "93c1eda7520323044060a9a44add9cb50eea147b",
+    "previousNames": [
+      "Peso Corporal Ajoelhado Flexão Remada"
+    ],
+    "name": "Flexão de braços ajoelhado com remada sem carga"
+  },
+  {
+    "id": "53a8369295fa03d95f2fb497527b7ccac1b29268",
+    "previousNames": [
+      "Peso Corporal Ajoelhado Sissy Agachamento"
+    ],
+    "name": "Agachamento sissy ajoelhado"
+  },
+  {
+    "id": "69ec7238756ced1a6bcf49af336c1529cac546e0",
+    "previousNames": [
+      "Peso Corporal Calcanhar Elevated Agachamento"
+    ],
+    "name": "Agachamento com calcanhares elevados"
+  },
+  {
+    "id": "0ad5f7f0a0e7c6bb37db1048b789c523f20de8d6",
+    "previousNames": [
+      "Peso Corporal Completo Agachamento Com Desenvolvimento (version"
+    ],
+    "name": "Agachamento completo com desenvolvimento de braços sem carga"
+  },
+  {
+    "id": "d8726f6b6c2a117ade4ed84e655faf44a8ae25a6",
+    "previousNames": [
+      "Peso Corporal Em Pé Levantamento Terra Romeno"
+    ],
+    "name": "Levantamento terra romeno sem carga"
+  },
+  {
+    "id": "599838333603933c98edf5f4e89ed0476773fe2b",
+    "previousNames": [
+      "Peso Corporal Fechado Agachamento"
+    ],
+    "name": "Agachamento com pés juntos sem carga"
+  },
+  {
+    "id": "3a7f6ca0dc05105eb01e3bfa2edc9da3e58a2562",
+    "previousNames": [
+      "Peso Corporal Frente Slam"
+    ],
+    "name": "Simulação de arremesso frontal sem carga"
+  },
+  {
+    "id": "eb35cca0f766b61dd26087b35b3d33ebd27fa647",
+    "previousNames": [
+      "Peso Corporal Good Morning"
+    ],
+    "name": "Bom dia sem carga"
+  },
+  {
+    "id": "9464d9ef58594f78db3e537d8b798e9976c22b5a",
+    "previousNames": [
+      "Peso Corporal Lateral Agachamento Step"
+    ],
+    "name": "Agachamento com passo lateral"
+  },
+  {
+    "id": "bc7ae232cfe376f47eecb5a245e1359e4d2f58e2",
+    "previousNames": [
+      "Peso Corporal Lateral Deitado Interno Coxa Para Cima E Para Baixo (mal"
+    ],
+    "name": "Elevação e descida da perna de baixo deitado de lado"
+  },
+  {
+    "id": "1cda3c152e3a4b622ea0955ef2b4302161589fd2",
+    "previousNames": [
+      "Peso Corporal Lateral Deitado Perna Adduction"
+    ],
+    "name": "Adução de perna deitado de lado"
+  },
+  {
+    "id": "9ce89343ddc726cb6a4b2a4e148cdbfd83418b2b",
+    "previousNames": [
+      "Peso Corporal Lento Para Explosivo Agachamentos"
+    ],
+    "name": "Agachamento com descida lenta e subida explosiva"
+  },
+  {
+    "id": "efdabb61cf618e68b50f20d67165262833a742c6",
+    "previousNames": [
+      "Peso Corporal Meio Agachamento"
+    ],
+    "name": "Meio agachamento sem carga"
+  },
+  {
+    "id": "77630240c584ebea3547fb382fe2b172be0038e9",
+    "previousNames": [
+      "Peso Corporal Para Frente Afundo (smaller Stance Upright Torso)"
+    ],
+    "name": "Afundo à frente com passada curta e tronco ereto"
+  },
+  {
+    "id": "9100225f0fb3926fbc1e9cd1ef23480b8fb972af",
+    "previousNames": [
+      "Peso Corporal Paused Goblet Agachamento"
+    ],
+    "name": "Agachamento com pausa e mãos em posição goblet, sem carga"
+  },
+  {
+    "id": "a1184cf72eeb7ed422b25e8228d737722b58636c",
+    "previousNames": [
+      "Peso Corporal Profundo Prisoner Agachamento"
+    ],
+    "name": "Agachamento profundo com mãos atrás da cabeça"
+  },
+  {
+    "id": "468d4c99e69f2fa30b3aff4afb54b653d89e00bf",
+    "previousNames": [
+      "Peso Corporal Pulso Agachamento"
+    ],
+    "name": "Agachamento com movimentos curtos"
+  },
+  {
+    "id": "64783264f276dcdcbcf2709debaa15864007c297",
+    "previousNames": [
+      "Peso Corporal Pulso Para Frente Afundo"
+    ],
+    "name": "Afundo à frente com movimentos curtos"
+  },
+  {
+    "id": "f2e5df517d00342f656cb67adb3d3d011fb1886d",
+    "previousNames": [
+      "Peso Corporal Rear Afundo"
+    ],
+    "name": "Afundo reverso"
+  },
+  {
+    "id": "561c2716f773723518910be18ed701f17a476699",
+    "previousNames": [
+      "Peso Corporal Rear Afundo Elevação Frontal"
+    ],
+    "name": "Afundo reverso com elevação frontal dos braços"
+  },
+  {
+    "id": "31ad2c7d84003dc80bf665211d8b03e0666b9446",
+    "previousNames": [
+      "Peso Corporal Rear Afundo Torção"
+    ],
+    "name": "Afundo reverso com rotação"
+  },
+  {
+    "id": "362ff4aef37d87d49a17ad30515a1bdc035adfdb",
+    "previousNames": [
+      "Peso Corporal Unilateral Perna Agachamento"
+    ],
+    "name": "Agachamento unilateral sem carga"
+  },
+  {
+    "id": "345279f98b7e27460790e1e3971bb3428a0a4f05",
+    "previousNames": [
+      "Peso Corporal Unilateral Perna Agachamento Com Support"
+    ],
+    "name": "Agachamento unilateral com apoio"
+  },
+  {
+    "id": "9e51950a1f17cc9ee13ff7a00e1bfee1288f32cd",
+    "previousNames": [
+      "Plyo Flexão"
+    ],
+    "name": "Flexão de braços pliométrica"
+  },
+  {
+    "id": "ca7d4de3125315b352a167a42b377d721a2a553e",
+    "previousNames": [
+      "Prancha Lateral Flexionado Perna Lift"
+    ],
+    "name": "Prancha lateral com elevação de perna flexionada"
+  },
+  {
+    "id": "d40c10a0144d627f638d1785e79d37ab96fffe69",
+    "previousNames": [
+      "Profundo Breathe Flaps Plyo Agachamento"
+    ],
+    "name": "Agachamento pliométrico com respiração profunda e movimento dos braços"
+  },
+  {
+    "id": "3c2b256611df94d958240fc794305dcd9c904928",
+    "previousNames": [
+      "Profundo Flexão Em Parallel Bars"
+    ],
+    "name": "Flexão de braços com maior amplitude nas barras paralelas"
+  },
+  {
+    "id": "6b401026299e28e6b52b13ac5730805216cd4660",
+    "previousNames": [
+      "Profundo Flexão Segurar"
+    ],
+    "name": "Isometria na flexão de braços com maior amplitude"
+  },
+  {
+    "id": "08f3263f63152c49093563aec430c93ab8086b58",
+    "previousNames": [
+      "Profundo Frog Agachamento"
+    ],
+    "name": "Agachamento sapo profundo"
+  },
+  {
+    "id": "4c9c2912ccc4155cec3fd850b69690e9ef7a64d1",
+    "previousNames": [
+      "Punho Completo Flexão"
+    ],
+    "name": "Flexão completa dos punhos com apoio no chão"
+  },
+  {
+    "id": "1368064ce0a24cc7417ee5c8aaedc972870c8d0e",
+    "previousNames": [
+      "Roll Frente Ombro E Peito Deitado Em Chão"
+    ],
+    "name": "Liberação da região anterior do ombro e peitoral com rolo"
+  },
+  {
+    "id": "d088177a9f39930e1745bb011df5d1c23e98321c",
+    "previousNames": [
+      "Roll Pec Foam Rolling"
+    ],
+    "name": "Liberação de peitoral com rolo"
+  },
+  {
+    "id": "08821eb1f1484b49a2693d3fa8e2f2697cca32d9",
+    "previousNames": [
+      "Roll Peito Opener Deitado Em Chão"
+    ],
+    "name": "Abertura de peitoral deitado com apoio no rolo"
+  },
+  {
+    "id": "1fae78bc718c36cef3c8a7fdb9d6ef72643ee907",
+    "previousNames": [
+      "Saltando Agachamento Polichinelo"
+    ],
+    "name": "Polichinelo com agachamento e salto"
+  },
+  {
+    "id": "6c8b6bb261971e03151b4cf294d34700929ae34e",
+    "previousNames": [
+      "Salto Split Pliometria"
+    ],
+    "name": "Afundo com salto alternado"
+  },
+  {
+    "id": "36f6a7aa0d29464a09c4bf2b1435be52c5317290",
+    "previousNames": [
+      "Sliding Chão Ponte Rosca Em Toalha"
+    ],
+    "name": "Ponte com flexão de joelhos deslizando os pés sobre toalha"
+  },
+  {
+    "id": "fa8c3e22bc8dc5ccaa9851edab6665b5fb0b3227",
+    "previousNames": [
+      "Sliding Mesa Flexora Em Chão Com Toalha"
+    ],
+    "name": "Flexão de joelhos no chão com deslizamento dos pés em toalha"
+  },
+  {
+    "id": "04e568759ca5782245a45d3902f496f9d271d553",
+    "previousNames": [
+      "Supino reto - banco masc",
+      "Barra Supino Peito"
+    ],
+    "name": "Supino reto com barra"
+  },
+  {
+    "id": "a5ab1851fb1cc4d0681fb50890cf985d22dcf788",
+    "previousNames": [
+      "Unilateral Braço Flexão (on Knees)"
+    ],
+    "name": "Flexão unilateral com joelhos apoiados"
+  },
+  {
+    "id": "a949108b9e78f8646411b61b5b57aec2777b28b8",
+    "previousNames": [
+      "Unilateral Braço Flexão Peito"
+    ],
+    "name": "Flexão unilateral de braços"
+  },
+  {
+    "id": "c9af2f8605b9d7b6e0301efe3b079d334d9c1d5a",
+    "previousNames": [
+      "Unilateral Perna Sliding Chão Ponte Rosca Em Toalha"
+    ],
+    "name": "Ponte unilateral com flexão de joelho deslizando o pé sobre toalha"
+  },
+  {
+    "id": "583387a233b7e57e969613b476240f866c597b56",
+    "previousNames": [
+      "Urso Rastejante"
+    ],
+    "name": "Caminhada do urso"
+  }
+]

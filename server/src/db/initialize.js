@@ -1,3 +1,4 @@
+import { seedGifNameReplacements } from './seedGifNameReplacements.js';
 import bcrypt from 'bcrypt';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -14,6 +15,7 @@ export async function initializeDatabase() {
   const schema = await fs.readFile(schemaPath, 'utf8');
   await pool.query(schema);
   await seedGifTranslationUpdates(pool);
+  await seedGifNameReplacements(pool);
   console.log('Database schema applied.');
 
   const passwordHash = await bcrypt.hash(env.seedAdminPassword, env.bcryptRounds);
