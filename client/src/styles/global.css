@@ -3693,6 +3693,12 @@ textarea::placeholder {
     font-size: 15px;
     line-height: 1.4;
     align-self: center;
+    background: #000;
+    color: #fff;
+    padding: 9px 10px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
   }
   .daily-workout-exercise-heading .card-actions {
     position: static;
