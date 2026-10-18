@@ -1065,5 +1065,1419 @@
       "Triceps Mergulho Em Alto Parallel Bars"
     ],
     "name": "Mergulho nas paralelas com foco no tríceps"
+  },
+  {
+    "id": "3ef61b5b8e4e1867247c90af1d41845b7f4ac53b",
+    "previousNames": [
+      "Abdominal Supra (on Bench)"
+    ],
+    "name": "Abdominal supra no banco"
+  },
+  {
+    "id": "30a3187723b7c055d789f519697eab99d04a0306",
+    "previousNames": [
+      "Abdominal Supra Em Banco"
+    ],
+    "name": "Abdominal supra no banco"
+  },
+  {
+    "id": "52f5dac14121ace1075e4a5a8ef73b1e45bd48ce",
+    "previousNames": [
+      "Aberto Banco Air Agachamento"
+    ],
+    "name": "Agachamento livre com pernas afastadas e referência no banco"
+  },
+  {
+    "id": "f53a403a5645939c03e47902f8d7e9e7888f4981",
+    "previousNames": [
+      "Acima Da Cabeça Abdominal Com Pernas Em Banco"
+    ],
+    "name": "Abdominal com braços acima da cabeça e pernas no banco"
+  },
+  {
+    "id": "902b23a09bbd4ae087e945abed756b49ba4be01d",
+    "previousNames": [
+      "Afundo Com Salto"
+    ],
+    "name": "Afundo com salto"
+  },
+  {
+    "id": "688a971f06e1df0e6b7806c8c5d5a3bcac8104ff",
+    "previousNames": [
+      "Afundo Com Salto Coxas"
+    ],
+    "name": "Afundo com salto"
+  },
+  {
+    "id": "dbacacff07ff414d0531e4dc5c534aeca7130951",
+    "previousNames": [
+      "Afundo Reverso Para Frente Afundo"
+    ],
+    "name": "Afundo reverso seguido de afundo à frente"
+  },
+  {
+    "id": "5b84ecc06da282093a4a741e2f09e7ae699891ef",
+    "previousNames": [
+      "Afundo Torção"
+    ],
+    "name": "Afundo com rotação"
+  },
+  {
+    "id": "a36a0fb93fee9b015d59ba679b7d511e4269ab71",
+    "previousNames": [
+      "Ajoelhado Unilateral Hamstring Rosca"
+    ],
+    "name": "Flexão unilateral de joelho ajoelhado"
+  },
+  {
+    "id": "7464e3c764ce094acba820c69a1238bdf311c7c9",
+    "previousNames": [
+      "Alternado Elevação De Joelho Lateral Alcance"
+    ],
+    "name": "Elevação alternada de joelhos com alcance lateral"
+  },
+  {
+    "id": "32f042edb4ca935137168efff3e06e62d8f06726",
+    "previousNames": [
+      "Alternado Frente Chute Em Place"
+    ],
+    "name": "Chutes frontais alternados no lugar"
+  },
+  {
+    "id": "7f49a086bec8b6329cb040c62f93bfa47fc02591",
+    "previousNames": [
+      "Alternado Frente Chute Em Place Com Braço Círculos"
+    ],
+    "name": "Chutes frontais alternados com círculos dos braços"
+  },
+  {
+    "id": "81bdba65bdf04b4b9b1e5f4f7bf783a8fcb44429",
+    "previousNames": [
+      "Alternado Hamstring Rosca Com Socoe"
+    ],
+    "name": "Flexão alternada de joelhos com socos"
+  },
+  {
+    "id": "0f200a76376135d199ef895578a86564ec4007ec",
+    "previousNames": [
+      "Alternado Hamstring Rosca Polichinelo"
+    ],
+    "name": "Flexão alternada de joelhos com polichinelo"
+  },
+  {
+    "id": "006bd771d7770b62564b22bfaca504bf8dc6653d",
+    "previousNames": [
+      "Alternado Hamstring Rosca Puxada"
+    ],
+    "name": "Flexão alternada de joelhos com puxada dos braços"
+  },
+  {
+    "id": "32cf03ac1b3b20fb14f2bf84580ba9bc2ede0a39",
+    "previousNames": [
+      "Alternado Hamstring Rosca Sky Soco"
+    ],
+    "name": "Flexão alternada de joelhos com socos para cima"
+  },
+  {
+    "id": "48e56900c1be009297dfe04f781d112e9668999d",
+    "previousNames": [
+      "Alternado Lateral Step Salto Lateral Inclinação"
+    ],
+    "name": "Passo lateral alternado com salto e inclinação lateral"
+  },
+  {
+    "id": "0a0a71850317bbf1f1a143e74e80e4d5d2f57814",
+    "previousNames": [
+      "Alternado Para Frente Step Braço Balanço"
+    ],
+    "name": "Passo alternado à frente com balanço dos braços"
+  },
+  {
+    "id": "93e3d39a329a33c35a3dbab5d2a2734aab9dac3b",
+    "previousNames": [
+      "Alternado Perna Lift Duplo Hands Abdominal Supra"
+    ],
+    "name": "Elevação alternada de pernas com abdominal e alcance das mãos"
+  },
+  {
+    "id": "4bb51513185a4ab383dda336b5e39bf1eed4d720",
+    "previousNames": [
+      "Alternado Perna Lift Toque Braços Círculo"
+    ],
+    "name": "Elevação alternada de pernas com toque e círculos dos braços"
+  },
+  {
+    "id": "6d8319e3d75a0df598a79e547fb3de1f6659fd77",
+    "previousNames": [
+      "Alternado Perna Lift Torção"
+    ],
+    "name": "Elevação alternada de pernas com rotação"
+  },
+  {
+    "id": "50184ee98994c65dec55b93cc792a2cffcb8ae71",
+    "previousNames": [
+      "Atrás Head Bola Slam"
+    ],
+    "name": "Arremesso de bola ao chão por trás da cabeça"
+  },
+  {
+    "id": "5510527c49688c7aae7481459059f7aa37043b85",
+    "previousNames": [
+      "Banco Mergulho (knees Bent)"
+    ],
+    "name": "Tríceps banco com joelhos flexionados"
+  },
+  {
+    "id": "258134a0cc8b238266325dd9ca18a4ce1cd79828",
+    "previousNames": [
+      "Banco Mergulho Em Chão Superior Braços"
+    ],
+    "name": "Tríceps banco com pés no chão"
+  },
+  {
+    "id": "fc6a6a122174b3c43b9fcf25cbfe09f3352893e1",
+    "previousNames": [
+      "Banco Mergulho Segurar"
+    ],
+    "name": "Tríceps banco isométrico"
+  },
+  {
+    "id": "4e6d059dac0ee97e0899f1b9a9d73d3681ce314b",
+    "previousNames": [
+      "Bastão Em Pé Desenvolvimento De Ombros"
+    ],
+    "name": "Desenvolvimento de ombros em pé com bastão"
+  },
+  {
+    "id": "72567a36c3c27bf75e07019c46dbcc651be9c2a7",
+    "previousNames": [
+      "Bastão Flexionado Sobre Pronated Pegada Remada"
+    ],
+    "name": "Remada curvada com bastão e pegada pronada"
+  },
+  {
+    "id": "e0e8ac2e1310f6719bd38feaaf765e1711991ffe",
+    "previousNames": [
+      "Bastão Levantamento Terra"
+    ],
+    "name": "Levantamento terra com bastão"
+  },
+  {
+    "id": "00c375b950166d2184c7cf5dc8c11eda92117c59",
+    "previousNames": [
+      "Bastão Ombro Mobilization Em Abduction"
+    ],
+    "name": "Mobilidade de ombros em abdução com bastão"
+  },
+  {
+    "id": "7cdb59a8d05016b8d6e5427f0432cc82d2093d7f",
+    "previousNames": [
+      "Body Aberto Cruzado Pés"
+    ],
+    "name": "Abertura do corpo com cruzamento dos pés"
+  },
+  {
+    "id": "5bf09cb0987bf5e5fbaa98dc47713ae2c1a64347",
+    "previousNames": [
+      "Braço Elevação Step Em Place"
+    ],
+    "name": "Passos no lugar com elevação dos braços"
+  },
+  {
+    "id": "6b416adbceeba3c08f695451fc62feffd9d50623",
+    "previousNames": [
+      "Braços Círculo Marchando Em Spot"
+    ],
+    "name": "Marcha estacionária com círculos dos braços"
+  },
+  {
+    "id": "cbf127402870da3530cdbac356f863c6b02688dc",
+    "previousNames": [
+      "Bulgarian Agachamento Búlgaro Coxas"
+    ],
+    "name": "Agachamento búlgaro"
+  },
+  {
+    "id": "d19a6f4ddb44264dccfa1f137d69002726ae7d52",
+    "previousNames": [
+      "Cardio Afundo"
+    ],
+    "name": "Afundo dinâmico para cardio"
+  },
+  {
+    "id": "17f252de8269fa7ac40c87dd2001de170db19760",
+    "previousNames": [
+      "Chinese Prancha"
+    ],
+    "name": "Prancha chinesa"
+  },
+  {
+    "id": "53825474f4e81b4ce3967f48aa1f1cbb4fbbc5d4",
+    "previousNames": [
+      "Chutes Perna Flexionado"
+    ],
+    "name": "Chutes com joelhos flexionados"
+  },
+  {
+    "id": "fd9b5b3bd65f42a5a790db692d6ab7f8a494fa15",
+    "previousNames": [
+      "Com Peso Chains Deitado Banco Crucifixo"
+    ],
+    "name": "Crucifixo deitado no banco com correntes"
+  },
+  {
+    "id": "1c1bd8dba4686185bdd488d6411ca136243efc30",
+    "previousNames": [
+      "Costas Chute Desenvolvimento"
+    ],
+    "name": "Coice com desenvolvimento dos braços"
+  },
+  {
+    "id": "2684c5835d6a91bc2fee5c1b35034bf333b939c3",
+    "previousNames": [
+      "Costas Shuffle Lateral Chuteout"
+    ],
+    "name": "Deslocamento para trás com chute lateral"
+  },
+  {
+    "id": "b4fb1c77446617db4fd363f79f9d232bb285dbd0",
+    "previousNames": [
+      "Cotovelo Lift Reverso Flexão"
+    ],
+    "name": "Extensão de tronco no banco com impulso dos cotovelos"
+  },
+  {
+    "id": "f23b35111aa6930a0e9770f0061f0627662b0684",
+    "previousNames": [
+      "Cotovelo Para Joelho Declinado Prancha Lateral"
+    ],
+    "name": "Prancha lateral declinada com cotovelo no joelho"
+  },
+  {
+    "id": "1c0ecbe638a16ab5f84a2664b045cd31b02c125b",
+    "previousNames": [
+      "Criss Cruzado Cotovelo Para Joelho"
+    ],
+    "name": "Toque cruzado de cotovelo no joelho"
+  },
+  {
+    "id": "245961d800c08d50a4b948120d47a5c1954af858",
+    "previousNames": [
+      "Criss Cruzado Polichinelo"
+    ],
+    "name": "Polichinelo cruzado"
+  },
+  {
+    "id": "78e0b0f2dcc0786084f52211b6651a54debcc243",
+    "previousNames": [
+      "Criss Cruzado Salto"
+    ],
+    "name": "Salto com cruzamento das pernas"
+  },
+  {
+    "id": "b065ac3cbeb89eb4351ba2b252f75c3b44b700d6",
+    "previousNames": [
+      "Crucifixo Lateral Step"
+    ],
+    "name": "Abertura dos braços com passo lateral"
+  },
+  {
+    "id": "07837cbe1ad1ffc57c41f7d13d164860e3be481a",
+    "previousNames": [
+      "Cruzado Salto Polichinelo"
+    ],
+    "name": "Polichinelo com salto cruzado"
+  },
+  {
+    "id": "2c7b22b1f27d0e3123cc227c788ed343eb60c053",
+    "previousNames": [
+      "Declinado Abdominal"
+    ],
+    "name": "Abdominal completo no banco declinado"
+  },
+  {
+    "id": "60eb1839e02f015675eecb6aae6e4a1e414f9707",
+    "previousNames": [
+      "Declinado Abdominal (version 3)"
+    ],
+    "name": "Abdominal completo no banco declinado — variação 3"
+  },
+  {
+    "id": "6cb0094e10054bf3fb53e3aabb00bf173a897252",
+    "previousNames": [
+      "Declinado Flexão Peito"
+    ],
+    "name": "Flexão de braços com pés elevados"
+  },
+  {
+    "id": "8cff12cc7909fe9ce75dd6d076cb953f8a34afdb",
+    "previousNames": [
+      "Declinado Ombro Toque"
+    ],
+    "name": "Toque nos ombros com pés elevados"
+  },
+  {
+    "id": "efb1d2366b916dc93953077a5f514e74e0ed4ba8",
+    "previousNames": [
+      "Deitado 6 Inch Segurar"
+    ],
+    "name": "Isometria de pernas a 15 centímetros do chão"
+  },
+  {
+    "id": "91213661454643e5ba241027d950b34abf05518f",
+    "previousNames": [
+      "Deitado Elevação De Pernas Reto Banco"
+    ],
+    "name": "Elevação de pernas deitado no banco reto"
+  },
+  {
+    "id": "ae70aecdc0ed09b643f2dcea913a57e05329c7af",
+    "previousNames": [
+      "Depth Salto"
+    ],
+    "name": "Salto em profundidade"
+  },
+  {
+    "id": "579021517331229fa9da81f064044124d90836c3",
+    "previousNames": [
+      "Donkey Elevação De Panturrilha"
+    ],
+    "name": "Panturrilha com tronco inclinado — donkey"
+  },
+  {
+    "id": "206e3e99f62bc514651b59458903f5e482ef9d48",
+    "previousNames": [
+      "Duck Lateral Soco"
+    ],
+    "name": "Soco lateral em agachamento"
+  },
+  {
+    "id": "38e05952613aede3f9a70c3fa95269cc9f3b2ca3",
+    "previousNames": [
+      "Duplo Joelho Alto Lateral Salto Curto"
+    ],
+    "name": "Dois joelhos altos seguidos de salto lateral curto"
+  },
+  {
+    "id": "1ac2072d41604721e5dfe9f806cb195b4507ae52",
+    "previousNames": [
+      "Duplo Soco Frente Perna Lift"
+    ],
+    "name": "Soco duplo com elevação frontal de perna"
+  },
+  {
+    "id": "96933355add528bb72cca95a25250bdb3b9f7c0f",
+    "previousNames": [
+      "Elevação De Panturrilha Palma"
+    ],
+    "name": "Elevação de panturrilha com palmas"
+  },
+  {
+    "id": "d52fd3a08f8121c15c537b3ba97bc56bf4c31b5d",
+    "previousNames": [
+      "Elevação De Pernas Dragon Flag"
+    ],
+    "name": "Dragon flag"
+  },
+  {
+    "id": "845b2a8727a020b205e0a43fafd1ec5bf0074ff9",
+    "previousNames": [
+      "Elevação Frontal Skater Stepback"
+    ],
+    "name": "Passo do patinador para trás com elevação frontal dos braços"
+  },
+  {
+    "id": "d24a699207eb064a1c762d8ab53a47c7180458ef",
+    "previousNames": [
+      "Elevação Pélvicas"
+    ],
+    "name": "Elevação pélvica"
+  },
+  {
+    "id": "e7e8ef8bc7244cf66b515c8fd8302397fd916a09",
+    "previousNames": [
+      "Elevated Agachamento Búlgaro"
+    ],
+    "name": "Agachamento búlgaro com elevação"
+  },
+  {
+    "id": "df2bed2c605ae8bb646575294a4fa53169d57be3",
+    "previousNames": [
+      "Elevated Escalador Com Hands Em Banco (m"
+    ],
+    "name": "Escalador com mãos apoiadas no banco"
+  },
+  {
+    "id": "47792843aabdf03019a1162b97756c6d1aefc765",
+    "previousNames": [
+      "Elevated Unilateral Perna Elevação Pélvica"
+    ],
+    "name": "Elevação pélvica unilateral com costas no banco e pé elevado"
+  },
+  {
+    "id": "b97e5dede99838cca05e1fcd7379ec8ecb4b5392",
+    "previousNames": [
+      "Em Pé Sprint"
+    ],
+    "name": "Corrida rápida no lugar"
+  },
+  {
+    "id": "f0e954affe8beb76bd7d17bd995cc2cff26d36ea",
+    "previousNames": [
+      "Em Prono Y Elevação"
+    ],
+    "name": "Elevação dos braços em Y deitado de barriga para baixo"
+  },
+  {
+    "id": "d34f208fbbe2373b85ff6e99e839f729296ac08c",
+    "previousNames": [
+      "Flutter Chutes"
+    ],
+    "name": "Chutes alternados de pernas suspensas"
+  },
+  {
+    "id": "6f0408b2c15cb7fca58a92aacc47ce64c35d6299",
+    "previousNames": [
+      "Flutter Chutes (version 2)"
+    ],
+    "name": "Chutes alternados de pernas suspensas — variação 2"
+  },
+  {
+    "id": "1ca78c06f26cfa76eb247f08fde1fc42ff89898e",
+    "previousNames": [
+      "Frente Chute Torção"
+    ],
+    "name": "Chute frontal com rotação"
+  },
+  {
+    "id": "39ace1dfa26d29b0fd560e3f1f07ed3cb75903fc",
+    "previousNames": [
+      "Frente E Lateral Elevação De Joelho"
+    ],
+    "name": "Elevação de joelhos à frente e para o lado"
+  },
+  {
+    "id": "8bd9c5dd62582b60c63186c1c646bfa9624fb564",
+    "previousNames": [
+      "Frente Perna Chute"
+    ],
+    "name": "Chute frontal"
+  },
+  {
+    "id": "a5c6ae72fcaabe70c6a906da6781295c1f5093cf",
+    "previousNames": [
+      "Glúteo Unilateral Perna Ponte De Banco"
+    ],
+    "name": "Ponte de glúteos unilateral com apoio no banco"
+  },
+  {
+    "id": "90edabcbdaf3ddc04ff36f4f42a91983422346a8",
+    "previousNames": [
+      "Horse Stance Agachamento"
+    ],
+    "name": "Agachamento com base ampla na postura do cavalo"
+  },
+  {
+    "id": "d946f8044c8851f2f1b70d0cb4ceada592c91346",
+    "previousNames": [
+      "Inclinado Cotovelo Prancha"
+    ],
+    "name": "Prancha nos antebraços com apoio elevado"
+  },
+  {
+    "id": "2f5a417e8d8b36256e735d652105e28bb1127211",
+    "previousNames": [
+      "Inclinado Fechado Pegada Flexão"
+    ],
+    "name": "Flexão inclinada com mãos próximas"
+  },
+  {
+    "id": "c038b95c88b85318449aa86947ef55481834ac14",
+    "previousNames": [
+      "Inclinado Ombro Toque"
+    ],
+    "name": "Toque nos ombros com mãos em apoio elevado"
+  },
+  {
+    "id": "aca9b7f682fbdf489f77c0ce8d916d41974153c9",
+    "previousNames": [
+      "Inclinado Reverso Hyperextension"
+    ],
+    "name": "Extensão reversa de quadril no banco inclinado"
+  },
+  {
+    "id": "06314340ce181d7b37b67a113eb1574d513b266c",
+    "previousNames": [
+      "Inclinado Torcendo Abdominal"
+    ],
+    "name": "Abdominal com rotação no banco inclinado"
+  },
+  {
+    "id": "d4bd97039ba3ff21c0cc0eb56cfd1471557dbc06",
+    "previousNames": [
+      "Inclinado Torcendo Abdominal (version 2) Cintura"
+    ],
+    "name": "Abdominal com rotação no banco inclinado — variação 2"
+  },
+  {
+    "id": "d0f875790d1f8b31b6000c9fe843d5ed98789b8b",
+    "previousNames": [
+      "Interlock Fist Círculo Draw"
+    ],
+    "name": "Círculos com mãos entrelaçadas"
+  },
+  {
+    "id": "d142a0e5081ea524bbfcf758a7f4522bf56ef4e1",
+    "previousNames": [
+      "Jackknife (donkey) Agachamento"
+    ],
+    "name": "Agachamento canivete com apoio"
+  },
+  {
+    "id": "a796fa16dafba255737fd7712caee44920af281c",
+    "previousNames": [
+      "Joelho Flexão"
+    ],
+    "name": "Flexão de joelho"
+  },
+  {
+    "id": "524f9280be0a4c922d2c4fd52e3b1310a3eb332d",
+    "previousNames": [
+      "Landmine 180"
+    ],
+    "name": "Giro de tronco com landmine"
+  },
+  {
+    "id": "d620db4cc76cef942a2954a86e7a8d7f8597a10e",
+    "previousNames": [
+      "Landmine Acima Da Cabeça Rear Afundo"
+    ],
+    "name": "Afundo reverso com landmine acima da cabeça"
+  },
+  {
+    "id": "01ff89d4da56f06eec89452d08480e6da2d2e5d5",
+    "previousNames": [
+      "Landmine Agachamento"
+    ],
+    "name": "Agachamento com landmine"
+  },
+  {
+    "id": "942d1c26e893db7ad87d43f721a683304035281e",
+    "previousNames": [
+      "Landmine Agachamento Com Linebacker Attachment"
+    ],
+    "name": "Agachamento com landmine e suporte linebacker"
+  },
+  {
+    "id": "0f67a4282c6118f796403d03909b5f09178e1886",
+    "previousNames": [
+      "Landmine Agachamento E Pressão"
+    ],
+    "name": "Agachamento com desenvolvimento usando landmine"
+  },
+  {
+    "id": "456cb8048517b80220afbe1ffdcfc9c7e3b36302",
+    "previousNames": [
+      "Landmine Ajoelhado One Braço Desenvolvimento De Ombros"
+    ],
+    "name": "Desenvolvimento unilateral com landmine ajoelhado"
+  },
+  {
+    "id": "a96f652ca4251d979356d302ddb4ab3f145f6bc7",
+    "previousNames": [
+      "Landmine Ajoelhado One Braço Desenvolvimento De Ombros Ombros"
+    ],
+    "name": "Desenvolvimento unilateral com landmine ajoelhado"
+  },
+  {
+    "id": "40c564346c0ee7fa3947173b00d0c048ed109691",
+    "previousNames": [
+      "Landmine Ajoelhado Squeeze Pressão"
+    ],
+    "name": "Desenvolvimento com mãos unidas no landmine ajoelhado"
+  },
+  {
+    "id": "0085de3f2695fc4674f7e4c222a4616d9efd96f9",
+    "previousNames": [
+      "Landmine Ajoelhado Thruster Pressão"
+    ],
+    "name": "Agachamento ajoelhado com desenvolvimento usando landmine"
+  },
+  {
+    "id": "97bffa329a07efad1b5da49239527f35632e6ba2",
+    "previousNames": [
+      "Landmine Chão One Braço Crucifixo"
+    ],
+    "name": "Crucifixo unilateral no chão com landmine"
+  },
+  {
+    "id": "59dfecb41813c9db7b9f607dec88ae2d2c0fe9a8",
+    "previousNames": [
+      "Landmine Elevação Lateral"
+    ],
+    "name": "Elevação lateral com landmine"
+  },
+  {
+    "id": "02499275503b870ce689a91a6a29c0e03ddf35f8",
+    "previousNames": [
+      "Landmine Em Pé Lateral Inclinação"
+    ],
+    "name": "Inclinação lateral em pé com landmine"
+  },
+  {
+    "id": "3d30afc6394600ab2bf9f97099dbd9fd055c339c",
+    "previousNames": [
+      "Landmine Flexão"
+    ],
+    "name": "Flexão de braços com apoio no landmine"
+  },
+  {
+    "id": "0a51ba166465d32b7458432a69d754f29745b293",
+    "previousNames": [
+      "Landmine Frente Agachamento"
+    ],
+    "name": "Agachamento frontal com landmine"
+  },
+  {
+    "id": "445689d693f5a3897d04ddf2c2f7665ec7b7f374",
+    "previousNames": [
+      "Landmine Levantamento Terra"
+    ],
+    "name": "Levantamento terra com landmine"
+  },
+  {
+    "id": "96af4402afd65882de9b1ca5a27690be53d008f8",
+    "previousNames": [
+      "Landmine Levantamento Terra Romeno"
+    ],
+    "name": "Levantamento terra romeno com landmine"
+  },
+  {
+    "id": "24f2bc3a69992c06a234b6724f3638dc895f1f82",
+    "previousNames": [
+      "Landmine Levantamento Terra Romeno (version 2)"
+    ],
+    "name": "Levantamento terra romeno com landmine — variação 2"
+  },
+  {
+    "id": "1b09f20894d612faf7a097e61a6168dd85ee380e",
+    "previousNames": [
+      "Landmine Neutral Pegada Peito Pressão Com Viking Pres"
+    ],
+    "name": "Supino com landmine e suporte Viking, pegada neutra"
+  },
+  {
+    "id": "8fdf44640a636f2c41f83f3f7a13961136ae98c4",
+    "previousNames": [
+      "Landmine Ombro Para Desenvolvimento De Ombros"
+    ],
+    "name": "Desenvolvimento alternado de ombro a ombro com landmine"
+  },
+  {
+    "id": "66005695730dbed54da81676158b8672fbff4b2b",
+    "previousNames": [
+      "Landmine Ombros Pressão Com Viking Pressão Attachm"
+    ],
+    "name": "Desenvolvimento com landmine e suporte Viking"
+  },
+  {
+    "id": "a6f2a5c8de4856390e5eb02286e0cec498c0af3e",
+    "previousNames": [
+      "Landmine One Braço Remada Curvada"
+    ],
+    "name": "Remada curvada unilateral com landmine"
+  },
+  {
+    "id": "254e643ca6cccc692f558a9c823b9a912bc6dc37",
+    "previousNames": [
+      "Landmine One Braço Remada Curvada (version 2)"
+    ],
+    "name": "Remada curvada unilateral com landmine — variação 2"
+  },
+  {
+    "id": "a80e36aad4fe31676d75f3d8491301ff02c57ba7",
+    "previousNames": [
+      "Landmine One Perna Stiff Perna Levantamento Terra"
+    ],
+    "name": "Stiff unilateral com landmine"
+  },
+  {
+    "id": "9485da2c8bb56c4db4086d7ea1df23da63a1e5bd",
+    "previousNames": [
+      "Landmine Pressão"
+    ],
+    "name": "Desenvolvimento com landmine"
+  },
+  {
+    "id": "93e0dd05857e5e83836d275fd94f83976c1eea2a",
+    "previousNames": [
+      "Landmine Rear Afundo"
+    ],
+    "name": "Afundo reverso com landmine"
+  },
+  {
+    "id": "c5b99e67a88a7d13ad00d7f5d75dabcbccb9ceac",
+    "previousNames": [
+      "Landmine Rear Afundo (version 2)"
+    ],
+    "name": "Afundo reverso com landmine — variação 2"
+  },
+  {
+    "id": "c5bcc5ba941da71877bf45e00cd6b66b5b15c243",
+    "previousNames": [
+      "Landmine Sentado Desenvolvimento De Ombros"
+    ],
+    "name": "Desenvolvimento de ombros sentado com landmine"
+  },
+  {
+    "id": "95750abd854a6f00dfc23a17175addc2837ec985",
+    "previousNames": [
+      "Landmine Sissy Agachamento"
+    ],
+    "name": "Agachamento sissy com landmine"
+  },
+  {
+    "id": "42b7c2485d2c960a55d0789990aabe63daeabd3c",
+    "previousNames": [
+      "Landmine Sumo Agachamento"
+    ],
+    "name": "Agachamento sumô com landmine"
+  },
+  {
+    "id": "5fc07de9f104b84d160c1a520afcf8bd204f3741",
+    "previousNames": [
+      "Landmine Unilateral Braço Baixo Crucifixo"
+    ],
+    "name": "Crucifixo unilateral de baixo para cima com landmine"
+  },
+  {
+    "id": "dfb82e89cbc5d2c1268f479da69c38cc44697d05",
+    "previousNames": [
+      "Landmine Unilateral Braço Lateral Baixo Crucifixo"
+    ],
+    "name": "Crucifixo lateral unilateral de baixo para cima com landmine"
+  },
+  {
+    "id": "7f92c0be5e3d56396e8b2fc126445ced9fd40d01",
+    "previousNames": [
+      "Landmine Unilateral Braço Pressão"
+    ],
+    "name": "Desenvolvimento unilateral com landmine"
+  },
+  {
+    "id": "079dae440a50b568bc9e895212c8fc36e0ff6a2e",
+    "previousNames": [
+      "Landmine Unilateral Perna Landmine Rdl"
+    ],
+    "name": "Levantamento terra romeno unilateral com landmine"
+  },
+  {
+    "id": "2baa65afe437267a56c9d26db64c3e5d93baa76f",
+    "previousNames": [
+      "Lateral Deitado Clam E Chute"
+    ],
+    "name": "Abdução de quadril em concha seguida de chute"
+  },
+  {
+    "id": "ffe0da9a5cd97a9a11eb4712d26fed76aba5faae",
+    "previousNames": [
+      "Lateral Deitado Scissors"
+    ],
+    "name": "Tesoura de pernas deitado de lado"
+  },
+  {
+    "id": "35f50ba1e4cfed110fac03db1a9ae004c29e0783",
+    "previousNames": [
+      "Lateral Deitado Unilateral Braço Triceps Flexão"
+    ],
+    "name": "Extensão de tríceps unilateral deitado de lado com peso corporal"
+  },
+  {
+    "id": "bdc5f333cf2cb5d8c1dccfbcf073df0734b21971",
+    "previousNames": [
+      "Lateral Para Cima Agachamento"
+    ],
+    "name": "Subida lateral com agachamento"
+  },
+  {
+    "id": "5fcef992f42cd3c5eb96b3bba715906cc7ca85a8",
+    "previousNames": [
+      "Lateral Para Lateral Rápido Step"
+    ],
+    "name": "Passos rápidos de um lado para o outro"
+  },
+  {
+    "id": "14a16c3ee337694a6117e373c21a7e17f062bee7",
+    "previousNames": [
+      "Lateral Para Lateral Salto Curto"
+    ],
+    "name": "Saltos curtos de um lado para o outro"
+  },
+  {
+    "id": "458ce655c93ed610d7acee9a61dfa998c28a5c80",
+    "previousNames": [
+      "Lateral Para Lateral Salto Curto"
+    ],
+    "name": "Saltos curtos de um lado para o outro"
+  },
+  {
+    "id": "1b346a1e0cecb82ef582cb2cba7e4f14878a9165",
+    "previousNames": [
+      "Lateral Salto Torção"
+    ],
+    "name": "Salto lateral com rotação"
+  },
+  {
+    "id": "0dca9e18420c74daf00747a4c76cf56fe1c8e90e",
+    "previousNames": [
+      "Lateral Shuffle Joelho Alto"
+    ],
+    "name": "Deslocamento lateral com joelhos altos"
+  },
+  {
+    "id": "fa7364aa882f80f506da24bca9065276f34f18b3",
+    "previousNames": [
+      "Lateral Step Shuffles"
+    ],
+    "name": "Deslocamento com passos laterais"
+  },
+  {
+    "id": "7649ca61fe4092ca57018459e24f7deb22676b7a",
+    "previousNames": [
+      "Lateral Toque Em Agachamento Position"
+    ],
+    "name": "Toque lateral em posição de agachamento"
+  },
+  {
+    "id": "0071e61dcdd64d9ab890e6373112f9e94879496d",
+    "previousNames": [
+      "Lever Remada Curvada (plate Loaded)"
+    ],
+    "name": "Remada cavalinho com anilhas"
+  },
+  {
+    "id": "3e45b892ed1341d51da15aee0e6d0870b90b20c7",
+    "previousNames": [
+      "Lever Remada Curvada Com V Bar (plate Loaded)"
+    ],
+    "name": "Remada cavalinho com triângulo e anilhas"
+  },
+  {
+    "id": "06f544a8f0f4fe2bdbce8cf623f22fe01a84d1b8",
+    "previousNames": [
+      "Lever T Bar Remada (plate Loaded)"
+    ],
+    "name": "Remada cavalinho na máquina com anilhas"
+  },
+  {
+    "id": "75f1f036af73236cf705ea8f62070614696c2900",
+    "previousNames": [
+      "Marchando Em Spot"
+    ],
+    "name": "Marcha estacionária"
+  },
+  {
+    "id": "82946a41a0b02d31017df2161b19348548759c3b",
+    "previousNames": [
+      "Meio Joelho Bends"
+    ],
+    "name": "Meia flexão de joelhos"
+  },
+  {
+    "id": "6378a1fc904a9fdb654f2b25b263b1ba1d321c65",
+    "previousNames": [
+      "Meio Polichinelo"
+    ],
+    "name": "Meio polichinelo"
+  },
+  {
+    "id": "86a67005b5a0f3cf68a63f31b07173c0e66302b6",
+    "previousNames": [
+      "Meio Polichinelo (version 2)"
+    ],
+    "name": "Meio polichinelo — variação 2"
+  },
+  {
+    "id": "ccf951b9660e0eab0656537d3cc765fcccc684fe",
+    "previousNames": [
+      "Oblique Abdominal Supra (version 2)"
+    ],
+    "name": "Abdominal oblíquo — variação 2"
+  },
+  {
+    "id": "ecda3ed90d2b8bcafc45bb666855f4c4dd386740",
+    "previousNames": [
+      "One Perna Chão Elevação De Panturrilha"
+    ],
+    "name": "Panturrilha unilateral no chão"
+  },
+  {
+    "id": "f1dd9d310fc682b8306e59f0c59a9b781fd2a56a",
+    "previousNames": [
+      "One Perna Donkey Elevação De Panturrilha"
+    ],
+    "name": "Panturrilha unilateral com tronco inclinado — donkey"
+  },
+  {
+    "id": "4cb675a7516ae9b37363fa67473b2c7004122237",
+    "previousNames": [
+      "One Perna Quarter Agachamento"
+    ],
+    "name": "Agachamento unilateral de um quarto"
+  },
+  {
+    "id": "67ab19278451ed923f701d42d201e072320e543c",
+    "previousNames": [
+      "Para Frente Para Trás Rápido Step"
+    ],
+    "name": "Passos rápidos para frente e para trás"
+  },
+  {
+    "id": "694fa2adf8dbc33e80090bdc8025fe9b948edfa0",
+    "previousNames": [
+      "Para Frente Para Trás Sideward"
+    ],
+    "name": "Passos para frente, para trás e para o lado"
+  },
+  {
+    "id": "64ca99f04314d6655cc85da571ab293f2876d409",
+    "previousNames": [
+      "Peito Mergulho Em Banco"
+    ],
+    "name": "Mergulho com apoio no banco"
+  },
+  {
+    "id": "2a3e99835b5f8ce4be47d77198f0ab83e5402cf0",
+    "previousNames": [
+      "Peso Corporal Apoiado Agachamento"
+    ],
+    "name": "Agachamento com apoio"
+  },
+  {
+    "id": "48ee43eb9fa620b08bdf60ca8a5813fc6660f36f",
+    "previousNames": [
+      "Peso Corporal Calcanhar Elevated Bulgarian Agachamento Búlgaro (ma"
+    ],
+    "name": "Agachamento búlgaro sem carga com calcanhar elevado"
+  },
+  {
+    "id": "8f7a420d4ba1e7b4801760c0ab71e82a50621cd3",
+    "previousNames": [
+      "Peso Corporal Caminhando Elevação De Panturrilha"
+    ],
+    "name": "Caminhada com elevação de panturrilhas"
+  },
+  {
+    "id": "d26c82b9ad66001ad3d7f658fa8d12606c729f8a",
+    "previousNames": [
+      "Peso Corporal Deitado Pernas Rosca"
+    ],
+    "name": "Flexão de joelhos deitado sem carga"
+  },
+  {
+    "id": "b4d2bd4cd334a36ffe797191677917505fe7ac16",
+    "previousNames": [
+      "Peso Corporal Em Pé Alternado Crucifixo"
+    ],
+    "name": "Crucifixo alternado em pé sem carga"
+  },
+  {
+    "id": "f46dc340f6a65e2cc00b8daf88f4e860ea914785",
+    "previousNames": [
+      "Peso Corporal Em Pé Crucifixo"
+    ],
+    "name": "Crucifixo em pé sem carga"
+  },
+  {
+    "id": "fb6bd4a74ef284a02aea3ddfe95faa9fc6afef7b",
+    "previousNames": [
+      "Peso Corporal Em Pé Desenvolvimento Militar"
+    ],
+    "name": "Desenvolvimento militar em pé sem carga"
+  },
+  {
+    "id": "9880619f49dc9a17e3f401ec81eb60b8fa6570b8",
+    "previousNames": [
+      "Peso Corporal Em Pé Elevação De Panturrilha"
+    ],
+    "name": "Panturrilha em pé sem carga"
+  },
+  {
+    "id": "b4332ab4059b3c7d182bdb217c47c25f86aedbf3",
+    "previousNames": [
+      "Peso Corporal Em Pé Fechado Pegada One Braço Remada"
+    ],
+    "name": "Remada unilateral com peso corporal e apoio no espaldar"
+  },
+  {
+    "id": "262b8fdd4a4fb5907342edee3d04a6d08c586e70",
+    "previousNames": [
+      "Peso Corporal Em Pé Reto Braço Crucifixo"
+    ],
+    "name": "Crucifixo em pé com braços estendidos sem carga"
+  },
+  {
+    "id": "01eab0e3d6b76fc488a154bea2703f695856be02",
+    "previousNames": [
+      "Peso Corporal Em Pé Reto Braço Peito Alto Crucifixo (m"
+    ],
+    "name": "Crucifixo alto em pé com braços estendidos sem carga"
+  },
+  {
+    "id": "abfb20a123c21d2a36210f0b10ebf18dfc3f0bc6",
+    "previousNames": [
+      "Peso Corporal Em Pé Reto Braço Peito Baixo Crucifixo (ma"
+    ],
+    "name": "Crucifixo baixo em pé com braços estendidos sem carga"
+  },
+  {
+    "id": "075fd59efd5f04c74ed0f71c236db0ebcef76566",
+    "previousNames": [
+      "Peso Corporal Good Morning Remada"
+    ],
+    "name": "Bom dia com remada sem carga"
+  },
+  {
+    "id": "7147d831e51c490158af0470ff17342b5ad4897c",
+    "previousNames": [
+      "Peso Corporal Joelho Impulso"
+    ],
+    "name": "Impulso de joelho"
+  },
+  {
+    "id": "30d86dd6855ee84884728f55904ff0bd43fd77ad",
+    "previousNames": [
+      "Peso Corporal Joelho Para Hand Toque"
+    ],
+    "name": "Toque do joelho na mão"
+  },
+  {
+    "id": "a67cc82eb49c9a6917d2cb3ae3bf50d179425289",
+    "previousNames": [
+      "Peso Corporal Lateral Caminhada"
+    ],
+    "name": "Caminhada lateral sem carga"
+  },
+  {
+    "id": "49be749af714ad39b654b4cb96f364b45df39ac4",
+    "previousNames": [
+      "Peso Corporal Lateral Subida No Step"
+    ],
+    "name": "Subida lateral no step"
+  },
+  {
+    "id": "cad64d4d59c6f9fed0e246f8ce0b862288d1154d",
+    "previousNames": [
+      "Peso Corporal Lateral Subida No Step Coxas"
+    ],
+    "name": "Subida lateral no step"
+  },
+  {
+    "id": "26087a030879540397fc697ea95df67ff0336a3d",
+    "previousNames": [
+      "Peso Corporal Lenhadors"
+    ],
+    "name": "Lenhador sem carga"
+  },
+  {
+    "id": "f676ae18f1231278025a7ab86f9ea46a9253bfab",
+    "previousNames": [
+      "Peso Corporal Sentado Unilateral Braço Concentration Rosca"
+    ],
+    "name": "Rosca concentração unilateral sentado sem carga"
+  },
+  {
+    "id": "11b06485a013029155c462dcff4f230f4b041352",
+    "previousNames": [
+      "Peso Corporal Subida No Step (version 2)"
+    ],
+    "name": "Subida no step — variação 2"
+  },
+  {
+    "id": "dd6d6d971a62524adb8c164fc5e7e36dfcca98dd",
+    "previousNames": [
+      "Peso Corporal Unilateral Braço Elevação Lateral"
+    ],
+    "name": "Elevação lateral unilateral sem carga"
+  },
+  {
+    "id": "5ef3b5d52fcf7e0b8ac93ca4ac2f517859ac5295",
+    "previousNames": [
+      "Peso Corporal Wood Chop Agachamento"
+    ],
+    "name": "Agachamento com lenhador sem carga"
+  },
+  {
+    "id": "dbfb7f8995ce10d6ea8983395ee58629868738dc",
+    "previousNames": [
+      "Peterson Para Frente Lateral Step"
+    ],
+    "name": "Passo Peterson à frente e para o lado"
+  },
+  {
+    "id": "23148020a16abaa79783e4713141953189e8c0ac",
+    "previousNames": [
+      "Pique Flexão (on Bench) (version 2)"
+    ],
+    "name": "Flexão pike com apoio no banco — variação 2"
+  },
+  {
+    "id": "c9f1d1535cd34165b43212446a113b0376b7c82c",
+    "previousNames": [
+      "Ponte De Glúteo De Banco"
+    ],
+    "name": "Ponte de glúteos com apoio no banco"
+  },
+  {
+    "id": "1a42e4ad98a32c9c1b374449049b66abdbf26fc2",
+    "previousNames": [
+      "Ponte De Glúteo Two Pernas Em Banco"
+    ],
+    "name": "Ponte de glúteos com os dois pés no banco"
+  },
+  {
+    "id": "edd10b884975c56481b8873d0f690b503e5f2143",
+    "previousNames": [
+      "Potty Agachamento Com Support"
+    ],
+    "name": "Agachamento profundo com apoio"
+  },
+  {
+    "id": "4bcc607b25daff59755c5d23ff5fd4880fc0b6e2",
+    "previousNames": [
+      "Prayer Empurrão"
+    ],
+    "name": "Pressão das palmas à frente do peito"
+  },
+  {
+    "id": "b760c261166bb140ca8a7efb00598137a1002de4",
+    "previousNames": [
+      "Pvc Acima Da Cabeça Agachamento"
+    ],
+    "name": "Agachamento com bastão de PVC acima da cabeça"
+  },
+  {
+    "id": "81df044abf60a25dcdf10919ba27defaf0d53c18",
+    "previousNames": [
+      "Pvc Good Morning"
+    ],
+    "name": "Bom dia com bastão de PVC"
+  },
+  {
+    "id": "ea9c4c8e347d5352f9baa24ef72fbd5578a8ff19",
+    "previousNames": [
+      "Rápido Pés (version 2)"
+    ],
+    "name": "Passos rápidos no lugar — variação 2"
+  },
+  {
+    "id": "fa14afcf856a4cc97b4603163ebb952170619dcb",
+    "previousNames": [
+      "Rápido Pés Run"
+    ],
+    "name": "Corrida com passos curtos e rápidos"
+  },
+  {
+    "id": "ef8393d2c26478d2b481459f909752232ff4a2a7",
+    "previousNames": [
+      "Reverso Hyper Em Reto Banco"
+    ],
+    "name": "Extensão reversa de quadril no banco reto"
+  },
+  {
+    "id": "bb75bf54f7d231e2ca464eb8b51db4844514adbb",
+    "previousNames": [
+      "Reverso Hyperextension Em Banco"
+    ],
+    "name": "Extensão reversa de quadril no banco"
+  },
+  {
+    "id": "3534b38cdda51d4f84becdefa7ee9805a141d6de",
+    "previousNames": [
+      "Reverso Punho Rosca"
+    ],
+    "name": "Extensão de punhos"
+  },
+  {
+    "id": "8f32b7fb4ac6c782cafa6292efce391ab9a28217",
+    "previousNames": [
+      "Saltando Air Bike"
+    ],
+    "name": "Bicicleta em pé com saltos"
+  },
+  {
+    "id": "7ebfc54392c743591a0ec27521c9d8640a28f2d8",
+    "previousNames": [
+      "Saltando Air Bike Braço Balanço"
+    ],
+    "name": "Bicicleta em pé com saltos e balanço dos braços"
+  },
+  {
+    "id": "4330e0a42651ba5e03483372db5813f6159ca811",
+    "previousNames": [
+      "Saltando Unilateral Perna Afundo"
+    ],
+    "name": "Afundo unilateral com saltos"
+  },
+  {
+    "id": "7ce79d89c1ec50696643771fb1a3627659a3d3c8",
+    "previousNames": [
+      "Salto Subida No Step"
+    ],
+    "name": "Subida no step com salto"
+  },
+  {
+    "id": "453850e692cd4b9935a6562b223e463fc8746341",
+    "previousNames": [
+      "Scapula Mergulhos"
+    ],
+    "name": "Depressão escapular com apoio no banco"
+  },
+  {
+    "id": "235ee3004db3989c862175a14561f78ad566f9a3",
+    "previousNames": [
+      "Scissors Salto"
+    ],
+    "name": "Saltos em tesoura"
+  },
+  {
+    "id": "ce07a5300a34d83964e50c7eab7e83623e94ba70",
+    "previousNames": [
+      "Self Assistido Inverted Pullover"
+    ],
+    "name": "Pullover invertido com assistência"
+  },
+  {
+    "id": "344b7b15a26cd227ccc3c19588fe79561e378f07",
+    "previousNames": [
+      "Sentado Alternado Em Para Fora Elevação De Pernas Sobre Banco"
+    ],
+    "name": "Elevação alternada de pernas para dentro e para fora sentado no banco"
+  },
+  {
+    "id": "dc94cd8a9eb863e37e16b15deeb771f159cd7b7d",
+    "previousNames": [
+      "Sentado Diagonal Elevação De Joelho Em Banco"
+    ],
+    "name": "Elevação diagonal de joelhos sentado no banco"
+  },
+  {
+    "id": "a234b80de8f062d375622d4da5db431231f42e78",
+    "previousNames": [
+      "Sentado Elevação De Pernas"
+    ],
+    "name": "Elevação de pernas sentado"
+  },
+  {
+    "id": "5bd9540202d47a64df52e426f4f25ddb7624e2d2",
+    "previousNames": [
+      "Sentado Em Para Fora Elevação De Pernas Sobre Banco"
+    ],
+    "name": "Elevação de pernas para dentro e para fora sentado no banco"
+  },
+  {
+    "id": "70347f579b536b405c42736d8d84385b270de6e2",
+    "previousNames": [
+      "Sentado Pernas Círculo Sobre Banco"
+    ],
+    "name": "Círculos de pernas sentado no banco"
+  },
+  {
+    "id": "6d5a6d2870bcf7dfb616ce21c4be1da9e4e8a327",
+    "previousNames": [
+      "Shuffle Saltos Curtos"
+    ],
+    "name": "Deslocamento com saltos curtos"
+  },
+  {
+    "id": "e9a48c53ea56ffc3f715e2debd77cfba44d61295",
+    "previousNames": [
+      "Sideward Shuffle"
+    ],
+    "name": "Deslocamento lateral"
+  },
+  {
+    "id": "2c7962c6360119b5c4cd678ae141701145d82283",
+    "previousNames": [
+      "Sissy Agachamento Peso Corporal Coxas"
+    ],
+    "name": "Agachamento sissy sem carga"
+  },
+  {
+    "id": "dc71807e6ad73f14b6cd06b989496bd261a6066b",
+    "previousNames": [
+      "Skater Saltos Curtos"
+    ],
+    "name": "Saltos curtos do patinador"
+  },
+  {
+    "id": "5173d5ac90e983ce5a53d022fb75972fc5287484",
+    "previousNames": [
+      "Subida No Step Com Elevação De Joelho"
+    ],
+    "name": "Subida no step com elevação de joelho"
+  },
+  {
+    "id": "d34bb5c0e5dee10de678fedf0e00e199339933cb",
+    "previousNames": [
+      "Torção Flexão"
+    ],
+    "name": "Flexão de braços com rotação"
+  },
+  {
+    "id": "fa57e10e20893aa6852b282d9623244bd5639dd6",
+    "previousNames": [
+      "Triceps Mergulho (bench Leg)"
+    ],
+    "name": "Tríceps banco com pernas apoiadas no banco"
+  },
+  {
+    "id": "36675e141f9480dd6a0b4833c5d2e5010ee04f8b",
+    "previousNames": [
+      "Triceps Pressão (head Below Bench) Superior Braços"
+    ],
+    "name": "Extensão de tríceps com cabeça abaixo do banco"
+  },
+  {
+    "id": "cbc567ac1b7fcbe2dafa1cdc1841abc394a393a4",
+    "previousNames": [
+      "Unilateral Perna Agachamento (pistol) Coxas"
+    ],
+    "name": "Agachamento pistola"
+  },
+  {
+    "id": "cf608657055ecce3a136b7ad84f2b58bdd820a91",
+    "previousNames": [
+      "Unilateral Perna Elevação Pélvica Salto"
+    ],
+    "name": "Elevação pélvica unilateral com salto"
+  },
+  {
+    "id": "2038034d4f01c8aaf080051bfc2cc4d00f762328",
+    "previousNames": [
+      "Unilateral Perna Elevação Pélvicas"
+    ],
+    "name": "Elevação pélvica unilateral"
+  },
+  {
+    "id": "98008a240bf40fa6883c43bd49c0dcd0179e973c",
+    "previousNames": [
+      "Unilateral Perna Empurrão Off"
+    ],
+    "name": "Impulsão unilateral de perna"
+  },
+  {
+    "id": "b2e731b663007946a66425f06417fe514d01f84e",
+    "previousNames": [
+      "Unilateral Perna Levantamento Terra Com Joelho Lift"
+    ],
+    "name": "Levantamento terra unilateral com elevação de joelho"
+  },
+  {
+    "id": "813683f81db6b7e289556da8f262c245eeaf98dc",
+    "previousNames": [
+      "Unilateral Perna Para Frente Inclinação"
+    ],
+    "name": "Inclinação à frente com apoio em uma perna"
   }
 ]
