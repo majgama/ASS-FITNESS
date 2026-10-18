@@ -8543,5 +8543,2035 @@
       "V Step E Costas"
     ],
     "name": "Passo em V com retorno para trás"
+  },
+  {
+    "id": "c0bf48a51e2d22dba966535d3f8eb671033cafda",
+    "previousNames": [
+      "Aberto Caminhando Em Spot (front Pov)"
+    ],
+    "name": "Marcha estacionária com base aberta — vista frontal"
+  },
+  {
+    "id": "ef13741605ec7924b0d95f8dc2f17a58f892345f",
+    "previousNames": [
+      "Aberto Stance Split Afundo Com Cadeira Support (female"
+    ],
+    "name": "Afundo com base aberta e apoio na cadeira"
+  },
+  {
+    "id": "f09d7b506d53b9dcab75fa24c3c5a20adbc23aac",
+    "previousNames": [
+      "Acima Da Cabeça E Sob Joelho Palma"
+    ],
+    "name": "Palma acima da cabeça alternada com palma sob o joelho"
+  },
+  {
+    "id": "0061cc7699ea486bad2e68086bdd36ebe9214231",
+    "previousNames": [
+      "Acima Da Cabeça Elevação De Joelho"
+    ],
+    "name": "Elevação de joelhos com braços acima da cabeça"
+  },
+  {
+    "id": "a805bbc9169525c52a30ac85fcd42be07a86903c",
+    "previousNames": [
+      "Acima Da Cabeça Empurrão Alternado Elevação De Joelho"
+    ],
+    "name": "Empurrada dos braços acima da cabeça com elevação alternada de joelhos"
+  },
+  {
+    "id": "581e3abba95ab30abc1bca8bda695bb9799d2d93",
+    "previousNames": [
+      "Acima Da Cabeça Palma"
+    ],
+    "name": "Palmas acima da cabeça"
+  },
+  {
+    "id": "a9695baa09c1fc61c8652d01935662c8d229b659",
+    "previousNames": [
+      "Acima Da Cabeça Palma Elevação De Joelho"
+    ],
+    "name": "Palmas acima da cabeça com elevação de joelho"
+  },
+  {
+    "id": "57711d9c8fc09cb203f063728a55417b13addca2",
+    "previousNames": [
+      "Acima Da Cabeça Palma Marcha"
+    ],
+    "name": "Marcha com palmas acima da cabeça"
+  },
+  {
+    "id": "187b94c47927a84f1bd3c95a12cd9d8be14df746",
+    "previousNames": [
+      "Afundo Lateral Acima Da Cabeça Alcance"
+    ],
+    "name": "Afundo lateral com alcance acima da cabeça"
+  },
+  {
+    "id": "d7940eba7ed604309b8e6ec52075423abf2aae66",
+    "previousNames": [
+      "Agachamento Búlgaro Calcanhar Elevação"
+    ],
+    "name": "Agachamento búlgaro com calcanhar elevado"
+  },
+  {
+    "id": "bf5b1dbcf8d4d50a5bc7c2a0046b0f3b36c4c590",
+    "previousNames": [
+      "Agachamento Búlgaro Em Cadeira"
+    ],
+    "name": "Agachamento búlgaro com apoio na cadeira"
+  },
+  {
+    "id": "3cab02d7c39b6f0f8e2d21672fe94ebd64449ccb",
+    "previousNames": [
+      "Agachamento Hamstring Rosca"
+    ],
+    "name": "Agachamento com flexão de joelho"
+  },
+  {
+    "id": "943ff105a388d67f3fec5ebecf56447110af1165",
+    "previousNames": [
+      "Agachamento Para Cadeira Extensora"
+    ],
+    "name": "Agachamento seguido de extensão de joelho"
+  },
+  {
+    "id": "1f48db36169c60ce22b1e0b7e958c0ad1ad6599c",
+    "previousNames": [
+      "Agachamento Para Cadeira Extensora E Torso Torção"
+    ],
+    "name": "Agachamento com extensão de joelho e rotação de tronco"
+  },
+  {
+    "id": "9f9a0da9656b71cacf70e9540449dff9b5260244",
+    "previousNames": [
+      "Agachamento Torção"
+    ],
+    "name": "Agachamento com rotação do tronco"
+  },
+  {
+    "id": "3b7f3845f608db4bdade27a12e2e2cc9eeed7db6",
+    "previousNames": [
+      "Ajoelhado Medial Hamstring Groin Alcance"
+    ],
+    "name": "Alcance ajoelhado para alongar posteriores de coxa e adutores"
+  },
+  {
+    "id": "ddd02bda624dbe87a40be55a765a5ceba149afc7",
+    "previousNames": [
+      "Ajoelhado Rotação Torso Alternado Remada Para Thread Th"
+    ],
+    "name": "Rotação do tronco ajoelhado com remada alternada e passagem do braço por baixo do corpo"
+  },
+  {
+    "id": "1b7f9a4def7f4db96ec1caba7a9f084c5055772e",
+    "previousNames": [
+      "Ajoelhado Rotação Torso Rear Crucifixo Para Thread Through"
+    ],
+    "name": "Rotação do tronco ajoelhado com crucifixo inverso e passagem do braço por baixo do corpo"
+  },
+  {
+    "id": "9467bf9f435ac3ea2c2793b0f57c840ed44b33eb",
+    "previousNames": [
+      "Ajoelhado Rotação Torso Thread Through"
+    ],
+    "name": "Rotação torácica ajoelhado com passagem do braço por baixo do corpo"
+  },
+  {
+    "id": "195370d452864dacdc9f3dfd9e58ddfac24cfafd",
+    "previousNames": [
+      "Ajoelhado Unilateral Hamstring Rosca"
+    ],
+    "name": "Flexão unilateral de joelho ajoelhado"
+  },
+  {
+    "id": "1cfc16df0316731bb3081638f61a0e5414aae3c0",
+    "previousNames": [
+      "Alternado Agachamento E Alcance"
+    ],
+    "name": "Agachamento com alcance alternado"
+  },
+  {
+    "id": "4a85cbd639f72574084e0d863784a1bda440f064",
+    "previousNames": [
+      "Alternado Agachamento E Alcance"
+    ],
+    "name": "Agachamento com alcance alternado"
+  },
+  {
+    "id": "83453e96b1c496f53f645c45e0f21c06ceb61065",
+    "previousNames": [
+      "Alternado Calcanhar Toque Lateral Chute Agachamento"
+    ],
+    "name": "Agachamento com toque alternado nos calcanhares e chute lateral"
+  },
+  {
+    "id": "9923b56f9030fb5a1401bd550f5d6ec72aecf5d8",
+    "previousNames": [
+      "Alternado Celebratory Elevação De Joelhos"
+    ],
+    "name": "Elevação alternada de joelhos com elevação dos braços"
+  },
+  {
+    "id": "5b535a70735029a85f40807e40308ff8c64a06eb",
+    "previousNames": [
+      "Alternado Celebratory Elevação De Joelhos"
+    ],
+    "name": "Elevação alternada de joelhos com elevação dos braços"
+  },
+  {
+    "id": "02788c532ac0bdf7922891cb12a1f47dce68e1b2",
+    "previousNames": [
+      "Alternado Elevação De Pernas De Reverso Prancha Position (f"
+    ],
+    "name": "Elevação alternada de pernas em prancha invertida"
+  },
+  {
+    "id": "e177d40a6f1c393e4db5789e3787814e488a6374",
+    "previousNames": [
+      "Alternado Elevação De Pernas De Reverso Prancha Position (f"
+    ],
+    "name": "Elevação alternada de pernas em prancha invertida"
+  },
+  {
+    "id": "b28f9892f00f43170fca2705d2a509ce37798d7d",
+    "previousNames": [
+      "Alternado Frente Step Elevação De Joelho"
+    ],
+    "name": "Passo à frente com elevação alternada dos joelhos"
+  },
+  {
+    "id": "779f26a059b63c0231fc294b5ff12bdb78aa61ac",
+    "previousNames": [
+      "Alternado Frente Step Elevação De Joelho"
+    ],
+    "name": "Passo à frente com elevação alternada dos joelhos"
+  },
+  {
+    "id": "5f91d911f29739d4b80a6ca025e481fd3217c980",
+    "previousNames": [
+      "Alternado Hamstring Rosca Chute"
+    ],
+    "name": "Flexão alternada de joelhos seguida de chute"
+  },
+  {
+    "id": "59cd05c742e84cef93c85a1685ff61652f6063c0",
+    "previousNames": [
+      "Alternado Hamstring Rosca Chute"
+    ],
+    "name": "Flexão alternada de joelhos seguida de chute"
+  },
+  {
+    "id": "89d0c02b302d09033353a2514895755ca6ebf4ee",
+    "previousNames": [
+      "Alternado Hamstring Rosca Com Socoe"
+    ],
+    "name": "Flexão alternada de joelhos com socos"
+  },
+  {
+    "id": "7b1168d8e6453347f4e2b42456004f9dd110830b",
+    "previousNames": [
+      "Alternado Hamstring Rosca Duplo Chute"
+    ],
+    "name": "Flexão alternada de joelhos com chute duplo"
+  },
+  {
+    "id": "36acdab2eb54e21335208a51f812c9ba2db74600",
+    "previousNames": [
+      "Alternado Joelho Alto Turn Sky Alcance"
+    ],
+    "name": "Elevação alternada de joelhos com giro e alcance para cima"
+  },
+  {
+    "id": "0f18d746ae371ab52b9de02ee9f2ebd615d6dd9a",
+    "previousNames": [
+      "Alternado Joelho Alto Turn Sky Alcance"
+    ],
+    "name": "Elevação alternada de joelhos com giro e alcance para cima"
+  },
+  {
+    "id": "3b5fc162e5e49a03bc067847133c4416a85b7960",
+    "previousNames": [
+      "Alternado Lateral Step Inclinação"
+    ],
+    "name": "Passo lateral alternado com inclinação do tronco"
+  },
+  {
+    "id": "3f4d9b9fc5677dd95144ae2fae19bd01e608df6a",
+    "previousNames": [
+      "Alternado Obliques Pulso Torção Lateral Alcance"
+    ],
+    "name": "Rotação curta para oblíquos com alcance lateral alternado"
+  },
+  {
+    "id": "4ca4daaab9ca98c928f454769fb7a4147e51c77d",
+    "previousNames": [
+      "Alternado Obliques Pulso Torção Lateral Alcance"
+    ],
+    "name": "Rotação curta para oblíquos com alcance lateral alternado"
+  },
+  {
+    "id": "e09427b1e84e538677c1a97431d87a21f0419db5",
+    "previousNames": [
+      "Braço Elevação Step Em Place"
+    ],
+    "name": "Marcha no lugar com elevação dos braços"
+  },
+  {
+    "id": "0ae64811294c0934ff2d7c5a1b42a7ea9032adbf",
+    "previousNames": [
+      "Braço Extensão Torso Torção"
+    ],
+    "name": "Extensão dos braços com rotação do tronco"
+  },
+  {
+    "id": "4f4244397540b7504c484981d84d0ee49875b260",
+    "previousNames": [
+      "Braços Círculo Elevação De Joelho"
+    ],
+    "name": "Elevação de joelhos com círculos dos braços"
+  },
+  {
+    "id": "8c0e6a83666045ba702b464be6ccbb6b32f1fc30",
+    "previousNames": [
+      "Braços Rosca Elevação De Joelho"
+    ],
+    "name": "Flexão dos cotovelos com elevação de joelhos"
+  },
+  {
+    "id": "6753c99bfd54683c581157ac6e1cbcca5bcb034a",
+    "previousNames": [
+      "Briskly Caminhando Frente Pov"
+    ],
+    "name": "Caminhada rápida — vista frontal"
+  },
+  {
+    "id": "f81e14e32f5aa0d988e02838184afda848fde8c2",
+    "previousNames": [
+      "Briskly Caminhando Lateral Pov"
+    ],
+    "name": "Caminhada rápida — vista lateral"
+  },
+  {
+    "id": "d9bfaad0b876ae6070145b0d8aae31b56c3ec9fc",
+    "previousNames": [
+      "Burpee Cardio"
+    ],
+    "name": "Burpee"
+  },
+  {
+    "id": "4aee3017b41b7553e2a7dfc5c486295cbde9330b",
+    "previousNames": [
+      "Cadeira Agachamento Para Dedo Do Pé Stand"
+    ],
+    "name": "Agachamento seguido de elevação na ponta dos pés"
+  },
+  {
+    "id": "ff5436a88ea34cf7f36052d74642b30da48e73ca",
+    "previousNames": [
+      "Caminhada Do Pato"
+    ],
+    "name": "Caminhada do pato"
+  },
+  {
+    "id": "5cbfbd45d95d828978bc522761126f83a280a095",
+    "previousNames": [
+      "Caminhando Afundo Coxas"
+    ],
+    "name": "Afundo caminhando"
+  },
+  {
+    "id": "cdc1ce245797152d7b1a4d83c10c4287b0f7b764",
+    "previousNames": [
+      "Caminhando Elevação De Joelho Em Spot (front Pov)"
+    ],
+    "name": "Marcha estacionária com elevação de joelhos — vista frontal"
+  },
+  {
+    "id": "6d7dba1feb9e99144c986a6aa3ca2d64b170af5a",
+    "previousNames": [
+      "Caminhando Elevação De Joelho Sky Alcance Em Spot (front Pov) ("
+    ],
+    "name": "Marcha com elevação de joelhos e alcance para cima — vista frontal"
+  },
+  {
+    "id": "e0d98803b8384d030aab683d33d546c04e347bcc",
+    "previousNames": [
+      "Caminhando Elevação De Joelho Sky Alcance Em Spot (front Pov) ("
+    ],
+    "name": "Marcha com elevação de joelhos e alcance para cima — vista frontal"
+  },
+  {
+    "id": "e8cfbe8867fbed6cc4946b97d74206e09e0da0db",
+    "previousNames": [
+      "Caminhando Em Spot"
+    ],
+    "name": "Marcha estacionária"
+  },
+  {
+    "id": "2a050b93cd0c7a202ac36996e7ca39b29c1b3d4f",
+    "previousNames": [
+      "Caminhando Em Spot (front Pov)"
+    ],
+    "name": "Marcha estacionária — vista frontal"
+  },
+  {
+    "id": "e43381692ffe0aaaab20a06472e87f575e3eb528",
+    "previousNames": [
+      "Caminhando Em Spot (front Pov)"
+    ],
+    "name": "Marcha estacionária — vista frontal"
+  },
+  {
+    "id": "7451093b19e226354cc156b7f6a5c95defe5e639",
+    "previousNames": [
+      "Caminhando Em Spot (version 2)"
+    ],
+    "name": "Marcha estacionária — variação 2"
+  },
+  {
+    "id": "7397dc6091d1b381b2cb9635d6a3651305567d39",
+    "previousNames": [
+      "Caminhando Em Spot (version 2)"
+    ],
+    "name": "Marcha estacionária — variação 2"
+  },
+  {
+    "id": "d0ee33fb2245eda0e4f54b6347b1eac6ac4e9472",
+    "previousNames": [
+      "Caminhando Em Spot Hands Em Ombro (front Pov) (fem"
+    ],
+    "name": "Marcha estacionária com mãos nos ombros — vista frontal"
+  },
+  {
+    "id": "b671e3f5325337dc8db0efad31436d827f6a41b3",
+    "previousNames": [
+      "Caminhando Em Spot Hands Em Ombro (front Pov) (fem"
+    ],
+    "name": "Marcha estacionária com mãos nos ombros — vista frontal"
+  },
+  {
+    "id": "6638a35a3c5d9e5dd679c9cfa0bfec8e82160c55",
+    "previousNames": [
+      "Caminhando Em Spot Hands Empurrão"
+    ],
+    "name": "Marcha estacionária com empurrada das mãos"
+  },
+  {
+    "id": "fb8f2c97c61b3f16b01a1624c7fd3045486a7db9",
+    "previousNames": [
+      "Caminhando Em Spot Hands Empurrão"
+    ],
+    "name": "Marcha estacionária com empurrada das mãos"
+  },
+  {
+    "id": "27fa5490079b66854ab905fd103d2b251c5c2edc",
+    "previousNames": [
+      "Caminhando Em Spot Lateral Soco"
+    ],
+    "name": "Marcha estacionária com socos laterais"
+  },
+  {
+    "id": "cac716f7b1724e743d525525e309bacbc2cc6dbb",
+    "previousNames": [
+      "Caminhando Em Spot Ombro Toque Elevação (front Pov) (fe"
+    ],
+    "name": "Marcha com toque nos ombros e elevação dos braços — vista frontal"
+  },
+  {
+    "id": "870e2ad291e57d35c6be7116184c7f55adf46a28",
+    "previousNames": [
+      "Caminhando Em Spot Ombro Toque Elevação (front Pov) (fe"
+    ],
+    "name": "Marcha com toque nos ombros e elevação dos braços — vista frontal"
+  },
+  {
+    "id": "993a44080bffba71b6820b544148cfd53d7fa6d4",
+    "previousNames": [
+      "Caminhando Em Spot Pliometria"
+    ],
+    "name": "Marcha estacionária pliométrica"
+  },
+  {
+    "id": "a63e5eea08fc7bafea8bbadb5a722a5d083cffa6",
+    "previousNames": [
+      "Caminhando Em Spot Pliometria"
+    ],
+    "name": "Marcha estacionária pliométrica"
+  },
+  {
+    "id": "f67359a167402c481258aab1705f12e184839435",
+    "previousNames": [
+      "Caminhando Em Spot Small Chute"
+    ],
+    "name": "Marcha estacionária com chutes curtos"
+  },
+  {
+    "id": "ca277c55aa048957dfd9e56b3adf88381e94fe98",
+    "previousNames": [
+      "Caminhando Frente Chute Alcance Frente"
+    ],
+    "name": "Caminhada com chute frontal e alcance à frente"
+  },
+  {
+    "id": "c6f8e88baae2bfc402c9f68817c4021171591417",
+    "previousNames": [
+      "Caminhando Frente Chute Alcance Frente"
+    ],
+    "name": "Caminhada com chute frontal e alcance à frente"
+  },
+  {
+    "id": "20a53ec5e0e9ce9d9b57fea5a02f81775a700355",
+    "previousNames": [
+      "Caminhando Frente Chute Alcance Para Cima"
+    ],
+    "name": "Caminhada com chute frontal e alcance para cima"
+  },
+  {
+    "id": "ab75600ddacb7d92369be70e64eed15c9c1910be",
+    "previousNames": [
+      "Caminhando Frente Chute Hand Shake"
+    ],
+    "name": "Caminhada com chute frontal e balanço das mãos"
+  },
+  {
+    "id": "827c15bcc28ffcebf8021d96ed0e48a87707d376",
+    "previousNames": [
+      "Caminhando Frente Chute Hand Shake"
+    ],
+    "name": "Caminhada com chute frontal e balanço das mãos"
+  },
+  {
+    "id": "82a2be91d8448aa6063df49db8a4dde34a6c740f",
+    "previousNames": [
+      "Caminhando Frente Chute Vertical Hands"
+    ],
+    "name": "Caminhada com chute frontal e mãos elevadas"
+  },
+  {
+    "id": "60cd3f80edcd26e684428b987c52f1b02e94bff6",
+    "previousNames": [
+      "Caminhando Frente Chute Vertical Hands"
+    ],
+    "name": "Caminhada com chute frontal e mãos elevadas"
+  },
+  {
+    "id": "9fb86b3f6296a4d00064868413a9dc9304266daa",
+    "previousNames": [
+      "Caminhando Lateral E Sky Alcance"
+    ],
+    "name": "Caminhada lateral com alcance para cima"
+  },
+  {
+    "id": "9e41c728f621078a570c1eb33f139f5c6ef80cef",
+    "previousNames": [
+      "Caminhando Lateral Step Remada"
+    ],
+    "name": "Passo lateral com remada dos braços"
+  },
+  {
+    "id": "5cf3b99d3e735639cbac7f92931c26da2ef942a7",
+    "previousNames": [
+      "Caminhando Ombro Toque"
+    ],
+    "name": "Caminhada com toque nos ombros"
+  },
+  {
+    "id": "62ed7e8546e5315440d276c21cc34c27176958a9",
+    "previousNames": [
+      "Caminhando Peito Empurrão Em Spot (front Pov)"
+    ],
+    "name": "Marcha estacionária com empurrada à frente do peito"
+  },
+  {
+    "id": "b6f28783f54810dae22f67445e7ee433243fe54f",
+    "previousNames": [
+      "Celebratory Elevação De Joelhos"
+    ],
+    "name": "Elevação de joelhos com elevação dos braços"
+  },
+  {
+    "id": "d8876fed5f5b725aa5bcd9c3c75ffb72e9dab5b6",
+    "previousNames": [
+      "Cruzado Body Calcanhar Toque"
+    ],
+    "name": "Toque cruzado no calcanhar"
+  },
+  {
+    "id": "30461ca2065cafebd73a674b928188fe90d767c4",
+    "previousNames": [
+      "Dancer Inclinação"
+    ],
+    "name": "Inclinação do tronco em posição de dançarino"
+  },
+  {
+    "id": "dbb6b54e64020b69762dfa3a445f4dafb7ed679d",
+    "previousNames": [
+      "Deitado Acima Da Cabeça Braço Extensão"
+    ],
+    "name": "Extensão dos braços acima da cabeça deitado"
+  },
+  {
+    "id": "5ddcbbfdd8a7b90f0688007bf78e5dff996e5aa6",
+    "previousNames": [
+      "Deitado Bicep Rosca"
+    ],
+    "name": "Rosca bíceps deitado"
+  },
+  {
+    "id": "951c1c6d2ab9a7a5598d195c3d44e121b8ddffca",
+    "previousNames": [
+      "Deitado Braços Rosca Com Almofada"
+    ],
+    "name": "Flexão dos cotovelos deitado com almofada"
+  },
+  {
+    "id": "647f9a9716e4734b39403ad6006a25df96386c8e",
+    "previousNames": [
+      "Deitado Flexionado Joelho Alternado Glúteo Elevação"
+    ],
+    "name": "Elevação alternada de pernas deitado de barriga para baixo com joelhos flexionados"
+  },
+  {
+    "id": "9cd0a83ed0b663806621c72ca4b62058e0748610",
+    "previousNames": [
+      "Deitado Flexionado Joelho Alternado Glúteo Elevação"
+    ],
+    "name": "Elevação alternada de pernas deitado de barriga para baixo com joelhos flexionados"
+  },
+  {
+    "id": "2d20edfe1905f998be64b56d6a4c35e5752ab916",
+    "previousNames": [
+      "Deitado Rosca Bíceps Com Toalha"
+    ],
+    "name": "Rosca bíceps deitado com toalha"
+  },
+  {
+    "id": "938eca87cf5a2ee9a523cdb857d2f6c09acc6b4b",
+    "previousNames": [
+      "Deitado Scalene Muscles Activation"
+    ],
+    "name": "Ativação dos escalenos deitado"
+  },
+  {
+    "id": "86715fdc879ecb2eeb322b70aa8155c1e30c2f11",
+    "previousNames": [
+      "Deitado Unilateral Cadeira Extensora"
+    ],
+    "name": "Extensão unilateral de joelho deitado"
+  },
+  {
+    "id": "a9fbba7a3128b05bccf2ae880e34bd3921d8612a",
+    "previousNames": [
+      "Duplo Cotovelo Elevação E Duplo Cotovelo Palma"
+    ],
+    "name": "Duas elevações dos cotovelos e dois toques dos cotovelos"
+  },
+  {
+    "id": "2b2e04b6607aea45f2528c4e682e242cbd34a362",
+    "previousNames": [
+      "Duplo Diagonal Alcance"
+    ],
+    "name": "Alcance diagonal duplo"
+  },
+  {
+    "id": "cfc0198afd73c6e5f53ee60fde015db680bcc61b",
+    "previousNames": [
+      "Duplo Lateral Step Caminhada"
+    ],
+    "name": "Caminhada com dois passos laterais"
+  },
+  {
+    "id": "7e51323dae038f6d6f867895e0f18ccea53511ad",
+    "previousNames": [
+      "Duplo Soco Elevação De Joelho"
+    ],
+    "name": "Elevação de joelho com dois socos"
+  },
+  {
+    "id": "5927511db7c140825981376107cbcd1f24528e7a",
+    "previousNames": [
+      "Easy Postura (hands Atrás Interlocked E Inclinação Forwa"
+    ],
+    "name": "Postura fácil com mãos entrelaçadas atrás das costas e inclinação à frente"
+  },
+  {
+    "id": "f9d49976f36dee33b755fd3366fd61e49c95dcbb",
+    "previousNames": [
+      "Elevação De Joelho"
+    ],
+    "name": "Elevação de joelho"
+  },
+  {
+    "id": "13945cf14d3fa1f2cfc60c65b53804b3ea02f402",
+    "previousNames": [
+      "Elevação De Joelho"
+    ],
+    "name": "Elevação de joelho"
+  },
+  {
+    "id": "0c763cafeeaf70114150b5cb49c91efc49eab7d6",
+    "previousNames": [
+      "Elevação De Joelho Lateral Jabs"
+    ],
+    "name": "Elevação de joelho com socos laterais"
+  },
+  {
+    "id": "49688f00b0c4dfe3ad9d31c00c7958c56a1a1c9a",
+    "previousNames": [
+      "Elevação De Joelho Para Perna Lift"
+    ],
+    "name": "Elevação de joelho seguida de elevação da perna"
+  },
+  {
+    "id": "1d6b933cf04ceba520c751b1fbd9ff50851df3a0",
+    "previousNames": [
+      "Elevação De Joelho Polichinelo"
+    ],
+    "name": "Polichinelo com elevação de joelho"
+  },
+  {
+    "id": "36422c3d8302a108d4712ede90b68a3063a416fb",
+    "previousNames": [
+      "Elevação De Joelho Step Polichinelo"
+    ],
+    "name": "Polichinelo sem salto com elevação de joelho"
+  },
+  {
+    "id": "133fc41ebe37d2baf18d6bdc2c76b355adddd264",
+    "previousNames": [
+      "Elevação De Joelho Torso Torção Soco"
+    ],
+    "name": "Elevação de joelho com rotação do tronco e soco"
+  },
+  {
+    "id": "da5cd995bdedaacf25883648ae0fa3d03e4c7a70",
+    "previousNames": [
+      "Elevação De Panturrilha De Deficit Com Cadeira Apoiado (fema"
+    ],
+    "name": "Panturrilha sobre plataforma com apoio na cadeira"
+  },
+  {
+    "id": "d75b1ba206e910d090c9c417bfc172262cc3082a",
+    "previousNames": [
+      "Elevação De Panturrilha Internal External Braços Rotação (female"
+    ],
+    "name": "Elevação de panturrilha com rotação interna e externa dos braços"
+  },
+  {
+    "id": "b5020b1d7f565b28e0cec33718873c13d0897fcb",
+    "previousNames": [
+      "Elevação De Panturrilha Palma"
+    ],
+    "name": "Elevação de panturrilha com palmas"
+  },
+  {
+    "id": "991d49b0ae675b08b751ed2d062d87fd6b22c934",
+    "previousNames": [
+      "Elevação De Pernas Above Head E Sob Joelho Palma"
+    ],
+    "name": "Elevação de perna com palmas acima da cabeça e sob o joelho"
+  },
+  {
+    "id": "69940c319a9778f2699b803d2575486251412957",
+    "previousNames": [
+      "Elevação De Pernas Above Head E Sob Joelho Palma"
+    ],
+    "name": "Elevação de perna com palmas acima da cabeça e sob o joelho"
+  },
+  {
+    "id": "b38f076b6b415e5d98741bee389af63f1007424c",
+    "previousNames": [
+      "Elevação Lateral (bent Arms)"
+    ],
+    "name": "Elevação lateral com cotovelos flexionados sentado"
+  },
+  {
+    "id": "e589d4de114cdde1432c8e76b08a5df560c3cb47",
+    "previousNames": [
+      "Elevação Lateral Lateral Step"
+    ],
+    "name": "Passo lateral com elevação lateral dos braços"
+  },
+  {
+    "id": "28b3dbd5a0959a52355973475e3ad4bd4ea8f84b",
+    "previousNames": [
+      "Elevação Pélvicas Quadris"
+    ],
+    "name": "Elevação pélvica"
+  },
+  {
+    "id": "35c942b682645bd1ead646f16e3ebc1cc16c54bf",
+    "previousNames": [
+      "Elevação Unilateral Perna Flexão Peito"
+    ],
+    "name": "Flexão de braços com elevação unilateral de perna"
+  },
+  {
+    "id": "7c1c1895e34bda0d5b0c9a7a4bf6a1dfee013ef2",
+    "previousNames": [
+      "Em Pé 180 Abdômen Rotação"
+    ],
+    "name": "Rotação de tronco em pé a 180 graus"
+  },
+  {
+    "id": "c715fecf97dca18a5b5ffa1d68a52b733878b0ed",
+    "previousNames": [
+      "Em Pé Alternado Elevação De Joelho"
+    ],
+    "name": "Elevação alternada dos joelhos em pé"
+  },
+  {
+    "id": "94c6683ebd6bf11997fdb704d4174c30fd240e44",
+    "previousNames": [
+      "Em Pé Cotovelo Cruzado Elevação"
+    ],
+    "name": "Elevação cruzada dos cotovelos em pé"
+  },
+  {
+    "id": "4f74118483bcf336192a0d9e3641b16b0268a0b9",
+    "previousNames": [
+      "Em Pé Cotovelo Elevação E Squeeze"
+    ],
+    "name": "Elevação dos cotovelos com aproximação à frente do corpo"
+  },
+  {
+    "id": "6d2aed2c3260ac2e5f454a4f82eead8bcb14aa2a",
+    "previousNames": [
+      "Em Pé Diagonal Alcance E Peito Lift"
+    ],
+    "name": "Alcance diagonal em pé com elevação do peito"
+  },
+  {
+    "id": "22fbc688254b113dfcae731254a8ee02d2e8d0e9",
+    "previousNames": [
+      "Em Pé Duplo Elevação De Joelho Lateral Step"
+    ],
+    "name": "Duas elevações de joelho com passo lateral"
+  },
+  {
+    "id": "f89cfbafbe8e23c2504209d905c8bb5b7fbb945d",
+    "previousNames": [
+      "Em Pé Duplo Opposite Vertical Aberto E Duplo"
+    ],
+    "name": "Abertura vertical alternada dos braços em pé"
+  },
+  {
+    "id": "3872f22086fedc4aac8e9afca3df9ea3ccb3de8e",
+    "previousNames": [
+      "Em Pé Elevação De Joelho"
+    ],
+    "name": "Elevação de joelho em pé"
+  },
+  {
+    "id": "3c95271d19cf68770ebb9a9502d81617004f4791",
+    "previousNames": [
+      "Em Pé Elevação De Panturrilha (on Staircase)"
+    ],
+    "name": "Panturrilha em pé na escada"
+  },
+  {
+    "id": "4a949d5db09439edb6fc06de76013976d9b9af28",
+    "previousNames": [
+      "Em Pé Elevação De Panturrilha Com Braços Círculo"
+    ],
+    "name": "Panturrilha em pé com círculos dos braços"
+  },
+  {
+    "id": "9498f177e065ff84f24a31f013d6d3d72f133224",
+    "previousNames": [
+      "Em Pé Elevação Lateral (bent Arms)"
+    ],
+    "name": "Elevação lateral com cotovelos flexionados em pé"
+  },
+  {
+    "id": "a5234deb3687bad6cc33c8aba2edba7cfee16596",
+    "previousNames": [
+      "Em Pé Escada Climb"
+    ],
+    "name": "Simulação de subir escada em pé"
+  },
+  {
+    "id": "b76405f7769453a1a0103796c2264660dec31575",
+    "previousNames": [
+      "Em Pé Flexionado Joelho Elevação De Panturrilha Com Cadeira Support"
+    ],
+    "name": "Panturrilha em pé com joelhos flexionados e apoio na cadeira"
+  },
+  {
+    "id": "2ec9429df403830b59061998c74978d09da65c2d",
+    "previousNames": [
+      "Em Pé Frente Calcanhar Toque"
+    ],
+    "name": "Toque do calcanhar à frente em pé"
+  },
+  {
+    "id": "5b17d5ae8f7d8139174419ab72b5f00a7624e869",
+    "previousNames": [
+      "Em Pé Frente Cotovelo Toque Para Acima Da Cabeça Cruzado (fema"
+    ],
+    "name": "Aproximação dos cotovelos à frente seguida de cruzamento acima da cabeça"
+  },
+  {
+    "id": "542ec2623c5cf61154e94611f43de71cb790ca1c",
+    "previousNames": [
+      "Em Pé Hands Em Ombro Elevação E Cotovelo Toque ("
+    ],
+    "name": "Elevação dos braços com mãos nos ombros e toque dos cotovelos"
+  },
+  {
+    "id": "5d73dc0236b379a19b43df478f99f2d47b75e7da",
+    "previousNames": [
+      "Em Pé Lateral Elevação De Pernas Abdominal Supra"
+    ],
+    "name": "Abdominal lateral em pé com elevação lateral da perna"
+  },
+  {
+    "id": "fe4cde72f5a163178a87855deab1db89a585a548",
+    "previousNames": [
+      "Em Pé Lateral Inclinação Curtsey"
+    ],
+    "name": "Inclinação lateral do tronco com afundo cruzado"
+  },
+  {
+    "id": "5a224aee99a7c14a594052309d07a0d2457fd59c",
+    "previousNames": [
+      "Em Pé Ombro Medial E Lateral Rotação (fem"
+    ],
+    "name": "Rotação interna e externa dos ombros em pé"
+  },
+  {
+    "id": "b801a2afddd110e4059a8dfd009488d2d0ddc058",
+    "previousNames": [
+      "Em Pé One Lateral Lateral Abdominal Supra E Elevação"
+    ],
+    "name": "Abdominal lateral unilateral em pé com elevação do braço"
+  },
+  {
+    "id": "9c38b0ad957681549383e969caff376c7ab08cf3",
+    "previousNames": [
+      "Em Pé Opposite Grab Em Cadeira (version 2) (fem"
+    ],
+    "name": "Alcance cruzado em pé com apoio na cadeira — variação 2"
+  },
+  {
+    "id": "64d4a694eaff9b09f9b8c920d0dabc659a858891",
+    "previousNames": [
+      "Em Pé Opposite Reto Braço Clasp Elevação (left O"
+    ],
+    "name": "Elevação do braço estendido com auxílio da mão oposta — lado esquerdo"
+  },
+  {
+    "id": "5bf83dfe8be2407cb95b715971d86f2b0935e20e",
+    "previousNames": [
+      "Em Pé Opposite Reto Braço Clasp Elevação (right"
+    ],
+    "name": "Elevação do braço estendido com auxílio da mão oposta — lado direito"
+  },
+  {
+    "id": "57fed391c3bf9eff29422dabf367c06cb6133f3e",
+    "previousNames": [
+      "Em Pé Para Cima Elevação Lateral Aberto Braços"
+    ],
+    "name": "Elevação e abertura lateral dos braços em pé"
+  },
+  {
+    "id": "1576ddc43a3508534583fca174e861b75b7e7a8e",
+    "previousNames": [
+      "Em Pé Para Cima Elevação Lateral Torção"
+    ],
+    "name": "Elevação dos braços com rotação lateral do tronco em pé"
+  },
+  {
+    "id": "c7db6b09826fa1e7283dfca3a1d3f2a73f9c9a1e",
+    "previousNames": [
+      "Em Pé Punho Rotação Forearms"
+    ],
+    "name": "Rotação dos punhos e antebraços em pé"
+  },
+  {
+    "id": "6033e32032da887d6f8c33e79e60b03d686593ba",
+    "previousNames": [
+      "Em Pé Scapular External Rotação Segurar"
+    ],
+    "name": "Rotação externa escapular isométrica em pé"
+  },
+  {
+    "id": "c518716134484791f5182ecec8b72c8b93c40db1",
+    "previousNames": [
+      "Em Pé Switching Vertical Stacked Hand"
+    ],
+    "name": "Alternância das mãos sobrepostas na vertical em pé"
+  },
+  {
+    "id": "8564230b89e87ec001a0f7842fb2fb9c88a16e81",
+    "previousNames": [
+      "Em Pé Torção Air Bike"
+    ],
+    "name": "Abdominal bicicleta em pé com rotação do tronco"
+  },
+  {
+    "id": "343d74e7b1e5e83de3e18f535a2892813f0eb939",
+    "previousNames": [
+      "Em Pé Torção Russa"
+    ],
+    "name": "Rotação russa em pé"
+  },
+  {
+    "id": "4245c620e4d83756fb1782242f867e692fbfb605",
+    "previousNames": [
+      "Em Pé Turn E Elevação De Joelho"
+    ],
+    "name": "Giro do corpo com elevação de joelho em pé"
+  },
+  {
+    "id": "c415c36df956ca1d074edb416ed8e5dcc237cc7b",
+    "previousNames": [
+      "Em Pé Underhand Cruzado Elevação"
+    ],
+    "name": "Elevação cruzada dos braços com palmas para cima em pé"
+  },
+  {
+    "id": "b055bfe785f79bfbbfb434bf42d2219052465ce9",
+    "previousNames": [
+      "Em Pé Unilateral Frente Perna Círculo Cadeira Apoiado ("
+    ],
+    "name": "Círculos frontais de perna com apoio na cadeira"
+  },
+  {
+    "id": "49d84dcc2b4a0d02a4b63f66478a9bf6fb1df7a5",
+    "previousNames": [
+      "Em Pé Unilateral Lateral Elevação De Pernas Cadeira Apoiado (fe"
+    ],
+    "name": "Elevação lateral unilateral de perna com apoio na cadeira"
+  },
+  {
+    "id": "f05e5f6bfea02134504b10a5a4697a4305091568",
+    "previousNames": [
+      "Escada Para Cima"
+    ],
+    "name": "Subida de escadas"
+  },
+  {
+    "id": "2c9ba54a40ca80fd6dafad6b5b003c684993a295",
+    "previousNames": [
+      "Escalador (version 2)"
+    ],
+    "name": "Escalador — variação 2"
+  },
+  {
+    "id": "58011154db18d959a84170b2404f73fa61a6e21c",
+    "previousNames": [
+      "Escalador Afundo"
+    ],
+    "name": "Escalador com afundo"
+  },
+  {
+    "id": "0f522c9cd7f7a4b62c59d435aaa9bae16fc8c676",
+    "previousNames": [
+      "Escalador Caminhada"
+    ],
+    "name": "Escalador caminhando"
+  },
+  {
+    "id": "b1348c573156f157f0605fb1d59c009d902fd854",
+    "previousNames": [
+      "Frente E Lateral Elevação De Joelho"
+    ],
+    "name": "Elevação frontal e lateral do joelho"
+  },
+  {
+    "id": "929efe721e6cea746907da34e343d08ce26f801c",
+    "previousNames": [
+      "Garland Postura Sky Alcance Hands Segurar"
+    ],
+    "name": "Postura da guirlanda com alcance acima da cabeça e mãos unidas"
+  },
+  {
+    "id": "b9b1398e44f54566fed669099057f19c39b8518b",
+    "previousNames": [
+      "Hands Para Cima Elevação De Joelho"
+    ],
+    "name": "Elevação de joelhos com braços para cima"
+  },
+  {
+    "id": "08a889a3f85e0df7169e9f319a4ce2bcc15c0101",
+    "previousNames": [
+      "Hands Para Cima Elevação De Joelho Pliometria"
+    ],
+    "name": "Elevação de joelhos com braços para cima e salto"
+  },
+  {
+    "id": "4d797350afab68a69f31696eb088104e1abff03d",
+    "previousNames": [
+      "Head Completo Rotação Fpov"
+    ],
+    "name": "Círculos com a cabeça — vista frontal"
+  },
+  {
+    "id": "3344d5fe40d0d331d69d3456d5212aba02ded315",
+    "previousNames": [
+      "Inchworm E Escaladors"
+    ],
+    "name": "Caminhada com as mãos até a prancha seguida de escaladores"
+  },
+  {
+    "id": "7adf39008e58d515bdfcd8ce5430d3bd9fb708d0",
+    "previousNames": [
+      "Inverted Chin Rosca Com Flexionado Joelho Entre Chairs ("
+    ],
+    "name": "Rosca invertida com joelhos flexionados entre cadeiras"
+  },
+  {
+    "id": "20a8e74d5b6afb11d298bfe0b5348d0892e6db1d",
+    "previousNames": [
+      "Joelho Alto Agachamento Cardio"
+    ],
+    "name": "Agachamento com elevação de joelhos"
+  },
+  {
+    "id": "415f1d98e3cf26d9b3244a41ac25002ef872803d",
+    "previousNames": [
+      "Joelho Alto Duplo Torção"
+    ],
+    "name": "Elevação de joelho com duas rotações do tronco"
+  },
+  {
+    "id": "c8c02a54987dd2948ce14adac1f037582aaa26b8",
+    "previousNames": [
+      "Joelho Alto Torção (version 2)"
+    ],
+    "name": "Elevação de joelho com rotação do tronco — variação 2"
+  },
+  {
+    "id": "1da607ca43b397e18b63eeffad476d4ab039d5c7",
+    "previousNames": [
+      "Joelho Toque Sky Alcance"
+    ],
+    "name": "Toque no joelho com alcance para cima"
+  },
+  {
+    "id": "8d8296b0df553482ffefc506995a10fe64d84d70",
+    "previousNames": [
+      "Lateral Alcance Diagonal Alcance"
+    ],
+    "name": "Alcance lateral seguido de alcance diagonal"
+  },
+  {
+    "id": "1d3a0d8e2ff19be0d8e0328b41f5a4e1ba1f6864",
+    "previousNames": [
+      "Lateral Caminhada Cotovelo Aberto"
+    ],
+    "name": "Caminhada lateral com abertura dos cotovelos"
+  },
+  {
+    "id": "bac1d0fe28354acd589bf2baeca9ad3fd6c8245c",
+    "previousNames": [
+      "Lateral Caminhada Duplo Perna Lift"
+    ],
+    "name": "Caminhada lateral com elevação dupla de pernas"
+  },
+  {
+    "id": "c90b9da6108e9dc578fec3f434127503d61c2bca",
+    "previousNames": [
+      "Lateral Caminhada Tip Dedos Dos Pés"
+    ],
+    "name": "Caminhada lateral na ponta dos pés"
+  },
+  {
+    "id": "bb1ada6a76b12e3216809b9a426e3100eafe70b0",
+    "previousNames": [
+      "Lateral Inclinação Afundo Lateral"
+    ],
+    "name": "Afundo lateral com inclinação do tronco"
+  },
+  {
+    "id": "8c2046aa5744fd1b026dedfd752126b477881826",
+    "previousNames": [
+      "Lateral Joelho Elevação De Pernas"
+    ],
+    "name": "Elevação lateral do joelho seguida de extensão da perna"
+  },
+  {
+    "id": "3da01a33d1af20044aee7d4b837fede98c2e2cf1",
+    "previousNames": [
+      "Lateral Joelho Elevação De Pernas Pressdown"
+    ],
+    "name": "Elevação lateral do joelho e da perna com empurrada dos braços para baixo"
+  },
+  {
+    "id": "cc01ed11e1cfb3c5cf694e79fef7c63eba07241c",
+    "previousNames": [
+      "Lateral Para Lateral Bicep Rosca"
+    ],
+    "name": "Passos de um lado para o outro com rosca bíceps"
+  },
+  {
+    "id": "32118c179c457b8d6752b2f7327ccbe3b7067ed8",
+    "previousNames": [
+      "Lateral Salto Torção"
+    ],
+    "name": "Salto lateral com rotação do tronco"
+  },
+  {
+    "id": "3043f4481573fbf5a88a9883cf4d32f3950213a5",
+    "previousNames": [
+      "Lateral Step Acima Da Cabeça Elevação Frontal"
+    ],
+    "name": "Passo lateral com elevação frontal acima da cabeça"
+  },
+  {
+    "id": "f5d50479543f711e9e07e582b581214e17054ab2",
+    "previousNames": [
+      "Lateral Step Agachamento Braços Elevação Lateral"
+    ],
+    "name": "Passo lateral com agachamento e elevação lateral dos braços"
+  },
+  {
+    "id": "f3c179c6d5a7433cd5484a6b0f7005bfc590aefb",
+    "previousNames": [
+      "Lateral Step Agachamento Pick E Carry"
+    ],
+    "name": "Agachamento com passo lateral simulando pegar e transportar"
+  },
+  {
+    "id": "117b9f9be153dd17668be9be554ebef2db347093",
+    "previousNames": [
+      "Lateral Step Braço Rosca"
+    ],
+    "name": "Passo lateral com flexão dos cotovelos"
+  },
+  {
+    "id": "c094c64c81cad60af8837df47d3ee9de9c737cf1",
+    "previousNames": [
+      "Lateral Step Caminhando"
+    ],
+    "name": "Caminhada com passos laterais"
+  },
+  {
+    "id": "61b836295c94e15f176730274a44d5e25366dc0d",
+    "previousNames": [
+      "Lateral Step Crucifixo Caminhada"
+    ],
+    "name": "Caminhada lateral com crucifixo dos braços"
+  },
+  {
+    "id": "80373cb2da12d393044eabf254b2db380457cb53",
+    "previousNames": [
+      "Lateral Step Diagonal Alcances"
+    ],
+    "name": "Passo lateral com alcances diagonais"
+  },
+  {
+    "id": "47e9ac5c3da2c6f9687f5acb9848b665a984595e",
+    "previousNames": [
+      "Lateral Step Joelho Alcance"
+    ],
+    "name": "Passo lateral com alcance em direção ao joelho"
+  },
+  {
+    "id": "b994553cc473be84aec0f206570eb84b72067da4",
+    "previousNames": [
+      "Marcha Em Spot Bicep Rosca"
+    ],
+    "name": "Marcha estacionária com rosca bíceps"
+  },
+  {
+    "id": "e5ebd48586566c0e4955127c273e085aca5b096e",
+    "previousNames": [
+      "Marchando Chute Em Spot Cardio"
+    ],
+    "name": "Marcha estacionária com chutes"
+  },
+  {
+    "id": "9ce0ac92ba3683fb30433c23cee0f92cd0591706",
+    "previousNames": [
+      "Meio Plyo Para Frente Para Top Braços Elevação"
+    ],
+    "name": "Pequenos saltos com elevação dos braços à frente e acima da cabeça"
+  },
+  {
+    "id": "45870407017a44cb44a5b4213678822a55250a9c",
+    "previousNames": [
+      "Mid Air Elevação Laterals Com Switching Palms (femal"
+    ],
+    "name": "Elevação lateral dos braços com alternância da posição das palmas"
+  },
+  {
+    "id": "6ca379deb5cef7a5e842286b5b99dc3fd22b2756",
+    "previousNames": [
+      "Negative Biceps Perna Concentration Rosca"
+    ],
+    "name": "Rosca concentração na fase excêntrica usando a perna como resistência"
+  },
+  {
+    "id": "1e53e3de882032ce1d4b6193cdb237e8c3e86de1",
+    "previousNames": [
+      "Obliques Torção Joelho Alto E Chute"
+    ],
+    "name": "Rotação do tronco com elevação de joelho e chute"
+  },
+  {
+    "id": "0e923b2a6d18e8fd4488ca221e9b147a9f895be2",
+    "previousNames": [
+      "Para Frente Aberto Caminhada"
+    ],
+    "name": "Caminhada à frente com abertura da base"
+  },
+  {
+    "id": "007768b816ac2813b2dac1782e4888ea183a91ff",
+    "previousNames": [
+      "Para Frente Fold Torção Com Dedo Do Pé Segurar"
+    ],
+    "name": "Flexão do tronco à frente com rotação e pegada no pé"
+  },
+  {
+    "id": "d6c82c118cf226c8bc60b60ec4e364621c639f92",
+    "previousNames": [
+      "Para Frente Ombro Rotação Braço Cruzado"
+    ],
+    "name": "Rotação dos ombros à frente com cruzamento dos braços"
+  },
+  {
+    "id": "593617272b9a73b9a2b8f3a027ca82c5612bb210",
+    "previousNames": [
+      "Peito Elevação E Girar"
+    ],
+    "name": "Elevação do peito com giro do tronco"
+  },
+  {
+    "id": "9068344cdd3a23155ff4f6308e84c821f45e9c6b",
+    "previousNames": [
+      "Peito Lift Com Rotação"
+    ],
+    "name": "Elevação do tórax com rotação deitado"
+  },
+  {
+    "id": "62def2fdf14ea416b6eb192811d63f7a7f04e2bc",
+    "previousNames": [
+      "Peso Corporal Acima Da Cabeça Agachamento"
+    ],
+    "name": "Agachamento com braços acima da cabeça"
+  },
+  {
+    "id": "17ff6b206e090f3d70de8d39505a32b182540571",
+    "previousNames": [
+      "Peso Corporal Acima Da Cabeça Extensão De Tríceps"
+    ],
+    "name": "Tríceps francês sem carga"
+  },
+  {
+    "id": "67335082728bc6241ec2df5a6ac8063dd490e372",
+    "previousNames": [
+      "Peso Corporal Around Head Rotação"
+    ],
+    "name": "Círculos dos braços ao redor da cabeça sem carga"
+  },
+  {
+    "id": "fe6244a45fa79cb8be8588328870d02951ad9538",
+    "previousNames": [
+      "Peso Corporal Bouncing Shift Sky Alcance"
+    ],
+    "name": "Balanço com transferência de peso e alcance para cima"
+  },
+  {
+    "id": "71efc591ad86fbe5075f8ae69bd8d16650a92bd7",
+    "previousNames": [
+      "Peso Corporal Deitado Alternado Pernas Rosca"
+    ],
+    "name": "Flexão alternada de joelhos deitado sem carga"
+  },
+  {
+    "id": "25b37765be655d8e94a5a8e1bc611fd7eacfc4dd",
+    "previousNames": [
+      "Peso Corporal Deitado Ombro External Rotação (femal"
+    ],
+    "name": "Rotação externa dos ombros deitado sem carga"
+  },
+  {
+    "id": "1b0d6b92ab6bd6bc1ac794ffd4e042770c28a833",
+    "previousNames": [
+      "Peso Corporal Deitado Pernas Rosca"
+    ],
+    "name": "Flexão de joelhos deitado sem carga"
+  },
+  {
+    "id": "48c1c35d288d5b14135d0eecba4f698b406e2cb0",
+    "previousNames": [
+      "Peso Corporal Deltoide Posterior Elevação"
+    ],
+    "name": "Elevação posterior dos braços sem carga"
+  },
+  {
+    "id": "f2c5ac1c57f82a47a986f87cc7ba4480c50330d8",
+    "previousNames": [
+      "Peso Corporal Em Pé Elevação Frontal Para Aberto"
+    ],
+    "name": "Elevação frontal com abertura dos braços em pé sem carga"
+  },
+  {
+    "id": "1c662b5bb94a3947ab3dca9f665fcfa9aac82656",
+    "previousNames": [
+      "Peso Corporal Em Pé Scapular External Rotação (fe"
+    ],
+    "name": "Rotação externa escapular em pé sem carga"
+  },
+  {
+    "id": "b3996b550f54578aefd9bfe9257b2b54b86f87f0",
+    "previousNames": [
+      "Peso Corporal Rear Afundo Elevação Frontal"
+    ],
+    "name": "Afundo reverso com elevação frontal dos braços sem carga"
+  },
+  {
+    "id": "aad15644a1a397e501b5e20f1fa00ead375acbf1",
+    "previousNames": [
+      "Pick E Carry"
+    ],
+    "name": "Movimento de pegar e transportar"
+  },
+  {
+    "id": "585f24e5613e78b1526433eee011914049c2fedf",
+    "previousNames": [
+      "Pick E Carry Pliometria Converted(1)"
+    ],
+    "name": "Movimento de pegar e transportar com saltos"
+  },
+  {
+    "id": "d6eb327156fb2d90149d2a9eb156c3f246bbaba9",
+    "previousNames": [
+      "Pistol Agachamento Para Caixote"
+    ],
+    "name": "Agachamento pistola até a caixa"
+  },
+  {
+    "id": "842a3b194c048903bba3a88f66058dc70543df2a",
+    "previousNames": [
+      "Pular Corda Cardio"
+    ],
+    "name": "Pular corda"
+  },
+  {
+    "id": "7f43d3ee6f791ef212caf64ce8c4bcd74160eeea",
+    "previousNames": [
+      "Rosca Bíceps Frente Step"
+    ],
+    "name": "Rosca bíceps com passo à frente"
+  },
+  {
+    "id": "3230fa7b520cddf0706e9b47a2e4a35cf0b06e89",
+    "previousNames": [
+      "Rosca Bíceps Frente Step (version 2)"
+    ],
+    "name": "Rosca bíceps com passo à frente — variação 2"
+  },
+  {
+    "id": "13d9eafdac48d3411cdd6b845a427e2f593b0415",
+    "previousNames": [
+      "Salto Caixote"
+    ],
+    "name": "Salto na caixa"
+  },
+  {
+    "id": "fc58403c5659ae980c9bf8825b7e80f7d8cc7a08",
+    "previousNames": [
+      "Salto Caixote Pliometria"
+    ],
+    "name": "Salto pliométrico na caixa"
+  },
+  {
+    "id": "57e7fad9db71da52d8c97620b7b36a4362bc85d7",
+    "previousNames": [
+      "Sentado Acima Da Cabeça Extensão De Tríceps"
+    ],
+    "name": "Tríceps francês sentado sem carga"
+  },
+  {
+    "id": "4fb093dbe2b2c823021b4d588d12203c70d6a021",
+    "previousNames": [
+      "Sentado Acima Da Cabeça Lateral E 45 Degrees Inclinação Para Frente ("
+    ],
+    "name": "Inclinação lateral e à frente a 45 graus com braços acima da cabeça sentado"
+  },
+  {
+    "id": "48df6d5754bb7380af1b8d6288062cf277188436",
+    "previousNames": [
+      "Sentado Alternado Abduction Torção Em Cadeira (fema"
+    ],
+    "name": "Abdução alternada com rotação sentado na cadeira"
+  },
+  {
+    "id": "5d29d7f979dfb3ee2313639f4b5e2c96b4f9543f",
+    "previousNames": [
+      "Sentado Alternado Butterfly Elevação De Joelho"
+    ],
+    "name": "Elevação alternada dos joelhos sentado em posição de borboleta"
+  },
+  {
+    "id": "55d7961480a3cee90e6d98154a2841e7b068c9d0",
+    "previousNames": [
+      "Sentado Alternado Elevação De Pernas E Abductor Em Ch"
+    ],
+    "name": "Elevação e abdução alternadas das pernas sentado na cadeira"
+  },
+  {
+    "id": "bf553e141ff5583ec48e1d34d5afef8aa8dbec22",
+    "previousNames": [
+      "Sentado Alternado Joelho Tuck Em Cadeira"
+    ],
+    "name": "Recolhimento alternado de joelhos sentado na cadeira"
+  },
+  {
+    "id": "d2e3abc8d8be5e26ead9eaa7afc92f5bd5ee6095",
+    "previousNames": [
+      "Sentado Alternado Lateral Perna Lift Em Cadeira (female"
+    ],
+    "name": "Elevação lateral alternada de pernas sentado na cadeira"
+  },
+  {
+    "id": "4432f4f987a00e2f76e82ade149f2b0028e38a54",
+    "previousNames": [
+      "Sentado Alternado Palm Empurrão E Marcha Em Cadeira ("
+    ],
+    "name": "Empurrada alternada das palmas com marcha sentado na cadeira"
+  },
+  {
+    "id": "5c722b2c8783facfaf3f043b82d8d798cb595c2c",
+    "previousNames": [
+      "Sentado Braço Círculo Em Cadeira"
+    ],
+    "name": "Círculos dos braços sentado na cadeira"
+  },
+  {
+    "id": "7acd42a4db39d1ef903865a938e50d9838353bfd",
+    "previousNames": [
+      "Sentado Braços Rosca Stepout Em Cadeira"
+    ],
+    "name": "Flexão dos cotovelos com passo para fora sentado na cadeira"
+  },
+  {
+    "id": "e54fb80aa6fcd9c0104caade6ebb1bf7bccf9156",
+    "previousNames": [
+      "Sentado Chin Tuck Em Cadeira"
+    ],
+    "name": "Retração cervical sentado na cadeira"
+  },
+  {
+    "id": "9ff9fc193e4bebef0331a947df0e4b3603304e88",
+    "previousNames": [
+      "Sentado Core Torção Em Cadeira"
+    ],
+    "name": "Rotação abdominal sentado na cadeira"
+  },
+  {
+    "id": "80f61ecfe4add5e16e85ccd619af75f15074d64e",
+    "previousNames": [
+      "Sentado Corkscrew Em Cadeira"
+    ],
+    "name": "Abdominal saca-rolhas sentado na cadeira"
+  },
+  {
+    "id": "4cb9e94a36d4555454468f13b7a9d24792911c84",
+    "previousNames": [
+      "Sentado Cruzado Body Hamstring Alcance"
+    ],
+    "name": "Alcance cruzado em direção aos posteriores de coxa sentado"
+  },
+  {
+    "id": "cc7c3e448d0f2209c5d477c32ae0a05f13001fb4",
+    "previousNames": [
+      "Sentado Desenvolvimento De Ombros Dedo Do Pé Toque Em Cadeira (femal"
+    ],
+    "name": "Desenvolvimento de ombros com toque nos pés sentado na cadeira"
+  },
+  {
+    "id": "1db72998ff5b7159a4a21997f2f87767581cd70e",
+    "previousNames": [
+      "Sentado Desenvolvimento De Ombros Em Cadeira"
+    ],
+    "name": "Desenvolvimento de ombros sentado na cadeira sem carga"
+  },
+  {
+    "id": "75328c828cac022da0c192d7860502f81cbf8098",
+    "previousNames": [
+      "Sentado Elevação De Joelho Segurar Em Cadeira"
+    ],
+    "name": "Elevação isométrica de joelho sentado na cadeira"
+  },
+  {
+    "id": "715dcd1b6a10e0100a31a3f7a560001fdc8c0f43",
+    "previousNames": [
+      "Sentado Elevação Lateral Em Cadeira"
+    ],
+    "name": "Elevação lateral dos braços sentado na cadeira sem carga"
+  },
+  {
+    "id": "30369c7a2cfba591dfd27fbe472a948d953e7aa4",
+    "previousNames": [
+      "Sentado Extensão De Tríceps Em Cadeira"
+    ],
+    "name": "Extensão de tríceps sentado na cadeira sem carga"
+  },
+  {
+    "id": "55e0ae0f21310ea1e16407d0687468ea5a6e80c4",
+    "previousNames": [
+      "Sentado Frente Perna Lift Sob Joelho Toque Em Cadeira ("
+    ],
+    "name": "Elevação frontal de perna com toque sob o joelho sentado na cadeira"
+  },
+  {
+    "id": "ab3db292d15d5cdd45bd5d8854ec594eca89fbea",
+    "previousNames": [
+      "Sentado Hamstring Rosca Em Cadeira"
+    ],
+    "name": "Flexão de joelho sentado na cadeira"
+  },
+  {
+    "id": "26e3b9132d4ac2ce31e1c067d252b2025e84ebcb",
+    "previousNames": [
+      "Sentado Inclinado Pressão Elevação De Panturrilha Em Cadeira (femal"
+    ],
+    "name": "Empurrada inclinada com elevação dos calcanhares sentado na cadeira"
+  },
+  {
+    "id": "de182b5fb63e398f4285c24269a24f0785872ec6",
+    "previousNames": [
+      "Sentado Inclinado Pressão Stepout Em Cadeira"
+    ],
+    "name": "Empurrada inclinada com passo para fora sentado na cadeira"
+  },
+  {
+    "id": "87b163413a34d94e717c33fea7eb940991b26c84",
+    "previousNames": [
+      "Sentado Internal E External Ombro Rotação (fe"
+    ],
+    "name": "Rotação interna e externa dos ombros sentado"
+  },
+  {
+    "id": "3bf04d5e1e74b14c309713731a653a647dad492a",
+    "previousNames": [
+      "Sentado Lateral Inclinação Cotovelo Para Chão Toque"
+    ],
+    "name": "Inclinação lateral sentado com alcance do cotovelo em direção ao chão"
+  },
+  {
+    "id": "27ce73f1ba9b87c4c2697945b461a65ba2c222fb",
+    "previousNames": [
+      "Sentado Lateral Inclinação Em Cadeira"
+    ],
+    "name": "Inclinação lateral sentado na cadeira"
+  },
+  {
+    "id": "8de55e48bf2ea79364789bf90436b5447ec79802",
+    "previousNames": [
+      "Sentado Lateral Step Remada Em Cadeira"
+    ],
+    "name": "Passo lateral com remada sentado na cadeira"
+  },
+  {
+    "id": "02f0e5ff1d1efd81e8df3b70000446acd727b6a7",
+    "previousNames": [
+      "Sentado Lotus Descanso Postura (front Pov)"
+    ],
+    "name": "Descanso na postura de lótus — vista frontal"
+  },
+  {
+    "id": "3206c56329df17b6a6010326a43c6b0df40844e4",
+    "previousNames": [
+      "Sentado Marcha Em Cadeira"
+    ],
+    "name": "Marcha sentado na cadeira"
+  },
+  {
+    "id": "3985824a8929fd83b2880e30e6faa9e8fa2e52e5",
+    "previousNames": [
+      "Sentado Opposite Grab Em Cadeira (version 2) (fema"
+    ],
+    "name": "Alcance cruzado sentado na cadeira — variação 2"
+  },
+  {
+    "id": "4170dd3ba2bf4c7ef45927ac962b51c3dbdbf203",
+    "previousNames": [
+      "Sentado Para Frente Alcance Braços Interlock"
+    ],
+    "name": "Alcance à frente sentado com mãos entrelaçadas"
+  },
+  {
+    "id": "bfeb40b12d48533d8ffa992ee3cbfe0a56325e40",
+    "previousNames": [
+      "Sentado Para Frente Inclinação Yoga Postura"
+    ],
+    "name": "Flexão do tronco à frente sentado — postura de yoga"
+  },
+  {
+    "id": "44701ce882f3b0ca4916170944997406daf25493",
+    "previousNames": [
+      "Sentado Peito Opener Gato E Vaca Postura"
+    ],
+    "name": "Abertura do peito com gato e vaca sentado"
+  },
+  {
+    "id": "bb86d5402e8a32b984fa2fa072a9d0cb3432bc7d",
+    "previousNames": [
+      "Sentado Pescoço Rotação"
+    ],
+    "name": "Rotação do pescoço sentado"
+  },
+  {
+    "id": "23ea9cdca3140ec5f3244e1f56f7318fbfae2f1c",
+    "previousNames": [
+      "Sentado Pescoço Rotação Em Cadeira"
+    ],
+    "name": "Rotação do pescoço sentado na cadeira"
+  },
+  {
+    "id": "f650e951820f542d90524af6c17db126a9a097df",
+    "previousNames": [
+      "Sentado Polichinelo Em Cadeira"
+    ],
+    "name": "Polichinelo sentado na cadeira"
+  },
+  {
+    "id": "e81d88e8ba01ea77e37a0e856d6d1030dc4bfa83",
+    "previousNames": [
+      "Sentado Punho Rotação Em Cadeira"
+    ],
+    "name": "Rotação dos punhos sentado na cadeira"
+  },
+  {
+    "id": "52c9fe4c72cf0cb896d9cff17faf026cab136b9f",
+    "previousNames": [
+      "Sentado Remada Alta Em Cadeira"
+    ],
+    "name": "Remada alta sentado na cadeira sem carga"
+  },
+  {
+    "id": "7cd9177b71060fb6b987ea0fdaa91826eaf554c1",
+    "previousNames": [
+      "Sentado Rosca Bíceps Em Cadeira"
+    ],
+    "name": "Rosca bíceps sentado na cadeira sem carga"
+  },
+  {
+    "id": "3beef7127bf7824b4def58ceb2296025b8a71a9c",
+    "previousNames": [
+      "Sentado Stepjack Elevação Frontal Em Cadeira"
+    ],
+    "name": "Polichinelo sem salto com elevação frontal dos braços sentado na cadeira"
+  },
+  {
+    "id": "f16d5d76a815011fea192323ebd56c387676f13b",
+    "previousNames": [
+      "Sentado String Puxada Em Cadeira"
+    ],
+    "name": "Puxada simulada de corda sentado na cadeira"
+  },
+  {
+    "id": "3d81021f516933a82663b260ee4e3e197cf9a2c3",
+    "previousNames": [
+      "Sentado Swimmer Em Cadeira"
+    ],
+    "name": "Movimento de natação sentado na cadeira"
+  },
+  {
+    "id": "5f61fd4a14694204736d2735bc451706858664d9",
+    "previousNames": [
+      "Sentado Swimming Elevação De Joelho Em Cadeira"
+    ],
+    "name": "Movimento de natação com elevação de joelhos sentado na cadeira"
+  },
+  {
+    "id": "ca45e2cfbc9faf58f099ae7d2d52e814983eb0ec",
+    "previousNames": [
+      "Sentado Thoracic Coluna Mobilization Em Cadeira (fe"
+    ],
+    "name": "Mobilidade torácica sentado na cadeira"
+  },
+  {
+    "id": "afe561d9c3d9ba916fae92d9618985f2f9c3fb02",
+    "previousNames": [
+      "Sentado Tip Dedo Do Pé Palma Em Cadeira"
+    ],
+    "name": "Palmas com apoio na ponta dos pés sentado na cadeira"
+  },
+  {
+    "id": "c5a6e31f35bb41361a1ff68dfae942d3a61e4e54",
+    "previousNames": [
+      "Sentado Underhand Cruzado Em Cadeira"
+    ],
+    "name": "Cruzamento dos braços por baixo sentado na cadeira"
+  },
+  {
+    "id": "d22d63291056dae32bc308b002cec4c1098bbe52",
+    "previousNames": [
+      "Sentado Unilateral Reto Elevação De Pernas Cadeira"
+    ],
+    "name": "Elevação unilateral de perna estendida sentado na cadeira"
+  },
+  {
+    "id": "a0b082ff1b887e190bf613d532cd809f12b31b28",
+    "previousNames": [
+      "Slight Inclinação Top Cruzado E Prayer Empurrão"
+    ],
+    "name": "Leve inclinação do tronco com cruzamento dos braços acima da cabeça e pressão das mãos unidas"
+  },
+  {
+    "id": "6d0c4d0a455fbddb033ed89d53f0b32c631ac99b",
+    "previousNames": [
+      "Star Alcance Lateral Perna Lift"
+    ],
+    "name": "Alcance em estrela com elevação lateral de perna"
+  },
+  {
+    "id": "dc09b5492e0b21cfc128c6399d8a6a6608d7a947",
+    "previousNames": [
+      "Star Obliques Torção Joelho Alto"
+    ],
+    "name": "Abertura dos braços em estrela com rotação do tronco e elevação de joelho"
+  },
+  {
+    "id": "a5726d573844a2040f7c940f45f3f31dbc4d1d19",
+    "previousNames": [
+      "Step Para Fora Lateral Inclinação"
+    ],
+    "name": "Passo para fora com inclinação lateral do tronco"
+  },
+  {
+    "id": "2a72c6b087f2575db36bc4427d7b9d7a7567dedf",
+    "previousNames": [
+      "Step Para Fora Torção Hand Swipes"
+    ],
+    "name": "Passo para fora com rotação do tronco e movimento das mãos"
+  },
+  {
+    "id": "e0567b16b090dfa917298665ec444af23bbfe316",
+    "previousNames": [
+      "Stepjack Elevação Frontal"
+    ],
+    "name": "Polichinelo sem salto com elevação frontal dos braços"
+  },
+  {
+    "id": "38c0ca62c95c14fb31139276bd9c8e91b0ccd710",
+    "previousNames": [
+      "Stepjack Interno Rosca Bíceps"
+    ],
+    "name": "Polichinelo sem salto com rosca bíceps interna"
+  },
+  {
+    "id": "b3267016f55773d642d560259ac7894eac5ff907",
+    "previousNames": [
+      "Sumo Agachamento E Lateral Elevação De Joelho"
+    ],
+    "name": "Agachamento sumô com elevação lateral do joelho"
+  },
+  {
+    "id": "3812aed69fea1b1306f2f44aa3e7ab4b78ce972b",
+    "previousNames": [
+      "Sumo Quarter Agachamento Tip Dedo Do Pé Com Braços Rosca"
+    ],
+    "name": "Agachamento sumô parcial na ponta dos pés com flexão dos cotovelos"
+  },
+  {
+    "id": "959dc1060277a678d24e380059c2c204a44dbb0e",
+    "previousNames": [
+      "Suspender Braço Rosca"
+    ],
+    "name": "Rosca bíceps no TRX"
+  },
+  {
+    "id": "489acfe613d5022347487dfebd0629569c854a64",
+    "previousNames": [
+      "Suspender Braço Rosca Para Ears"
+    ],
+    "name": "Rosca bíceps em direção às orelhas no TRX"
+  },
+  {
+    "id": "2dcdef4e809069944f01cb91b1cb8cf665ecd431",
+    "previousNames": [
+      "Suspender Deitado Elevação De Pernas"
+    ],
+    "name": "Elevação de pernas deitado com fita de suspensão"
+  },
+  {
+    "id": "1881bf2519bdff5583c84f922e88ada6f561dbf1",
+    "previousNames": [
+      "Suspender Elevação De Panturrilha"
+    ],
+    "name": "Panturrilha no TRX"
+  },
+  {
+    "id": "03863ca748239030d88ceaac640a763e28dbec01",
+    "previousNames": [
+      "Suspender Elevação Frontal"
+    ],
+    "name": "Elevação frontal no TRX"
+  },
+  {
+    "id": "95ab87bfb864fa7bdf690b3c27c810688d8c4d77",
+    "previousNames": [
+      "Suspender Escalador"
+    ],
+    "name": "Escalador no TRX"
+  },
+  {
+    "id": "4ef4801f6b8d3154a7fade4c7e293d050572eac4",
+    "previousNames": [
+      "Suspender Escalador Flexão"
+    ],
+    "name": "Escalador com flexão de braços no TRX"
+  },
+  {
+    "id": "fd79a07640b492f9afedac288bea9db2f4e32313",
+    "previousNames": [
+      "Suspender Lateral Inclinação"
+    ],
+    "name": "Inclinação lateral do tronco no TRX"
+  },
+  {
+    "id": "c923666df495586403421a29b854dbc79b4ee7fb",
+    "previousNames": [
+      "Suspender One Braço Rosca Bíceps"
+    ],
+    "name": "Rosca bíceps unilateral no TRX"
+  },
+  {
+    "id": "6d6ed500f2799344d5d59218c69bf5735fd7b8aa",
+    "previousNames": [
+      "Suspender Torção Lateral"
+    ],
+    "name": "Prancha lateral com rotação no TRX"
+  },
+  {
+    "id": "be9933004c2ffd61cac93b1bc5900b70a3c4eff5",
+    "previousNames": [
+      "Suspender Torção Para Cima"
+    ],
+    "name": "Rotação do tronco com elevação dos braços no TRX"
+  },
+  {
+    "id": "bca5e8af8dbbab5641139e8123d6be4d8005bb08",
+    "previousNames": [
+      "Suspender Y Elevação Lateral"
+    ],
+    "name": "Elevação dos braços em Y no TRX"
+  },
+  {
+    "id": "f54fbfa0fb4f8607cc94580d4c51ce3fe7a8e185",
+    "previousNames": [
+      "Suspender Yw Elevação"
+    ],
+    "name": "Elevação dos braços em Y e W no TRX"
+  },
+  {
+    "id": "0fb708d908ce1fb06896e42e4cb906b979526a05",
+    "previousNames": [
+      "Torção Agachamento Coxas"
+    ],
+    "name": "Agachamento com rotação"
+  },
+  {
+    "id": "1204795b989477bca9faa314835fa71e9da46d92",
+    "previousNames": [
+      "Torção E Lateral Abdominal Supra"
+    ],
+    "name": "Rotação do tronco com abdominal lateral em pé"
+  },
+  {
+    "id": "555d72e3c06313f8619ff35206af94beab595cba",
+    "previousNames": [
+      "Torção E Turn"
+    ],
+    "name": "Rotação do tronco com giro do corpo"
+  },
+  {
+    "id": "0a89f9940bf2f724b59d9deb3d8bc719443b36a4",
+    "previousNames": [
+      "Torção E Turn Soco"
+    ],
+    "name": "Rotação do tronco com giro e soco"
+  },
+  {
+    "id": "dccbe96356a3628c68f0a94cb07a926472eee573",
+    "previousNames": [
+      "Torção Marcha"
+    ],
+    "name": "Marcha com rotação do tronco"
+  },
+  {
+    "id": "631affb6a0368ce9ccce15dbf3657a240adc49df",
+    "previousNames": [
+      "Torção Peito Para Fora"
+    ],
+    "name": "Rotação do tronco com abertura do peito"
+  },
+  {
+    "id": "2e64b040e045c1b2051920c3e2634c30e07ac9be",
+    "previousNames": [
+      "Torção Turn Slam"
+    ],
+    "name": "Giro do corpo com movimento de arremesso para baixo"
+  },
+  {
+    "id": "9d64c8360009ac001a879087ae883027c520f30e",
+    "previousNames": [
+      "Tornozelo Círculos Panturrilhas"
+    ],
+    "name": "Círculos dos tornozelos"
+  },
+  {
+    "id": "dc630a9c046c43297d08ff4a72f486fd22e7c7b5",
+    "previousNames": [
+      "Turn Elevação De Joelho"
+    ],
+    "name": "Giro do corpo com elevação de joelho"
+  },
+  {
+    "id": "e9bdc43e1f27b5ea5736c2d5ae6a1f0713c17f5c",
+    "previousNames": [
+      "Underhand Duplo Elevação De Joelhos"
+    ],
+    "name": "Duas elevações de joelho com movimento dos braços e palmas para cima"
+  },
+  {
+    "id": "5dc65a546931cf59e5277d38c8bf0317e798d80b",
+    "previousNames": [
+      "Unilateral Braço Scapular Flexão Para Rotação"
+    ],
+    "name": "Flexão escapular unilateral com rotação"
+  },
+  {
+    "id": "07543751f19a933b5cda1af5a00d936806e0c8b5",
+    "previousNames": [
+      "Unilateral Perna Calcanhar Toque Agachamento"
+    ],
+    "name": "Agachamento unilateral com toque do calcanhar"
+  },
+  {
+    "id": "ec426f27d054934f801399cafb3749f7e42ac307",
+    "previousNames": [
+      "Unilateral Perna Lift Em Cadeira"
+    ],
+    "name": "Elevação unilateral de perna sentado na cadeira"
+  },
+  {
+    "id": "dd41ce9fc928dab7be06e9d94fc7d07bba0b7a61",
+    "previousNames": [
+      "Unilateral Perna Sliding Chão Ponte Rosca Em Toalha (fem"
+    ],
+    "name": "Ponte unilateral com flexão de joelho deslizando o pé sobre toalha"
+  },
+  {
+    "id": "04c25afdbbc1f5bf3680ac24a7682bd4aa30fbba",
+    "previousNames": [
+      "Unilateral Torção Russa"
+    ],
+    "name": "Rotação russa unilateral"
+  },
+  {
+    "id": "377052a38c1f5e649f17d70f09fcd179a10c4902",
+    "previousNames": [
+      "Wind Lateral Torção Salto"
+    ],
+    "name": "Salto com rotação lateral e movimento dos braços em moinho"
   }
 ]
