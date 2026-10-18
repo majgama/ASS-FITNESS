@@ -113,7 +113,7 @@ test('search matches separated words in any order and requires every term before
 test('search ignores accents and accepts blank or single-word queries', async () => {
   overrides.clear();
   await patch({ name: 'Eleva\u00e7\u00e3o exclusiva com bra\u00e7os estendidos' });
-  for (const search of ['elevacao bracos', 'BRA\u00c7OS ELEVA\u00c7\u00c3O', 'exclusiva']) {
+  for (const search of ['elevacao bracos exclusiva', 'BRA\u00c7OS ELEVA\u00c7\u00c3O exclusiva', 'exclusiva']) {
     const found = await list({ search });
     assert.ok(found.items.some((row) => row.id === item.id));
   }

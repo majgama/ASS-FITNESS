@@ -7192,5 +7192,1356 @@
       "Yoga Vajrasana Thunderbolt Diamond Postura"
     ],
     "name": "Postura do diamante — Vajrasana"
+  },
+  {
+    "id": "b6c19c91d044a91354972198f81ebe177181072d",
+    "previousNames": [
+      "Abdominal Supra (legs Em Stability Ball)"
+    ],
+    "name": "Abdominal supra com as pernas apoiadas na bola suíça"
+  },
+  {
+    "id": "345b2cb16af317bc80d84867a8fb2f952ea40832",
+    "previousNames": [
+      "Abdominal Supra (on Stability Ball)"
+    ],
+    "name": "Abdominal supra na bola suíça"
+  },
+  {
+    "id": "17e48332262f3ce410933d9d826629cf6da48853",
+    "previousNames": [
+      "Abdominal Supra Costas (wrong Right)"
+    ],
+    "name": "Abdominal supra — comparação da execução incorreta e correta"
+  },
+  {
+    "id": "50885c6e649a8fd9ff66af1225fd2a8af5e0fa4a",
+    "previousNames": [
+      "Aberto Child Prasarita Balasana Yoga Postura"
+    ],
+    "name": "Postura da criança com joelhos afastados (Balasana)"
+  },
+  {
+    "id": "232638fb84d9f4b308f6e7634e29b60bc5b1f95d",
+    "previousNames": [
+      "Agachamento Em Bosu Bola"
+    ],
+    "name": "Agachamento no Bosu"
+  },
+  {
+    "id": "e1dc838a60b06e73b65e6faf554eaf298f1c2037",
+    "previousNames": [
+      "Ajoelhado Coluna Imbalance E Pelvic Imbalance (fem"
+    ],
+    "name": "Mobilização da coluna e da pelve ajoelhado"
+  },
+  {
+    "id": "0d6399f7697182a570169d5654bad2e77f5161c3",
+    "previousNames": [
+      "Ajoelhado Cotovelo Apoiado Cão Olhando Para Baixo"
+    ],
+    "name": "Alongamento em posição de cachorro olhando para baixo com cotovelos apoiados"
+  },
+  {
+    "id": "ee2c1a75dfd36814e6d098041571509b001302f3",
+    "previousNames": [
+      "Ajoelhado Reto Perna Chuteback (version 2) (female"
+    ],
+    "name": "Extensão de quadril em quatro apoios com perna estendida — variação 2"
+  },
+  {
+    "id": "26185bfac5f6c3c254b26f1f0d3d58dff31cfc6c",
+    "previousNames": [
+      "Ajoelhado Reto Perna Chuteback (version 2) (left)"
+    ],
+    "name": "Extensão de quadril em quatro apoios com perna estendida — variação 2, lado esquerdo"
+  },
+  {
+    "id": "8f209f809b02c7e4cf6042e8c3b5bef3693f63e5",
+    "previousNames": [
+      "Ajoelhado Unilateral Chuteback Fire Hydrant"
+    ],
+    "name": "Coice com abdução de quadril em quatro apoios"
+  },
+  {
+    "id": "631f5a8d93937c22bada8eb9836ea0e4cb9bd9b7",
+    "previousNames": [
+      "Alternado Reto Elevação De Pernas (on Bosu Ball) (femal"
+    ],
+    "name": "Elevação alternada de pernas estendidas no Bosu"
+  },
+  {
+    "id": "1915d8609497c4f5259f45b4f0df4bfc15eee0ac",
+    "previousNames": [
+      "Alternado Reto Elevação De Pernas (on Bosu Ball) (femal"
+    ],
+    "name": "Elevação alternada de pernas estendidas no Bosu"
+  },
+  {
+    "id": "98c19b3ed780f71f1bdeeafcb1534b4a7c579e50",
+    "previousNames": [
+      "Archer Stepback"
+    ],
+    "name": "Passo para trás com movimento de arqueiro"
+  },
+  {
+    "id": "09971ebe28d82fe92ca01b36b48b1f12a2fdc6d5",
+    "previousNames": [
+      "Atrás Head Bola Slam"
+    ],
+    "name": "Arremesso de bola ao chão passando por trás da cabeça"
+  },
+  {
+    "id": "4ed9fc72f52949e5133eccf6d679fa3fb2d64e22",
+    "previousNames": [
+      "Backchute Extensão De Tríceps"
+    ],
+    "name": "Chute para trás com extensão de tríceps"
+  },
+  {
+    "id": "4a19ee4e78a658d8d81cef8b0f785b40880994ec",
+    "previousNames": [
+      "Backchute Lateral Step"
+    ],
+    "name": "Passo lateral com chute para trás"
+  },
+  {
+    "id": "be0a4e6a1c95558ad35ebf6433eec0024ff87f20",
+    "previousNames": [
+      "Baixo Afundo Yoga Postura Anjaneyasana I"
+    ],
+    "name": "Postura do afundo baixo (Anjaneyasana)"
+  },
+  {
+    "id": "0c7f97b14445cb33eae7ff602882ba6c6be8ff8a",
+    "previousNames": [
+      "Balance Rear Afundo"
+    ],
+    "name": "Afundo reverso com equilíbrio"
+  },
+  {
+    "id": "b0a81df684a7f603a5263351f22226877b65a967",
+    "previousNames": [
+      "Balanço Costas Elevação De Joelhos"
+    ],
+    "name": "Balanço para trás com elevação dos joelhos"
+  },
+  {
+    "id": "1fae58cb6d7dfc8ce6bd97a1b816374bee8a2218",
+    "previousNames": [
+      "Balanço Torso Torção"
+    ],
+    "name": "Balanço com rotação do tronco"
+  },
+  {
+    "id": "bace6f4270e93a8d8e30e4845cba81de33875d0e",
+    "previousNames": [
+      "Barra Fixa Com Flexionado Joelho Entre Chairs"
+    ],
+    "name": "Remada invertida entre cadeiras com joelhos flexionados"
+  },
+  {
+    "id": "0dadd566192d450d25a56ca2309d72a30960903e",
+    "previousNames": [
+      "Basic Para Cruzado Donkey Chute Quadris"
+    ],
+    "name": "Coice em quatro apoios alternando trajetória reta e cruzada"
+  },
+  {
+    "id": "aadff9e6f0420787d3f35a918f1706bc5904a853",
+    "previousNames": [
+      "Bastão Afundo Lateral"
+    ],
+    "name": "Afundo lateral com bastão"
+  },
+  {
+    "id": "c208098fcf0a6d3ae84b14373b508bb5ca12f4d1",
+    "previousNames": [
+      "Battling Ropes"
+    ],
+    "name": "Ondas com corda naval"
+  },
+  {
+    "id": "407468e870fea727e793fbcf76f41f99b795c8e8",
+    "previousNames": [
+      "Bola Abdominal (on Stability Ball)"
+    ],
+    "name": "Abdominal na bola suíça"
+  },
+  {
+    "id": "16515c5f566a1152c2d51e6ef8f1c8017b888821",
+    "previousNames": [
+      "Bound Angle Yoga Postura Baddha Konasana"
+    ],
+    "name": "Postura da borboleta (Baddha Konasana)"
+  },
+  {
+    "id": "acf80a12185da346ee0508ddcbc2cf3e41dbcc2a",
+    "previousNames": [
+      "Braço Balanço Lateral Step"
+    ],
+    "name": "Passo lateral com balanço dos braços"
+  },
+  {
+    "id": "2a237afd8cf44cfe3b5e76b16e93e51c83c982a4",
+    "previousNames": [
+      "Braço Balanço Para Frente Calcanhar Toque"
+    ],
+    "name": "Balanço dos braços com toque do calcanhar à frente"
+  },
+  {
+    "id": "d2350041fcbfaa09f4be0cb2b85cc7243c724f2a",
+    "previousNames": [
+      "Braço Balanço Para Frente Calcanhar Toque"
+    ],
+    "name": "Balanço dos braços com toque do calcanhar à frente"
+  },
+  {
+    "id": "4d9ce2c60c99558f13c0becacfaf91d23191b81c",
+    "previousNames": [
+      "Braço Círculo Stepback"
+    ],
+    "name": "Passo para trás com círculos dos braços"
+  },
+  {
+    "id": "4c04395721aae183c9197c81ae37c2b4e0d68c66",
+    "previousNames": [
+      "Braço Elevação Costas Perna Balanço"
+    ],
+    "name": "Elevação dos braços com balanço da perna para trás"
+  },
+  {
+    "id": "d32db27f6790e428b90599e17b046b8086ddd1f3",
+    "previousNames": [
+      "Braços Balanço Chute No Glúteo"
+    ],
+    "name": "Calcanhares nos glúteos com balanço dos braços"
+  },
+  {
+    "id": "1e629d8d84269b9927d78ee7863548bd1069f033",
+    "previousNames": [
+      "Braços Lift Perna Chuteback"
+    ],
+    "name": "Elevação dos braços com chute para trás"
+  },
+  {
+    "id": "ded61c615484d146e1c90ccc121149d5928ff932",
+    "previousNames": [
+      "Braços Para Cima E Para Baixo"
+    ],
+    "name": "Elevação e descida dos braços"
+  },
+  {
+    "id": "1c5d4d758843929ae49b3068ff401e1af85028c1",
+    "previousNames": [
+      "Caminhada Em E Para Fora Braço Balanço"
+    ],
+    "name": "Passos para dentro e para fora com balanço dos braços"
+  },
+  {
+    "id": "0ac917dddc60aca301b06b9a59e6f06664722443",
+    "previousNames": [
+      "Caminhada Para Frente E Para Trás"
+    ],
+    "name": "Caminhada para frente e para trás"
+  },
+  {
+    "id": "087f68d06cbe9cbb28e7db56eb70319c02949bf0",
+    "previousNames": [
+      "Cão Olhando Para Baixo Para Chaturanga Postura"
+    ],
+    "name": "Transição do cachorro olhando para baixo para Chaturanga"
+  },
+  {
+    "id": "9564838c0bca0aec27a8a4ee9ce693726ea9b0be",
+    "previousNames": [
+      "Cheerleader Palma Backhand Balanço"
+    ],
+    "name": "Balanço dos braços com palmas e toque do dorso das mãos"
+  },
+  {
+    "id": "393ba87786b9db629ee69f30fad46524b8c266f2",
+    "previousNames": [
+      "Climber Acolchoado Banquinho Apoiado"
+    ],
+    "name": "Escalador com apoio no banco"
+  },
+  {
+    "id": "a42a7887a4f95658718f91cce9be7a46247cae62",
+    "previousNames": [
+      "Cobra Postura Em Stability Bola"
+    ],
+    "name": "Postura da cobra com apoio na bola suíça"
+  },
+  {
+    "id": "409c4b6d1454820ee9d3eb371692a115d1c30013",
+    "previousNames": [
+      "Coluna Imbalance E Para Frente Head Posture Segurar (fem"
+    ],
+    "name": "Mobilização da coluna e da cabeça com sustentação"
+  },
+  {
+    "id": "7f521ec920f318b10c600698652aba0775971ea4",
+    "previousNames": [
+      "Control Balance"
+    ],
+    "name": "Controle do equilíbrio (Control Balance)"
+  },
+  {
+    "id": "36c1f8c14a91b3df85be790f1eb4ba63bc1f9f9b",
+    "previousNames": [
+      "Costas Chute Calcanhar Touches"
+    ],
+    "name": "Chute para trás com toque no calcanhar"
+  },
+  {
+    "id": "50137e127a781922f6f761716236041a697af8fd",
+    "previousNames": [
+      "Costas Chute Desenvolvimento"
+    ],
+    "name": "Chute para trás com desenvolvimento de ombros"
+  },
+  {
+    "id": "51af58700aa35671ae4baf6cf36e6a582c427c13",
+    "previousNames": [
+      "Costas Cruzado Pé Toque"
+    ],
+    "name": "Toque cruzado no pé atrás do corpo"
+  },
+  {
+    "id": "9998c73a69848db9b3ffb5ce446ea800d3f0fc38",
+    "previousNames": [
+      "Costas Perna Lift Polichinelo"
+    ],
+    "name": "Polichinelo com elevação da perna para trás"
+  },
+  {
+    "id": "6245cce3fed95bb19a100a3911e27d37bcce8ce2",
+    "previousNames": [
+      "Costas Scrub"
+    ],
+    "name": "Mobilidade dos ombros com alcance das mãos nas costas"
+  },
+  {
+    "id": "727e24ed5bf6891742e962d1f4ce227050badd60",
+    "previousNames": [
+      "Costas Squeeze"
+    ],
+    "name": "Contração das escápulas sentado no banco"
+  },
+  {
+    "id": "31aaa94aefdccf15f4f17ea97816b3d85f0632d9",
+    "previousNames": [
+      "Cotovelo Para Cima E Para Baixo Dinâmico Prancha"
+    ],
+    "name": "Prancha dinâmica alternando apoio nos antebraços e nas mãos"
+  },
+  {
+    "id": "86bd0d189a6cc4681321eabaf33fa8b4a1c490c6",
+    "previousNames": [
+      "Criss Cruzado Stepback Saltos Curtos"
+    ],
+    "name": "Pequenos saltos cruzados com passo para trás"
+  },
+  {
+    "id": "99a9abd4b12dd7272ee4983849b798bb46a6450c",
+    "previousNames": [
+      "Deitado Alternado Slight Flexionado Costas Elevação De Pernas (fema"
+    ],
+    "name": "Elevação alternada de pernas para trás com joelhos semiflexionados deitado"
+  },
+  {
+    "id": "166c1a9f378587435d170e7606922921b6606c8e",
+    "previousNames": [
+      "Deitado Alternado Slight Flexionado Costas Elevação De Pernas (fema"
+    ],
+    "name": "Elevação alternada de pernas para trás com joelhos semiflexionados deitado"
+  },
+  {
+    "id": "42d1881f247e3a477d572ac5022afe873ca42c15",
+    "previousNames": [
+      "Deitado Lateral Para Lateral Roll Em Stability Bola"
+    ],
+    "name": "Rolamento lateral do tronco apoiado na bola suíça"
+  },
+  {
+    "id": "42c20a5c9994515fdfa3e6acb646149ba8f8ca14",
+    "previousNames": [
+      "Diagonal Stepback E Alcance"
+    ],
+    "name": "Passo diagonal para trás com alcance"
+  },
+  {
+    "id": "81b27cb97ee04a905db217a823da7f9883d69cb9",
+    "previousNames": [
+      "Duplo Joelho Cotovelo Barra Fixa"
+    ],
+    "name": "Elevação dupla de joelhos com puxada dos cotovelos"
+  },
+  {
+    "id": "8b18d179a77c5892ac6e67990cef30ae3f49db2d",
+    "previousNames": [
+      "Duplo Lateral Step Chuteback Rows"
+    ],
+    "name": "Dois passos laterais com chute para trás e remada"
+  },
+  {
+    "id": "bcdb2aa03c67b45aade3a6031a802bd34badb4c9",
+    "previousNames": [
+      "Duplo Lateral Step Tricep Chuteback"
+    ],
+    "name": "Dois passos laterais com tríceps coice"
+  },
+  {
+    "id": "160d924b384f06b946598718ae7ee1420bf76ac3",
+    "previousNames": [
+      "Duplo Pulso Agachamento Chuteback"
+    ],
+    "name": "Agachamento com dois pulsos e chute para trás"
+  },
+  {
+    "id": "f9b2eb504da66f89b11fb05874f91f4589eedfa5",
+    "previousNames": [
+      "Em Pé 4x Costas Criss Cruzado 4x Frente Criss Cruzado"
+    ],
+    "name": "Quatro passos cruzados para trás e quatro para frente"
+  },
+  {
+    "id": "50ec59a658d022b08230ee80d8a55de26fa775a7",
+    "previousNames": [
+      "Em Pé Alternado Superior E Inferior Costas Palma (fe"
+    ],
+    "name": "Palmas alternadas atrás do corpo, em cima e embaixo"
+  },
+  {
+    "id": "8f2696ceda53d04c4884d227dc7a111eb645409e",
+    "previousNames": [
+      "Em Pé Atrás Head Clasp E Empurrada Para Baixo"
+    ],
+    "name": "Mãos entrelaçadas atrás da cabeça com pressão para baixo"
+  },
+  {
+    "id": "1f889f2a22f6f06c48663694459f4c5286d77cce",
+    "previousNames": [
+      "Em Pé Atrás Head Cruzado E Costas Squeeze (f"
+    ],
+    "name": "Cruzamento dos braços atrás da cabeça com contração das escápulas"
+  },
+  {
+    "id": "9022ab9ef752803411cd06c30b0be6fe4df82760",
+    "previousNames": [
+      "Em Pé Balance Diagonal Cruzado Perna Lift"
+    ],
+    "name": "Elevação diagonal cruzada de perna em equilíbrio"
+  },
+  {
+    "id": "14bb4dfdbedb8031cac29f8af3a0806b839b065a",
+    "previousNames": [
+      "Em Pé Balance Lateral Para Frente Elevação De Pernas"
+    ],
+    "name": "Elevação lateral e frontal da perna em equilíbrio"
+  },
+  {
+    "id": "9021b4c4d865278c69c09cdbbb84e988a94c1876",
+    "previousNames": [
+      "Em Pé Balance Stepback E Glúteo Chuteback (fema"
+    ],
+    "name": "Passo para trás com extensão de quadril em equilíbrio"
+  },
+  {
+    "id": "1c07d5e133870aac6f4d02c5c46a4c9c730b696a",
+    "previousNames": [
+      "Em Pé Balance Unilateral Perna Lifts Reverso Crucifixo (fem"
+    ],
+    "name": "Elevação unilateral de perna com crucifixo inverso em equilíbrio"
+  },
+  {
+    "id": "301e62b3b5f4d10ecccc2409458b11844aafde07",
+    "previousNames": [
+      "Em Pé Ballerina Alternado Lateral Elevação De Joelho (fema"
+    ],
+    "name": "Elevação lateral alternada dos joelhos em posição de bailarina"
+  },
+  {
+    "id": "f86d353457e17dcdb7100f9a811acebd46ee378b",
+    "previousNames": [
+      "Em Pé Braço Cruzado Atrás Costas"
+    ],
+    "name": "Cruzamento dos braços atrás das costas"
+  },
+  {
+    "id": "941ce8053deeaa0dd8809714e401e3e719311121",
+    "previousNames": [
+      "Em Pé Braço Cruzado E Cotovelo Pullback"
+    ],
+    "name": "Cruzamento dos braços com puxada dos cotovelos para trás"
+  },
+  {
+    "id": "52ec74a06bbabd7ef1ffa57ce2aaa7301fe7cb62",
+    "previousNames": [
+      "Em Pé Coluna Imbalance E Para Frente Head Posture"
+    ],
+    "name": "Mobilização da coluna com projeção da cabeça à frente em pé"
+  },
+  {
+    "id": "3ea7aaaf68c7d2bc1aa45cc0bf0b3acfffbfcdc9",
+    "previousNames": [
+      "Em Pé Coluna Imbalance E Pelvic Imbalance Segurar"
+    ],
+    "name": "Mobilização da coluna e da pelve com sustentação em pé"
+  },
+  {
+    "id": "4fbb0ff4023ab11640faf7862aeb890f5d9b9e8e",
+    "previousNames": [
+      "Em Pé Coluna Imbalance E Pelvic Imbalance Segurar"
+    ],
+    "name": "Mobilização da coluna e da pelve com sustentação em pé"
+  },
+  {
+    "id": "d4b3166071a294028a74eea7af57ceb25c22ece5",
+    "previousNames": [
+      "Em Pé Costas Palma E Cotovelo Toque E Prayer Empurrão"
+    ],
+    "name": "Palmas atrás do corpo, toque dos cotovelos e pressão das mãos unidas"
+  },
+  {
+    "id": "379205c30baf9295d7c7a0f581ff65ca23b98904",
+    "previousNames": [
+      "Em Pé Costas Rotação Squeeze"
+    ],
+    "name": "Rotação do tronco com contração das escápulas"
+  },
+  {
+    "id": "23605e3c6fd60bcee09db6e6f4e677c4e758f8bc",
+    "previousNames": [
+      "Em Pé Elevação De Joelho Costas Chute"
+    ],
+    "name": "Elevação de joelho com chute para trás"
+  },
+  {
+    "id": "78c9c7bd930de2ab588a7a7a53f1d815c83020e3",
+    "previousNames": [
+      "Em Pé Frente Backhand Toque E Atrás Backhand Ta"
+    ],
+    "name": "Toque do dorso das mãos à frente e atrás do corpo"
+  },
+  {
+    "id": "036ba1c17b02de4f63922f3d6fdfe1f4abf661ee",
+    "previousNames": [
+      "Em Pé Frente Palma Costas Palma"
+    ],
+    "name": "Palmas à frente e atrás do corpo"
+  },
+  {
+    "id": "6bfe75f782988f1e098cbcd73b62dc9e56b7d117",
+    "previousNames": [
+      "Em Pé Lateral Toque Costas Toque"
+    ],
+    "name": "Toque lateral e atrás do corpo"
+  },
+  {
+    "id": "ea9236c8071e5207b99ae29e127ec96e04115742",
+    "previousNames": [
+      "Em Pé Slight Flexionado Top Palma Costas Palma"
+    ],
+    "name": "Palmas acima da cabeça e atrás do corpo com leve flexão dos joelhos"
+  },
+  {
+    "id": "827b4012dd7a91ba24a96b1f08997007079beae0",
+    "previousNames": [
+      "Em Pé Stepback"
+    ],
+    "name": "Passo para trás em pé"
+  },
+  {
+    "id": "68f993cc15a371380b76bbc2c79b127882365ab3",
+    "previousNames": [
+      "Em Pé Top Backhand Toque E Backhand Prayer Empurrão"
+    ],
+    "name": "Toque do dorso das mãos acima da cabeça e pressão das mãos unidas"
+  },
+  {
+    "id": "ddaa7be0a3b267c5ea3682b65223957f6893f5a2",
+    "previousNames": [
+      "Exercise Bola Costas Extensão Com Hands Atrás Hea"
+    ],
+    "name": "Extensão lombar na bola suíça com mãos atrás da cabeça"
+  },
+  {
+    "id": "ec2036f146d49a1399a4ccfe8625bfb30718184c",
+    "previousNames": [
+      "Exercise Bola One Legged Diagonal Chute Hamstring C"
+    ],
+    "name": "Chute diagonal unilateral com flexão de joelho na bola suíça"
+  },
+  {
+    "id": "cf28bb382065452607815754d0c8b8dc0a783534",
+    "previousNames": [
+      "Extensão De Tríceps Stepback"
+    ],
+    "name": "Passo para trás com extensão de tríceps"
+  },
+  {
+    "id": "07ff4147b1abaf78154982f2fc04132dd85f7e8b",
+    "previousNames": [
+      "Flexão (on Stability Ball)"
+    ],
+    "name": "Flexão de braços com apoio na bola suíça"
+  },
+  {
+    "id": "c32a830b4a504ba1bc78a325e531f8955c77f89c",
+    "previousNames": [
+      "Flexionado Joelho Deitado Torção (on Stability Ball)"
+    ],
+    "name": "Rotação do tronco com joelhos flexionados na bola suíça"
+  },
+  {
+    "id": "0eecdf33999bd484b3f16615f441026ec51c85c3",
+    "previousNames": [
+      "Flexionado Perna Chuteback (kneeling) Quadris"
+    ],
+    "name": "Extensão de quadril em quatro apoios com joelho flexionado"
+  },
+  {
+    "id": "e661bb573a808124bcb9f8a58c3eed48f589247a",
+    "previousNames": [
+      "Frente E Costas Braços Rotação"
+    ],
+    "name": "Rotação dos braços para frente e para trás"
+  },
+  {
+    "id": "2acb480b68946b094bb7a801ac7eb74356952558",
+    "previousNames": [
+      "Inseto Morto Com Stability Bola"
+    ],
+    "name": "Dead bug com bola suíça"
+  },
+  {
+    "id": "2349df894ee8395e70843e65b625a707d7eb0117",
+    "previousNames": [
+      "Lateral Balanço E Elevação De Joelho"
+    ],
+    "name": "Balanço lateral com elevação do joelho"
+  },
+  {
+    "id": "a3d9acb4ab8ed8e851f70e43d3a42663ee37b405",
+    "previousNames": [
+      "Lateral Balanço Skater Stepback"
+    ],
+    "name": "Passo de patinador para trás com balanço lateral"
+  },
+  {
+    "id": "59e33f0e662a9739bcd4f2c44a27b0169ddba074",
+    "previousNames": [
+      "Lateral Crab Caminhada Costas Crucifixo"
+    ],
+    "name": "Caminhada lateral do caranguejo com abertura posterior dos braços"
+  },
+  {
+    "id": "0cad599f263958852ed264ea15c6758c1e70dbed",
+    "previousNames": [
+      "Lateral Deitado Diagonal Para Trás Elevação De Pernas"
+    ],
+    "name": "Elevação diagonal da perna para trás deitado de lado"
+  },
+  {
+    "id": "8bec77f47dc5d41e9a5927d2db06f99d3223b30c",
+    "previousNames": [
+      "Lateral Step Balanço"
+    ],
+    "name": "Passo lateral com balanço"
+  },
+  {
+    "id": "c3e34ace42ae60b9f39ede222d43c28e45332e5c",
+    "previousNames": [
+      "Lateral Step Balanço Pliometria"
+    ],
+    "name": "Passo lateral com balanço e salto"
+  },
+  {
+    "id": "3780517f12405dc995acab0198858121d9b91ce7",
+    "previousNames": [
+      "Lateral Step Tricep Chuteback"
+    ],
+    "name": "Passo lateral com tríceps coice"
+  },
+  {
+    "id": "594773b57dbb6ec2be148625c50f9193c96cacfb",
+    "previousNames": [
+      "Long Braços Step Costas"
+    ],
+    "name": "Passo para trás com braços estendidos"
+  },
+  {
+    "id": "2ed7d97785032c3956eb0b379728b46d40f8af09",
+    "previousNames": [
+      "Mergulho Elevação De Pernas Acolchoado Banquinho Apoiado"
+    ],
+    "name": "Tríceps no banco com elevação de pernas"
+  },
+  {
+    "id": "a4aa0c2fce0eccb9627ad5635c6d6fabeb9b7d0d",
+    "previousNames": [
+      "Mesa Flexora (on Stability Ball)"
+    ],
+    "name": "Flexão de joelhos na bola suíça"
+  },
+  {
+    "id": "37479b8d94872f557145c7b314832c0b32f057bf",
+    "previousNames": [
+      "Palm Para Cima Palm Para Baixo Rotação"
+    ],
+    "name": "Rotação dos antebraços com palmas para cima e para baixo"
+  },
+  {
+    "id": "153534af95ef06292d82d1b5897f877e17b76288",
+    "previousNames": [
+      "Para Cima E Para Baixo"
+    ],
+    "name": "Movimento de subir e descer o corpo"
+  },
+  {
+    "id": "cbc1fb2ed401a94c0c13412cdf5ce046659d2a4d",
+    "previousNames": [
+      "Para Frente Para Trás Caminhada Do Pato (version 2)"
+    ],
+    "name": "Caminhada do pato para frente e para trás — variação 2"
+  },
+  {
+    "id": "4022e0fd327490920b051308ceeb09d822cd9ac8",
+    "previousNames": [
+      "Para Frente Para Trás Salto Curto"
+    ],
+    "name": "Pequenos saltos para frente e para trás"
+  },
+  {
+    "id": "bbe2891c4ea31f060af582be7174d891d5c3e2cd",
+    "previousNames": [
+      "Para Frente Para Trás Sideward"
+    ],
+    "name": "Passos para frente, para trás e para os lados"
+  },
+  {
+    "id": "26cb409c38e432dd4871cfd6b9b7a5c5fe8b7b75",
+    "previousNames": [
+      "Pescoço Para Cima Para Baixo Left Right"
+    ],
+    "name": "Mobilidade cervical com flexão, extensão e rotação"
+  },
+  {
+    "id": "059b0405fb3e34d7f1d705972c1b20c17c3325af",
+    "previousNames": [
+      "Peso Corporal Baixo Agachamento Búlgaro"
+    ],
+    "name": "Afundo baixo sem carga"
+  },
+  {
+    "id": "41bb9e04e326cc37b587bdb440bb200e77ed9fda",
+    "previousNames": [
+      "Peso Corporal Banco Agachamento"
+    ],
+    "name": "Agachamento até o banco sem carga"
+  },
+  {
+    "id": "ea8e9d7fb38ad17c039c4732e2af0ce4920ed7a5",
+    "previousNames": [
+      "Peso Corporal Duplo Tríceps Coice Superior"
+    ],
+    "name": "Tríceps coice bilateral com braços elevados sem carga"
+  },
+  {
+    "id": "2a8cf59c41027c1aa6a49e316b814efaccef75b3",
+    "previousNames": [
+      "Peso Corporal Em Pé Reto Braço Peito Baixo Crucifixo (fe"
+    ],
+    "name": "Crucifixo de baixo para cima com braços estendidos sem carga"
+  },
+  {
+    "id": "baa6bd29a86b4f927bda7a138d04e201ff0ae2d1",
+    "previousNames": [
+      "Peso Corporal Levantamento Terra Romeno Rosca Bíceps Chuteback"
+    ],
+    "name": "Levantamento terra romeno com rosca bíceps e coice de tríceps sem carga"
+  },
+  {
+    "id": "89e2e737fe900bb75eadc2288f2c69b59299b75c",
+    "previousNames": [
+      "Peso Corporal Pulsando Tríceps Coice"
+    ],
+    "name": "Tríceps coice com movimentos curtos sem carga"
+  },
+  {
+    "id": "aa8bf2da7bcd9a7047542398b248a877d0197dea",
+    "previousNames": [
+      "Ponte Yoga Postura Setu Bandha Sarvangasana"
+    ],
+    "name": "Postura da ponte (Setu Bandha Sarvangasana)"
+  },
+  {
+    "id": "65fdd19c3230f7fba8cb2b32ffbf62f6f5dd172f",
+    "previousNames": [
+      "Ponte Yoga Postura Setu Bandha Sarvangasana"
+    ],
+    "name": "Postura da ponte (Setu Bandha Sarvangasana)"
+  },
+  {
+    "id": "0eb06715bcb29898efb0801f5d263ce40a2e547b",
+    "previousNames": [
+      "Prancha Braço Lifts Costas"
+    ],
+    "name": "Prancha com elevação dos braços para trás"
+  },
+  {
+    "id": "b7c04024b511d03c5830d67bd385f38b56cc9b34",
+    "previousNames": [
+      "Prancha Lateral Rotação Acolchoado Banquinho Apoiado (fema"
+    ],
+    "name": "Prancha lateral com rotação e apoio no banco"
+  },
+  {
+    "id": "ad01f19a87168ced008d71ab857ee4543208f3c8",
+    "previousNames": [
+      "Puxada Em (on Stability Ball)"
+    ],
+    "name": "Abdominal com recolhimento dos joelhos na bola suíça"
+  },
+  {
+    "id": "711a453f63dbda17ed2bc8d8509673b529320d20",
+    "previousNames": [
+      "Quickly Balanço Braços Em Place"
+    ],
+    "name": "Balanço rápido dos braços parado"
+  },
+  {
+    "id": "e6132d651cd2a9f403b62b56ab1119576d0d05e4",
+    "previousNames": [
+      "Rear Afundo Chuteback"
+    ],
+    "name": "Afundo reverso com chute para trás"
+  },
+  {
+    "id": "b2b46d2870d364f9909660cd1dee2a66a51262c5",
+    "previousNames": [
+      "Rear Crucifixo Stepback"
+    ],
+    "name": "Passo para trás com crucifixo inverso"
+  },
+  {
+    "id": "1d8b1b7c7ad00419b8e9f79d021bb6a060281751",
+    "previousNames": [
+      "Reto Perna Chuteback (kneeling) Quadris"
+    ],
+    "name": "Extensão de quadril em quatro apoios com perna estendida"
+  },
+  {
+    "id": "3948b01b9393da5ba98b1a209910a353dd14cf83",
+    "previousNames": [
+      "Ring Alto Remada"
+    ],
+    "name": "Remada alta nas argolas"
+  },
+  {
+    "id": "a1b8fe0853e6a72a3c2372ba049e2cd6a8288d8a",
+    "previousNames": [
+      "Ring Inverted Remada"
+    ],
+    "name": "Remada invertida nas argolas"
+  },
+  {
+    "id": "a9482c1bade5ae17573b32f514842b95ba5a1f67",
+    "previousNames": [
+      "Roll E Lateral Torção Em Stabilitity Bola"
+    ],
+    "name": "Rolamento com rotação lateral na bola suíça"
+  },
+  {
+    "id": "cc7b5c7ea90cf4e8785ce97b8f049b6ac475d469",
+    "previousNames": [
+      "Roll Puxada E Inclinação Em Stabilitity Bola"
+    ],
+    "name": "Rolamento com puxada e inclinação na bola suíça"
+  },
+  {
+    "id": "ebb70adf2b4ccedc6b5b486d80156151be093ef0",
+    "previousNames": [
+      "Rolling Costas"
+    ],
+    "name": "Rolamento para trás"
+  },
+  {
+    "id": "5f672888aa102001c288c817aac5cc606bab55b2",
+    "previousNames": [
+      "Sentado Air Torcendo Abdominal Supra Em Acolchoado Banquinho (fem"
+    ],
+    "name": "Abdominal com rotação do tronco sentado no banco"
+  },
+  {
+    "id": "6c4abd09c896f2d3f5b295568356fd6637c10bac",
+    "previousNames": [
+      "Sentado Alternado Braços Archer Costas Rotação (female"
+    ],
+    "name": "Movimento alternado de arqueiro com rotação do tronco sentado"
+  },
+  {
+    "id": "821640faa9fc9fd02dd7480dd3f3fbec638982fd",
+    "previousNames": [
+      "Sentado Ballerina"
+    ],
+    "name": "Movimento de bailarina sentado"
+  },
+  {
+    "id": "cf71ff9ef27055b0b974dc9d6b541a83981659db",
+    "previousNames": [
+      "Sentado Chuteback Em Cadeira"
+    ],
+    "name": "Tríceps coice sentado na cadeira sem carga"
+  },
+  {
+    "id": "d8273716e7448beb4cc9165b48384bc63f54e661",
+    "previousNames": [
+      "Sentado Costas Squeeze Pulso Em Cadeira"
+    ],
+    "name": "Contração das escápulas com movimentos curtos sentado na cadeira"
+  },
+  {
+    "id": "b1bfb082dccf595442e74e75cfa4b7b9457d5fd3",
+    "previousNames": [
+      "Sentado Cotovelos Tucked Aberto Em Cadeira"
+    ],
+    "name": "Abertura dos braços com cotovelos junto ao corpo sentado na cadeira"
+  },
+  {
+    "id": "86a202365feac0735b1f189748cde49c9a8d7ed4",
+    "previousNames": [
+      "Sentado Desenvolvimento De Ombros Dedo Do Pé Toque Em Acolchoado Banquinho"
+    ],
+    "name": "Desenvolvimento de ombros com toque nos pés sentado no banco"
+  },
+  {
+    "id": "26919f8e2e4f3b5865cda0021ff188ae121d15f2",
+    "previousNames": [
+      "Sentado Elevação De Joelho Em Stability Bola"
+    ],
+    "name": "Elevação de joelhos sentado na bola suíça"
+  },
+  {
+    "id": "8facc7e24db0fc8b24b7c3a96de6d0074e3b6627",
+    "previousNames": [
+      "Sentado Elevação Lateral Stepout Em Acolchoado Banquinho (f"
+    ],
+    "name": "Elevação lateral dos braços com passo para fora sentado no banco"
+  },
+  {
+    "id": "1ac10becacccad496df611bab8a4e6d7041d7029",
+    "previousNames": [
+      "Sentado Em Para Fora Elevação De Pernas Em Acolchoado Banquinho (female"
+    ],
+    "name": "Abdominal com abertura e fechamento das pernas sentado no banco"
+  },
+  {
+    "id": "b8e8cf538bc4dffca708bb0b3ce93887ec7eb169",
+    "previousNames": [
+      "Sentado Flutter Chute Em Acolchoado Banquinho"
+    ],
+    "name": "Pernadas alternadas sentado no banco"
+  },
+  {
+    "id": "38c8e2e0b76e3c38a56e81041552f5b5fcd4c9cf",
+    "previousNames": [
+      "Sentado Inclinado Pressão Stepout Em Acolchoado Banquinho (f"
+    ],
+    "name": "Empurrada inclinada com passo para fora sentado no banco"
+  },
+  {
+    "id": "7bf7d7ada334a5b5dc15ee7a3104acfb8098df97",
+    "previousNames": [
+      "Sentado Joelho Extensão Em Stability Bola (female"
+    ],
+    "name": "Extensão de joelho sentado na bola suíça"
+  },
+  {
+    "id": "0c640c3b7f2c3cce64adb6f4cd168e81053a15a6",
+    "previousNames": [
+      "Sentado Lateral Abdominal Supra Em Acolchoado Banquinho"
+    ],
+    "name": "Abdominal lateral sentado no banco"
+  },
+  {
+    "id": "ebec564aaa6403c8fba2eebb2a29516bac3ff7f4",
+    "previousNames": [
+      "Sentado Lotus Postura Torcendo Frente Costas Toque (female"
+    ],
+    "name": "Rotação do tronco com toque à frente e atrás sentado em lótus"
+  },
+  {
+    "id": "87a200d33f10afde45c968fa543f4a7bc5cb57fe",
+    "previousNames": [
+      "Sentado Lumbar Extensão Flexão Em Stability Bola"
+    ],
+    "name": "Flexão e extensão lombar sentado na bola suíça"
+  },
+  {
+    "id": "0a8b46751e63cd15b056197a51425fc6a3c57e0c",
+    "previousNames": [
+      "Sentado Ombro Anti Clockwise Círculo"
+    ],
+    "name": "Círculos dos ombros para trás sentado"
+  },
+  {
+    "id": "76fc12ba8146069b140fa71dd8818e54b88923c2",
+    "previousNames": [
+      "Sentado Peito Palma Em Acolchoado Banquinho"
+    ],
+    "name": "Palmas à frente do peito sentado no banco"
+  },
+  {
+    "id": "224081c096df2ccc442268e86e0d35e64fc34cbf",
+    "previousNames": [
+      "Sentado Pelvis Imbalance Torção Em Cadeira Segurar (fe"
+    ],
+    "name": "Rotação pélvica isométrica com transferência de peso sentado na cadeira"
+  },
+  {
+    "id": "fe65b1124805eea3cfe04078ac48b4304c873198",
+    "previousNames": [
+      "Sentado Polichinelo Em Acolchoado Banquinho"
+    ],
+    "name": "Polichinelo sentado no banco"
+  },
+  {
+    "id": "492fed3b522fccb1060fae9196b92ac0d232ca83",
+    "previousNames": [
+      "Sentado Reto Braço Costas Squeeze Em Cadeira (fema"
+    ],
+    "name": "Contração das escápulas com braços estendidos sentado na cadeira"
+  },
+  {
+    "id": "6d6d252f2e2ad4c61adf38e32b08e2b8f689df9d",
+    "previousNames": [
+      "Sentado Scapular Adduction (side Costas Pov) (female"
+    ],
+    "name": "Adução das escápulas sentado — vista lateral posterior"
+  },
+  {
+    "id": "b3bec0b4214fcaf2dc5cae2c7e45820d5e3f66ec",
+    "previousNames": [
+      "Sentado Scapular Adduction (version 2) (side Costas"
+    ],
+    "name": "Adução das escápulas sentado — variação 2, vista lateral posterior"
+  },
+  {
+    "id": "c5848fad956d7c06b6a658fc80d6c6579c681fda",
+    "previousNames": [
+      "Sentado Soco Joelho Toque Em Acolchoado Banquinho"
+    ],
+    "name": "Socos com toque nos joelhos sentado no banco"
+  },
+  {
+    "id": "885ff4dc3e46f6414183a5595a2216c707b7ad70",
+    "previousNames": [
+      "Sentado Stepout Joelho Tuck Em Acolchoado Banquinho (femal"
+    ],
+    "name": "Passo para fora com recolhimento dos joelhos sentado no banco"
+  },
+  {
+    "id": "6282b461863d429b581e54c8c5ec4cb41511f285",
+    "previousNames": [
+      "Sentado Switching Palm Remada Em Cadeira"
+    ],
+    "name": "Remada com rotação das palmas sentado na cadeira"
+  },
+  {
+    "id": "faa5ad63cd439450e682f52766c0a6bef6508d1a",
+    "previousNames": [
+      "Sentado Unilateral Reto Costas Hamstring Lean (femal"
+    ],
+    "name": "Alongamento unilateral dos posteriores da coxa sentado com coluna alinhada"
+  },
+  {
+    "id": "75f07de70460c202e675c056311a01a694df1ab1",
+    "previousNames": [
+      "Slight Agachamento Costas Ombro Rotação"
+    ],
+    "name": "Rotação dos ombros para trás em semiagachamento"
+  },
+  {
+    "id": "eca1cbf6092b89a201f8de757dec71559545338f",
+    "previousNames": [
+      "Soco Stepback"
+    ],
+    "name": "Passo para trás com soco"
+  },
+  {
+    "id": "2ceb3704edf97152ef7a45aa0204d428d9579db2",
+    "previousNames": [
+      "Soco Stepback (front Pov)"
+    ],
+    "name": "Passo para trás com soco — vista frontal"
+  },
+  {
+    "id": "838e51bc811907fff7289fb12a6b12f6e95adcd9",
+    "previousNames": [
+      "Split Sprinter Baixo Afundo"
+    ],
+    "name": "Afundo baixo em posição de velocista"
+  },
+  {
+    "id": "ce111beb3a7ad1d80d2d54b31de1663667d2b8af",
+    "previousNames": [
+      "Stability Bola Rollout"
+    ],
+    "name": "Rolamento abdominal na bola suíça"
+  },
+  {
+    "id": "72c15dacc799853749bc34109ab060c72aa1b042",
+    "previousNames": [
+      "Stability Bola Rollout Em Joelhos"
+    ],
+    "name": "Rolamento abdominal ajoelhado na bola suíça"
+  },
+  {
+    "id": "942c66c9274d098d193916f001f59473515b6092",
+    "previousNames": [
+      "Stability Bola Rounded Rollout"
+    ],
+    "name": "Rolamento abdominal na bola suíça com coluna arredondada"
+  },
+  {
+    "id": "4ccf3b7a9fe18c5c7b75c7c05cac85ed93d17e86",
+    "previousNames": [
+      "Stability Bola Unilateral Perna Agachamento"
+    ],
+    "name": "Agachamento unilateral com bola suíça"
+  },
+  {
+    "id": "134df95247169917500a70ea63a56cd026720203",
+    "previousNames": [
+      "Stepback Com Empurrão"
+    ],
+    "name": "Passo para trás com empurrada dos braços"
+  },
+  {
+    "id": "569c0d7d3f91f8adc4e46cde004b387420b6ff1b",
+    "previousNames": [
+      "Stepback Com Hands Elevação"
+    ],
+    "name": "Passo para trás com elevação das mãos"
+  },
+  {
+    "id": "82db55c1fca4fbb9f8fa47ab7be29f3e7ee8af36",
+    "previousNames": [
+      "Stepback E Para Frente Chute"
+    ],
+    "name": "Passo para trás com chute à frente"
+  },
+  {
+    "id": "7a1d807151941d2798a1db7bebfe1bf6d2b9320c",
+    "previousNames": [
+      "Stepback Flap"
+    ],
+    "name": "Passo para trás com abertura e fechamento dos braços"
+  },
+  {
+    "id": "fd8194401bf366a6ff69e8eca5c7b238d0b8381b",
+    "previousNames": [
+      "Stepback Frente Chute Braços Elevação"
+    ],
+    "name": "Passo para trás com chute à frente e elevação dos braços"
+  },
+  {
+    "id": "fb24d038c14372c4d79d224c6b0ebde41db9a4be",
+    "previousNames": [
+      "Stepback Lateral Inclinação"
+    ],
+    "name": "Passo para trás com inclinação lateral do tronco"
+  },
+  {
+    "id": "9db1fa4f829643a8760a6458cd986e331dc6f426",
+    "previousNames": [
+      "Stepback Oblique Torção"
+    ],
+    "name": "Passo para trás com rotação do tronco"
+  },
+  {
+    "id": "fe182c6823450447acd142a6561ea22931e50842",
+    "previousNames": [
+      "Stepback Opposite Grab"
+    ],
+    "name": "Passo para trás com alcance cruzado"
+  },
+  {
+    "id": "0e2b9531556bb4f31136d4a70da464b5d9660bce",
+    "previousNames": [
+      "Stepback Puxada"
+    ],
+    "name": "Passo para trás com puxada dos braços"
+  },
+  {
+    "id": "ee335fda8edf710c600e91f68d51f0ce80f1b63a",
+    "previousNames": [
+      "Stepback Remada"
+    ],
+    "name": "Passo para trás com remada"
+  },
+  {
+    "id": "d688506cdc7ed4e56723a86f4cadfd629ebdbea8",
+    "previousNames": [
+      "Stepjack Costas Squeeze"
+    ],
+    "name": "Polichinelo sem salto com contração das escápulas"
+  },
+  {
+    "id": "6c406236a2c9e7a8d236a066be57535b0e6a34b7",
+    "previousNames": [
+      "Suspender Aberto Pegada Inverted Remada Em Chão"
+    ],
+    "name": "Remada invertida no TRX com pegada aberta junto ao chão"
+  },
+  {
+    "id": "82e278e7d8eff0ca1aaf24388c1e8f62d35f146c",
+    "previousNames": [
+      "Suspender Afundo Costas Cruzado"
+    ],
+    "name": "Afundo cruzado no TRX"
+  },
+  {
+    "id": "f28549886e623539bf9c2cbea45e90b23e3fd1b1",
+    "previousNames": [
+      "Suspender Barra Fixa"
+    ],
+    "name": "Barra fixa na fita de suspensão"
+  },
+  {
+    "id": "ffd5446cc7f0f76d80a3e43eee1373b5209ea886",
+    "previousNames": [
+      "Suspender Flexionado Joelho Inverted Remada"
+    ],
+    "name": "Remada invertida no TRX com joelhos flexionados"
+  },
+  {
+    "id": "baa99caf7feca2e880379a5465fc3d1f3de11cf2",
+    "previousNames": [
+      "Suspender Hyperextension"
+    ],
+    "name": "Extensão lombar no TRX"
+  },
+  {
+    "id": "f251846866994841d8f481b24067fea566b29080",
+    "previousNames": [
+      "Suspender Inverted Remada"
+    ],
+    "name": "Remada invertida no TRX"
+  },
+  {
+    "id": "0c125a0a2e9dcfaf7cc8b7dee13297a817c42485",
+    "previousNames": [
+      "Suspender Inverted Remada Braço Torção"
+    ],
+    "name": "Remada invertida no TRX com rotação do braço"
+  },
+  {
+    "id": "34c581c331bb413329966826e5ebba5629107af3",
+    "previousNames": [
+      "Suspender Puxada Through"
+    ],
+    "name": "Passagem do corpo entre os braços na fita de suspensão"
+  },
+  {
+    "id": "895787e5b972777bd7573b4d1a14d59f38501a91",
+    "previousNames": [
+      "Suspender Remada"
+    ],
+    "name": "Remada no TRX"
+  },
+  {
+    "id": "a14e677b566cf453b59bfc7b06a8f73a3f8181e2",
+    "previousNames": [
+      "Suspender Reverso Crucifixo Wake Para Cima"
+    ],
+    "name": "Crucifixo inverso no TRX com elevação do tronco"
+  },
+  {
+    "id": "dfb50b37edac9d2a0222b0724b568694a0f31008",
+    "previousNames": [
+      "Suspender Self Assistido Barra Fixa"
+    ],
+    "name": "Barra fixa na fita de suspensão com auxílio dos pés"
+  },
+  {
+    "id": "80e52f69a34745206240f946662fe305fe2cd799",
+    "previousNames": [
+      "Suspender Tríceps Coice"
+    ],
+    "name": "Tríceps coice no TRX"
+  },
+  {
+    "id": "f24f6816ab937123dc519658a897324f1dc0683a",
+    "previousNames": [
+      "Swimming Stepback"
+    ],
+    "name": "Passo para trás com movimento de natação dos braços"
+  },
+  {
+    "id": "4134362b1ccb00bb1ae94e6294f9ef87dabbd649",
+    "previousNames": [
+      "Torção Russa (on Stability Bola Braços Straight)"
+    ],
+    "name": "Rotação russa na bola suíça com braços estendidos"
+  },
+  {
+    "id": "38d572b0ddf55358ee278bfbf125b79e16d53759",
+    "previousNames": [
+      "Torção Stepback"
+    ],
+    "name": "Passo para trás com rotação do tronco"
+  },
+  {
+    "id": "5d2a539cec5cd7785b765c3a60af5731895cedc5",
+    "previousNames": [
+      "Torso Scissors Em Stability Bola"
+    ],
+    "name": "Tesoura com rotação do tronco na bola suíça"
+  },
+  {
+    "id": "7a09aa298dea1efe8c322f6712dd338e2ecda6aa",
+    "previousNames": [
+      "Tríceps Coice Calcanhar Toque"
+    ],
+    "name": "Tríceps coice com toque do calcanhar"
+  },
+  {
+    "id": "10bb76f2bbc64814f5a6707ee86c41f2a5502060",
+    "previousNames": [
+      "Unilateral Cadeira Extensora (on Stability Ball)"
+    ],
+    "name": "Extensão unilateral de joelho na bola suíça"
+  },
+  {
+    "id": "be45bb9c45ed4d1d332ead8072b72f2ebf3f5f7e",
+    "previousNames": [
+      "Unilateral Perna Baixo Caixote Agachamento"
+    ],
+    "name": "Agachamento unilateral até a caixa baixa"
+  },
+  {
+    "id": "d87cf1f919fa225c7c79f1ff527861ddc456e4d5",
+    "previousNames": [
+      "V Para Cima Para Baixo (with Stability Ball)"
+    ],
+    "name": "Abdominal em V com bola suíça"
+  },
+  {
+    "id": "f14419da63027b8a78692458c792f7c508d7f767",
+    "previousNames": [
+      "V Para Cima Para Baixo (with Stability Ball)"
+    ],
+    "name": "Abdominal em V com bola suíça"
+  },
+  {
+    "id": "bc423f7a5451b11c9077d428d39e8245872eee9b",
+    "previousNames": [
+      "V Step E Costas"
+    ],
+    "name": "Passo em V com retorno para trás"
   }
 ]
