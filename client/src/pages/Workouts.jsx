@@ -177,6 +177,8 @@ export function Workouts({ initialTab = 'exercises' }) {
 
   // Search terms
   const [exerciseSearch, setExerciseSearch] = useState('');
+  const [exerciseMuscleGroup, setExerciseMuscleGroup] = useState('');
+  const [exercisePage, setExercisePage] = useState(1);
   const [dailySearch, setDailySearch] = useState('');
   const [weeklySearch, setWeeklySearch] = useState('');
   const [weeklyImportJson, setWeeklyImportJson] = useState('');
@@ -300,6 +302,19 @@ export function Workouts({ initialTab = 'exercises' }) {
   const visibleExercises = useMemo(() => filteredExercises.filter((exercise) => (
     exerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
   )), [exerciseView, filteredExercises, user.id]);
+
+  const exerciseMuscleGroups = useMemo(() => [...new Set(exercises.filter((exercise) => (
+    exerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
+  )).map((exercise) => exercise.muscle_group?.trim() || 'Geral'))].sort((a, b) => a.localeCompare(b, 'pt-BR')), [exercises, exerciseView, user.id]);
+  const matchingExercises = visibleExercises.filter((exercise) => !exerciseMuscleGroup || (exercise.muscle_group?.trim() || 'Geral') === exerciseMuscleGroup);
+  const exercisePageSize = 24;
+  const exerciseTotalPages = Math.max(1, Math.ceil(matchingExercises.length / exercisePageSize));
+  const currentExercisePage = Math.min(exercisePage, exerciseTotalPages);
+  const exercisePageStart = Math.max(1, Math.min(currentExercisePage - 1, exerciseTotalPages - 2));
+  const exercisePageNumbers = Array.from({ length: Math.min(3, exerciseTotalPages) }, (_, i) => exercisePageStart + i);
+  const pagedExercises = matchingExercises.slice((currentExercisePage - 1) * exercisePageSize, currentExercisePage * exercisePageSize);
+  useEffect(() => { setExercisePage(1); }, [exerciseSearch, exerciseMuscleGroup, exerciseView]);
+  useEffect(() => { setExerciseMuscleGroup(''); }, [exerciseView]);
 
   const visibleDailyWorkouts = useMemo(() => filteredDailyWorkouts.filter((workout) => (
     dailyView === 'public' ? workout.visibility === 'public' : workout.owner_id === user.id
@@ -912,7 +927,7 @@ export function Workouts({ initialTab = 'exercises' }) {
               </label>
             </aside>
           ) : null}
-          <div className="two-column wide-left workout-view-content">
+          <div className="two-column wide-left workout-view-content exercise-view-content">
           <section className="panel" hidden={exerciseView !== 'create'}>
             <div className="section-title">
               <h2>Novo Exercício</h2>
@@ -992,7 +1007,7 @@ export function Workouts({ initialTab = 'exercises' }) {
 
           <section className="panel" hidden={exerciseView === 'create'}>
             <div className="section-title">
-              <h2>{exerciseView === 'public' ? 'Exercícios Públicos' : 'Meus Exercícios'} ({visibleExercises.length})</h2>
+              <h2>{exerciseView === 'public' ? 'Exercícios Públicos' : 'Meus Exercícios'} ({matchingExercises.length})</h2>
             </div>
 
             <div className="search-bar">
@@ -1009,11 +1024,27 @@ export function Workouts({ initialTab = 'exercises' }) {
               ) : null}
             </div>
 
-            {visibleExercises.length === 0 ? (
+            <div className="gif-muscle-groups exercise-muscle-filters" role="group" aria-label="Filtrar exercícios por grupo muscular">
+              <button type="button" className={!exerciseMuscleGroup ? 'active' : ''} aria-pressed={!exerciseMuscleGroup} onClick={() => setExerciseMuscleGroup('')}>Todos</button>
+              {exerciseMuscleGroups.map((group) => (
+                <button key={group} type="button" className={exerciseMuscleGroup === group ? 'active' : ''} aria-pressed={exerciseMuscleGroup === group} onClick={() => setExerciseMuscleGroup(group)}>{group}</button>
+              ))}
+            </div>
+            <div className="exercise-results" role="status">{matchingExercises.length.toLocaleString('pt-BR')} {matchingExercises.length === 1 ? 'resultado encontrado' : 'resultados encontrados'}</div>
+            {exerciseTotalPages > 1 ? (
+              <nav className="gif-picker-pagination" aria-label="Paginação dos exercícios">
+                <button type="button" className="secondary-button" disabled={currentExercisePage === 1} onClick={() => setExercisePage(currentExercisePage - 1)}>Anterior</button>
+                {exercisePageNumbers.map((number) => <button key={number} type="button" className={`secondary-button gif-page-number ${number === currentExercisePage ? 'active' : ''}`} aria-current={number === currentExercisePage ? 'page' : undefined} onClick={() => setExercisePage(number)}>{number}</button>)}
+                <button type="button" className="secondary-button" disabled={currentExercisePage === exerciseTotalPages} onClick={() => setExercisePage(currentExercisePage + 1)}>Próxima</button>
+                <span className="gif-pagination-summary">Página {currentExercisePage} de {exerciseTotalPages}</span>
+              </nav>
+            ) : null}
+
+            {matchingExercises.length === 0 ? (
               <div className="empty-state">Nenhum exercício encontrado.</div>
             ) : (
-              <div className="list-stack manage-list-stack">
-                {visibleExercises.map((exercise) => {
+              <div className="list-stack manage-list-stack exercise-cards-grid">
+                {pagedExercises.map((exercise) => {
                   const hasMedia = Boolean(exercise.gif_library_path || exercise.gif_path || exercise.video_path || exercise.youtube_url);
                   const canManageExercise = user.role === 'admin' || (exercise.visibility === 'private' && exercise.owner_id === user.id);
                   return (
