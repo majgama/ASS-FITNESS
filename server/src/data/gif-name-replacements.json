@@ -3615,5 +3615,1258 @@
       "X Faixa Lateral Caminhada"
     ],
     "name": "Caminhada lateral com faixa elástica em X"
+  },
+  {
+    "id": "451d37d15549b90348919707963bd5ea3d91c352",
+    "previousNames": [
+      "3 Point Em Pé Saltos Curtos"
+    ],
+    "name": "Saltos curtos em três direções"
+  },
+  {
+    "id": "efe61d7c7585f26bfe5319e371333d1d6e869ad6",
+    "previousNames": [
+      "4 Cone Unilateral Pé Lateral Saltos Curtos"
+    ],
+    "name": "Saltos laterais unilaterais entre quatro cones"
+  },
+  {
+    "id": "aade1d5f4c6eed50da302c39606ca76d063dc34d",
+    "previousNames": [
+      "4 Way Unilateral Perna Salto Curto"
+    ],
+    "name": "Saltos unilaterais em quatro direções"
+  },
+  {
+    "id": "e0d830bb38c67681352dcd15b1fb0b84f7336f80",
+    "previousNames": [
+      "90 Degree Calcanhar Toque Against Parede"
+    ],
+    "name": "Toque dos calcanhares com pernas a 90 graus e apoio na parede"
+  },
+  {
+    "id": "57204e7286d87cfe7bed0e2fddb203ab5aef0117",
+    "previousNames": [
+      "Abdominal Supra Com Medicine Bola"
+    ],
+    "name": "Abdominal supra com medicine ball"
+  },
+  {
+    "id": "0c147fa2ecccc768c30a6c756f4ae735fb9fac35",
+    "previousNames": [
+      "Abdominal Supra Flexionado Joelho Against Parede"
+    ],
+    "name": "Abdominal supra com joelhos flexionados e apoio na parede"
+  },
+  {
+    "id": "700c4421fb65f43c210f29c0e09a856f19396731",
+    "previousNames": [
+      "Agachamento Búlgaro Against Parede"
+    ],
+    "name": "Agachamento búlgaro com apoio na parede"
+  },
+  {
+    "id": "2dba293327b1a85f887b61b58dc08c3c38debdfc",
+    "previousNames": [
+      "Air Almofada Balance Counterbalanced Skater Agachamento (m"
+    ],
+    "name": "Agachamento do patinador sobre almofada de equilíbrio"
+  },
+  {
+    "id": "86c782b5968c9d856acee7c4d800247c3cf33a2b",
+    "previousNames": [
+      "Alternado Calcanhar Toque Sit Agains Parede"
+    ],
+    "name": "Agachamento isométrico na parede com toque alternado nos calcanhares"
+  },
+  {
+    "id": "095be1f1004939249a2be122410c48a7752f456f",
+    "previousNames": [
+      "Alternado Joelho Cruzado Sobre Sit Agains Parede"
+    ],
+    "name": "Agachamento isométrico na parede com cruzamento alternado de joelhos"
+  },
+  {
+    "id": "2c918ac3cdbdd132a70a471ca4bda2ee7b7f085d",
+    "previousNames": [
+      "Alternado Ombro Flexão Costas Para Parede (y Elevação"
+    ],
+    "name": "Elevação alternada dos braços em Y com costas na parede"
+  },
+  {
+    "id": "9a861e337e15ba1f4d5e07ce4db7abacc104d55e",
+    "previousNames": [
+      "Alternado Pé Hopscotch"
+    ],
+    "name": "Amarelinha com alternância dos pés"
+  },
+  {
+    "id": "bc26734ccb671df1ce942def3d75f99107aa711b",
+    "previousNames": [
+      "Alternado Perna Chute Sit Agains Parede"
+    ],
+    "name": "Agachamento isométrico na parede com chutes alternados"
+  },
+  {
+    "id": "0ff0f353d1fb277e1a2cc8503c25a16c20946a46",
+    "previousNames": [
+      "Alternado Tornozelo Toque Sob Sit Agains Parede"
+    ],
+    "name": "Agachamento isométrico na parede com toque alternado nos tornozelos"
+  },
+  {
+    "id": "cfd3488a1c232b9ceac434c88adfcf8759a94f90",
+    "previousNames": [
+      "Alternado Unilateral Perna Sit Parede"
+    ],
+    "name": "Agachamento isométrico na parede com apoio alternado em uma perna"
+  },
+  {
+    "id": "b5d7becabb5f07d2f0ee11e1a16e6eb4f9099bc2",
+    "previousNames": [
+      "Alto Pular Corda"
+    ],
+    "name": "Pular corda com saltos altos"
+  },
+  {
+    "id": "47e6cacc5def88be2702ff846c47c7a7f1d2bbfa",
+    "previousNames": [
+      "Balance Board (version 2)"
+    ],
+    "name": "Prancha de equilíbrio — variação 2"
+  },
+  {
+    "id": "f15b7a88f325a1b6d4b90674d920e2d881a3ef07",
+    "previousNames": [
+      "Balance Plate Em Pé"
+    ],
+    "name": "Equilíbrio em pé na plataforma"
+  },
+  {
+    "id": "21676ecd1e3c12a9130a2ec626afe6c7b722d0a9",
+    "previousNames": [
+      "Balance Plate Em Pé Torção"
+    ],
+    "name": "Rotação de tronco em pé na plataforma de equilíbrio"
+  },
+  {
+    "id": "aa8fd3743fafcae46a8305d2e8123a7c3ed69bb4",
+    "previousNames": [
+      "Balance Plate Em Pé Torção Cintura"
+    ],
+    "name": "Rotação de tronco em pé na plataforma de equilíbrio"
+  },
+  {
+    "id": "4747067b3e31a92324afeabeba9c037efb1a2fd9",
+    "previousNames": [
+      "Baseball Hit"
+    ],
+    "name": "Rebatida de beisebol simulada"
+  },
+  {
+    "id": "acb68fa15aad528d80b76d6d9abb42f1943f223e",
+    "previousNames": [
+      "Battling Ropes"
+    ],
+    "name": "Ondas com corda naval"
+  },
+  {
+    "id": "5952f65081b863c83197623df4247aa8ee24c5b1",
+    "previousNames": [
+      "Battling Ropes Alternado Braços Salto Agachamento"
+    ],
+    "name": "Ondas alternadas com corda naval e agachamento com salto"
+  },
+  {
+    "id": "8ea3511d801bb4f59f516e3d0d70adea174082f2",
+    "previousNames": [
+      "Battling Ropes Alternado Waves Com Ajoelhado Get"
+    ],
+    "name": "Ondas alternadas com corda naval e transição de ajoelhado para em pé"
+  },
+  {
+    "id": "4639878e2467ea455a3916f49cefa77f18a87c3e",
+    "previousNames": [
+      "Battling Ropes Meio Ajoelhado"
+    ],
+    "name": "Corda naval meio ajoelhado"
+  },
+  {
+    "id": "0315a1424c178d503d683bd9a3d3976a759cc231",
+    "previousNames": [
+      "Battling Ropes Polichinelo"
+    ],
+    "name": "Polichinelo com corda naval"
+  },
+  {
+    "id": "3aeebfad985b67a4ddc7c946003cd987625f9a91",
+    "previousNames": [
+      "Battling Ropes Power Slam"
+    ],
+    "name": "Batida dupla de corda naval no chão"
+  },
+  {
+    "id": "38bcf7639fd28f908e1d6c741dd860aa4ae50ef7",
+    "previousNames": [
+      "Battling Ropes Sentado"
+    ],
+    "name": "Corda naval sentado"
+  },
+  {
+    "id": "455901e72e8efaacfe43c7eca47dac5337a2a8fa",
+    "previousNames": [
+      "Battling Ropes Split Salto"
+    ],
+    "name": "Afundo com salto e corda naval"
+  },
+  {
+    "id": "d79a56f8a839f123bda5fc525985917ba9408001",
+    "previousNames": [
+      "Boxing Cruzado Hook Cruzado"
+    ],
+    "name": "Direto, gancho e direto no boxe"
+  },
+  {
+    "id": "3d60bc05f8f17ea9ecf0a3571c06c759b08e80dd",
+    "previousNames": [
+      "Boxing Duck E Uppercut"
+    ],
+    "name": "Esquiva seguida de uppercut no boxe"
+  },
+  {
+    "id": "0a0f3cd6f26193b54a9e1b542e66dc7faf55265f",
+    "previousNames": [
+      "Boxing Left Hook"
+    ],
+    "name": "Gancho de esquerda no boxe"
+  },
+  {
+    "id": "46aee99e8cece299fb635a37e9c8ef003c4ca978",
+    "previousNames": [
+      "Boxing Right Cruzado"
+    ],
+    "name": "Direto de direita no boxe"
+  },
+  {
+    "id": "3287a053917d912e99bc2d0abfc7f0a14f00a9f4",
+    "previousNames": [
+      "Broad Long Salto"
+    ],
+    "name": "Salto horizontal"
+  },
+  {
+    "id": "d157611254a83b000fca1106f99b686cb2efe837",
+    "previousNames": [
+      "Cadeira Sit Alternado Calcanhar Elevação Agains Parede"
+    ],
+    "name": "Agachamento isométrico na parede com elevação alternada dos calcanhares"
+  },
+  {
+    "id": "3819df51471b30bc45e8643c0cfdf9dcc2bd1d4e",
+    "previousNames": [
+      "Calcanhar Pressão"
+    ],
+    "name": "Pressão dos calcanhares"
+  },
+  {
+    "id": "e83784e270061bc651bc54b07b23a5300d38935d",
+    "previousNames": [
+      "Calcanhares Agachamento Slide Parede"
+    ],
+    "name": "Agachamento deslizando as costas na parede com calcanhares elevados"
+  },
+  {
+    "id": "149abf088a7a47aafa495912dd4f419057200c51",
+    "previousNames": [
+      "Cão Olhando Para Baixo Flexão Against Parede"
+    ],
+    "name": "Flexão na posição do cachorro olhando para baixo com apoio na parede"
+  },
+  {
+    "id": "6d13a9bf738a0ec082ac8fbfe5fb28b160c5fd22",
+    "previousNames": [
+      "Clamshell Sit Agains Parede"
+    ],
+    "name": "Abdução de quadril no agachamento isométrico na parede"
+  },
+  {
+    "id": "f2515e583daba9e8f5feeaffe7f77728e6c26ace",
+    "previousNames": [
+      "Cruzado Body Soco Polichinelo"
+    ],
+    "name": "Polichinelo com socos cruzados"
+  },
+  {
+    "id": "3daf3ac8cf3f566bd96c8fb3308ab037efed9aae",
+    "previousNames": [
+      "Cruzado Escalador Against Parede"
+    ],
+    "name": "Escalador cruzado com apoio na parede"
+  },
+  {
+    "id": "bc5f469ee7a27794494fa6588fd8227f39830fa6",
+    "previousNames": [
+      "Cruzado Escalador Chute Against Parede"
+    ],
+    "name": "Escalador cruzado com chute e apoio na parede"
+  },
+  {
+    "id": "36934065895dcebb4890e59723d030fbd076409d",
+    "previousNames": [
+      "Declinado Flexão Against Parede"
+    ],
+    "name": "Flexão de braços com pés apoiados na parede"
+  },
+  {
+    "id": "c79aa95aee5971cad36b98499ff2b99e9a81e8fe",
+    "previousNames": [
+      "Deitado Torção Dedo Do Pé Toque Against Parede"
+    ],
+    "name": "Abdominal deitado com rotação e toque nos pés apoiados na parede"
+  },
+  {
+    "id": "6dde404dbd2f5084d33f95067f288fa417a5b070",
+    "previousNames": [
+      "Diagonal Soco"
+    ],
+    "name": "Soco diagonal"
+  },
+  {
+    "id": "f277e5063d5062c4cc1fee018146c3b6010dd952",
+    "previousNames": [
+      "Diamond Flexão Against Parede"
+    ],
+    "name": "Flexão diamante na parede"
+  },
+  {
+    "id": "cce6194f2c2ad2a6517b876a1e169ceb1d17fe40",
+    "previousNames": [
+      "Duplo Calcanhar Lift Sit Agains Parede"
+    ],
+    "name": "Agachamento isométrico na parede com elevação dos dois calcanhares"
+  },
+  {
+    "id": "e67841bacc4efa0e43cb2216c6f5db27fd1c10ef",
+    "previousNames": [
+      "Duplo Pular Corda"
+    ],
+    "name": "Pular corda com salto duplo"
+  },
+  {
+    "id": "1f1d7f1d7561623e4834f6769806da5342affefc",
+    "previousNames": [
+      "Duplo Sob Pular Corda"
+    ],
+    "name": "Pular corda com duas passagens da corda por salto"
+  },
+  {
+    "id": "f54405c3143a6bde13886cad652858b3238d52c2",
+    "previousNames": [
+      "Elevação De Panturrilha Com Parede Support"
+    ],
+    "name": "Panturrilha em pé com apoio na parede"
+  },
+  {
+    "id": "e9fe17081e6071ac667bfa67088b437cbf24f1e1",
+    "previousNames": [
+      "Elevação Lateral Com Toalha"
+    ],
+    "name": "Elevação lateral com toalha e apoio na parede"
+  },
+  {
+    "id": "b54d11b55614f32b9c4bc699e55fab1a9d133aca",
+    "previousNames": [
+      "Em E Para Fora Agachamento"
+    ],
+    "name": "Agachamento com abertura e fechamento das pernas"
+  },
+  {
+    "id": "54d735e0e050f917ca09d3511a4e0fc424b5991f",
+    "previousNames": [
+      "Em Pé Ab Torção Parede Toque"
+    ],
+    "name": "Rotação abdominal em pé com toque na parede"
+  },
+  {
+    "id": "4221006d67297587081de7b62af7ba949db2724a",
+    "previousNames": [
+      "Em Pé Angel Parede Apoiado"
+    ],
+    "name": "Anjo na parede"
+  },
+  {
+    "id": "75bd8502cd3ce19d19eef2b69cbb02490e373620",
+    "previousNames": [
+      "Em Pé Inclinado Postura Cão De Aponte Abdominal Supra Against Parede (mal"
+    ],
+    "name": "Bird dog inclinado com abdominal e apoio na parede"
+  },
+  {
+    "id": "2693bed196aab7d02a45ebde1c5c257bf1aa5926",
+    "previousNames": [
+      "Em Pé Parede Slide Agachamento"
+    ],
+    "name": "Agachamento com deslizamento na parede"
+  },
+  {
+    "id": "db3d85a5fe353cb37cf688067b0c436824cadb23",
+    "previousNames": [
+      "Em Pé Power Throw"
+    ],
+    "name": "Arremesso de potência em pé com medicine ball"
+  },
+  {
+    "id": "de612f35b57ccb5b94a0f36d1bf048d9e320fc65",
+    "previousNames": [
+      "Em Pé Rosca Bíceps (with Leg)"
+    ],
+    "name": "Rosca bíceps usando a perna como resistência"
+  },
+  {
+    "id": "5090ad6292cd36e15f4dd03692906c4eaeec633a",
+    "previousNames": [
+      "Em Pé Rosca Bíceps Door Frame"
+    ],
+    "name": "Rosca bíceps em pé com apoio no batente da porta"
+  },
+  {
+    "id": "f8a1cfdb421b0c3a88a922a6b47d6c930493bcea",
+    "previousNames": [
+      "Em Pé Unilateral Braço Círculo Em Parede"
+    ],
+    "name": "Círculos de braço com apoio na parede"
+  },
+  {
+    "id": "99522e55b264cbfa48164e09051060c954ebaac9",
+    "previousNames": [
+      "Em Pé Unilateral Mesa Flexora"
+    ],
+    "name": "Flexão unilateral de joelho em pé"
+  },
+  {
+    "id": "bc2e1f4179fb4c1771a582f4ab7c1b9a19a728b0",
+    "previousNames": [
+      "Escalador Against Parede"
+    ],
+    "name": "Escalador com apoio na parede"
+  },
+  {
+    "id": "8f885afb85a237e2361f69148e91075fe3807538",
+    "previousNames": [
+      "Fechado Afundo Com Parede Apoiado"
+    ],
+    "name": "Afundo com base estreita e apoio na parede"
+  },
+  {
+    "id": "a6d495f7e8322a5b96296e096ac337fce13ef6c1",
+    "previousNames": [
+      "Fechado Pegada Flexão Against Parede"
+    ],
+    "name": "Flexão de braços com mãos próximas na parede"
+  },
+  {
+    "id": "240ab761a043e50d76e6e428ffb1f1116e604a56",
+    "previousNames": [
+      "Flexão (wall) Ii"
+    ],
+    "name": "Flexão de braços na parede — variação 2"
+  },
+  {
+    "id": "ba35f40dcf1a6e4e208fec94bd21be3321e103b7",
+    "previousNames": [
+      "Flexão Alternado Rear Afundo Against Parede"
+    ],
+    "name": "Flexão de braços com afundo reverso alternado na parede"
+  },
+  {
+    "id": "83af321b4fd766f8e8b6be80da8b0a2dea586fb6",
+    "previousNames": [
+      "Flexão Medicine Bola Peito"
+    ],
+    "name": "Flexão de braços com medicine ball"
+  },
+  {
+    "id": "84bb6529890b99d6cee80c49c1d0fa61ff957e3a",
+    "previousNames": [
+      "Forearms Para Aberto Pegada Parede Flexão"
+    ],
+    "name": "Flexão na parede passando do apoio nos antebraços para as mãos afastadas"
+  },
+  {
+    "id": "cd7752173230e1f461511b2b4737c660049af020",
+    "previousNames": [
+      "Forefoot Screw One Legged Stand"
+    ],
+    "name": "Equilíbrio unilateral com rotação sobre o antepé"
+  },
+  {
+    "id": "f681c6f9db662fe4c7feb845f6fa036d511a4ee9",
+    "previousNames": [
+      "Frente Salto Curto Costas Salto Curto"
+    ],
+    "name": "Salto curto à frente seguido de salto curto para trás"
+  },
+  {
+    "id": "21852c88be9fb5930dc4ebc36e15198235ae5fba",
+    "previousNames": [
+      "Handstand Against Parede"
+    ],
+    "name": "Parada de mãos com apoio na parede"
+  },
+  {
+    "id": "d0d750d63bb1d2701d2c48a8b61226b9f6b6fa4f",
+    "previousNames": [
+      "Handstand Desenvolvimento De Ombros Com Parede (between Benche"
+    ],
+    "name": "Flexão em parada de mãos com apoio na parede entre bancos"
+  },
+  {
+    "id": "2fa365d1376eea74108a62c1cb4e062efbdbd1af",
+    "previousNames": [
+      "Handstand Flexão (version 2)"
+    ],
+    "name": "Flexão em parada de mãos — variação 2"
+  },
+  {
+    "id": "fb8872958cb3eb3f24c34dddc87bbd1ffd13827f",
+    "previousNames": [
+      "Handstand Flexão Against Parede"
+    ],
+    "name": "Flexão em parada de mãos na parede"
+  },
+  {
+    "id": "ba54aded54ace73af39c52e26aa9b079d9b2d5b6",
+    "previousNames": [
+      "Handstand Ombro Toque Against Parede"
+    ],
+    "name": "Toque nos ombros em parada de mãos na parede"
+  },
+  {
+    "id": "8516af54e0d35139ca23ab1b346d28843d522552",
+    "previousNames": [
+      "Handstand Segurar Em Parede"
+    ],
+    "name": "Parada de mãos isométrica na parede"
+  },
+  {
+    "id": "7497e357e776e310d233ed99e54fda427e9700b4",
+    "previousNames": [
+      "Handstand Segurar Em Parede Ombros"
+    ],
+    "name": "Parada de mãos isométrica na parede"
+  },
+  {
+    "id": "bfed17c91104042bdece7b6e4c8269eb66fad575",
+    "previousNames": [
+      "Jab Crosses"
+    ],
+    "name": "Jab e direto"
+  },
+  {
+    "id": "090f317966235af5fc7395303809e4cada4f25ba",
+    "previousNames": [
+      "Jab Jab Right Cruzado"
+    ],
+    "name": "Dois jabs seguidos de direto de direita"
+  },
+  {
+    "id": "805a15407212fa81bd43e0d75b46803e3f3557fd",
+    "previousNames": [
+      "Joelho Salto Agrupado"
+    ],
+    "name": "Salto agrupado com joelhos elevados"
+  },
+  {
+    "id": "a2ec680a615361ae4ae2fac9e8b49ba9ea8b7f91",
+    "previousNames": [
+      "Joelhos E Dedos Dos Pés Point Em Agachamento Slide Parede"
+    ],
+    "name": "Agachamento na parede com joelhos e pés apontados para frente"
+  },
+  {
+    "id": "2f246b7133d6d244f50c036a7a2f69106ae0ced3",
+    "previousNames": [
+      "Joelhos E Dedos Dos Pés Point Para Fora Agachamento Slide Parede"
+    ],
+    "name": "Agachamento na parede com joelhos e pés apontados para fora"
+  },
+  {
+    "id": "9d25b5003eb1223ae6ff96676bda76b553f8ebe1",
+    "previousNames": [
+      "Kipping Handstand Flexão"
+    ],
+    "name": "Flexão em parada de mãos com impulso"
+  },
+  {
+    "id": "06b8f0b3856ca2d6a9e4607a93c37ce73a0e871d",
+    "previousNames": [
+      "Knuckle Flexão Against Parede"
+    ],
+    "name": "Flexão de braços sobre os punhos na parede"
+  },
+  {
+    "id": "a8877b4a42d2fe7fad32bf2ab3188636f95f729a",
+    "previousNames": [
+      "Lateral Abdominal Supra Against Parede"
+    ],
+    "name": "Abdominal lateral com apoio na parede"
+  },
+  {
+    "id": "65e2570dafdc050967839c82ddba5a566f835612",
+    "previousNames": [
+      "Lateral Cone Salto Curto Pliometria"
+    ],
+    "name": "Saltos laterais sobre cone"
+  },
+  {
+    "id": "ddcb8eaf8884305291fa64605d499ce412f99689",
+    "previousNames": [
+      "Lateral Hurdle Salto"
+    ],
+    "name": "Salto lateral sobre barreira"
+  },
+  {
+    "id": "c0e3fa1e258104eaa0422ea5544523974c0649f9",
+    "previousNames": [
+      "Lateral Saltos Curtos"
+    ],
+    "name": "Saltos laterais curtos"
+  },
+  {
+    "id": "1226e73085b1e71f8b8dd957da2d49ffb28a545b",
+    "previousNames": [
+      "Lateral Step Boxing Handroll"
+    ],
+    "name": "Passo lateral com giro das mãos no boxe"
+  },
+  {
+    "id": "dad147f1c1c31dfc9aa1beceabab4c5c38784944",
+    "previousNames": [
+      "Levantamento Terra Salto"
+    ],
+    "name": "Levantamento terra com salto"
+  },
+  {
+    "id": "c4f68052863be8cd7cdb40004591b897a2e2c082",
+    "previousNames": [
+      "Long Prancha Against Parede"
+    ],
+    "name": "Prancha longa com apoio na parede"
+  },
+  {
+    "id": "5bf8ebbc429751f5f5c4ad6c8879e48410fcef3f",
+    "previousNames": [
+      "Long Salto"
+    ],
+    "name": "Salto horizontal"
+  },
+  {
+    "id": "6010fd8d004eecab462954bb291bf5838f7102d7",
+    "previousNames": [
+      "Medicine Bola Abdominal Supra Em Stability Bola"
+    ],
+    "name": "Abdominal supra na bola suíça com medicine ball"
+  },
+  {
+    "id": "11f42e6d4709d7bc2d221c1d87cb4474ba1c4c4a",
+    "previousNames": [
+      "Medicine Bola Acima Da Cabeça Slam"
+    ],
+    "name": "Arremesso de medicine ball no chão acima da cabeça"
+  },
+  {
+    "id": "d19b6bf9a20e1be61e2c26e013c3f44336806892",
+    "previousNames": [
+      "Medicine Bola Acima Da Cabeça Throw"
+    ],
+    "name": "Arremesso de medicine ball acima da cabeça"
+  },
+  {
+    "id": "e674a4add2a6f8827d02378e2d71d1cd630ec4f8",
+    "previousNames": [
+      "Medicine Bola Afundo Com Rosca Bíceps"
+    ],
+    "name": "Afundo com rosca bíceps usando medicine ball"
+  },
+  {
+    "id": "7c4b381cc366380c74aa0150d20ea87f74aeae0b",
+    "previousNames": [
+      "Medicine Bola Catch E Acima Da Cabeça Throw"
+    ],
+    "name": "Recepção e arremesso de medicine ball acima da cabeça"
+  },
+  {
+    "id": "1152c1f64b979ec1c1acca69bd98166b3812d57f",
+    "previousNames": [
+      "Medicine Bola Deitado Elevação De Pernas"
+    ],
+    "name": "Elevação de pernas de barriga para baixo com apoio na medicine ball"
+  },
+  {
+    "id": "e1b3507f4c158597f02341148a524d40a87fef5a",
+    "previousNames": [
+      "Medicine Bola Em Supino Peito Throw"
+    ],
+    "name": "Arremesso de medicine ball à frente do peito deitado"
+  },
+  {
+    "id": "7218a74e3cef3ec5d22ac3e58b7d945466c2b333",
+    "previousNames": [
+      "Medicine Bola Escalador"
+    ],
+    "name": "Escalador com apoio na medicine ball"
+  },
+  {
+    "id": "da69f3de4beebc6d3126ea3dc19125fcabc49a4a",
+    "previousNames": [
+      "Medicine Bola Fechado Pegada Flexão"
+    ],
+    "name": "Flexão de braços com mãos próximas na medicine ball"
+  },
+  {
+    "id": "ae1452a7bc37baa8a9ff294b87796e32a2640050",
+    "previousNames": [
+      "Medicine Bola Goblet Agachamento"
+    ],
+    "name": "Agachamento goblet com medicine ball"
+  },
+  {
+    "id": "16deb1ab9f56bd5c7b5a5be13fb40f49aebf665b",
+    "previousNames": [
+      "Medicine Bola Lateral Para Lateral Slam"
+    ],
+    "name": "Arremesso de medicine ball no chão de um lado para o outro"
+  },
+  {
+    "id": "be38edcacf21850619a6e6183564f7ad368e757e",
+    "previousNames": [
+      "Medicine Bola Peito Pass Against Parede"
+    ],
+    "name": "Passe de peito com medicine ball contra a parede"
+  },
+  {
+    "id": "70b7303312a4c05e213214692b7a9e69026a15a5",
+    "previousNames": [
+      "Medicine Bola Plyo Flexão"
+    ],
+    "name": "Flexão pliométrica com medicine ball"
+  },
+  {
+    "id": "0c950b10a86d241a89218e23f8d42c8f08e48bda",
+    "previousNames": [
+      "Medicine Bola Prancha Polichinelo"
+    ],
+    "name": "Polichinelo na prancha com medicine ball"
+  },
+  {
+    "id": "9db47f487713bc89eaa31dc6adbbbbb219da1c21",
+    "previousNames": [
+      "Medicine Bola Roll Prancha"
+    ],
+    "name": "Prancha com rolamento da medicine ball"
+  },
+  {
+    "id": "4dce8720005ec1da6557ce1f391cdabd9f56af10",
+    "previousNames": [
+      "Medicine Bola Rotary Throw"
+    ],
+    "name": "Arremesso de medicine ball com rotação"
+  },
+  {
+    "id": "4c1e287b15acb3069551edef1dfd5425beae5d5f",
+    "previousNames": [
+      "Medicine Bola Slam (version 2)"
+    ],
+    "name": "Arremesso de medicine ball no chão — variação 2"
+  },
+  {
+    "id": "8b6058561c883c9863d9958815d0152aaca732f1",
+    "previousNames": [
+      "Medicine Bola Slam Burpee"
+    ],
+    "name": "Burpee com arremesso de medicine ball no chão"
+  },
+  {
+    "id": "4c279a31fa0791739bba61d96f5b0e6090e77061",
+    "previousNames": [
+      "Medicine Bola Step Atrás Rotational Throw"
+    ],
+    "name": "Passo para trás com arremesso rotacional de medicine ball"
+  },
+  {
+    "id": "e239751e18a8b2822298f8369a8b6c8cfd3ccd85",
+    "previousNames": [
+      "Medicine Bola Throw Agachamento Com Parede"
+    ],
+    "name": "Agachamento com arremesso de medicine ball na parede"
+  },
+  {
+    "id": "1b27efb2ec30e664a0c94bd25d876620caf77462",
+    "previousNames": [
+      "Medicine Bola Torção Russa (legs Up)"
+    ],
+    "name": "Abdominal russo com medicine ball e pernas elevadas"
+  },
+  {
+    "id": "e48846cd2adc665cf0f6295835fe8742f4074378",
+    "previousNames": [
+      "Medicine Bola Torção Turn Slam"
+    ],
+    "name": "Giro com arremesso de medicine ball no chão"
+  },
+  {
+    "id": "ca19b7d3264faa02a68e8b66b9992e500fb0cb92",
+    "previousNames": [
+      "Medicine Bola Unilateral Perna Slam"
+    ],
+    "name": "Arremesso de medicine ball no chão em apoio unilateral"
+  },
+  {
+    "id": "ceff13a213f51ae2b931a4c6f70aa2df2b5f37c7",
+    "previousNames": [
+      "Meio Agachamento Parede Tip Dedo Do Pé"
+    ],
+    "name": "Meio agachamento na parede com apoio na ponta dos pés"
+  },
+  {
+    "id": "4a87feb928934e4cd0caef7ebad08e66020fdaf6",
+    "previousNames": [
+      "Mini Agachamento Salto Curto"
+    ],
+    "name": "Saltos curtos em meio agachamento"
+  },
+  {
+    "id": "6a788389b80e5f474dde0c0e5239e22ca1969c1e",
+    "previousNames": [
+      "Opposite Braço E Elevação De Pernas Against Parede"
+    ],
+    "name": "Elevação de braço e perna opostos com apoio na parede"
+  },
+  {
+    "id": "f15389bba752d5781b72f4067312d6324bf698a6",
+    "previousNames": [
+      "Opposite Braço Elevação Against Parede"
+    ],
+    "name": "Elevação alternada de braços opostos com apoio na parede"
+  },
+  {
+    "id": "d6395d5ec661fc14b00378e6ad3d291b127e668a",
+    "previousNames": [
+      "Para Frente Sideward Salto Curto"
+    ],
+    "name": "Saltos curtos à frente e para o lado"
+  },
+  {
+    "id": "f79c74d4cf102618993ad909f491551acece2e37",
+    "previousNames": [
+      "Parede Afundo Lateral Torso Rotação"
+    ],
+    "name": "Afundo lateral com rotação de tronco e apoio na parede"
+  },
+  {
+    "id": "5c01fc836db3bca89de938ab745411dc12f8d046",
+    "previousNames": [
+      "Parede Apoiado Afundo Reverso"
+    ],
+    "name": "Afundo reverso com apoio na parede"
+  },
+  {
+    "id": "900f709fc339e511de56d863aa64dc7facd955b7",
+    "previousNames": [
+      "Parede Apoiado Costas Perna Lift"
+    ],
+    "name": "Elevação posterior de perna com apoio na parede"
+  },
+  {
+    "id": "5e97474c2e020ae4298e8fa5b76aa9d23f542a6a",
+    "previousNames": [
+      "Parede Apoiado Frente Perna Balanço"
+    ],
+    "name": "Balanço frontal de perna com apoio na parede"
+  },
+  {
+    "id": "f4a8e79908ccb2a010fd4469a16671a037910807",
+    "previousNames": [
+      "Parede Apoiado Lateral Perna Balanço"
+    ],
+    "name": "Balanço lateral de perna com apoio na parede"
+  },
+  {
+    "id": "7e3034d803702baf14e8f25d1ec1fe93619979c0",
+    "previousNames": [
+      "Parede Prancha"
+    ],
+    "name": "Prancha na parede"
+  },
+  {
+    "id": "ae1c081f6416a469cfa33b1c545273d562271898",
+    "previousNames": [
+      "Parede Pressão E Torção"
+    ],
+    "name": "Empurrada com rotação na parede"
+  },
+  {
+    "id": "de0a411ebbd923f6c2739c73e68c145259aa73c6",
+    "previousNames": [
+      "Parede Pulso"
+    ],
+    "name": "Flexão curta de braços na parede"
+  },
+  {
+    "id": "7b7fcab1bf3cf0516c0af2bc79fd16acd3c834cd",
+    "previousNames": [
+      "Parede Sit (narrow Stance)"
+    ],
+    "name": "Agachamento isométrico na parede com pés próximos"
+  },
+  {
+    "id": "ee4d1228a30716fe15b5d06546862baea98abac5",
+    "previousNames": [
+      "Parede Sit De Deficit"
+    ],
+    "name": "Agachamento isométrico na parede sobre plataforma"
+  },
+  {
+    "id": "f39084e68901588c9867aea461eac83c0c9574ae",
+    "previousNames": [
+      "Parede Walks"
+    ],
+    "name": "Caminhada com os pés pela parede até a parada de mãos"
+  },
+  {
+    "id": "79e3e770fadc39ef28fc2a5611410ffc1f32806d",
+    "previousNames": [
+      "Partner Shuffle"
+    ],
+    "name": "Deslocamento lateral com parceiro"
+  },
+  {
+    "id": "e5f2b7eaa4d9629c604a3449dcbf943957dc8052",
+    "previousNames": [
+      "Peito Para Parede Middle Split"
+    ],
+    "name": "Abertura lateral de pernas com peito voltado para a parede"
+  },
+  {
+    "id": "f20c3d3ae33fd88558c8f8435f419cfd2021fea9",
+    "previousNames": [
+      "Peso Corporal Elevação De Panturrilha Parede Sit"
+    ],
+    "name": "Panturrilha no agachamento isométrico na parede"
+  },
+  {
+    "id": "599e401c573f5c310db9773d92c4f0e9a13d34e0",
+    "previousNames": [
+      "Peso Corporal Em Pé Around World Parede Apoiado"
+    ],
+    "name": "Círculos dos braços em pé com apoio na parede"
+  },
+  {
+    "id": "2486bd518f4465eaf9b264ccbe879ffb6eea286e",
+    "previousNames": [
+      "Peso Corporal Em Pé Desenvolvimento Militar Parede Apoiado"
+    ],
+    "name": "Desenvolvimento militar em pé com apoio na parede sem carga"
+  },
+  {
+    "id": "e89ca64af682f1482d14e832c1d28f2d50e90b9b",
+    "previousNames": [
+      "Peso Corporal Em Pé Elevação De Panturrilha Em Stepbox (femal"
+    ],
+    "name": "Panturrilha em pé no step sem carga"
+  },
+  {
+    "id": "e467cfc2c2f1aa28526976d82b30df6362b9c911",
+    "previousNames": [
+      "Peso Corporal Parede Agachamento"
+    ],
+    "name": "Agachamento na parede sem carga"
+  },
+  {
+    "id": "3c16427f81ea18862e3492e761e9f545904cf409",
+    "previousNames": [
+      "Peso Corporal Patrick Step De Stepbox"
+    ],
+    "name": "Descida do step — Patrick Step"
+  },
+  {
+    "id": "3f6727825a324a419e10b7455d7cbc926084559f",
+    "previousNames": [
+      "Peso Corporal Peterson Step De Stepbox"
+    ],
+    "name": "Descida do step — Peterson Step"
+  },
+  {
+    "id": "930fa31306f213ad32c866e1a8a482f41592bc56",
+    "previousNames": [
+      "Peso Corporal Poliquin Step De Stepbox"
+    ],
+    "name": "Descida do step — Poliquin Step"
+  },
+  {
+    "id": "7dc0bbeb67a047db52c741c36ccaafbd38e772b0",
+    "previousNames": [
+      "Peso Corporal Remada Em Vão Da Porta"
+    ],
+    "name": "Remada com peso corporal no vão da porta"
+  },
+  {
+    "id": "b53677c696581285e2062c1e851a5deb4b74b5ef",
+    "previousNames": [
+      "Peso Corporal Subida No Step Elevação De Joelho Em Stepbox"
+    ],
+    "name": "Subida no step com elevação de joelho"
+  },
+  {
+    "id": "7e0e93f341508f8ecb9b591b353ca3a4cf9679d6",
+    "previousNames": [
+      "Peso Corporal Subida No Step Em Stepbox"
+    ],
+    "name": "Subida no step"
+  },
+  {
+    "id": "d58622ec2dba6e040f0a1e219b1a3355312095f5",
+    "previousNames": [
+      "Peso Corporal Tibialias Elevação Parede Apoiado"
+    ],
+    "name": "Elevação da ponta dos pés com costas apoiadas na parede"
+  },
+  {
+    "id": "f59bea6639e656430d21189769991f26ccc69590",
+    "previousNames": [
+      "Plyo Sit Agachamento (wall)"
+    ],
+    "name": "Agachamento pliométrico com apoio na parede"
+  },
+  {
+    "id": "8091fff7c945572e0b56e9e3675d89a7cad5b62e",
+    "previousNames": [
+      "Pogo Salto 2 Pé"
+    ],
+    "name": "Saltos curtos com os dois pés e impulso dos tornozelos"
+  },
+  {
+    "id": "21e66db3b1286762063ee986124e73be2a48dd37",
+    "previousNames": [
+      "Polichinelo Salto"
+    ],
+    "name": "Polichinelo com salto"
+  },
+  {
+    "id": "d3cfc9a54f6f461f68ff50773a0952e89d1cda5f",
+    "previousNames": [
+      "Ponte De Glúteo Abduction Against Parede"
+    ],
+    "name": "Ponte de glúteos com abdução e pés apoiados na parede"
+  },
+  {
+    "id": "52164a8ab10d53c38a0378763b68ae75dbb92c5b",
+    "previousNames": [
+      "Prancha Frontal Against Parede"
+    ],
+    "name": "Prancha frontal com apoio na parede"
+  },
+  {
+    "id": "c15b5c9cb17fcd9ec22925c080e6275fe16b32f9",
+    "previousNames": [
+      "Prancha Lateral Apoiado Parede"
+    ],
+    "name": "Prancha lateral com apoio na parede"
+  },
+  {
+    "id": "4855eee317f8fe065cab878e77b11532147e9053",
+    "previousNames": [
+      "Prancha Lateral Lift Against Parede"
+    ],
+    "name": "Prancha lateral com elevação de quadril e apoio na parede"
+  },
+  {
+    "id": "d955267258fe57ddc474a0e033c359e70289a15d",
+    "previousNames": [
+      "Repeated Small Jumps"
+    ],
+    "name": "Pequenos saltos repetidos"
+  },
+  {
+    "id": "2125149f2233f3b10c2ea8fc87bc123360d532c8",
+    "previousNames": [
+      "Resistência Faixa Serratus Parede Slide"
+    ],
+    "name": "Deslizamento dos antebraços na parede com faixa elástica"
+  },
+  {
+    "id": "4188c32a43754c055a679298d79aa9f38a1de8f3",
+    "previousNames": [
+      "Resistência Faixa Spider Crawls"
+    ],
+    "name": "Caminhada das mãos na parede com faixa elástica"
+  },
+  {
+    "id": "78257e4e9c7894e216738cc1594b47a2e1fd1be0",
+    "previousNames": [
+      "Right Cruzado Hook Chute (chuteboxing)"
+    ],
+    "name": "Direto de direita, gancho e chute no kickboxing"
+  },
+  {
+    "id": "2d236acadffd83bdaa37d7ad7ce5068da37b8bc4",
+    "previousNames": [
+      "Roll Bola Pectorial Release"
+    ],
+    "name": "Liberação de peitoral com bola"
+  },
+  {
+    "id": "930d029de6fce246c55d5298e0e4d67073480806",
+    "previousNames": [
+      "Saltando Air Palma"
+    ],
+    "name": "Salto com palmas no ar"
+  },
+  {
+    "id": "9e61a064253d294aea8816b1e7355c41da3f27ad",
+    "previousNames": [
+      "Saltando Pistol Agachamento"
+    ],
+    "name": "Agachamento pistola com salto"
+  },
+  {
+    "id": "00550e6fbe40b9ea18dee8c333ec5025ff833363",
+    "previousNames": [
+      "Salto Agachamento Coxas"
+    ],
+    "name": "Agachamento com salto"
+  },
+  {
+    "id": "ae5f16374acd732ee43f50f9a159500c403181ee",
+    "previousNames": [
+      "Salto Agrupado (version 2)"
+    ],
+    "name": "Salto agrupado — variação 2"
+  },
+  {
+    "id": "9acf9aa49b723ecd80847741fac625f2ab40f8a6",
+    "previousNames": [
+      "Scapular Slide Costas Para Parede"
+    ],
+    "name": "Deslizamento escapular com costas apoiadas na parede"
+  },
+  {
+    "id": "be463604a843533b5adf184db8fc2e40913d51cb",
+    "previousNames": [
+      "Semi Agachamento Salto"
+    ],
+    "name": "Meio agachamento com salto"
+  },
+  {
+    "id": "813c7667c49af2732ab9db913bdaa575f9715064",
+    "previousNames": [
+      "Sentado Lateral Abdominal Supra (wall)"
+    ],
+    "name": "Abdominal lateral sentado com apoio na parede"
+  },
+  {
+    "id": "822851eca3d6da364c1795714a4a7176359f8e65",
+    "previousNames": [
+      "Serratus Parede Slide"
+    ],
+    "name": "Deslizamento dos antebraços na parede para serrátil anterior"
+  },
+  {
+    "id": "f53c7092df780a2176642eee9105cafbefc4b8ef",
+    "previousNames": [
+      "Sit (wall)"
+    ],
+    "name": "Agachamento isométrico na parede"
+  },
+  {
+    "id": "73bc4b37c0f6b0cf835214fa5aca1d472fbcc44c",
+    "previousNames": [
+      "Skater Salto Curto Toque"
+    ],
+    "name": "Salto do patinador com toque no chão"
+  },
+  {
+    "id": "f25dc3f9e01759c0656ec8d0e0693d5576497e8a",
+    "previousNames": [
+      "Skater Saltos Curtos"
+    ],
+    "name": "Saltos curtos do patinador"
+  },
+  {
+    "id": "c634e0c6e077e8d5eda9458ccfd9d5375488781c",
+    "previousNames": [
+      "Sprint Against Parede"
+    ],
+    "name": "Corrida com joelhos altos e apoio na parede"
+  },
+  {
+    "id": "e5289fd9c878df9607c41976255a3b404d474acf",
+    "previousNames": [
+      "Swinging Braços Salto Split Afundo"
+    ],
+    "name": "Afundo alternado com salto e balanço dos braços"
+  },
+  {
+    "id": "36a9697e45ab1add8cb61d9af32ffa6ceb0ddaf9",
+    "previousNames": [
+      "Torção Russa (with Medicine Ball) Cintura"
+    ],
+    "name": "Abdominal russo com medicine ball"
+  },
+  {
+    "id": "15b27de55f30a87b9f537395f118e886c9a88a40",
+    "previousNames": [
+      "Unilateral Braço Flexão Apoiado Parede"
+    ],
+    "name": "Flexão unilateral com apoio na parede"
+  },
+  {
+    "id": "c09c027de13464050cc2546cf62825591c97f88b",
+    "previousNames": [
+      "Unilateral Perna Agachamento Com Parede Support (pistol)"
+    ],
+    "name": "Agachamento pistola com apoio na parede"
+  },
+  {
+    "id": "bd5a498e8265574c5fac99eba1a123189321ebad",
+    "previousNames": [
+      "Unilateral Perna Board Salto"
+    ],
+    "name": "Salto horizontal unilateral"
+  },
+  {
+    "id": "46876684c89735507b559197bd998b8f589cf4db",
+    "previousNames": [
+      "Unilateral Perna Hopping"
+    ],
+    "name": "Saltos em uma perna"
+  },
+  {
+    "id": "b3289396c1123eabef25172c3c1080ec19fe784d",
+    "previousNames": [
+      "Unilateral Perna Lateral Salto Curto"
+    ],
+    "name": "Saltos laterais curtos em uma perna"
+  },
+  {
+    "id": "1354d9512867b6d4c31b4c866db567c94d1014ea",
+    "previousNames": [
+      "V Sit Against Parede"
+    ],
+    "name": "Isometria em V com apoio na parede"
+  },
+  {
+    "id": "46fe03383f311284494b660e9ec76cd766736812",
+    "previousNames": [
+      "Vão Da Porta Rosca Bíceps"
+    ],
+    "name": "Rosca bíceps no vão da porta"
+  },
+  {
+    "id": "e09a500a5a8c0edaa83da5e79c51689bdd8f7f37",
+    "previousNames": [
+      "W Postura Against Parede"
+    ],
+    "name": "Braços em W com apoio na parede"
   }
 ]
