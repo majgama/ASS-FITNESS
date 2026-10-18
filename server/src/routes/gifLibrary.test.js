@@ -97,3 +97,27 @@ test('legacy boolean strings fall back to the catalog group in display and filte
   const filters = await (await fetch(`${baseUrl}/filters`)).json();
   assert.ok(!filters.muscleGroups.includes('true'));
 });
+
+test('search matches separated words in any order and requires every term before pagination', async () => {
+  overrides.clear();
+  await patch({ name: 'Elevacao exclusiva com barra revisada', muscleGroup: 'Grupo muscular personalizado' });
+  for (const search of ['exclusiva revisada', 'revisada exclusiva', '  REVISADA   exclusiva  ', 'barra personalizado']) {
+    const found = await list({ search, pageSize: '1' });
+    assert.equal(found.total, 1);
+    assert.equal(found.items[0].id, item.id);
+  }
+  const absent = await list({ search: 'exclusiva palavrainexistente' });
+  assert.equal(absent.total, 0);
+});
+
+test('search ignores accents and accepts blank or single-word queries', async () => {
+  overrides.clear();
+  await patch({ name: 'Eleva\u00e7\u00e3o exclusiva com bra\u00e7os estendidos' });
+  for (const search of ['elevacao bracos', 'BRA\u00c7OS ELEVA\u00c7\u00c3O', 'exclusiva']) {
+    const found = await list({ search });
+    assert.ok(found.items.some((row) => row.id === item.id));
+  }
+  const blank = await list({ search: '   ' });
+  const all = await list({});
+  assert.equal(blank.total, all.total);
+});

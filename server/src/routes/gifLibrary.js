@@ -204,12 +204,12 @@ gifLibraryRouter.get('/', asyncHandler(async (req, res) => {
   if (filters.muscleGroup) mapped = mapped.filter((item) => item.muscleGroup === filters.muscleGroup);
   if (filters.muscleGroups.length) mapped = mapped.filter((item) => filters.muscleGroups.includes(item.muscleGroup));
   if (filters.search) {
-    const q = filters.search.trim().toLowerCase();
-    mapped = mapped.filter((item) =>
-      item.name.toLowerCase().includes(q) ||
-      (req.gifCatalogById.get(item.id).nameEn || '').toLowerCase().includes(q) ||
-      (item.muscleGroup || '').toLowerCase().includes(q)
-    );
+    const normalize = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const terms = normalize(filters.search).trim().split(/\s+/).filter(Boolean);
+    mapped = mapped.filter((item) => {
+      const fields = [item.name, req.gifCatalogById.get(item.id).nameEn || '', item.muscleGroup || ''].map(normalize);
+      return terms.every((term) => fields.some((field) => field.includes(term)));
+    });
   }
   if (req.user.role !== 'admin') mapped = mapped.filter((item) => !item.hidden);
   if (filters.favoritesOnly) mapped = mapped.filter((item) => favoriteIds.has(item.id));
