@@ -662,7 +662,7 @@ export function Workouts({ initialTab = 'exercises' }) {
         }
       });
       closeDailyAddForm();
-      setExpandedDailyIds((current) => new Set(current).add(workout.id));
+      setExpandedDailyIds(new Set([workout.id]));
       setNotice('Exercício adicionado ao treino.');
       await load();
     } catch (err) {
@@ -1299,12 +1299,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                       className="daily-card-action daily-exercises-toggle"
                       aria-expanded={exercisesExpanded}
                       aria-controls={exercisesPanelId}
-                      onClick={() => setExpandedDailyIds((current) => {
-                        const next = new Set(current);
-                        if (next.has(workout.id)) next.delete(workout.id);
-                        else next.add(workout.id);
-                        return next;
-                      })}
+                      onClick={() => setExpandedDailyIds((current) => current.has(workout.id) ? new Set() : new Set([workout.id]))}
                     >
                       {exercisesExpanded ? 'Ocultar exercícios' : 'Ver exercícios'} ({exerciseCount})
                       <ChevronDown size={16} aria-hidden="true" />
