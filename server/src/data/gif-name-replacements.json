@@ -2479,5 +2479,1141 @@
       "Unilateral Perna Para Frente Inclinação"
     ],
     "name": "Inclinação à frente com apoio em uma perna"
+  },
+  {
+    "id": "6f6a6ac575d2c95ab045ba3ac692dd715792b791",
+    "previousNames": [
+      "Alternado Step Para Fora"
+    ],
+    "name": "Passo alternado para fora"
+  },
+  {
+    "id": "d1c2a1b8e826de6a80b34ee1851c9d1205f674db",
+    "previousNames": [
+      "Ape Traverse"
+    ],
+    "name": "Deslocamento lateral do macaco"
+  },
+  {
+    "id": "9fa55f998abf76380448a666cfb4e9965abce5f4",
+    "previousNames": [
+      "Bastão Em Pé Torso Torção"
+    ],
+    "name": "Rotação de tronco em pé com bastão"
+  },
+  {
+    "id": "fbd8f81d86fcb2569343d63902494795a73a666a",
+    "previousNames": [
+      "Burpee Agachamento"
+    ],
+    "name": "Burpee com agachamento"
+  },
+  {
+    "id": "f41da65eec63a7352195e201781cd2252c32e73c",
+    "previousNames": [
+      "Burpee Alternado Braço Elevação De Pernas"
+    ],
+    "name": "Burpee com elevação alternada de braço e perna"
+  },
+  {
+    "id": "3bd04fdbc3386f579fe6f90406f48d964776170c",
+    "previousNames": [
+      "Burpee Cardio"
+    ],
+    "name": "Burpee"
+  },
+  {
+    "id": "5fbc069499a1780e579f440e7b1a7797f06d8ade",
+    "previousNames": [
+      "Burpee Lateral Toque Step Polichinelo"
+    ],
+    "name": "Burpee com passo lateral e polichinelo"
+  },
+  {
+    "id": "329d58c16b306ae1ec6b9026153dca84cb68063a",
+    "previousNames": [
+      "Burpee Salto Agrupado"
+    ],
+    "name": "Burpee com salto agrupado"
+  },
+  {
+    "id": "eefcc609bb61ff45e9f1659c8fa1ad2f6bc4b59f",
+    "previousNames": [
+      "Burpee Shuffle"
+    ],
+    "name": "Burpee com deslocamento"
+  },
+  {
+    "id": "a7007a7b0721b3c38e9e1b88e1dc982ad941451c",
+    "previousNames": [
+      "Burpee Torção"
+    ],
+    "name": "Burpee com rotação"
+  },
+  {
+    "id": "1c520c96ded6759514c29a4d446c5f7341e9c13f",
+    "previousNames": [
+      "Burpee Two Star Jumps"
+    ],
+    "name": "Burpee com dois saltos em estrela"
+  },
+  {
+    "id": "af737188ba3ed3020866a137d41f1906301a6b6a",
+    "previousNames": [
+      "Completo Agachamento Mobility"
+    ],
+    "name": "Mobilidade em agachamento completo"
+  },
+  {
+    "id": "09ab05346f1bf40ee3bb6ccdd85ad5467d02cbf5",
+    "previousNames": [
+      "Crocodile Crawl"
+    ],
+    "name": "Rastejamento do crocodilo"
+  },
+  {
+    "id": "7871cb927643294ce8e4e96d3fd077b91543ee0a",
+    "previousNames": [
+      "Dinâmico Weight Bearing Tornozelo Dorsi Flexão"
+    ],
+    "name": "Mobilidade de dorsiflexão do tornozelo com apoio do peso corporal"
+  },
+  {
+    "id": "9c0edea19356b025f9c01e77ccf92650e9692ed4",
+    "previousNames": [
+      "Dive Bomber Flexão"
+    ],
+    "name": "Flexão mergulho"
+  },
+  {
+    "id": "058d0e190de48089ff49f503e2a734de41b84bf0",
+    "previousNames": [
+      "Faixa Acima Da Cabeça Extensão De Tríceps (version 2)"
+    ],
+    "name": "Tríceps francês com faixa elástica — variação 2"
+  },
+  {
+    "id": "75062f8a100dd84a5d137b6c36272e39f77db9d8",
+    "previousNames": [
+      "Faixa Agachamento"
+    ],
+    "name": "Agachamento com faixa elástica"
+  },
+  {
+    "id": "3e48ffbb5cbbfac1881f6887e310466aedc451c4",
+    "previousNames": [
+      "Faixa Agachamento Búlgaro"
+    ],
+    "name": "Agachamento búlgaro com faixa elástica"
+  },
+  {
+    "id": "0a1eba7b18fad06753368e3a3425b2dfe00882dd",
+    "previousNames": [
+      "Faixa Alternado Rosca Bíceps Superior Braços"
+    ],
+    "name": "Rosca alternada com faixa elástica"
+  },
+  {
+    "id": "cdde68fc481770e7222b9835a7f9e9c56e7d805a",
+    "previousNames": [
+      "Faixa Atrás Pescoço Desenvolvimento De Ombros"
+    ],
+    "name": "Desenvolvimento por trás da nuca com faixa elástica"
+  },
+  {
+    "id": "5b9ec7dae11719d62fea1ba5fd0ea25135c64420",
+    "previousNames": [
+      "Faixa Cruzado Abduction"
+    ],
+    "name": "Abdução cruzada de quadril com faixa elástica"
+  },
+  {
+    "id": "3260d0c2146cbcec7f841a0c7466ac91e100be66",
+    "previousNames": [
+      "Faixa Elevação Frontal"
+    ],
+    "name": "Elevação frontal com faixa elástica"
+  },
+  {
+    "id": "15e8921d6b2429941ccf845dd590fce545d70c08",
+    "previousNames": [
+      "Faixa Em Pé Reverso Rosca"
+    ],
+    "name": "Rosca inversa em pé com faixa elástica"
+  },
+  {
+    "id": "61ba18cb615f2d71cd1fd699adf179fe55c32685",
+    "previousNames": [
+      "Faixa Em Pé Rosca Martelo"
+    ],
+    "name": "Rosca martelo em pé com faixa elástica"
+  },
+  {
+    "id": "469146da96bfb80c46090c0d6395c4761ef8c047",
+    "previousNames": [
+      "Faixa Em Pé Unilateral Braço Rosca Bíceps Superior"
+    ],
+    "name": "Rosca unilateral em pé com faixa elástica"
+  },
+  {
+    "id": "e5048b4b1093b5b882890bcee49f48bc08eee37f",
+    "previousNames": [
+      "Faixa Fechado Pegada Rosca Bíceps"
+    ],
+    "name": "Rosca direta com faixa elástica e pegada fechada"
+  },
+  {
+    "id": "a7ff252850bb46cba9b6f984a453d576b491566e",
+    "previousNames": [
+      "Faixa Flexionado Sobre One Braço Chuteback"
+    ],
+    "name": "Tríceps coice unilateral curvado com faixa elástica"
+  },
+  {
+    "id": "ec549247477e805409d8659aa59daa1c7e7cc34f",
+    "previousNames": [
+      "Faixa Flexionado Sobre Rear Elevação Lateral (version"
+    ],
+    "name": "Crucifixo inverso curvado com faixa elástica"
+  },
+  {
+    "id": "5d51f821640cf6f719b3ff4a33d96ac307287784",
+    "previousNames": [
+      "Faixa Good Morning"
+    ],
+    "name": "Bom dia com faixa elástica"
+  },
+  {
+    "id": "5e9e49379a2417010330ab84f29b2dfe44dbade5",
+    "previousNames": [
+      "Faixa Levantamento Terra"
+    ],
+    "name": "Levantamento terra com faixa elástica"
+  },
+  {
+    "id": "be7598f4ab88891cb620dcd1e81dd890e6d2ac4a",
+    "previousNames": [
+      "Faixa Punho Rosca"
+    ],
+    "name": "Flexão de punhos com faixa elástica"
+  },
+  {
+    "id": "5569b30ef924181f8e6cfc88cd2341bb2a9cf876",
+    "previousNames": [
+      "Faixa Puxada Apart"
+    ],
+    "name": "Abertura de braços com faixa elástica"
+  },
+  {
+    "id": "a158772ca052d3a972a4dfe1af0e916d1f33283a",
+    "previousNames": [
+      "Faixa Remada Alta (under Two Feet)"
+    ],
+    "name": "Remada alta com faixa elástica sob os dois pés"
+  },
+  {
+    "id": "47b953412fc9dc8d6fbb30154e64b9dd99f75225",
+    "previousNames": [
+      "Faixa Remada Curvada"
+    ],
+    "name": "Remada curvada com faixa elástica"
+  },
+  {
+    "id": "4ea84816141ccc621809bcbd1d8a260bde0ed97b",
+    "previousNames": [
+      "Faixa Reto Costas Costas Sentado Remada"
+    ],
+    "name": "Remada sentada com faixa elástica"
+  },
+  {
+    "id": "682fac828f47df1f18bebcfb2f478fe9cf5ab01c",
+    "previousNames": [
+      "Faixa Reto Costas Stiff Perna Levantamento Terra"
+    ],
+    "name": "Stiff com faixa elástica"
+  },
+  {
+    "id": "3a142be3a2a2a49ffb80fca904052f4b9466f7fb",
+    "previousNames": [
+      "Faixa Rosca Bíceps"
+    ],
+    "name": "Rosca direta com faixa elástica"
+  },
+  {
+    "id": "022353961b0fe7281289dd71fa8fe12e0b12e169",
+    "previousNames": [
+      "Faixa Shrug"
+    ],
+    "name": "Encolhimento de ombros com faixa elástica"
+  },
+  {
+    "id": "10c9eabaf3ed6b7b1fe9f1fe0cd6144d8f7db302",
+    "previousNames": [
+      "Faixa Subida No Step"
+    ],
+    "name": "Subida no step com faixa elástica"
+  },
+  {
+    "id": "cb80ae95b12be2aea5c29556f6f7514226395497",
+    "previousNames": [
+      "Faixa Thruster"
+    ],
+    "name": "Agachamento com desenvolvimento usando faixa elástica"
+  },
+  {
+    "id": "8f9cd394f8d7196ea3b8199dedef74b2249566cc",
+    "previousNames": [
+      "Faixa Tríceps Coice"
+    ],
+    "name": "Tríceps coice com faixa elástica"
+  },
+  {
+    "id": "9f7333489aefb2e8294e4612bd5b7e36ce6f4f9a",
+    "previousNames": [
+      "Faixa Two Pernas Elevação De Panturrilha (band Sob Both Legs) Versão 2"
+    ],
+    "name": "Panturrilha em pé com faixa elástica sob os dois pés — variação 2"
+  },
+  {
+    "id": "4af348b04bbf95924a00eef2edf5bc54f50a2ddf",
+    "previousNames": [
+      "Faixa Unilateral Braço Desenvolvimento De Ombros"
+    ],
+    "name": "Desenvolvimento unilateral de ombro com faixa elástica"
+  },
+  {
+    "id": "220cbe678300caaf17288bb48a4bb3ea68b4b7da",
+    "previousNames": [
+      "Faixa Unilateral Perna Agachamento Búlgaro Com Ring"
+    ],
+    "name": "Agachamento búlgaro com faixa elástica e apoio em argola"
+  },
+  {
+    "id": "62bd4e00047e8d1cf2d65fceb28de56c9ccb42f9",
+    "previousNames": [
+      "Flexionado Joelho Deitado Torção Cintura"
+    ],
+    "name": "Rotação de tronco deitado com joelhos flexionados"
+  },
+  {
+    "id": "1a1a41b34462a4af6d1b9c0d26fcc74225a86e89",
+    "previousNames": [
+      "Flexionado Sobre Torção"
+    ],
+    "name": "Rotação de tronco com corpo inclinado"
+  },
+  {
+    "id": "5a4e3499afe2fb2445d5dad5e89c7fb01a9c6ceb",
+    "previousNames": [
+      "Forearm Pronation"
+    ],
+    "name": "Pronação do antebraço"
+  },
+  {
+    "id": "c247a95ebc983dbd2729b7436221fae478275a81",
+    "previousNames": [
+      "Frog"
+    ],
+    "name": "Movimento do sapo"
+  },
+  {
+    "id": "9e0936302b1bb1b328a016cb1b3ae2f78f1f0bf0",
+    "previousNames": [
+      "Handstand"
+    ],
+    "name": "Parada de mãos"
+  },
+  {
+    "id": "c3f8d1c332ea71c0fc4644409da70e779c8f094e",
+    "previousNames": [
+      "Handstand Against Parede"
+    ],
+    "name": "Parada de mãos com apoio na parede"
+  },
+  {
+    "id": "61cfca52d1abf9b6f3c1c5057725323d2056044e",
+    "previousNames": [
+      "Handstand Caminhada"
+    ],
+    "name": "Caminhada em parada de mãos"
+  },
+  {
+    "id": "6f9d025545219fe020b76278c33f76e80aa4af5b",
+    "previousNames": [
+      "Handstand Desenvolvimento De Ombros Com Parede (between Benche"
+    ],
+    "name": "Flexão em parada de mãos com apoio na parede entre bancos"
+  },
+  {
+    "id": "89e13ae209582eb4244603fc5c1704475012d6d5",
+    "previousNames": [
+      "Handstand Flexão"
+    ],
+    "name": "Flexão em parada de mãos"
+  },
+  {
+    "id": "e254acbcb8e99587d682576c7904a47ba07f20ae",
+    "previousNames": [
+      "Handstand Flexão (version 2)"
+    ],
+    "name": "Flexão em parada de mãos — variação 2"
+  },
+  {
+    "id": "bb5ff0687fb526f443f1f67d9a2832a3cbb5edf9",
+    "previousNames": [
+      "Handstand Flexão Against Parede"
+    ],
+    "name": "Flexão em parada de mãos na parede"
+  },
+  {
+    "id": "82dcdd9615681630954b0ca6097d626e612d69cd",
+    "previousNames": [
+      "Handstand Ombro Toque Against Parede"
+    ],
+    "name": "Toque nos ombros em parada de mãos na parede"
+  },
+  {
+    "id": "52f2498af920681fb1820101b959cf9b0820dd96",
+    "previousNames": [
+      "Handstand Segurar Em Parede"
+    ],
+    "name": "Parada de mãos isométrica na parede"
+  },
+  {
+    "id": "a01d706befd2faa48dca2e84d1d5481f4c718387",
+    "previousNames": [
+      "Handstand Segurar Em Parede Ombros"
+    ],
+    "name": "Parada de mãos isométrica na parede"
+  },
+  {
+    "id": "a4faf825362a09e8aaa2d3b17965a614871bf45f",
+    "previousNames": [
+      "Jog E Drop"
+    ],
+    "name": "Trote seguido de agachamento"
+  },
+  {
+    "id": "55ae720ea296e7a9bc0a8377acdf64f177db0967",
+    "previousNames": [
+      "Kipping Handstand Flexão"
+    ],
+    "name": "Flexão em parada de mãos com impulso"
+  },
+  {
+    "id": "3adbb3d3a87c4d403dd565252d8c68527c499732",
+    "previousNames": [
+      "Para Baixo Para Upward Dog"
+    ],
+    "name": "Cachorro olhando para baixo para cachorro olhando para cima"
+  },
+  {
+    "id": "a9b37f432bb4c91dc3aff3afb6f459aec9e69125",
+    "previousNames": [
+      "Peso Corporal Ajoelhado Segurar Para Stand"
+    ],
+    "name": "Subida de ajoelhado para em pé com peso corporal"
+  },
+  {
+    "id": "37a021c7eb9d84465f735902536105411b00bd3d",
+    "previousNames": [
+      "Peso Corporal Baixo Agachamento Búlgaro"
+    ],
+    "name": "Agachamento búlgaro baixo sem carga"
+  },
+  {
+    "id": "d0a8d72b6d9e3ca5139e6dd22ad01a7776941ac1",
+    "previousNames": [
+      "Ponte De Glúteo Roll"
+    ],
+    "name": "Ponte de glúteos com rolamento"
+  },
+  {
+    "id": "1505972fe48f41acfe2e8a8327a1d2e6d0498d1c",
+    "previousNames": [
+      "Prancha Caminhada Agachamento"
+    ],
+    "name": "Caminhada na prancha seguida de agachamento"
+  },
+  {
+    "id": "a1f8516bb6daede136e183e836e395b0fc8e9877",
+    "previousNames": [
+      "Profundo Agachamento Alcance Para Frente Alcance Para Cima"
+    ],
+    "name": "Agachamento profundo com alcance à frente e para cima"
+  },
+  {
+    "id": "d2e5b9f577276f592ebb2511fe062960f8fd2ab8",
+    "previousNames": [
+      "Punho Adduction"
+    ],
+    "name": "Adução do punho"
+  },
+  {
+    "id": "b4d4f6c3d8467284907f66bdad63caf7a9b2ef14",
+    "previousNames": [
+      "Punho Flexão"
+    ],
+    "name": "Flexão do punho"
+  },
+  {
+    "id": "7cd75b92-42bb-4fee-bbc8-31b0469cd173",
+    "previousNames": [
+      "RDL (Levantamento Terra Romeno) com Barra e Anilha sob Pontas dos Pés"
+    ],
+    "name": "Levantamento terra romeno com barra e pontas dos pés elevadas sobre anilha"
+  },
+  {
+    "id": "d73d46e05ce36e8fd4cdf55245c9d7296e141688",
+    "previousNames": [
+      "Resistência Faixa Acima Da Cabeça Desenvolvimento De Ombros"
+    ],
+    "name": "Desenvolvimento de ombros com faixa elástica"
+  },
+  {
+    "id": "313178fbf4798f75523cf2bdade9f9de6bce425a",
+    "previousNames": [
+      "Resistência Faixa Acima Da Cabeça Desenvolvimento De Ombros (version"
+    ],
+    "name": "Desenvolvimento de ombros com faixa elástica — variação"
+  },
+  {
+    "id": "e885015fc3ff532acb83eaab01745b426547b880",
+    "previousNames": [
+      "Resistência Faixa Agachamento Step Para Fora"
+    ],
+    "name": "Agachamento com passo para fora usando faixa elástica"
+  },
+  {
+    "id": "9cca9ab9ea200cdec39695f334729202d183e914",
+    "previousNames": [
+      "Resistência Faixa Ajoelhado Peito Pressão"
+    ],
+    "name": "Supino ajoelhado com faixa elástica"
+  },
+  {
+    "id": "4909110cd71c610879f67499654dffb217bca357",
+    "previousNames": [
+      "Resistência Faixa Arrasto Rosca"
+    ],
+    "name": "Rosca arrastada com faixa elástica"
+  },
+  {
+    "id": "39cac32a2ad92d78af72807bebfa8224ad6b1790",
+    "previousNames": [
+      "Resistência Faixa Assistido Nordic Hamstring Rosca"
+    ],
+    "name": "Flexão nórdica assistida por faixa elástica"
+  },
+  {
+    "id": "df3dff52cfaf46680fcea1a8863cec4addd14a95",
+    "previousNames": [
+      "Resistência Faixa Clam"
+    ],
+    "name": "Abdução de quadril em concha com faixa elástica"
+  },
+  {
+    "id": "19c0904d508379b07dcf9664d3361f5d366ba95c",
+    "previousNames": [
+      "Resistência Faixa Cotovelo Prancha Com Unilateral Braço Pulldo"
+    ],
+    "name": "Prancha nos antebraços com puxada unilateral usando faixa elástica"
+  },
+  {
+    "id": "bf53c0d3d52b8e67342289adc6219a2ed87a0ed8",
+    "previousNames": [
+      "Resistência Faixa Deitado Flexionado Elevação De Joelho"
+    ],
+    "name": "Elevação de joelhos flexionados deitado com faixa elástica"
+  },
+  {
+    "id": "14b10a31b8682c3a25ba397f4cd542459791d022",
+    "previousNames": [
+      "Resistência Faixa Deitado Perna Pressão"
+    ],
+    "name": "Leg press deitado com faixa elástica"
+  },
+  {
+    "id": "6c1d3106f7542268b2723c7f5df91f652f12487c",
+    "previousNames": [
+      "Resistência Faixa Em Pé 90 Degrees Ombro Extre"
+    ],
+    "name": "Rotação externa de ombro a 90 graus em pé com faixa elástica"
+  },
+  {
+    "id": "2b126d4d01739fd006e1ab9d17c6fa6df12bc11e",
+    "previousNames": [
+      "Resistência Faixa Em Pé Around World"
+    ],
+    "name": "Círculos dos braços em pé com faixa elástica"
+  },
+  {
+    "id": "f8aaf200513bd7238579ef7f0229519a396dd3d3",
+    "previousNames": [
+      "Resistência Faixa Em Pé Balance Glúteo Chuteback (v"
+    ],
+    "name": "Coice em pé com faixa elástica e equilíbrio unilateral — variação"
+  },
+  {
+    "id": "bbfd38fa6db0fe1b4227ced0e63b5c6cb0632387",
+    "previousNames": [
+      "Resistência Faixa Em Pé External Rotação"
+    ],
+    "name": "Rotação externa de ombro em pé com faixa elástica"
+  },
+  {
+    "id": "f17d74a248a74b53ca327d919f4853e31079c422",
+    "previousNames": [
+      "Resistência Faixa Em Pé Ombro External Rotatio"
+    ],
+    "name": "Rotação externa de ombro em pé com faixa elástica"
+  },
+  {
+    "id": "177cf1d8f947fc73cfa8e0c0e47a6c39cedfd46e",
+    "previousNames": [
+      "Resistência Faixa Em Pé Peito Pressão"
+    ],
+    "name": "Supino em pé com faixa elástica"
+  },
+  {
+    "id": "b30524073b2efe040d7a7205384daaf4403f7b89",
+    "previousNames": [
+      "Resistência Faixa Em Pé Unilateral Braço Elevação Lateral"
+    ],
+    "name": "Elevação lateral unilateral em pé com faixa elástica"
+  },
+  {
+    "id": "d3e591e2e2a912e25a96b7c98ab8330f1f55fde7",
+    "previousNames": [
+      "Resistência Faixa Fingers Extensão"
+    ],
+    "name": "Extensão dos dedos com faixa elástica"
+  },
+  {
+    "id": "aab17a29256bc79015ff25048e52a032ab508234",
+    "previousNames": [
+      "Resistência Faixa Flexão"
+    ],
+    "name": "Flexão de braços com faixa elástica"
+  },
+  {
+    "id": "184831c49bb3568d44719b9745eefcb1f5afc90d",
+    "previousNames": [
+      "Resistência Faixa Lateral Caminhada"
+    ],
+    "name": "Caminhada lateral com faixa elástica"
+  },
+  {
+    "id": "e77cca3a3e27e9d975dedf6d4a58e6d1aacd60d2",
+    "previousNames": [
+      "Resistência Faixa Levantamento Terra Romeno"
+    ],
+    "name": "Levantamento terra romeno com faixa elástica"
+  },
+  {
+    "id": "9487edfbd86520c831f4774d6d9648f68a9f29b1",
+    "previousNames": [
+      "Resistência Faixa Mesa Flexora"
+    ],
+    "name": "Flexão de joelhos com faixa elástica"
+  },
+  {
+    "id": "9b69179543c73b4bb1817396bc8be1e071462720",
+    "previousNames": [
+      "Resistência Faixa Monster Caminhada"
+    ],
+    "name": "Caminhada monstro com faixa elástica"
+  },
+  {
+    "id": "c5e0121070b1855515e98a735da54df7114ab7e9",
+    "previousNames": [
+      "Resistência Faixa One Braço Remada Curvada"
+    ],
+    "name": "Remada curvada unilateral com faixa elástica"
+  },
+  {
+    "id": "81fcf5c712458917151ff0640f9d58677442459b",
+    "previousNames": [
+      "Resistência Faixa Pass Through"
+    ],
+    "name": "Passagem da faixa elástica por cima da cabeça"
+  },
+  {
+    "id": "e4d2a6ec32821f2f3c9050fd69947a77f8bf3c83",
+    "previousNames": [
+      "Resistência Faixa Ponte De Glúteo"
+    ],
+    "name": "Ponte de glúteos com faixa elástica"
+  },
+  {
+    "id": "c5786d98c7e1aecfe63e877a134e762e40a95e64",
+    "previousNames": [
+      "Resistência Faixa Puxada Apart"
+    ],
+    "name": "Abertura dos braços com faixa elástica"
+  },
+  {
+    "id": "e8e9c149031e5447ce9753946372d8eba0af7934",
+    "previousNames": [
+      "Resistência Faixa Renegade Remada"
+    ],
+    "name": "Remada renegada com faixa elástica"
+  },
+  {
+    "id": "d7ce674538005e2c785d5cbf189dc8becb529cfe",
+    "previousNames": [
+      "Resistência Faixa Sentado Remada"
+    ],
+    "name": "Remada sentada com faixa elástica"
+  },
+  {
+    "id": "cbecbaffb610ae88d28fc5b295709d6e3dcf262b",
+    "previousNames": [
+      "Resistência Faixa Serratus Parede Slide Com Foam Roll"
+    ],
+    "name": "Deslizamento dos antebraços na parede com faixa elástica e rolo"
+  },
+  {
+    "id": "0833b63a7af867c5222bef5aff7e14e733def259",
+    "previousNames": [
+      "Resistência Faixa Sumo Agachamento"
+    ],
+    "name": "Agachamento sumô com faixa elástica"
+  },
+  {
+    "id": "089feed8e9d723668926c88eff08616606c8fc85",
+    "previousNames": [
+      "Resistência Faixa Superior Body Inseto Morto"
+    ],
+    "name": "Dead bug com resistência da faixa elástica nos braços"
+  },
+  {
+    "id": "a59f8c153fb05506c1d3249fc76c2b4c23f7ef68",
+    "previousNames": [
+      "Resistência Faixa X Lateral Caminhada"
+    ],
+    "name": "Caminhada lateral com faixa elástica em X"
+  },
+  {
+    "id": "603ff49defbc99960e6fefdcc548e01e415e97a9",
+    "previousNames": [
+      "Roll Ajoelhado Superior Costas Rotação"
+    ],
+    "name": "Rotação torácica ajoelhado com rolo"
+  },
+  {
+    "id": "d74ef451278faa88887fcf71535affcdf5a6da7b",
+    "previousNames": [
+      "Roll Around World Deitado Em Chão"
+    ],
+    "name": "Círculos dos braços deitado com apoio no rolo"
+  },
+  {
+    "id": "adca7bbe6609a88e7f1761a3d2456595406613cb",
+    "previousNames": [
+      "Roll Biceps Deitado Em Chão"
+    ],
+    "name": "Liberação de bíceps com rolo deitado no chão"
+  },
+  {
+    "id": "8da4b46ca04f2d512e078d9d39b1ec715de994c0",
+    "previousNames": [
+      "Roll Biceps Deitado Em Chão"
+    ],
+    "name": "Liberação de bíceps com rolo deitado no chão"
+  },
+  {
+    "id": "0d5b8009a3707b3b93bd653d1d4f6dd04d1a4d5b",
+    "previousNames": [
+      "Roll Bola Deitado Semisplinalis Capitis Muscle Activ"
+    ],
+    "name": "Liberação do semiespinal da cabeça com bola deitado"
+  },
+  {
+    "id": "16fb1f4ea17889f9d92e2c91b4b229903f7d384b",
+    "previousNames": [
+      "Roll Bola Deltoid Posterior"
+    ],
+    "name": "Liberação de deltoide posterior com bola"
+  },
+  {
+    "id": "c032b75587f97b230387ca625dfc0b96549a7f87",
+    "previousNames": [
+      "Roll Bola Gluteus Medius Quadris"
+    ],
+    "name": "Liberação de glúteo médio com bola"
+  },
+  {
+    "id": "57b9b8e2cd89f3dd4b844e9ea8eef31e41694862",
+    "previousNames": [
+      "Roll Bola Lateral Deitado Scalene Muscles Activation (f"
+    ],
+    "name": "Liberação dos escalenos com bola deitado de lado"
+  },
+  {
+    "id": "f6cd74763cf38173510cd5a0e3b4c549a1257aac",
+    "previousNames": [
+      "Roll Bola Lateral Deitado Scalene Muscles Activation (s"
+    ],
+    "name": "Liberação dos escalenos com bola deitado de lado"
+  },
+  {
+    "id": "b90f33cf851626465b62d4157aab05c93425d008",
+    "previousNames": [
+      "Roll Bola Pé"
+    ],
+    "name": "Liberação da planta do pé com bola"
+  },
+  {
+    "id": "584488c7661452006dc71439acc43eb5c531d692",
+    "previousNames": [
+      "Roll Bola Posterior Tibialis (single Leg) Lateral Lyi"
+    ],
+    "name": "Liberação unilateral do tibial posterior com bola deitado de lado"
+  },
+  {
+    "id": "9d86aa8e9daca299c38990e004a40679dfd56bbb",
+    "previousNames": [
+      "Roll Elevação Pélvica"
+    ],
+    "name": "Liberação com rolo em elevação pélvica"
+  },
+  {
+    "id": "149a09c9db9d53b987fc1eb3344a0b1f579c20e3",
+    "previousNames": [
+      "Roll Erector Spinae Deitado Em Chão"
+    ],
+    "name": "Liberação dos extensores da coluna com rolo deitado no chão"
+  },
+  {
+    "id": "2f1849981233fe4f9a5ff1235c3de72f1240a368",
+    "previousNames": [
+      "Roll Frente Ombro E Peito Deitado Em Chão (fema"
+    ],
+    "name": "Liberação da região anterior do ombro e peitoral com rolo"
+  },
+  {
+    "id": "b9276e178a3403fc432d64c23fd7a95fb03727d9",
+    "previousNames": [
+      "Roll Glúteo Torção Deitado Em Chão"
+    ],
+    "name": "Liberação de glúteos com rolo e rotação deitado"
+  },
+  {
+    "id": "8a3627e52bca7a7d1a68aa9b61e7b5afbbd15498",
+    "previousNames": [
+      "Roll Glúteos Sentado Em Chão"
+    ],
+    "name": "Liberação de glúteos com rolo sentado no chão"
+  },
+  {
+    "id": "7d2cca68fae73dcca3f1ca11aff0df5386748e08",
+    "previousNames": [
+      "Roll Hamstrings E Glúteo Sentado Em Chão"
+    ],
+    "name": "Liberação de posteriores de coxa e glúteos com rolo sentado"
+  },
+  {
+    "id": "9df2546163c5859602d59d736f0b632622d49d76",
+    "previousNames": [
+      "Roll Hamstrings E Glúteo Sentado Em Chão (female"
+    ],
+    "name": "Liberação de posteriores de coxa e glúteos com rolo sentado"
+  },
+  {
+    "id": "30d00cee5652e359f1a580d6151fd8c0f6a84026",
+    "previousNames": [
+      "Roll Hamstrings Sentado Em Chão"
+    ],
+    "name": "Liberação dos posteriores de coxa com rolo sentado"
+  },
+  {
+    "id": "df10041f3167ab2e05c6259291926c866426e94a",
+    "previousNames": [
+      "Roll Inferior Costas (side) Deitado Em Chão"
+    ],
+    "name": "Liberação lateral da região lombar com rolo"
+  },
+  {
+    "id": "a62d5e94c46a07681063c847b16cb00948e9ea93",
+    "previousNames": [
+      "Roll Middle Costas Deitado Em Chão"
+    ],
+    "name": "Liberação da região média das costas com rolo"
+  },
+  {
+    "id": "1b72d83fc730ab63991243f589ccf9f67af1bc6b",
+    "previousNames": [
+      "Roll Ombro Blade Alcance Deitado Em Chão"
+    ],
+    "name": "Alcance dos braços deitado com rolo sob as escápulas"
+  },
+  {
+    "id": "e62f1765e02219e372a021ccadd8ceaec4a048ec",
+    "previousNames": [
+      "Roll Ombro Costas Rotação Deitado Em Chão"
+    ],
+    "name": "Rotação de ombros e costas deitado com rolo"
+  },
+  {
+    "id": "d46361f3d952f8f9eaece00a7ae6184c291d0702",
+    "previousNames": [
+      "Roll Ombro Costas Rotação Deitado Em Chão (female"
+    ],
+    "name": "Rotação de ombros e costas deitado com rolo"
+  },
+  {
+    "id": "5fe4fcfdf1511e7bab8089d54296f4cf0085921c",
+    "previousNames": [
+      "Roll Panturrilhas"
+    ],
+    "name": "Liberação de panturrilhas com rolo"
+  },
+  {
+    "id": "4b2de106a4ca676f376b6bbb9a5826e77b4f49fc",
+    "previousNames": [
+      "Roll Panturrilhas (single Leg)"
+    ],
+    "name": "Liberação unilateral de panturrilha com rolo"
+  },
+  {
+    "id": "0ec9a72f2e6d6e9f7683e268a646e5f18bfee195",
+    "previousNames": [
+      "Roll Pé"
+    ],
+    "name": "Liberação da planta do pé com rolo"
+  },
+  {
+    "id": "7addf5001105b62b089e4beb96dd0d34269e77e3",
+    "previousNames": [
+      "Roll Pé"
+    ],
+    "name": "Liberação da planta do pé com rolo"
+  },
+  {
+    "id": "3663a2f37a06ca3724ecf8d3aeb2b9d19779d838",
+    "previousNames": [
+      "Roll Peito Deitado Em Chão"
+    ],
+    "name": "Liberação de peitoral com rolo deitado no chão"
+  },
+  {
+    "id": "29068c92a2be211121b608ddc933e61d4e32fedf",
+    "previousNames": [
+      "Roll Peito Opener Deitado Em Chão"
+    ],
+    "name": "Abertura de peitoral deitado com apoio no rolo"
+  },
+  {
+    "id": "6ed1317f37ffb5c63af1edf5e61684bd5e54177d",
+    "previousNames": [
+      "Roll Peroneal (single Leg) Lateral Deitado Em Chão"
+    ],
+    "name": "Liberação unilateral dos músculos fibulares com rolo"
+  },
+  {
+    "id": "84d32a54e3599643d0b92a0d96f8bb06696af13e",
+    "previousNames": [
+      "Roll Peroneal (single Leg) Lateral Deitado Em Chão (fe"
+    ],
+    "name": "Liberação unilateral dos músculos fibulares com rolo"
+  },
+  {
+    "id": "eb3448cf8099651758e65f706f63563cf5f7cf5b",
+    "previousNames": [
+      "Roll Peroneal Lateral Deitado Em Chão"
+    ],
+    "name": "Liberação dos músculos fibulares com rolo"
+  },
+  {
+    "id": "6a0e3146c2a7e50df8fee9dc82bb1dcf12c2a1df",
+    "previousNames": [
+      "Roll Pescoço Decompress Deitado Em Chão"
+    ],
+    "name": "Relaxamento cervical deitado com apoio no rolo"
+  },
+  {
+    "id": "1962a6f6503ea2ba13c6acfd393762450e38cb73",
+    "previousNames": [
+      "Roll Pescoço Decompress Deitado Em Chão"
+    ],
+    "name": "Relaxamento cervical deitado com apoio no rolo"
+  },
+  {
+    "id": "771ecadf5e437da1e6aa0df1bbeb1eadda9940b5",
+    "previousNames": [
+      "Roll Pescoço Rotação Deitado Em Chão"
+    ],
+    "name": "Rotação cervical deitado com apoio no rolo"
+  },
+  {
+    "id": "4dc2e7ce170a675374f0aaac77191618e016374a",
+    "previousNames": [
+      "Roll Pescoço Rotação Deitado Em Chão"
+    ],
+    "name": "Rotação cervical deitado com apoio no rolo"
+  },
+  {
+    "id": "966bc73ac12c9735bf31a71a4be56d250b56cc1c",
+    "previousNames": [
+      "Roll Posterior Ombro Deitado Em Chão"
+    ],
+    "name": "Liberação da parte posterior do ombro com rolo"
+  },
+  {
+    "id": "e7d3abe959ebe06e1e136e2c735f493e14da8ac6",
+    "previousNames": [
+      "Roll Posterior Ombro Deitado Em Chão"
+    ],
+    "name": "Liberação da parte posterior do ombro com rolo"
+  },
+  {
+    "id": "c9510f1912b6e7c3d5c8a0f85cf683bacf46e8ed",
+    "previousNames": [
+      "Roll Quadriceps (vastus Lateralis) Deitado Em Chão"
+    ],
+    "name": "Liberação do vasto lateral com rolo deitado"
+  },
+  {
+    "id": "d36c06bfec7978f3765e1f64feadf6003a612130",
+    "previousNames": [
+      "Roll Rectus Femoris"
+    ],
+    "name": "Liberação do reto femoral com rolo"
+  },
+  {
+    "id": "72c1158f81d32b888ed003e67c50e50f6827fb34",
+    "previousNames": [
+      "Roll Rectus Femoris Coxas"
+    ],
+    "name": "Liberação do reto femoral com rolo"
+  },
+  {
+    "id": "3a08902440a14137589a2f73a943cf442b532e33",
+    "previousNames": [
+      "Roll Reverso Abdominal Supra"
+    ],
+    "name": "Abdominal infra com apoio no rolo"
+  },
+  {
+    "id": "aebe216305cd91c9064f763170c917c037c42798",
+    "previousNames": [
+      "Roll Rhomboids"
+    ],
+    "name": "Liberação dos romboides com rolo"
+  },
+  {
+    "id": "ffdfd34bcb2cfc6c70456ea29f9133d8d1b46ef3",
+    "previousNames": [
+      "Roll Sentado Ombro Flexor Depresor Retractor"
+    ],
+    "name": "Alongamento de ombros sentado com rolo sob as pernas"
+  },
+  {
+    "id": "00e4e49dc342a91102ff88ce3247505ef3c55c97",
+    "previousNames": [
+      "Roll Sentado Unilateral Perna Ombro Flexor Depresor Re"
+    ],
+    "name": "Alongamento de ombros sentado com rolo sob uma perna"
+  },
+  {
+    "id": "81e67832cd1b0b76c08272795ca0dd1ef5e6165e",
+    "previousNames": [
+      "Roll Superior Costas"
+    ],
+    "name": "Liberação da parte superior das costas com rolo"
+  },
+  {
+    "id": "c9649873b698144044f726fd0a50ed0109519255",
+    "previousNames": [
+      "Roll Thoracic Coluna Deitado Em Chão"
+    ],
+    "name": "Liberação da coluna torácica com rolo"
+  },
+  {
+    "id": "c796cab9333c2b5e7c56f4bb1eb778a46e479fb4",
+    "previousNames": [
+      "Roll Tibialis Anterior"
+    ],
+    "name": "Liberação do tibial anterior com rolo"
+  },
+  {
+    "id": "4e995e7c496434fd23e8abaed234de77e32ead83",
+    "previousNames": [
+      "Roll Tibialis Anterior (single Leg) Deitado Em Chão"
+    ],
+    "name": "Liberação unilateral do tibial anterior com rolo"
+  },
+  {
+    "id": "3ed650904fdafec7a9f6801841ca3c888c4216e1",
+    "previousNames": [
+      "Roll Tibialis Anterior (single Leg) Deitado Em Chão"
+    ],
+    "name": "Liberação unilateral do tibial anterior com rolo"
+  },
+  {
+    "id": "dd0bb9e884e760617dbc78d2d167c27b59ccb45c",
+    "previousNames": [
+      "Roll Tibialis Anterior (single Leg) Deitado Em Chão",
+      "Roll Tibialis Anterior (single Leg) Deitado Em Chão 11.40.53"
+    ],
+    "name": "Liberação unilateral do tibial anterior com rolo"
+  },
+  {
+    "id": "655f5eeed8c177699d6f087cacfd7874d2513556",
+    "previousNames": [
+      "Roll Triceps Lateral Deitado Em Chão"
+    ],
+    "name": "Liberação de tríceps com rolo deitado de lado"
+  },
+  {
+    "id": "eccff322df9d14464d4956b891ac7340033e6fd7",
+    "previousNames": [
+      "Roll Triceps Lateral Deitado Em Chão"
+    ],
+    "name": "Liberação de tríceps com rolo deitado de lado"
+  },
+  {
+    "id": "ffbb84977371d10cf6b3b01c8f836253bcf8fc6f",
+    "previousNames": [
+      "Salto Curto Dedo Do Pé Toque"
+    ],
+    "name": "Salto curto com toque nos pés"
+  },
+  {
+    "id": "85413f20f61998d7fd0621ce5d88ed7be9799cbf",
+    "previousNames": [
+      "Split Lateral Agachamento Com Roll"
+    ],
+    "name": "Agachamento lateral com rolo"
+  },
+  {
+    "id": "c8e70d1e1e892bb2cc687080ea154c4b460683ac",
+    "previousNames": [
+      "Tornozelo Dorsal Flexão"
+    ],
+    "name": "Dorsiflexão do tornozelo"
+  },
+  {
+    "id": "f051569391ed4d08d0769256d4991fbcd9b1a6fa",
+    "previousNames": [
+      "Tornozelo Plantar Flexão"
+    ],
+    "name": "Flexão plantar do tornozelo"
+  },
+  {
+    "id": "ad359c858a31596a4a4f86be8a0901b100c05bd6",
+    "previousNames": [
+      "Tríceps coice unilateral curvado na polia",
+      "Cabo Flexionado Sobre Unilateral Braço Neutral Pegada Chuteback Com Corda Attachment"
+    ],
+    "name": "Tríceps coice unilateral curvado na polia"
+  },
+  {
+    "id": "e12f6cba5a144fc97156193dece382abedfa1fe2",
+    "previousNames": [
+      "X Faixa Lateral Caminhada"
+    ],
+    "name": "Caminhada lateral com faixa elástica em X"
   }
 ]
