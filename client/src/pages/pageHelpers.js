@@ -43,3 +43,19 @@ export function isWorkoutModelInView(user, model, view) {
   if (view === 'public') return model.visibility === 'public';
   return model.visibility === 'private' && (user.role === 'admin' || model.owner_id === user.id);
 }
+
+// Keep source records intact; only collapse identical image/prescription entries in lists.
+export function uniqueExerciseList(exercises) {
+  const seen = new Set();
+  const value = (input) => String(input ?? '').trim();
+  return exercises.filter((exercise) => {
+    const image = exercise.gif_library_path
+      ? ['library', exercise.gif_library_path]
+      : exercise.gif_path ? ['gif', exercise.gif_path] : null;
+    if (!image) return true;
+    const key = JSON.stringify([image, value(exercise.default_sets), value(exercise.default_repetitions), value(exercise.observations)]);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}

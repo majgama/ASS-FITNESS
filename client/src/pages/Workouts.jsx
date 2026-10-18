@@ -22,7 +22,7 @@ import { GifLibraryPicker } from '../components/GifLibraryPicker.jsx';
 import { Modal } from '../components/Modal.jsx';
 import { StatusBadge } from '../components/StatusBadge.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
-import { weekDays } from './pageHelpers.js';
+import { uniqueExerciseList, weekDays } from './pageHelpers.js';
 
 const mediaChoices = [
   { value: 'library', label: 'Banco de GIFs', icon: '/icones/banco_gif2.PNG' },
@@ -319,7 +319,7 @@ export function Workouts({ initialTab = 'exercises' }) {
   const exerciseMuscleGroups = useMemo(() => [...new Set(exercises.filter((exercise) => (
     exerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id
   )).map((exercise) => exercise.muscle_group?.trim() || 'Geral'))].sort((a, b) => a.localeCompare(b, 'pt-BR')), [exercises, exerciseView, user.id]);
-  const matchingExercises = visibleExercises.filter((exercise) => !exerciseMuscleGroup || (exercise.muscle_group?.trim() || 'Geral') === exerciseMuscleGroup);
+  const matchingExercises = uniqueExerciseList(visibleExercises.filter((exercise) => !exerciseMuscleGroup || (exercise.muscle_group?.trim() || 'Geral') === exerciseMuscleGroup));
   const exercisePageSize = 24;
   const exerciseTotalPages = Math.max(1, Math.ceil(matchingExercises.length / exercisePageSize));
   const currentExercisePage = Math.min(exercisePage, exerciseTotalPages);
@@ -346,10 +346,10 @@ export function Workouts({ initialTab = 'exercises' }) {
     dailyWorkouts.find((workout) => workout.id === selectedDailyWorkout) || null
   ), [dailyWorkouts, selectedDailyWorkout]);
 
-  const availableDailyExercises = useMemo(() => exercises.filter((exercise) => (
+  const availableDailyExercises = useMemo(() => uniqueExerciseList(exercises.filter((exercise) => (
     (selectedTargetWorkout ? exerciseFitsWorkout(exercise, selectedTargetWorkout) : true)
     && (dailyExerciseView === 'public' ? exercise.visibility === 'public' : exercise.owner_id === user.id)
-  )), [dailyExerciseView, exercises, selectedTargetWorkout, user.id]);
+  ))), [dailyExerciseView, exercises, selectedTargetWorkout, user.id]);
 
   const exerciseWorkoutTargets = useMemo(() => (
     exerciseForWorkout ? workoutTargets.filter((workout) => exerciseFitsWorkout(exerciseForWorkout, workout)) : []
@@ -358,12 +358,12 @@ export function Workouts({ initialTab = 'exercises' }) {
   const pickerExercises = useMemo(() => {
     if (!exercisePickerWorkout) return [];
     const term = exercisePickerSearch.trim().toLowerCase();
-    return exercises
+    return uniqueExerciseList(exercises
       .filter((exercise) => exerciseFitsWorkout(exercise, exercisePickerWorkout))
       .filter((exercise) => !term
         || exercise.name?.toLowerCase().includes(term)
         || exercise.muscle_group?.toLowerCase().includes(term))
-      .sort((a, b) => (a.visibility === b.visibility ? a.name.localeCompare(b.name) : a.visibility === 'private' ? -1 : 1));
+      .sort((a, b) => (a.visibility === b.visibility ? a.name.localeCompare(b.name) : a.visibility === 'private' ? -1 : 1)));
   }, [exercisePickerSearch, exercisePickerWorkout, exercises]);
 
   // Exercise Handlers
