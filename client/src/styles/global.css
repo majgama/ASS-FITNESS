@@ -3715,14 +3715,14 @@ textarea::placeholder {
     grid-row: 2;
     overflow-wrap: anywhere;
   }
-  .daily-workout-exercise-meta {
+  .daily-workout-exercise-main .daily-workout-exercise-meta {
     grid-column: 2;
     grid-row: 3;
     align-self: start;
     align-content: start;
     min-width: 0;
   }
-  .daily-workout-exercise-meta span { max-width: 100%; overflow-wrap: anywhere; }
+  .daily-workout-exercise-main .daily-workout-exercise-meta span { max-width: 100%; overflow-wrap: anywhere; }
   .daily-workout-exercise-content > p {
     grid-column: 1 / -1;
     grid-row: 4;
@@ -3751,8 +3751,8 @@ textarea::placeholder {
     padding: 10px 0;
   }
   .daily-workout-exercise + .daily-workout-exercise { border-top: 1px solid #353a36; }
-  .daily-workout-exercise-meta .daily-label-full { display: none; }
-  .daily-workout-exercise-meta .daily-label-short { display: inline; text-decoration: none; }
+  .daily-workout-exercise-main .daily-workout-exercise-meta .daily-label-full { display: none; }
+  .daily-workout-exercise-main .daily-workout-exercise-meta .daily-label-short { display: inline; text-decoration: none; }
 }
 
 @media (max-width: 600px) {
@@ -3765,4 +3765,15 @@ textarea::placeholder {
     box-sizing: border-box;
   }
   .manage-daily-card > .manage-header-row strong { color: #fff; }
+}
+
+@media (max-width: 600px) {
+  .exercise-picker-info > .daily-card-action {
+    width: 100%;
+    justify-content: center;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 9px 10px;
+  }
+  .exercise-picker-info > .daily-card-action svg { flex-shrink: 0; }
 }

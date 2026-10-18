@@ -1760,7 +1760,7 @@ export function Workouts({ initialTab = 'exercises' }) {
                       {exercise.observations ? <p>{exercise.observations}</p> : null}
                       <button type="button" className="daily-card-action" onClick={() => chooseExerciseForDailyDraft(exercise)}>
                         <Plus size={15} aria-hidden="true" />
-                        Adicionar ao treino selecionado
+                        Adicionar ao treino
                       </button>
                     </div>
                   </article>
