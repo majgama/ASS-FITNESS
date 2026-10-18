@@ -1368,10 +1368,10 @@ export function Workouts({ initialTab = 'exercises' }) {
                                       ) : null}
                                     </div>
                                     <div className="daily-workout-exercise-meta">
-                                      <span>{item.sets || '—'} séries</span>
-                                      <span>{item.repetitions || '—'} repetições</span>
+                                      <span>{item.sets || '—'} <abbr className="daily-label-full">séries</abbr><abbr className="daily-label-short" title="Séries">sér.</abbr></span>
+                                      <span>{item.repetitions || '—'} <abbr className="daily-label-full">repetições</abbr><abbr className="daily-label-short" title="Repetições">rep.</abbr></span>
                                       {item.load ? <span>Carga: {item.load}</span> : null}
-                                      {item.restSeconds !== null && item.restSeconds !== undefined ? <span>Descanso: {item.restSeconds}s</span> : null}
+                                      {item.restSeconds !== null && item.restSeconds !== undefined ? <span><abbr className="daily-label-full">Descanso:</abbr><abbr className="daily-label-short" title="Descanso">Desc.:</abbr> {item.restSeconds}s</span> : null}
                                     </div>
                                     {item.notes ? <p>{item.notes}</p> : null}
                                   </div>

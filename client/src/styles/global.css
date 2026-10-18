@@ -3672,12 +3672,14 @@ textarea::placeholder {
   overflow: visible;
 }
 
+.daily-label-short { display: none; }
+
 /* Mobile daily exercise cards: heading, image/details, then full-width notes. */
 @media (max-width: 600px) {
   .daily-workout-exercise-main {
     position: relative;
-    grid-template-columns: minmax(90px, 36%) minmax(0, 1fr);
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: minmax(45px, 18%) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto auto;
     gap: 8px 10px;
   }
   .daily-workout-exercise-content,
@@ -3686,16 +3688,17 @@ textarea::placeholder {
   .daily-workout-exercise-heading strong {
     grid-column: 1 / -1;
     grid-row: 1;
-    min-height: 34px;
-    padding-right: 80px;
+    min-height: 0;
+    padding-right: 0;
     font-size: 15px;
     line-height: 1.4;
     align-self: center;
   }
   .daily-workout-exercise-heading .card-actions {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: static;
+    grid-column: 1 / -1;
+    grid-row: 5;
+    justify-content: flex-end;
     margin: 0;
     display: flex;
     gap: 5px;
@@ -3726,4 +3729,28 @@ textarea::placeholder {
     line-height: 1.5;
     overflow-wrap: anywhere;
   }
+  .manage-daily-card {
+    border: 0;
+    border-bottom: 2px solid #666b63;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 12px 0 18px;
+  }
+  .manage-daily-card .manage-subexercises-list {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+  }
+  .daily-workout-exercise {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 10px 0;
+  }
+  .daily-workout-exercise + .daily-workout-exercise { border-top: 1px solid #353a36; }
+  .daily-workout-exercise-meta .daily-label-full { display: none; }
+  .daily-workout-exercise-meta .daily-label-short { display: inline; text-decoration: none; }
 }
