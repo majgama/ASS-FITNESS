@@ -3678,7 +3678,7 @@ textarea::placeholder {
 @media (max-width: 600px) {
   .daily-workout-exercise-main {
     position: relative;
-    grid-template-columns: minmax(45px, 18%) minmax(0, 1fr);
+    grid-template-columns: minmax(60px, 24%) minmax(0, 1fr);
     grid-template-rows: auto auto 1fr auto auto;
     gap: 8px 10px;
   }
