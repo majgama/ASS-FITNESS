@@ -318,6 +318,23 @@ export function GifLibraryPicker({
     !showMuscleGroups || !muscleLabels.includes(normalizeGroup(filterLabel(value)))
   );
 
+  const pagination = (
+    total > pageSize ? (
+        <nav className="gif-picker-pagination" aria-label="Paginação do Banco de GIFs">
+          <button type="button" className="secondary-button" disabled={page <= 1} onClick={() => loadItems(page - 1)}>Anterior</button>
+          {visiblePages.map((pageNumber) => (
+            <button key={pageNumber} type="button" className={`secondary-button gif-page-number ${page === pageNumber ? 'active' : ''}`}
+              aria-label={`Página ${pageNumber}`} aria-current={page === pageNumber ? 'page' : undefined}
+              onClick={() => loadItems(pageNumber)}>
+              {pageNumber}
+            </button>
+          ))}
+          <button type="button" className="secondary-button" disabled={page >= totalPages} onClick={() => loadItems(page + 1)}>Próxima</button>
+          <span className="gif-pagination-summary">Página {page} de {totalPages}</span>
+        </nav>
+      ) : null
+  );
+
   return (
     <div className={`gif-picker ${managementMode ? 'gif-picker-management' : ''} ${fullPage ? 'gif-picker-full-page' : ''}`}>
       {!managementMode && !fullPage ? (
@@ -406,6 +423,8 @@ export function GifLibraryPicker({
         ) : null}
       </div>
 
+      {managementMode ? pagination : null}
+
       <div className="gif-picker-grid">
         {items.length === 0 ? <div className="empty-state">Nenhuma animação encontrada.</div> : null}
         {items.map((item) => (
@@ -449,20 +468,7 @@ export function GifLibraryPicker({
         ))}
       </div>
 
-      {total > pageSize ? (
-        <nav className="gif-picker-pagination" aria-label="Paginação do Banco de GIFs">
-          <button type="button" className="secondary-button" disabled={page <= 1} onClick={() => loadItems(page - 1)}>Anterior</button>
-          {visiblePages.map((pageNumber) => (
-            <button key={pageNumber} type="button" className={`secondary-button gif-page-number ${page === pageNumber ? 'active' : ''}`}
-              aria-label={`Página ${pageNumber}`} aria-current={page === pageNumber ? 'page' : undefined}
-              onClick={() => loadItems(pageNumber)}>
-              {pageNumber}
-            </button>
-          ))}
-          <button type="button" className="secondary-button" disabled={page >= totalPages} onClick={() => loadItems(page + 1)}>Próxima</button>
-          <span className="gif-pagination-summary">Página {page} de {totalPages}</span>
-        </nav>
-      ) : null}
+      {!managementMode ? pagination : null}
 
       {editingItem ? (
         <div className="gif-edit-overlay">
