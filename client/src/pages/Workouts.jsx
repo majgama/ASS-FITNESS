@@ -139,6 +139,19 @@ export function Workouts({ initialTab = 'exercises' }) {
   const [selectedDailyWorkout, setSelectedDailyWorkout] = useState('');
   const [addingExerciseToDailyId, setAddingExerciseToDailyId] = useState('');
   const [expandedDailyIds, setExpandedDailyIds] = useState(() => new Set());
+  const dailyWorkoutHeadings = useRef(new Map());
+  useEffect(() => {
+    const expandedId = expandedDailyIds.values().next().value;
+    if (!expandedId) return;
+    const frame = requestAnimationFrame(() => {
+      const heading = dailyWorkoutHeadings.current.get(expandedId);
+      if (!heading) return;
+      const headerBottom = document.querySelector('.topbar')?.getBoundingClientRect().bottom || 0;
+      heading.style.scrollMarginTop = Math.max(0, headerBottom) + 'px';
+      heading.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [expandedDailyIds]);
   const [dailyAddDraft, setDailyAddDraft] = useState(null);
   const [exercisePickerWorkout, setExercisePickerWorkout] = useState(null);
   const [exercisePickerSearch, setExercisePickerSearch] = useState('');
@@ -1258,7 +1271,10 @@ export function Workouts({ initialTab = 'exercises' }) {
                   ) : null;
                   return (
                   <article className={`panel sub-panel-manage manage-card manage-daily-card ${exercisesExpanded ? 'expanded' : ''}`} key={workout.id}>
-                    <div className="manage-header-row">
+                    <div className="manage-header-row" ref={(node) => {
+                      if (node) dailyWorkoutHeadings.current.set(workout.id, node);
+                      else dailyWorkoutHeadings.current.delete(workout.id);
+                    }}>
                       <strong>{workout.name}</strong>
                       {canEditWorkout ? (
                         <button
