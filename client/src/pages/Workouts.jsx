@@ -147,7 +147,7 @@ export function Workouts({ initialTab = 'exercises' }) {
       const heading = dailyWorkoutHeadings.current.get(expandedId);
       if (!heading) return;
       const headerBottom = document.querySelector('.topbar')?.getBoundingClientRect().bottom || 0;
-      heading.style.scrollMarginTop = Math.max(0, headerBottom) + 'px';
+      heading.style.scrollMarginTop = (Math.max(0, headerBottom) + 8) + 'px';
       heading.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
     });
     return () => cancelAnimationFrame(frame);
