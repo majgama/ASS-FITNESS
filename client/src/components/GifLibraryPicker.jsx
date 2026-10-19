@@ -71,7 +71,7 @@ function FilterButtons({ label, options, selected, onChange, showAll = true, sho
 export function GifLibraryPicker({
   onSelect,
   onClose,
-  pageSize = 24,
+  pageSize: defaultPageSize = 24,
   managementMode = false,
   initialFavoritesOnly = false,
   initialGender = 'FEMININO',
@@ -81,6 +81,20 @@ export function GifLibraryPicker({
 }) {
   const { user } = useAuth();
   const isAdmin = user.role === 'admin';
+  const pageSizeStorageKey = `gif-library-page-size:${user.id}`;
+  const [savedPageSize, setSavedPageSize] = useState(() => {
+    try {
+      const saved = Number(localStorage.getItem(pageSizeStorageKey));
+      if (saved >= 10 && saved <= 100 && saved % 10 === 0) return saved;
+    } catch { /* Keep the default when browser storage is unavailable. */ }
+    return 100;
+  });
+  const pageSize = managementMode ? savedPageSize : defaultPageSize;
+  function changePageSize(event) {
+    const size = Number(event.target.value);
+    setSavedPageSize(size);
+    try { localStorage.setItem(pageSizeStorageKey, String(size)); } catch { /* Selection still works without persistence. */ }
+  }
 
   const [genders, setGenders] = useState(initialGender ? [initialGender] : []);
   const [environments, setEnvironments] = useState(initialEnvironment ? [initialEnvironment] : []);
@@ -152,7 +166,7 @@ export function GifLibraryPicker({
   useEffect(() => {
     loadItems(1);
     return () => { itemLoadVersion.current += 1; };
-  }, [genders, environments, categories, subcategories, muscleGroups, search, favoritesOnly, translationStatus]);
+  }, [genders, environments, categories, subcategories, muscleGroups, search, favoritesOnly, translationStatus, pageSize]);
 
   async function toggleFavorite(item) {
     try {
@@ -428,6 +442,11 @@ export function GifLibraryPicker({
           <p className="gif-pagination-summary" role="status">
             {total.toLocaleString('pt-BR')} {total === 1 ? 'resultado encontrado' : 'resultados encontrados'}
           </p>
+          <label className="gif-page-size-selector">Resultados por página
+            <select value={pageSize} onChange={changePageSize}>
+              {Array.from({ length: 10 }, (_, i) => (i + 1) * 10).map((size) => <option key={size} value={size}>{size}</option>)}
+            </select>
+          </label>
           {pagination}
         </>
       ) : null}
