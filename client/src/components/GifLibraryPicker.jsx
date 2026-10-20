@@ -118,7 +118,19 @@ export function GifLibraryPicker({
   const [muscleGroups, setMuscleGroups] = useState(() => readLastFilter('muscleGroups', PRIMARY_MUSCLE_GROUPS.map(({ value }) => value), ''));
   const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categories: [], subcategories: [], muscleGroups: [] });
   const [search, setSearch] = useState('');
-  const [favoritesOnly, setFavoritesOnly] = useState(initialFavoritesOnly);
+  const favoritesStorageKey = `gif-library-filter:${user.id}:favoritesOnly`;
+  const [favoritesOnly, setFavoritesOnly] = useState(() => {
+    if (initialFavoritesOnly) return true;
+    try {
+      const saved = localStorage.getItem(favoritesStorageKey);
+      if (saved === 'true' || saved === 'false') return saved === 'true';
+    } catch { /* Keep default if browser storage is unavailable. */ }
+    return false;
+  });
+  function rememberFavorites(value) {
+    setFavoritesOnly(value);
+    try { localStorage.setItem(favoritesStorageKey, String(value)); } catch { /* Filtering still works without storage. */ }
+  }
   const [translationStatus, setTranslationStatus] = useState('');
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -177,7 +189,7 @@ export function GifLibraryPicker({
     loadFilters();
     return () => { filterLoadVersion.current += 1; };
   }, [genders, environments, categories, subcategories, muscleGroups]);
-  useEffect(() => { setFavoritesOnly(initialFavoritesOnly); }, [initialFavoritesOnly]);
+  useEffect(() => { if (initialFavoritesOnly) rememberFavorites(true); }, [initialFavoritesOnly]);
   useEffect(() => {
     loadItems(1);
     return () => { itemLoadVersion.current += 1; };
@@ -429,7 +441,7 @@ export function GifLibraryPicker({
           type="button"
           className={`favorites-toggle ${favoritesOnly ? 'active' : ''}`}
           aria-pressed={favoritesOnly}
-          onClick={() => setFavoritesOnly((current) => !current)}
+          onClick={() => rememberFavorites(!favoritesOnly)}
         >
           <Star size={12} />
           Favoritos
