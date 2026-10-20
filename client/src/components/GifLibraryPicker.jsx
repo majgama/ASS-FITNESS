@@ -115,7 +115,7 @@ export function GifLibraryPicker({
   }
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
-  const [muscleGroups, setMuscleGroups] = useState([]);
+  const [muscleGroups, setMuscleGroups] = useState(() => readLastFilter('muscleGroups', PRIMARY_MUSCLE_GROUPS.map(({ value }) => value), ''));
   const [filterOptions, setFilterOptions] = useState({ genders: [], environments: [], categories: [], subcategories: [], muscleGroups: [] });
   const [search, setSearch] = useState('');
   const [favoritesOnly, setFavoritesOnly] = useState(initialFavoritesOnly);
@@ -397,7 +397,7 @@ export function GifLibraryPicker({
             type="button"
             className={!muscleGroups.length ? 'active' : ''}
             aria-pressed={!muscleGroups.length}
-            onClick={() => setMuscleGroups([])}
+            onClick={() => rememberFilter('muscleGroups', [], setMuscleGroups)}
           >
             Todos
           </button>
@@ -407,7 +407,7 @@ export function GifLibraryPicker({
               type="button"
               className={muscleGroups.includes(value) ? 'active' : ''}
               aria-pressed={muscleGroups.includes(value)}
-              onClick={() => setMuscleGroups((current) => current.includes(value) ? current.filter((item) => item !== value) : [...current, value])}
+              onClick={() => rememberFilter('muscleGroups', muscleGroups.includes(value) ? muscleGroups.filter((item) => item !== value) : [...muscleGroups, value], setMuscleGroups)}
             >
               {label}
             </button>
