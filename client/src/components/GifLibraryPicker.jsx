@@ -96,8 +96,23 @@ export function GifLibraryPicker({
     try { localStorage.setItem(pageSizeStorageKey, String(size)); } catch { /* Selection still works without persistence. */ }
   }
 
-  const [genders, setGenders] = useState(initialGender ? [initialGender] : []);
-  const [environments, setEnvironments] = useState(initialEnvironment ? [initialEnvironment] : []);
+  function readLastFilter(name, allowed, fallback) {
+    try {
+      const raw = localStorage.getItem(`gif-library-filter:${user.id}:${name}`);
+      if (raw !== null) {
+        const values = JSON.parse(raw);
+        if (Array.isArray(values) && values.every((value) => allowed.includes(value))) return [...new Set(values)];
+      }
+    } catch { /* Keep initial defaults if saved preferences cannot be read. */ }
+    return fallback ? [fallback] : [];
+  }
+  const [genders, setGenders] = useState(() => readLastFilter('genders', ['FEMININO', 'MASCULINO'], initialGender));
+  const [environments, setEnvironments] = useState(() => readLastFilter('environments', ['ACADEMIA', 'FUNCIONAL'], initialEnvironment));
+  function rememberFilter(name, values, setValues) {
+    setValues(values);
+    try { localStorage.setItem(`gif-library-filter:${user.id}:${name}`, JSON.stringify(values)); }
+    catch { /* Filtering still works when browser storage is unavailable. */ }
+  }
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [muscleGroups, setMuscleGroups] = useState([]);
@@ -366,8 +381,8 @@ export function GifLibraryPicker({
         <div>
           <strong className="gif-filter-legend">Gênero/Ambiente</strong>
           <div className="gif-gender-environment">
-            <FilterButtons label="Gênero" options={filterOptions.genders} selected={genders} onChange={setGenders} showAll={false} showLabel={false} />
-            <FilterButtons label="Ambiente" options={filterOptions.environments} selected={environments} onChange={setEnvironments} showAll={false} showLabel={false} />
+            <FilterButtons label="Gênero" options={filterOptions.genders} selected={genders} onChange={(values) => rememberFilter('genders', values, setGenders)} showAll={false} showLabel={false} />
+            <FilterButtons label="Ambiente" options={filterOptions.environments} selected={environments} onChange={(values) => rememberFilter('environments', values, setEnvironments)} showAll={false} showLabel={false} />
           </div>
         </div>
         <FilterButtons label="Categoria" options={filterOptions.categories} selected={categories} onChange={setCategories} />
